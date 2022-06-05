@@ -9,7 +9,6 @@ const NavigationContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 8vh;
-  border-bottom: 2;
 
   h2 {
     margin: 15px 0px 10px 20px;
