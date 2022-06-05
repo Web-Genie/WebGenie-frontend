@@ -1,13 +1,31 @@
 import React from "react";
+import styled from "styled-components";
+
+import { firebaseAuth, googleProvider } from "../../services/firebase";
 
 import webGenieLogo from "../../assets/logo_transparent.png";
 import homepageImage from "../../assets/homepageImage.png";
 import HomepageSVG from "../HomepageSVG/HomepageSVG";
 import Button from "../Button/Button";
 
-import styled from "styled-components";
-
 function Homepage() {
+  const handleLogin = async () => {
+    try {
+      const loggedInResult = await firebaseAuth.signInWithPopup(googleProvider);
+      const accessToken = loggedInResult.credential.accessToken;
+
+      localStorage.setItem("accessToken", accessToken);
+
+      await api.post("/login", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <HomepageBody>
@@ -19,7 +37,11 @@ function Homepage() {
             원하는 아이템을 드래그하면 쉽고 빠르게 자신만의 웹사이트를 만들
             수있습니다
           </h2>
-          <Button buttonText={"Google로 시작하기"} buttonPurpose={"login"} />
+          <Button
+            buttonText={"Google로 시작하기"}
+            buttonPurpose={"login"}
+            onMove={handleLogin}
+          />
         </HomepageDetails>
         <BrandImageContainer>
           <div>

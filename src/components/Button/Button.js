@@ -4,11 +4,11 @@ import googleLogo from "../../assets/googleLogo.png";
 
 import styled from "styled-components";
 
-function Button({ buttonText, buttonPurpose }) {
+function Button({ buttonText, buttonPurpose, onMove }) {
   return (
     buttonPurpose === "login" && (
       <div>
-        <LoginButton>
+        <LoginButton onClick={onMove}>
           <img className="googleLogo" src={googleLogo}></img>
           {buttonText}
         </LoginButton>
