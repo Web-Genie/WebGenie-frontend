@@ -1,59 +1,34 @@
 import React from "react";
 
-import googleLogo from "../../assets/googleLogo.png";
-
 import styled from "styled-components";
 
-function Button({ buttonText, buttonPurpose, handleLogin }) {
-  return (
-    buttonPurpose === "login" && (
-      <div>
-        <LoginButton onClick={handleLogin}>
-          <img className="googleLogo" src={googleLogo}></img>
-          {buttonText}
-        </LoginButton>
-      </div>
-    )
-  );
+function Button({ children, mainButton }) {
+  return <ButtonBody primaryButton={mainButton}>{children}</ButtonBody>;
 }
 
-const LoginButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 50px;
-  border: none;
-  border-radius: 3px;
-  padding: 13px 30px;
-  box-shadow: 0px -1px 15px 3px rgba(0, 0, 0, 0.04),
-    0 1px 1px rgba(0, 0, 0, 0.25);
-  color: rgb(117, 117, 117);
-  font-size: 18px;
-  font-weight: 500;
-  background-color: white;
-  background-position: 12px 11px;
-  transition: all 0.2s ease;
+const ButtonBody = styled.button`
+  font-size: 16px;
+  text-align: center;
+  color: ${(props) => (props.primaryButton ? "#fff" : "#0a6bff")};
+  background-color: ${(props) => (props.primaryButton ? "#0a6bff" : "white")};
+  border: ${(props) => (props.primaryButton ? "0" : "2px solid #0a6bff ")};
+  border-radius: 5px;
+  box-shadow: ${(props) =>
+    props.primaryButton
+      ? "rgba(1, 60, 136, 0.5) 0 -1px 3px 0 inset,rgba(0, 44, 97, 0.1) 0 3px 6px 0; : 2px solid #0a6bff "
+      : "none"};
+  box-sizing: border-box;
+  padding: 8px 15px;
+  transition: all 0.2s cubic-bezier(0.22, 0.61, 0.36, 1);
   cursor: pointer;
 
-  .googleLogo {
-    width: 20px;
-    margin-right: 30px;
-  }
-
   :hover {
-    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25);
-    transform: translateY(-5px);
+    background-color: ${(props) => (props.primaryButton ? "#065dd8" : "none")};
+    transform: translateY(-3px);
   }
 
   :active {
-    background-color: #eeeeee;
-    transform: translateY(5px);
-  }
-
-  :focus {
-    box-shadow: 0px -1px 15px 3px rgba(0, 0, 0, 0.04),
-      0 1px 1px rgba(0, 0, 0, 0.25);
-    outline: none;
+    transform: translateY(3px);
   }
 `;
 
