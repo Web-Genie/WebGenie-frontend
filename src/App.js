@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import Login from "./components/Login/Login";
 import UserPage from "./components/UserPage/UserPage";

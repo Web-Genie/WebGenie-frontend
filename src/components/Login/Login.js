@@ -1,15 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-import { firebaseAuth, googleProvider } from "../../services/firebase";
-import api from "../../services/api";
-
-import webGenieLogo from "../../assets/logo_transparent.png";
-import loginImage from "../../assets/loginImage.png";
 import googleLogo from "../../assets/googleLogo.png";
-
-import LoginSVG from "../LoginSVG/LoginSVG";
+import loginImage from "../../assets/loginImage.png";
+import webGenieLogo from "../../assets/logo_transparent.png";
+import api from "../../services/api";
+import { firebaseAuth, googleProvider } from "../../services/firebase";
 import LoginButton from "../Button/LoginButton";
+import LoginSVG from "../LoginSVG/LoginSVG";
 
 function Login() {
   const handleGoogleLogin = async () => {
