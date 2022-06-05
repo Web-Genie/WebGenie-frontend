@@ -7,6 +7,7 @@ import Button from "../Button/Button";
 import EditorTemplate from "../EditorTemplate/EditorTemplate";
 import EditorToolbar from "../EditorToolbar/EditorToolbar";
 import Header from "../Header/Header";
+import LeftToolbar from "../LeftToolbar/LeftToolbar";
 import Navigation from "../Navigation/Navigation";
 
 function Editor() {
@@ -34,7 +35,7 @@ function Editor() {
         </div>
       </Navigation>
       <EditorBody>
-        <EditorToolbar />
+        <LeftToolbar />
         <EditorTemplate />
         <EditorToolbar />
       </EditorBody>
@@ -47,6 +48,7 @@ const EditorBody = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 84vh;
+  overflow: hidden;
   background-color: #f5f5f5;
 `;
 
