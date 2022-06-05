@@ -40,7 +40,7 @@ function Homepage() {
           <Button
             buttonText={"Google로 시작하기"}
             buttonPurpose={"login"}
-            onClick={handleLogin}
+            onMove={handleLogin}
           />
         </HomepageDetails>
         <BrandImageContainer>
