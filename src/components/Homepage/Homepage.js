@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { firebaseAuth, googleProvider } from "../../services/firebase";
+import api from "../../api";
 
 import webGenieLogo from "../../assets/logo_transparent.png";
 import homepageImage from "../../assets/homepageImage.png";
@@ -40,7 +41,7 @@ function Homepage() {
           <Button
             buttonText={"Google로 시작하기"}
             buttonPurpose={"login"}
-            onMove={handleLogin}
+            handleLogin={handleLogin}
           />
         </HomepageDetails>
         <BrandImageContainer>
