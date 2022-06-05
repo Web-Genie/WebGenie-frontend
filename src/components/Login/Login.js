@@ -72,8 +72,8 @@ const BrandImageContainer = styled.div`
   align-items: center;
 
   img {
-    width: 900px;
     margin-top: 200px;
+    width: 900px;
   }
 `;
 
@@ -84,21 +84,21 @@ const LoginDetails = styled.div`
   width: 50%;
 
   h1 {
+    width: 24ch;
+    border-right: 3px solid;
+    overflow: hidden;
     font-size: 52px;
     text-align: center;
-    width: 24ch;
     white-space: nowrap;
-    overflow: hidden;
-    border-right: 3px solid;
     animation: typing 2s steps(22), blink 0.8s step-end infinite alternate;
   }
 
   h2 {
+    width: 550px;
+    margin-top: 50px;
     font-size: 28px;
     text-align: center;
     line-height: 1.4;
-    margin-top: 50px;
-    width: 550px;
   }
 
   @keyframes typing {
