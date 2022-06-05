@@ -1,16 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
-import { firebaseAuth, googleProvider } from "../../services/firebase";
-import api from "../../api";
-
+import googleLogo from "../../assets/googleLogo.png";
+import loginImage from "../../assets/loginImage.png";
 import webGenieLogo from "../../assets/logo_transparent.png";
-import homepageImage from "../../assets/homepageImage.png";
-import HomepageSVG from "../HomepageSVG/HomepageSVG";
-import Button from "../Button/Button";
+import api from "../../services/api";
+import { firebaseAuth, googleProvider } from "../../services/firebase";
+import LoginButton from "../Button/LoginButton";
+import LoginSVG from "../LoginSVG/LoginSVG";
 
-function Homepage() {
-  const handleLogin = async () => {
+function Login() {
+  const handleGoogleLogin = async () => {
     try {
       const loggedInResult = await firebaseAuth.signInWithPopup(googleProvider);
       const accessToken = loggedInResult.credential.accessToken;
@@ -29,39 +29,38 @@ function Homepage() {
 
   return (
     <>
-      <HomepageBody>
-        <HomepageSVG />
-        <HomepageDetails>
+      <LoginBody>
+        <LoginSVG />
+        <LoginDetails>
           <Logo src={webGenieLogo} alt="WebGenie Logo" />
           <h1>당신의 웹사이트를 만들어보세요!</h1>
           <h2>
             원하는 아이템을 드래그하면 쉽고 빠르게 자신만의 웹사이트를 만들
             수있습니다
           </h2>
-          <Button
-            buttonText={"Google로 시작하기"}
-            buttonPurpose={"login"}
-            handleLogin={handleLogin}
-          />
-        </HomepageDetails>
+          <LoginButton handleLogin={handleGoogleLogin}>
+            <img className="logoImage" src={googleLogo} />
+            Google로 시작하기
+          </LoginButton>
+        </LoginDetails>
         <BrandImageContainer>
           <div>
-            <img className="brandImage" src={homepageImage} />
+            <img className="brandImage" src={loginImage} />
           </div>
         </BrandImageContainer>
-      </HomepageBody>
+      </LoginBody>
     </>
   );
 }
 
-export default Homepage;
+export default Login;
 
 const Logo = styled.img`
   margin-top: 50px;
   width: 330px;
 `;
 
-const HomepageBody = styled.div`
+const LoginBody = styled.div`
   display: flex;
   height: 100vh;
 `;
@@ -71,33 +70,33 @@ const BrandImageContainer = styled.div`
   align-items: center;
 
   img {
-    width: 900px;
     margin-top: 200px;
+    width: 900px;
   }
 `;
 
-const HomepageDetails = styled.div`
+const LoginDetails = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 50%;
 
   h1 {
+    width: 24ch;
+    border-right: 3px solid;
+    overflow: hidden;
     font-size: 52px;
     text-align: center;
-    width: 24ch;
     white-space: nowrap;
-    overflow: hidden;
-    border-right: 3px solid;
     animation: typing 2s steps(22), blink 0.8s step-end infinite alternate;
   }
 
   h2 {
+    width: 550px;
+    margin-top: 50px;
     font-size: 28px;
     text-align: center;
     line-height: 1.4;
-    margin-top: 50px;
-    width: 550px;
   }
 
   @keyframes typing {
