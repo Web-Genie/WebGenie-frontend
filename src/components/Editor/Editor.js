@@ -1,16 +1,53 @@
 import React from "react";
+import { FaArrowLeft, FaRegEdit } from "react-icons/fa";
 import styled from "styled-components";
 
-function Editor() {
-  return <EditorBody></EditorBody>;
+import mockImage from "../../assets/mockData.png";
+import Button from "../Button/Button";
+import Editor from "../EditorTemplate/EditorTemplate";
+import EditorToolbar from "../EditorToolbar/EditorToolbar";
+import Header from "../Header/Header";
+import Navigation from "../Navigation/Navigation";
+
+function WebsiteEditor() {
+  return (
+    <>
+      <Header>
+        <h1>WebGenie</h1>
+        <img src={mockImage} />
+      </Header>
+      <Navigation>
+        <div className="editorNavbar">
+          <span>
+            <FaArrowLeft />
+          </span>
+          <div className="titleNavbar">
+            <h3>New Editor 2</h3>
+            <span>
+              <FaRegEdit />
+            </span>
+          </div>
+        </div>
+        <div>
+          <Button mainButton={false}>Save</Button>
+          <Button mainButton={true}>Publish</Button>
+        </div>
+      </Navigation>
+      <WebsiteEditorBody>
+        <EditorToolbar />
+        <Editor />
+        <EditorToolbar />
+      </WebsiteEditorBody>
+    </>
+  );
 }
 
-const EditorBody = styled.div`
-  height: 78vh;
-  width: 65%;
-  overflow-y: scroll;
-  box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.05);
-  background-color: white;
+const WebsiteEditorBody = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 84vh;
+  background-color: #f5f5f5;
 `;
 
-export default Editor;
+export default WebsiteEditor;
