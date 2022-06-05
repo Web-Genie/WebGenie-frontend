@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import Homepage from "./components/Homepage/Homepage";
+import Login from "./components/Login/Login";
+import UserPage from "./components/UserPage/UserPage";
 
 function App() {
+  const [userToken, setUserToken] = useState(
+    localStorage.getItem("accessToken")
+  );
+
   return (
     <>
       <Routes>
-        <Route path="/" element={<Homepage />} />
+        <Route path="/" element={userToken ? <UserPage /> : <Login />} />
       </Routes>
     </>
   );
