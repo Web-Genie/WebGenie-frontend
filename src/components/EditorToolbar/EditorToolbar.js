@@ -6,9 +6,9 @@ function EditorToolbar({ children }) {
 }
 
 const Toolbar = styled.div`
-  background-color: rgb(249, 250, 251);
   height: 84vh;
   width: 15.5%;
+  background-color: rgb(249, 250, 251);
 `;
 
 export default EditorToolbar;
