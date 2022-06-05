@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-function EditorToolbar({ children }) {
+function EditorToolbar() {
   return <Toolbar></Toolbar>;
 }
 
