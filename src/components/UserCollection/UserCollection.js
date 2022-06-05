@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import placeholderImage from "../../assets/placeholder.png";
 
 function UserCollection({ collections }) {
@@ -18,12 +19,12 @@ function UserCollection({ collections }) {
 }
 
 const UserContents = styled.div`
-  background-color: rgb(249, 249, 249);
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   height: 84vh;
   overflow-y: scroll;
-  flex-wrap: wrap;
+  background-color: rgb(249, 249, 249);
 `;
 
 const UserWebsites = styled.div`
@@ -31,12 +32,12 @@ const UserWebsites = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  border-radius: 10px;
-  margin: 40px 50px 30px 30px;
-  background-color: white;
   width: 300px;
   height: 220px;
+  margin: 40px 50px 30px 30px;
   box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  background-color: white;
   cursor: pointer;
 
   div {
@@ -44,16 +45,16 @@ const UserWebsites = styled.div`
   }
 
   img {
-    border-radius: 10px 10px 0px 0px;
-    width: 300px;
     height: 150px;
+    width: 300px;
+    border-radius: 10px 10px 0px 0px;
   }
 
   p {
-    font-size: 20px;
     margin: 0px 5px;
-    text-align: center;
     padding-bottom: 23px;
+    font-size: 20px;
+    text-align: center;
   }
 
   :hover {

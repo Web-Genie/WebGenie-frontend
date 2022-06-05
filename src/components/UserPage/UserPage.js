@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect,useState } from "react";
 
+import mockImage from "../../assets/mockData.png";
 import api from "../../services/api";
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import UserCollection from "../UserCollection/UserCollection";
-import mockImage from "../../assets/mockData.png";
-
-import styled from "styled-components";
 
 function UserPage() {
   const [userInformation, setUserInformation] = useState({});
