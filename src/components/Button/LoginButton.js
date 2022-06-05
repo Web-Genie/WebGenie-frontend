@@ -13,22 +13,22 @@ const SocialLoginButton = styled.button`
   align-items: center;
   justify-content: center;
   margin-top: 50px;
+  padding: 13px 30px;
   border: none;
   border-radius: 3px;
-  padding: 13px 30px;
   box-shadow: 0px -1px 15px 3px rgba(0, 0, 0, 0.04),
     0 1px 1px rgba(0, 0, 0, 0.25);
+  background-color: white;
+  background-position: 12px 11px;
   color: rgb(117, 117, 117);
   font-size: 18px;
   font-weight: 500;
-  background-color: white;
-  background-position: 12px 11px;
   transition: all 0.2s ease;
   cursor: pointer;
 
   .logoImage {
-    width: 20px;
     margin-right: 30px;
+    width: 20px;
   }
 
   :hover {
