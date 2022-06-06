@@ -1,17 +1,7 @@
 import styled from "styled-components";
 
-import CreateButton from "../Button/Button";
-
-function Navigation() {
-  return (
-    <NavigationContainer>
-      <h2>My Collection</h2>
-      <form>
-        <input placeholder="Search your websites" />
-      </form>
-      <CreateButton mainButton={true}>Create New Site</CreateButton>
-    </NavigationContainer>
-  );
+function Navigation({ children }) {
+  return <NavigationContainer>{children}</NavigationContainer>;
 }
 
 const NavigationContainer = styled.div`
@@ -19,7 +9,6 @@ const NavigationContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 8vh;
-  border-bottom: 2;
 
   h2 {
     margin: 15px 0px 10px 20px;
@@ -55,6 +44,28 @@ const NavigationContainer = styled.div`
   form {
     display: flex;
     align-items: center;
+  }
+
+  span {
+    display: flex;
+    font-size: 24px;
+    margin-left: 25px;
+    cursor: pointer;
+
+    :hover {
+      opacity: 0.6;
+    }
+  }
+
+  .editorNavbar {
+    display: flex;
+    align-items: center;
+  }
+
+  .titleNavbar {
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
   }
 `;
 
