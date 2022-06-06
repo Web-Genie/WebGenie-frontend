@@ -1,18 +1,11 @@
 import React from "react";
-import {
-  FaAlignCenter,
-  FaAlignLeft,
-  FaAlignRight,
-  FaBold,
-  FaItalic,
-  FaUnderline,
-} from "react-icons/fa";
-import { FiChevronDown } from "react-icons/fi";
-function TextPositionEditor() {
+import { FaAlignCenter, FaAlignLeft, FaAlignRight } from "react-icons/fa";
+
+function TextPositionEditor({ title }) {
   return (
     <div className="choiceContainer">
       <div className="category">
-        <p>Edit Position</p>
+        <p>{title}</p>
       </div>
       <div className="detailContainer">
         <div className="detailItem">

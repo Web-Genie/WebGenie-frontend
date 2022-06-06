@@ -1,6 +1,7 @@
 import React from "react";
 
 import EditorToolbar from "../EditorToolbar/EditorToolbar";
+import CanvasClearButton from "../SubToolbar/CanvasClearButton";
 import TextColorEditor from "../SubToolbar/TextColorEditor";
 import TextDetailEditor from "../SubToolbar/TextDetailEditor";
 import TextPositionEditor from "../SubToolbar/TextPositionEditor";
@@ -11,8 +12,9 @@ function RightToolbar() {
     <EditorToolbar>
       <ToolbarContainer>
         <TextDetailEditor />
-        <TextPositionEditor />
+        <TextPositionEditor title={"edit positon"} />
         <TextColorEditor />
+        <CanvasClearButton />
       </ToolbarContainer>
     </EditorToolbar>
   );
