@@ -3,7 +3,7 @@ import { FaLink } from "react-icons/fa";
 
 import ToolbarButton from "../Button/ToolbarButton";
 
-function ButtonEditor() {
+function ButtonLinkEditor() {
   return (
     <div className="choiceContainer">
       <div className="category">
@@ -16,6 +16,6 @@ function ButtonEditor() {
       </div>
     </div>
   );
-};
+}
 
-export default ButtonEditor;
+export default ButtonLinkEditor;
