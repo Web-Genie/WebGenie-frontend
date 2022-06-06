@@ -1,6 +1,6 @@
 import React from "react";
 
-function ButtonOpacityEditor() {
+function OpacityEditor() {
   return (
     <div className="choiceContainer">
       <div className="category">
@@ -14,4 +14,4 @@ function ButtonOpacityEditor() {
   );
 }
 
-export default ButtonOpacityEditor;
+export default OpacityEditor;
