@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-function Editor() {
-  return <EditorBody></EditorBody>;
+function EditorTemplate() {
+  return <EditorTemplateBody></EditorTemplateBody>;
 }
 
-const EditorBody = styled.div`
+const EditorTemplateBody = styled.div`
   height: 78vh;
   width: 65%;
   overflow-y: scroll;
@@ -13,4 +13,4 @@ const EditorBody = styled.div`
   background-color: white;
 `;
 
-export default Editor;
+export default EditorTemplate;
