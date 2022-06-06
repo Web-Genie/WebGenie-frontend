@@ -6,7 +6,7 @@ import {
   NEW_EDITOR_REMINDER_MESSAGE,
   NO_MESSAGE,
   QUESTION_ICON,
-} from "../../constants/modal";
+} from "../../constants/constants";
 import api from "../../services/api";
 import Button from "../Button/Button";
 import Header from "../Header/Header";
