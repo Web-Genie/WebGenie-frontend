@@ -138,6 +138,68 @@ const ToolbarContainerBody = styled.div`
     background: white;
     cursor: default;
   }
+
+  .textDetailChoice {
+    display: flex;
+    justify-content: space-between;
+    width: 75%;
+    flex-direction: row;
+    .fontType {
+      width: 6rem;
+      margin-right: 10px;
+    }
+    .fontSize {
+      width: 0.8rem;
+    }
+  }
+
+  .clearCanavs {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+  }
+
+  .sampleColor {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    border-radius: 4px;
+    background-color: #63cc63;
+  }
+
+  .container {
+    display: flex;
+    flex-flow: row;
+    align-items: stretch;
+    align-content: center;
+    margin-top: 10px;
+
+    .item1 {
+      border: 1px solid #e5e5e5;
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+      padding: 7px 25px;
+      gap: 12px;
+      background: white;
+      cursor: pointer;
+    }
+    .item2 {
+      border: 1px solid #e5e5e5;
+      padding: 7px 25px;
+      gap: 12px;
+      background: white;
+      cursor: pointer;
+    }
+    .item3 {
+      border: 1px solid #e5e5e5;
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+      padding: 7px 25px;
+      gap: 12px;
+      background: white;
+      cursor: pointer;
+    }
+  }
 `;
 
 export default ToolbarContainer;
