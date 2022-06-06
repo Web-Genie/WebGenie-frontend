@@ -1,11 +1,11 @@
 import React from "react";
 
+import SubtoolbarTitle from "./SubtoolbarTitle";
+
 function ImageBrightnessEditor() {
   return (
     <div className="choiceContainer">
-      <div className="category">
-        <p>Edit Brightness</p>
-      </div>
+      <SubtoolbarTitle title={"Edit Brightness"} />
       <div>
         <input type="range" min="0" max="100" />
       </div>

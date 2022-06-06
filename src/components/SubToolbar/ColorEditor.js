@@ -2,13 +2,12 @@ import React from "react";
 import { RiPaintFill } from "react-icons/ri";
 
 import ToolbarButton from "../Button/ToolbarButton";
+import SubtoolbarTitle from "./SubtoolbarTitle";
 
 function ColorEditor() {
   return (
     <div className="choiceContainer">
-      <div className="category">
-        <p>Edit Color</p>
-      </div>
+      <SubtoolbarTitle title={"Edit color"} />
       <div className="backgroundColorChoice">
         <ToolbarButton>
           <RiPaintFill />

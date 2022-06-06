@@ -2,13 +2,12 @@ import React from "react";
 import { FaBold, FaItalic, FaUnderline } from "react-icons/fa";
 
 import ToolbarButton from "../Button/ToolbarButton";
+import SubtoolbarTitle from "./SubtoolbarTitle";
 
-function TextDetailEditor({ title }) {
+function TextDetailEditor() {
   return (
     <div className="choiceContainer">
-      <div className="category">
-        <p>{title}</p>
-      </div>
+      <SubtoolbarTitle title={"Edit text"} />
       <div className="textDetailChoice">
         <ToolbarButton>
           <select className="fontType">

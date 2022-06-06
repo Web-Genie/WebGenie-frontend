@@ -11,31 +11,35 @@ import TextDetailEditor from "../SubToolbar/TextDetailEditor";
 import TextPositionEditor from "../SubToolbar/TextPositionEditor";
 import ToolbarContainer from "../ToolbarContainer/ToolbarContainer";
 
-function RightToolbar({ name }) {
+function RightToolbar({ propertyName }) {
   return (
     <EditorToolbar>
       <ToolbarContainer>
-        {name === "text" && (
+        {propertyName === "text" && (
           <>
-            <TextDetailEditor title={"Edit text"} />
-            <TextPositionEditor title={"Edit positon"} />
+            <TextDetailEditor />
+            <TextPositionEditor />
           </>
         )}
-        {name === "button" && (
+        {propertyName === "button" && (
           <>
             <ButtonLinkEditor />
             <ButtonRadiusEditor />
             <OpacityEditor />
           </>
         )}
-        {name === "image" && (
+        {propertyName === "image" && (
           <>
             <OpacityEditor />
             <ImageBrightnessEditor />
-            <ColorEditor />
-            <CanvasClearButton />
           </>
         )}
+        {propertyName !== "button" && (
+          <>
+            <ColorEditor />
+          </>
+        )}
+        <CanvasClearButton />
       </ToolbarContainer>
     </EditorToolbar>
   );
