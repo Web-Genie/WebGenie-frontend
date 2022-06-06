@@ -4,12 +4,13 @@ import styled from "styled-components";
 
 import mockImage from "../../assets/mockData.png";
 import Button from "../Button/Button";
-import Editor from "../EditorTemplate/EditorTemplate";
+import EditorTemplate from "../EditorTemplate/EditorTemplate";
 import EditorToolbar from "../EditorToolbar/EditorToolbar";
 import Header from "../Header/Header";
+import LeftToolbar from "../LeftToolbar/LeftToolbar";
 import Navigation from "../Navigation/Navigation";
 
-function WebsiteEditor() {
+function Editor() {
   return (
     <>
       <Header>
@@ -33,21 +34,22 @@ function WebsiteEditor() {
           <Button mainButton={true}>Publish</Button>
         </div>
       </Navigation>
-      <WebsiteEditorBody>
+      <EditorBody>
+        <LeftToolbar />
+        <EditorTemplate />
         <EditorToolbar />
-        <Editor />
-        <EditorToolbar />
-      </WebsiteEditorBody>
+      </EditorBody>
     </>
   );
 }
 
-const WebsiteEditorBody = styled.div`
+const EditorBody = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 84vh;
+  overflow: hidden;
   background-color: #f5f5f5;
 `;
 
-export default WebsiteEditor;
+export default Editor;
