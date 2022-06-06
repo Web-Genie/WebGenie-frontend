@@ -141,15 +141,15 @@ const ToolbarContainerBody = styled.div`
 
   .textDetailChoice {
     display: flex;
-    justify-content: space-between;
-    width: 75%;
+    justify-content: space-evenly;
     flex-direction: row;
+    align-items: center;
+
     .fontType {
-      width: 6rem;
-      margin-right: 10px;
+      width: 100px;
     }
     .fontSize {
-      width: 0.8rem;
+      width: 15px;
     }
   }
 
@@ -167,37 +167,36 @@ const ToolbarContainerBody = styled.div`
     background-color: #63cc63;
   }
 
-  .container {
+  .detailContainer {
     display: flex;
-    flex-flow: row;
-    align-items: stretch;
-    align-content: center;
+    justify-content: center;
     margin-top: 10px;
+  }
 
-    .item1 {
-      border: 1px solid #e5e5e5;
-      border-top-left-radius: 6px;
-      border-bottom-left-radius: 6px;
+  .detailItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #e5e5e5;
+
+    span {
+      font-size: 20px;
+      height: 20px;
       padding: 7px 25px;
-      gap: 12px;
-      background: white;
       cursor: pointer;
+      :hover {
+        opacity: 0.5;
+      }
     }
-    .item2 {
-      border: 1px solid #e5e5e5;
-      padding: 7px 25px;
-      gap: 12px;
-      background: white;
-      cursor: pointer;
+
+    .rightBorder {
+      border-right: 1px solid #e5e5e5;
     }
-    .item3 {
-      border: 1px solid #e5e5e5;
-      border-top-right-radius: 6px;
-      border-bottom-right-radius: 6px;
-      padding: 7px 25px;
-      gap: 12px;
-      background: white;
-      cursor: pointer;
+
+    .leftBorder {
+      border-left: 1px solid #e5e5e5;
     }
   }
 `;

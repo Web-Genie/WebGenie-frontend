@@ -1,11 +1,12 @@
 import React from "react";
 import {
-  BsJustify,
-  BsJustifyLeft,
-  BsJustifyRight,
-  BsTypeItalic,
-  BsTypeUnderline,
-} from "react-icons/bs";
+  FaAlignCenter,
+  FaAlignLeft,
+  FaAlignRight,
+  FaBold,
+  FaItalic,
+  FaUnderline,
+} from "react-icons/fa";
 import { FiChevronDown } from "react-icons/fi";
 import { RiPaintFill } from "react-icons/ri";
 
@@ -23,21 +24,25 @@ function RightToolbar() {
           </div>
           <div className="textDetailChoice">
             <ToolbarButton>
-              <p className="fontType">inter</p>
+              <div className="fontType">inter</div>
               <FiChevronDown />
             </ToolbarButton>
             <ToolbarButton>
-              <p className="fontSize">24</p>
+              <div className="fontSize">24</div>
               <FiChevronDown />
             </ToolbarButton>
           </div>
-          <div className="container">
-            <div className="item1">B</div>
-            <div className="item2">
-              <BsTypeItalic />
-            </div>
-            <div className="item3">
-              <BsTypeUnderline />
+          <div className="detailContainer">
+            <div className="detailItem">
+              <span className="rightBorder">
+                <FaBold />
+              </span>
+              <span>
+                <FaItalic />
+              </span>
+              <span className="leftBorder">
+                <FaUnderline />
+              </span>
             </div>
           </div>
         </div>
@@ -45,15 +50,17 @@ function RightToolbar() {
           <div className="category">
             <p>Edit Position</p>
           </div>
-          <div className="container">
-            <div className="item1">
-              <BsJustifyLeft />
-            </div>
-            <div className="item2">
-              <BsJustify />
-            </div>
-            <div className="item3">
-              <BsJustifyRight />
+          <div className="detailContainer">
+            <div className="detailItem">
+              <span className="rightBorder">
+                <FaAlignLeft />
+              </span>
+              <span>
+                <FaAlignCenter />
+              </span>
+              <span className="leftBorder">
+                <FaAlignRight />
+              </span>
             </div>
           </div>
         </div>
