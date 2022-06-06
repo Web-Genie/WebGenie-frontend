@@ -38,8 +38,8 @@ function Editor() {
     setShouldEditTitle(!shouldEditTitle);
   };
 
-  const listenTitleInputChange = (ev) => {
-    setEditorTitle(ev.target.value);
+  const listenTitleInputChange = (event) => {
+    setEditorTitle(event.target.value);
   };
 
   return (
@@ -66,9 +66,7 @@ function Editor() {
           </span>
           <div className="titleNavbar">
             {!shouldEditTitle && <h3>{editorTitle}</h3>}
-            {shouldEditTitle && (
-              <input onChange={listenTitleInputChange}></input>
-            )}
+            {shouldEditTitle && <input onChange={listenTitleInputChange} />}
             <span onClick={handleTitleChangeState}>
               <FaRegEdit />
             </span>
