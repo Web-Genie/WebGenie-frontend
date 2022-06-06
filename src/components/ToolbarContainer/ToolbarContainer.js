@@ -12,8 +12,8 @@ const ToolbarContainerBody = styled.div`
   color: #263238;
 
   .category {
-    font-size: 18px;
     margin-bottom: 10px;
+    font-size: 18px;
     text-decoration: underline;
     font-weight: 600;
   }
@@ -25,58 +25,58 @@ const ToolbarContainerBody = styled.div`
   }
 
   h1 {
-    font-size: 32px;
     margin-bottom: 7px;
-    font-weight: 500;
     color: #263238;
+    font-size: 32px;
+    font-weight: 500;
     cursor: pointer;
   }
 
   h2 {
-    font-size: 28px;
     margin-bottom: 7px;
-    font-weight: 500;
     color: #263238;
+    font-size: 28px;
+    font-weight: 500;
     cursor: pointer;
   }
 
   h3 {
-    font-size: 24px;
     margin-bottom: 7px;
-    font-weight: 500;
     color: #263238;
+    font-size: 24px;
+    font-weight: 500;
     cursor: pointer;
   }
 
   h4 {
-    font-size: 20px;
     margin-bottom: 7px;
-    font-weight: 500;
     color: #263238;
+    font-size: 20px;
+    font-weight: 500;
     cursor: pointer;
   }
 
   h5 {
-    font-size: 16px;
     margin-bottom: 7px;
-    font-weight: 500;
     color: #263238;
+    font-size: 16px;
+    font-weight: 500;
     cursor: pointer;
   }
 
   h6 {
+    color: #263238;
     font-size: 12px;
     font-weight: 500;
-    color: #263238;
     cursor: pointer;
   }
 
   .textbox {
+    width: 120px;
     padding: 5px 20px;
     border: 1px solid #d5d8de;
     border-radius: 5px;
     font-size: 15px;
-    width: 120px;
     cursor: pointer;
 
     ::placeholder {
@@ -131,9 +131,9 @@ const ToolbarContainerBody = styled.div`
   }
 
   .colorPalette {
-    margin-left: 10px;
     width: 20px;
     height: 20px;
+    margin-left: 10px;
     border: none;
     background: white;
     cursor: default;
