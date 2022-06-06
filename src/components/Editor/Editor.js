@@ -11,7 +11,7 @@ import {
   SAVE_ACCEPT_MESSAGE,
   SAVE_ICON,
   SAVE_REMINDER_MESSAGE,
-} from "../../constants/modal";
+} from "../../constants/constants";
 import Button from "../Button/Button";
 import EditorTemplate from "../EditorTemplate/EditorTemplate";
 import EditorToolbar from "../EditorToolbar/EditorToolbar";
