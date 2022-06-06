@@ -1,12 +1,12 @@
 import React from "react";
 import { FaAlignCenter, FaAlignLeft, FaAlignRight } from "react-icons/fa";
 
-function TextPositionEditor({ title }) {
+import SubtoolbarTitle from "./SubtoolbarTitle";
+
+function TextPositionEditor() {
   return (
     <div className="choiceContainer">
-      <div className="category">
-        <p>{title}</p>
-      </div>
+      <SubtoolbarTitle title={"Edit Position"} />
       <div className="detailContainer">
         <div className="detailItem">
           <span className="rightBorder">

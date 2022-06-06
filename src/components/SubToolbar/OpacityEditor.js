@@ -1,11 +1,11 @@
 import React from "react";
 
+import SubtoolbarTitle from "./SubtoolbarTitle";
+
 function OpacityEditor() {
   return (
     <div className="choiceContainer">
-      <div className="category">
-        <p>Edit Opacity</p>
-      </div>
+      <SubtoolbarTitle title={"Edit Opacity"} />
       <select>
         <option>1</option>
         <option>2</option>
