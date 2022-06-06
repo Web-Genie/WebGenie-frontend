@@ -1,12 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 
-function Button({ children, mainButton }) {
-  return <ButtonBody primaryButton={mainButton}>{children}</ButtonBody>;
+function Button({ children, mainButton, handleClick, margin }) {
+  return (
+    <ButtonBody
+      onClick={handleClick}
+      marginValue={margin}
+      primaryButton={mainButton}
+    >
+      {children}
+    </ButtonBody>
+  );
 }
 
 const ButtonBody = styled.button`
   padding: 8px 15px;
+  margin-top: ${(props) => (props.marginValue ? props.marginValue : "0")};
   box-sizing: border-box;
   box-shadow: ${(props) =>
     props.primaryButton
