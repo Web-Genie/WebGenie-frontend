@@ -3,7 +3,7 @@ import { RiPaintFill } from "react-icons/ri";
 
 import ToolbarButton from "../Button/ToolbarButton";
 
-function TextColorEditor() {
+function ColorEditor() {
   return (
     <div className="choiceContainer">
       <div className="category">
@@ -19,4 +19,4 @@ function TextColorEditor() {
   );
 }
 
-export default TextColorEditor;
+export default ColorEditor;

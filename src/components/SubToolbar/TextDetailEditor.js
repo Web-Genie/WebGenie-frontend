@@ -1,23 +1,25 @@
 import React from "react";
 import { FaBold, FaItalic, FaUnderline } from "react-icons/fa";
-import { FiChevronDown } from "react-icons/fi";
 
 import ToolbarButton from "../Button/ToolbarButton";
 
-function TextDetailEditor() {
+function TextDetailEditor({ title }) {
   return (
     <div className="choiceContainer">
       <div className="category">
-        <p>Edit Text</p>
+        <p>{title}</p>
       </div>
       <div className="textDetailChoice">
         <ToolbarButton>
-          <div className="fontType">inter</div>
-          <FiChevronDown />
+          <select className="fontType">
+            <option>inter</option>
+            <option>고딕</option>
+          </select>
         </ToolbarButton>
         <ToolbarButton>
-          <div className="fontSize">24</div>
-          <FiChevronDown />
+          <select className="fontSize">
+            <option>24</option>
+          </select>
         </ToolbarButton>
       </div>
       <div className="detailContainer">
