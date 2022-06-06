@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 
 import mockImage from "../../assets/mockData.png";
+import {
+  NEW_EDITOR_ACCEPT_MESSAGE,
+  NEW_EDITOR_REMINDER_MESSAGE,
+  NO_MESSAGE,
+  QUESTION_ICON,
+} from "../../constants/constants";
 import api from "../../services/api";
 import Button from "../Button/Button";
 import Header from "../Header/Header";
@@ -42,10 +48,10 @@ function UserPage() {
       {shouldDisplayModal && (
         <Modal>
           <ModalContent
-            modalText={"새로운 웹사이트 에디터를 생성할까요?"}
-            primaryButtonText={"네, 만들어주세요"}
-            secondaryButtonText={"아니요"}
-            modalIconState={"question"}
+            modalText={NEW_EDITOR_REMINDER_MESSAGE}
+            primaryButtonText={NEW_EDITOR_ACCEPT_MESSAGE}
+            secondaryButtonText={NO_MESSAGE}
+            modalIconState={QUESTION_ICON}
             handleClick={toggleCreateNewSiteModal}
           />
         </Modal>
