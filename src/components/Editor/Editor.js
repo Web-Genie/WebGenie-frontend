@@ -9,6 +9,7 @@ import EditorToolbar from "../EditorToolbar/EditorToolbar";
 import Header from "../Header/Header";
 import LeftToolbar from "../LeftToolbar/LeftToolbar";
 import Navigation from "../Navigation/Navigation";
+import RightToolbar from "../RightToolbar/RightToolbar";
 
 function Editor() {
   return (
@@ -37,7 +38,7 @@ function Editor() {
       <EditorBody>
         <LeftToolbar />
         <EditorTemplate />
-        <EditorToolbar />
+        <RightToolbar />
       </EditorBody>
     </>
   );
