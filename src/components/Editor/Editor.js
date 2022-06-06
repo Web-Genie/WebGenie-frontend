@@ -3,6 +3,15 @@ import { FaArrowLeft, FaRegEdit } from "react-icons/fa";
 import styled from "styled-components";
 
 import mockImage from "../../assets/mockData.png";
+import {
+  DEPLOY_ICON,
+  NO_MESSAGE,
+  PUBLISH_ACCEPT_MESSAGE,
+  PUBLISH_REMINDER_MESSAGE,
+  SAVE_ACCEPT_MESSAGE,
+  SAVE_ICON,
+  SAVE_REMINDER_MESSAGE,
+} from "../../constants/constants";
 import Button from "../Button/Button";
 import EditorTemplate from "../EditorTemplate/EditorTemplate";
 import EditorToolbar from "../EditorToolbar/EditorToolbar";
@@ -12,26 +21,29 @@ import Modal from "../Modal/Modal";
 import ModalContent from "../ModalContent/ModalContent";
 import Navigation from "../Navigation/Navigation";
 
+// Will delete once connection to db is succesful
+const TEMPORARY_TITLE = "New Title 2";
+
 function Editor() {
   const [shouldDisplayModal, setShouldDisplayModal] = useState(false);
   const [messageContent, setMessageContent] = useState("");
   const [buttonText, setButtonText] = useState("");
   const [modalIconState, setModalIconState] = useState("");
   const [shouldEditTitle, setShouldEditTitle] = useState(false);
-  const [editorTitle, setEditorTitle] = useState("New Title 2");
+  const [editorTitle, setEditorTitle] = useState(TEMPORARY_TITLE);
 
   const toggleSaveModal = () => {
     setShouldDisplayModal(!shouldDisplayModal);
-    setMessageContent("현재 웹사이트를 저장하시겠습니까?");
-    setButtonText("네, 저장할게요");
-    setModalIconState("save");
+    setMessageContent(SAVE_REMINDER_MESSAGE);
+    setButtonText(SAVE_ACCEPT_MESSAGE);
+    setModalIconState(SAVE_ICON);
   };
 
   const togglePublishModal = () => {
     setShouldDisplayModal(!shouldDisplayModal);
-    setMessageContent("현재 웹사이트를 배포하시겠습니까?");
-    setButtonText("네, 배포할게요");
-    setModalIconState("deploy");
+    setMessageContent(PUBLISH_REMINDER_MESSAGE);
+    setButtonText(PUBLISH_ACCEPT_MESSAGE);
+    setModalIconState(DEPLOY_ICON);
   };
 
   const handleTitleChangeState = () => {
@@ -49,7 +61,7 @@ function Editor() {
           <ModalContent
             modalText={messageContent}
             primaryButtonText={buttonText}
-            secondaryButtonText={"아니요"}
+            secondaryButtonText={NO_MESSAGE}
             modalIconState={modalIconState}
             handleClick={toggleSaveModal}
           />
