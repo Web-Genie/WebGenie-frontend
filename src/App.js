@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import Editor from "./components/Editor/Editor";
-import Login from "./components/Login/Login";
-import UserPage from "./components/UserPage/UserPage";
+import Editor from "./components/Editor";
+import Login from "./components/Login";
+import UserPage from "./components/UserPage";
 
 function App() {
   const [userToken, setUserToken] = useState(
