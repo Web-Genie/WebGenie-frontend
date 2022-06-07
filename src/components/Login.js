@@ -4,10 +4,10 @@ import styled from "styled-components";
 import googleLogo from "../../assets/googleLogo.png";
 import loginImage from "../../assets/loginImage.png";
 import webGenieLogo from "../../assets/logo_transparent.png";
-import api from "../../services/api";
-import { firebaseAuth, googleProvider } from "../../services/firebase";
-import LoginButton from "../Button/LoginButton";
-import LoginSVG from "../LoginSVG/LoginSVG";
+import api from "../services/api";
+import { firebaseAuth, googleProvider } from "../services/firebase";
+import LoginButton from "./Button/LoginButton";
+import LoginSVG from "./LoginSVG";
 
 function Login() {
   const handleGoogleLogin = async () => {

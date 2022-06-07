@@ -1,7 +1,7 @@
 import { FcGlobe, FcMultipleInputs, FcQuestions } from "react-icons/fc";
 import { MdClose } from "react-icons/md";
 
-import Button from "../Button/Button";
+import Button from "./Button";
 
 function ModalContent({
   modalText = "",
