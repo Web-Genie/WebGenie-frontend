@@ -14,7 +14,6 @@ import {
 } from "../../constants/constants";
 import Button from "../Button/Button";
 import EditorTemplate from "../EditorTemplate/EditorTemplate";
-import EditorToolbar from "../EditorToolbar/EditorToolbar";
 import Header from "../Header/Header";
 import LeftToolbar from "../LeftToolbar/LeftToolbar";
 import Modal from "../Modal/Modal";

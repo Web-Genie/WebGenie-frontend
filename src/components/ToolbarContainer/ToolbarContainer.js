@@ -149,14 +149,14 @@ const ToolbarContainerBody = styled.div`
       width: 100px;
     }
     .fontSize {
-      width: 15px;
+      width: 30px;
     }
   }
 
   .clearCanavs {
-    display: flex;
-    justify-content: center;
-    margin-top: 60px;
+    position: fixed;
+    left: 92%;
+    transform: translate(-50%, 600px);
   }
 
   .sampleColor {

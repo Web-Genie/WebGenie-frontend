@@ -15,7 +15,7 @@ function RightToolbar({ propertyName }) {
   return (
     <EditorToolbar>
       <ToolbarContainer>
-        {propertyName === "text" && (
+        {"text" === "text" && (
           <>
             <TextDetailEditor />
             <TextPositionEditor />
@@ -34,11 +34,12 @@ function RightToolbar({ propertyName }) {
             <ImageBrightnessEditor />
           </>
         )}
-        {propertyName !== "button" && (
-          <>
-            <ColorEditor />
-          </>
-        )}
+        {propertyName === "text" ||
+          (propertyName === "button" && (
+            <>
+              <ColorEditor />
+            </>
+          ))}
         <CanvasClearButton />
       </ToolbarContainer>
     </EditorToolbar>
