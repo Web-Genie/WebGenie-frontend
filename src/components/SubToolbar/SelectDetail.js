@@ -14,17 +14,17 @@ function SelectDetail({ detailData, className = "" }) {
 
 const SelectBody = styled.div`
   select {
-    box-sizing: border-box;
     width: 100px;
     padding: 4px;
-    font-size: 14px;
+    box-sizing: border-box;
     border-radius: 6px;
+    font-size: 14px;
   }
 
   option {
     padding: 4px;
-    font-size: 14px;
     color: #fff;
+    font-size: 14px;
     background: #272822;
   }
 `;
