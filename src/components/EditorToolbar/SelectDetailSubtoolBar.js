@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-function SelectDetailSubtoolBar({ detailData, className = "" }) {
+function SelectDetailSubtoolBar({ detailValue, className = "" }) {
   return (
     <SelectBody>
       <select className={className}>
-        {detailData &&
-          detailData.map((data) => (
-            <option key={data} value={data}>
-              {data}
+        {detailValue &&
+          detailValue.map((value) => (
+            <option key={value} value={value}>
+              {value}
             </option>
           ))}
       </select>
@@ -19,7 +19,7 @@ function SelectDetailSubtoolBar({ detailData, className = "" }) {
 const SelectBody = styled.div`
   select {
     width: 100px;
-    padding: 4px;
+    padding: 10px 4px 10px;
     box-sizing: border-box;
     border-radius: 6px;
     border: #ffffff;
@@ -30,7 +30,7 @@ const SelectBody = styled.div`
   }
 
   option {
-    padding: 4px;
+    padding: 2px;
     color: #fff;
     font-size: 14px;
     background: #272822;

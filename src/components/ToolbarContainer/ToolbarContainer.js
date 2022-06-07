@@ -147,10 +147,10 @@ const ToolbarContainerBody = styled.div`
     align-items: center;
 
     .fontType {
-      width: 100px;
+      width: 135px;
     }
     .fontSize {
-      width: 50px;
+      width: 60px;
     }
   }
 
