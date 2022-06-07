@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import ModalPortal from "../../Portal";
+import ModalPortal from "../Portal";
 
 function Modal({ children }) {
   return (
