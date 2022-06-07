@@ -8,7 +8,10 @@ function ButtonRadiusSubtoolBar() {
   return (
     <div className="choiceContainer">
       <SubtoolbarTitle title="Edit Border Radius" />
-      <SelectDetail detailValue={RADIUS_AND_BRIGHTNESS_RANGE} />
+      <SelectDetail
+        detailValue={RADIUS_AND_BRIGHTNESS_RANGE}
+        className="buttonRadius"
+      />
     </div>
   );
 }

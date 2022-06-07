@@ -8,7 +8,7 @@ function OpacityEditorSubtoolBar() {
   return (
     <div className="choiceContainer">
       <SubtoolbarTitle title="Edit Opacity" />
-      <SelectDetail detailValue={OPACITY_RANGE} />
+      <SelectDetail title="opacity" detailValue={OPACITY_RANGE} />
     </div>
   );
 }

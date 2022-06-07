@@ -142,25 +142,30 @@ const ToolbarContainerBody = styled.div`
 
   .textDetailChoice {
     display: flex;
+    margin: 0 3px 0 3px;
     justify-content: space-evenly;
     flex-direction: row;
     align-items: center;
-    padding: 0px 8px;
+    font-weight: 500px;
+    font-size: 15px;
+
     .fontType {
-      width: 140px;
-      margin-right: 15px;
-      font-size: 13px;
-      font-weight: 500px;
+      width: 107px;
+      padding-right: 22px;
+      margin: 0px;
+      border: none;
     }
+
     .fontSize {
-      width: 60px;
+      width: 20px;
+      border: none;
+      padding-left: 0px;
     }
   }
 
   .clearCanvasButtonContainer {
-    position: fixed;
-    left: 92%;
-    transform: translate(-50%, 400px);
+    position: flex;
+    margin: 40px 80px;
   }
 
   .sampleColor {
@@ -186,7 +191,7 @@ const ToolbarContainerBody = styled.div`
     border: 1px solid #e5e5e5;
 
     span {
-      font-size: 20px;
+      font-size: 15px;
       height: 20px;
       padding: 7px 25px;
       cursor: pointer;
