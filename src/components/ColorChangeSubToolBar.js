@@ -2,8 +2,8 @@ import React from "react";
 import { RiPaintFill } from "react-icons/ri";
 import styled from "styled-components";
 
-import ToolbarButton from "../Button/ToolbarButton";
 import SubtoolbarTitle from "./SubtoolbarTitle";
+import ToolbarButton from "./ToolbarButton";
 
 function ColorChangeSubToolBar() {
   return (

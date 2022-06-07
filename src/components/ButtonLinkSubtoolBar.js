@@ -1,8 +1,8 @@
 import React from "react";
 import { FaLink } from "react-icons/fa";
 
-import ToolbarButton from "../Button/ToolbarButton";
 import SubtoolbarTitle from "./SubtoolbarTitle";
+import ToolbarButton from "./ToolbarButton";
 
 function ButtonLinkSubtoolBar() {
   return (

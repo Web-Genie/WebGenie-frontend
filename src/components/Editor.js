@@ -2,7 +2,7 @@ import React from "react";
 import { FaArrowLeft, FaRegEdit } from "react-icons/fa";
 import styled from "styled-components";
 
-import mockImage from "../../assets/mockData.png";
+import mockImage from "../assets/mockData.png";
 import useInput from "../hooks/useInput";
 import useModal from "../hooks/useModal";
 import Button from "./Button";
