@@ -1,6 +1,5 @@
 import React from "react";
 
-import ToolbarButton from "../Button/ToolbarButton";
 import SelectDetail from "./SelectDetail";
 import SubtoolbarTitle from "./SubtoolbarTitle";
 

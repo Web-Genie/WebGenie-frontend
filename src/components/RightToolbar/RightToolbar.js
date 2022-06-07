@@ -28,7 +28,7 @@ function RightToolbar({ propertyName }) {
             <OpacityEditor />
           </>
         )}
-        {"image" === "image" && (
+        {propertyName === "image" && (
           <>
             <OpacityEditor />
             <ImageBrightnessEditor />
