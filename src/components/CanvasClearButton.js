@@ -1,6 +1,6 @@
 import React from "react";
 
-import ToolbarButton from "../Button/ToolbarButton";
+import ToolbarButton from "./ToolbarButton";
 
 function CanvasClearButton() {
   return (

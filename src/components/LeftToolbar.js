@@ -1,12 +1,12 @@
 import React from "react";
 
 import BackgroundChoice from "./BackgroundChoice";
-import ButtonChoice from "./EditorToolbar/ButtonChoice";
-import EditorToolbar from "./EditorToolbar/EditorToolbar";
-import ImageChoice from "./EditorToolbar/ImageChoice";
-import ShapeChoice from "./EditorToolbar/ShapeChoice";
-import TextBoxChoice from "./EditorToolbar/TextBoxChoice";
-import TextChoice from "./EditorToolbar/TextChoice";
+import ButtonChoice from "./ButtonChoice";
+import EditorToolbar from "./EditorToolbar";
+import ImageChoice from "./ImageChoice";
+import ShapeChoice from "./ShapeChoice";
+import TextBoxChoice from "./TextBoxChoice";
+import TextChoice from "./TextChoice";
 import ToolbarContainer from "./ToolbarContainer";
 
 function LeftToolbar() {
