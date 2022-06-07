@@ -4,7 +4,7 @@ import { RiPaintFill } from "react-icons/ri";
 import ToolbarButton from "../Button/ToolbarButton";
 import SubtoolbarTitle from "./SubtoolbarTitle";
 
-function ColorEditorSubtoolBar() {
+function ColorChangeSubtoolBar() {
   return (
     <div className="choiceContainer">
       <SubtoolbarTitle title={"Edit color"} />
@@ -18,4 +18,4 @@ function ColorEditorSubtoolBar() {
   );
 }
 
-export default ColorEditorSubtoolBar;
+export default ColorChangeSubtoolBar;
