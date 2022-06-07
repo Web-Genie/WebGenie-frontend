@@ -1,17 +1,17 @@
-import { FaCloudUploadAlt, FaImage } from "react-icons/fa";
+import { FaImage, FaPaintRoller } from "react-icons/fa";
 
-import ToolbarButton from "../Button/ToolbarButton";
+import ToolbarButton from "./ToolbarButton";
 
-function ImageChoice() {
+function BackgroundChoice() {
   return (
     <div className="choiceContainer">
       <div className="category">
-        <p>Add Image</p>
+        <p>Add Background</p>
       </div>
       <div className="imageUploadingChoice">
         <ToolbarButton>
-          <FaCloudUploadAlt />
-          <p className="text">Upload</p>
+          <FaPaintRoller />
+          <input className="colorPalette" type="color" />
         </ToolbarButton>
         <ToolbarButton>
           <FaImage />
@@ -22,4 +22,4 @@ function ImageChoice() {
   );
 }
 
-export default ImageChoice;
+export default BackgroundChoice;

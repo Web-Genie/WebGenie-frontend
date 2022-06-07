@@ -2,17 +2,17 @@ import React from "react";
 import { FaArrowLeft, FaRegEdit } from "react-icons/fa";
 import styled from "styled-components";
 
-import mockImage from "../../assets/mockData.png";
-import useInput from "../../hooks/useInput";
-import useModal from "../../hooks/useModal";
-import Button from "../Button/Button";
-import EditorTemplate from "../EditorTemplate/EditorTemplate";
-import EditorToolbar from "../EditorToolbar/EditorToolbar";
-import Header from "../Header/Header";
-import LeftToolbar from "../LeftToolbar/LeftToolbar";
-import Modal from "../Modal/Modal";
-import ModalContent from "../ModalContent/ModalContent";
-import Navigation from "../Navigation/Navigation";
+import mockImage from "../assets/mockData.png";
+import useInput from "../hooks/useInput";
+import useModal from "../hooks/useModal";
+import Button from "./Button";
+import EditorTemplate from "./EditorTemplate";
+import Header from "./Header";
+import LeftToolbar from "./LeftToolbar";
+import Modal from "./Modal";
+import ModalContent from "./ModalContent";
+import Navigation from "./Navigation";
+import RightToolbar from "./RightToolbar";
 
 function Editor() {
   const { titleValue, shouldEditTitle, handleInputChange, toggleTitleChange } =
@@ -70,7 +70,7 @@ function Editor() {
       <EditorBody>
         <LeftToolbar />
         <EditorTemplate />
-        <EditorToolbar />
+        <RightToolbar />
       </EditorBody>
     </>
   );

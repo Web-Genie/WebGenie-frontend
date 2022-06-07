@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import placeholderImage from "../../assets/placeholder.png";
+import placeholderImage from "../assets/placeholder.png";
 
 function UserCollection({ collections }) {
   return (
