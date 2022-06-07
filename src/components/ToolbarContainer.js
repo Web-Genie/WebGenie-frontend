@@ -22,6 +22,7 @@ const ToolbarContainerBody = styled.div`
     display: flex;
     flex-direction: column;
     margin: 10px 20px;
+    padding: 5px;
   }
 
   h1 {
@@ -137,6 +138,75 @@ const ToolbarContainerBody = styled.div`
     border: none;
     background: white;
     cursor: default;
+  }
+
+  .textDetailChoice {
+    display: flex;
+    margin: 0 3px 0 3px;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 500px;
+    font-size: 15px;
+
+    .fontType {
+      width: 107px;
+      padding-right: 22px;
+      margin: 0px;
+      border: none;
+    }
+
+    .fontSize {
+      width: 20px;
+      border: none;
+      padding-left: 0px;
+    }
+  }
+
+  .clearCanvasButtonContainer {
+    position: flex;
+    margin: 40px 80px;
+  }
+
+  .sampleColor {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    border-radius: 4px;
+    background-color: #63cc63;
+  }
+
+  .detailContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .detailItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #e5e5e5;
+
+    span {
+      font-size: 15px;
+      height: 20px;
+      padding: 7px 25px;
+      cursor: pointer;
+      :hover {
+        opacity: 0.5;
+      }
+    }
+
+    .rightBorder {
+      border-right: 1px solid #e5e5e5;
+    }
+
+    .leftBorder {
+      border-left: 1px solid #e5e5e5;
+    }
   }
 `;
 
