@@ -1,25 +1,13 @@
 import React from "react";
-import { FaAlignCenter, FaAlignLeft, FaAlignRight } from "react-icons/fa";
 
 import SubtoolbarTitle from "./SubtoolbarTitle";
+import TextDetailCollection from "./TextDetailCollection";
 
 function TextPositionSubtoolBar() {
   return (
     <div className="choiceContainer">
       <SubtoolbarTitle title={"Edit Position"} />
-      <div className="detailContainer">
-        <div className="detailItem">
-          <span className="rightBorder">
-            <FaAlignLeft />
-          </span>
-          <span>
-            <FaAlignCenter />
-          </span>
-          <span className="leftBorder">
-            <FaAlignRight />
-          </span>
-        </div>
-      </div>
+      <TextDetailCollection propertyName={"textPosition"} />
     </div>
   );
 }

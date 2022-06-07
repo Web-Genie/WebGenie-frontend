@@ -1,9 +1,9 @@
 import React from "react";
-import { FaBold, FaItalic, FaUnderline } from "react-icons/fa";
 
 import { radiusAndSizeRange } from "../../constants/constants";
 import SelectDetail from "./SelectDetailSubtoolBar";
 import SubtoolbarTitle from "./SubtoolbarTitle";
+import TextDetailCollection from "./TextDetailCollection";
 
 function TextDetailSubtoolBar() {
   const fontType = ["inter", "고딕", "굴림"];
@@ -15,19 +15,7 @@ function TextDetailSubtoolBar() {
         <SelectDetail detailValue={fontType} className={"fontType"} />
         <SelectDetail detailValue={radiusAndSizeRange} className={"fontSize"} />
       </div>
-      <div className="detailContainer">
-        <div className="detailItem">
-          <span className="rightBorder">
-            <FaBold />
-          </span>
-          <span>
-            <FaItalic />
-          </span>
-          <span className="leftBorder">
-            <FaUnderline />
-          </span>
-        </div>
-      </div>
+      <TextDetailCollection />
     </div>
   );
 }
