@@ -1,6 +1,6 @@
 import { FaImage, FaPaintRoller } from "react-icons/fa";
 
-import ToolbarButton from "../Button/ToolbarButton";
+import ToolbarButton from "./Button/ToolbarButton";
 
 function BackgroundChoice() {
   return (
