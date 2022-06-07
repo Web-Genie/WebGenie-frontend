@@ -1,13 +1,10 @@
 import React from "react";
 
-import SelectDetail from "./SelectDetail";
+import { opacityRange } from "../../constants/constants";
+import SelectDetail from "./SelectDetailSubtoolBar";
 import SubtoolbarTitle from "./SubtoolbarTitle";
 
-function OpacityEditor() {
-  const opacityRange = Array(11)
-    .fill(0)
-    .map((n, i) => (n + i * 0.1).toFixed(1));
-
+function OpacityEditorSubtoolBar() {
   return (
     <div className="choiceContainer">
       <SubtoolbarTitle title={"Edit Opacity"} />
@@ -16,4 +13,4 @@ function OpacityEditor() {
   );
 }
 
-export default OpacityEditor;
+export default OpacityEditorSubtoolBar;

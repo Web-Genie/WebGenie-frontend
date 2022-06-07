@@ -2,7 +2,7 @@ import React from "react";
 
 import SubtoolbarTitle from "./SubtoolbarTitle";
 
-function ImageBrightnessEditor() {
+function ImageBrightnessSubtoolBar() {
   return (
     <div className="choiceContainer">
       <SubtoolbarTitle title={"Edit Brightness"} />
@@ -13,4 +13,4 @@ function ImageBrightnessEditor() {
   );
 }
 
-export default ImageBrightnessEditor;
+export default ImageBrightnessSubtoolBar;

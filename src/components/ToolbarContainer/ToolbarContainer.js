@@ -22,6 +22,7 @@ const ToolbarContainerBody = styled.div`
     display: flex;
     flex-direction: column;
     margin: 10px 20px;
+    padding: 5px;
   }
 
   h1 {
@@ -149,14 +150,14 @@ const ToolbarContainerBody = styled.div`
       width: 100px;
     }
     .fontSize {
-      width: 30px;
+      width: 50px;
     }
   }
 
   .clearCanavs {
     position: fixed;
     left: 92%;
-    transform: translate(-50%, 600px);
+    transform: translate(-50%, 400px);
   }
 
   .sampleColor {

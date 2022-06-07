@@ -2,10 +2,10 @@ import React from "react";
 import { FaBold, FaItalic, FaUnderline } from "react-icons/fa";
 
 import ToolbarButton from "../Button/ToolbarButton";
-import SelectDetail from "./SelectDetail";
+import SelectDetail from "./SelectDetailSubtoolBar";
 import SubtoolbarTitle from "./SubtoolbarTitle";
 
-function TextDetailEditor() {
+function TextDetailSubtoolBar() {
   const fontType = ["inter", "고딕", "굴림"];
   const fontSize = Array(50)
     .fill(1)
@@ -39,4 +39,4 @@ function TextDetailEditor() {
   );
 }
 
-export default TextDetailEditor;
+export default TextDetailSubtoolBar;

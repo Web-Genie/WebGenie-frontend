@@ -1,17 +1,17 @@
 import React from "react";
 
+import ButtonLinkEditor from "../EditorToolbar/ButtonLinkSubtoolBar";
+import ButtonRadiusEditor from "../EditorToolbar/ButtonRadiusSubtoolBar.js";
+import CanvasClearButton from "../EditorToolbar/CanvasClearButton";
+import ColorEditor from "../EditorToolbar/ColorChangeSubtoolBar";
 import EditorToolbar from "../EditorToolbar/EditorToolbar";
-import ButtonLinkEditor from "../SubToolbar/ButtonLinkEditor";
-import ButtonRadiusEditor from "../SubToolbar/ButtonRadiusEditor";
-import CanvasClearButton from "../SubToolbar/CanvasClearButton";
-import ColorEditor from "../SubToolbar/ColorEditor";
-import ImageBrightnessEditor from "../SubToolbar/ImageBrightnessEditor";
-import OpacityEditor from "../SubToolbar/OpacityEditor";
-import TextDetailEditor from "../SubToolbar/TextDetailEditor";
-import TextPositionEditor from "../SubToolbar/TextPositionEditor";
+import ImageBrightnessEditor from "../EditorToolbar/ImageBrightnessSubtoolBar";
+import OpacityEditor from "../EditorToolbar/OpacityChangeSubtoolBar";
+import TextDetailEditor from "../EditorToolbar/TextDetailSubtoolBar";
+import TextPositionEditor from "../EditorToolbar/TextPositionSubtoolBar";
 import ToolbarContainer from "../ToolbarContainer/ToolbarContainer";
 
-function RightToolbar({ propertyName }) {
+function RightToolbar({ propertyName = "" }) {
   return (
     <EditorToolbar>
       <ToolbarContainer>
@@ -34,12 +34,11 @@ function RightToolbar({ propertyName }) {
             <ImageBrightnessEditor />
           </>
         )}
-        {propertyName === "text" ||
-          (propertyName === "button" && (
-            <>
-              <ColorEditor />
-            </>
-          ))}
+        {propertyName !== "" && propertyName !== "image" ? (
+          <>
+            <ColorEditor />
+          </>
+        ) : null}
         <CanvasClearButton />
       </ToolbarContainer>
     </EditorToolbar>

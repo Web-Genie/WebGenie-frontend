@@ -1,9 +1,9 @@
 import React from "react";
 
-import SelectDetail from "./SelectDetail";
+import SelectDetail from "./SelectDetailSubtoolBar";
 import SubtoolbarTitle from "./SubtoolbarTitle";
 
-function ButtonRadiusEditor() {
+function ButtonRadiusSubtoolBar() {
   const buttonRadiusRange = Array(100)
     .fill(1)
     .map((n, i) => n + i);
@@ -16,4 +16,4 @@ function ButtonRadiusEditor() {
   );
 }
 
-export default ButtonRadiusEditor;
+export default ButtonRadiusSubtoolBar;
