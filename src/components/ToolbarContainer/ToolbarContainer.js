@@ -10,6 +10,7 @@ const ToolbarContainerBody = styled.div`
   flex-direction: column;
   width: 100%;
   color: #263238;
+  user-select: none;
 
   .category {
     margin-bottom: 10px;
@@ -30,6 +31,10 @@ const ToolbarContainerBody = styled.div`
     font-size: 32px;
     font-weight: 500;
     cursor: pointer;
+
+    :hover {
+      opacity: 0.5;
+    }
   }
 
   h2 {
@@ -38,6 +43,10 @@ const ToolbarContainerBody = styled.div`
     font-size: 28px;
     font-weight: 500;
     cursor: pointer;
+
+    :hover {
+      opacity: 0.5;
+    }
   }
 
   h3 {
@@ -46,6 +55,10 @@ const ToolbarContainerBody = styled.div`
     font-size: 24px;
     font-weight: 500;
     cursor: pointer;
+
+    :hover {
+      opacity: 0.5;
+    }
   }
 
   h4 {
@@ -54,6 +67,10 @@ const ToolbarContainerBody = styled.div`
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;
+
+    :hover {
+      opacity: 0.5;
+    }
   }
 
   h5 {
@@ -62,6 +79,10 @@ const ToolbarContainerBody = styled.div`
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
+
+    :hover {
+      opacity: 0.5;
+    }
   }
 
   h6 {
@@ -69,6 +90,10 @@ const ToolbarContainerBody = styled.div`
     font-size: 12px;
     font-weight: 500;
     cursor: pointer;
+
+    :hover {
+      opacity: 0.5;
+    }
   }
 
   .textbox {
@@ -78,6 +103,10 @@ const ToolbarContainerBody = styled.div`
     border-radius: 5px;
     font-size: 15px;
     cursor: pointer;
+
+    :hover {
+      opacity: 0.5;
+    }
 
     ::placeholder {
       font-size: 14px;
@@ -101,6 +130,10 @@ const ToolbarContainerBody = styled.div`
     margin-right: 10px;
     background-color: #98a2b3;
     cursor: pointer;
+
+    :hover {
+      opacity: 0.5;
+    }
   }
 
   .circle {
@@ -109,6 +142,10 @@ const ToolbarContainerBody = styled.div`
     border-radius: 50%;
     background-color: #98a2b3;
     cursor: pointer;
+
+    :hover {
+      opacity: 0.5;
+    }
   }
 
   .triangle {
@@ -119,6 +156,10 @@ const ToolbarContainerBody = styled.div`
     border-bottom: 42px solid #98a2b3;
     margin-left: 10px;
     cursor: pointer;
+
+    :hover {
+      opacity: 0.5;
+    }
   }
 
   .samepleButton {
@@ -128,6 +169,10 @@ const ToolbarContainerBody = styled.div`
     gap: 12px;
     background: white;
     cursor: pointer;
+
+    :hover {
+      opacity: 0.5;
+    }
   }
 
   .colorPalette {
