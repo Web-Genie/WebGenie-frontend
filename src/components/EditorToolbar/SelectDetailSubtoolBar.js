@@ -19,7 +19,7 @@ function SelectDetailSubtoolBar({ detailValue, className = "" }) {
 const SelectBody = styled.div`
   select {
     width: 100px;
-    padding: 10px 4px 10px;
+    padding: 9px 12px 10px;
     box-sizing: border-box;
     border-radius: 6px;
     border: #ffffff;

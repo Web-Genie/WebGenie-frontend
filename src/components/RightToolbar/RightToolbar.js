@@ -3,7 +3,7 @@ import React from "react";
 import ButtonLinkEditor from "../EditorToolbar/ButtonLinkSubtoolBar";
 import ButtonRadiusEditor from "../EditorToolbar/ButtonRadiusSubtoolBar.js";
 import CanvasClearButton from "../EditorToolbar/CanvasClearButton";
-import ColorChangeSubtoolBar from "../EditorToolbar/ColorChangeSubtoolBar";
+import ColorChangeSubToolBar from "../EditorToolbar/ColorChangeSubToolBar";
 import EditorToolbar from "../EditorToolbar/EditorToolbar";
 import ImageBrightnessEditor from "../EditorToolbar/ImageBrightnessSubtoolBar";
 import OpacityEditor from "../EditorToolbar/OpacityChangeSubtoolBar";
@@ -15,12 +15,9 @@ function RightToolbar({ propertyName = "" }) {
   return (
     <EditorToolbar>
       <ToolbarContainer>
-        {propertyName === "text" && (
-          <>
-            <TextDetailEditor />
-            <TextPositionEditor />
-          </>
-        )}
+        {propertyName === "text" && <></>}
+        <TextDetailEditor />
+        <TextPositionEditor />
         {propertyName === "button" && (
           <>
             <ButtonLinkEditor />
@@ -36,7 +33,7 @@ function RightToolbar({ propertyName = "" }) {
         )}
         {propertyName !== "" && propertyName !== "image" ? (
           <>
-            <ColorChangeSubtoolBar />
+            <ColorChangeSubToolBar />
           </>
         ) : null}
         <CanvasClearButton />
