@@ -1,17 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaArrowLeft, FaRegEdit } from "react-icons/fa";
 import styled from "styled-components";
 
 import mockImage from "../../assets/mockData.png";
-import {
-  DEPLOY_ICON,
-  NO_MESSAGE,
-  PUBLISH_ACCEPT_MESSAGE,
-  PUBLISH_REMINDER_MESSAGE,
-  SAVE_ACCEPT_MESSAGE,
-  SAVE_ICON,
-  SAVE_REMINDER_MESSAGE,
-} from "../../constants/constants";
+import useInput from "../../hooks/useInput";
+import useModal from "../../hooks/useModal";
 import Button from "../Button/Button";
 import EditorTemplate from "../EditorTemplate/EditorTemplate";
 import EditorToolbar from "../EditorToolbar/EditorToolbar";
@@ -21,49 +14,27 @@ import Modal from "../Modal/Modal";
 import ModalContent from "../ModalContent/ModalContent";
 import Navigation from "../Navigation/Navigation";
 
-// Will delete once connection to db is succesful
-const TEMPORARY_TITLE = "New Title 2";
-
 function Editor() {
-  const [shouldDisplayModal, setShouldDisplayModal] = useState(false);
-  const [messageContent, setMessageContent] = useState("");
-  const [buttonText, setButtonText] = useState("");
-  const [modalIconState, setModalIconState] = useState("");
-  const [shouldEditTitle, setShouldEditTitle] = useState(false);
-  const [editorTitle, setEditorTitle] = useState(TEMPORARY_TITLE);
-
-  const toggleSaveModal = () => {
-    setShouldDisplayModal(!shouldDisplayModal);
-    setMessageContent(SAVE_REMINDER_MESSAGE);
-    setButtonText(SAVE_ACCEPT_MESSAGE);
-    setModalIconState(SAVE_ICON);
-  };
-
-  const togglePublishModal = () => {
-    setShouldDisplayModal(!shouldDisplayModal);
-    setMessageContent(PUBLISH_REMINDER_MESSAGE);
-    setButtonText(PUBLISH_ACCEPT_MESSAGE);
-    setModalIconState(DEPLOY_ICON);
-  };
-
-  const handleTitleChangeState = () => {
-    setShouldEditTitle(!shouldEditTitle);
-  };
-
-  const listenTitleInputChange = (event) => {
-    setEditorTitle(event.target.value);
-  };
+  const { titleValue, shouldEditTitle, handleInputChange, toggleTitleChange } =
+    useInput();
+  const {
+    shouldDisplayModal,
+    saveModalToggle,
+    publishModalToggle,
+    closeModal,
+    message,
+  } = useModal();
 
   return (
     <>
       {shouldDisplayModal && (
         <Modal>
           <ModalContent
-            modalText={messageContent}
-            primaryButtonText={buttonText}
-            secondaryButtonText={NO_MESSAGE}
-            modalIconState={modalIconState}
-            handleClick={toggleSaveModal}
+            modalText={message.titleMessage}
+            primaryButtonText={message.proceedButtonText}
+            secondaryButtonText={message.denyButtonText}
+            modalIconState={message.iconType}
+            handleClick={closeModal}
           />
         </Modal>
       )}
@@ -77,18 +48,21 @@ function Editor() {
             <FaArrowLeft />
           </span>
           <div className="titleNavbar">
-            {!shouldEditTitle && <h3>{editorTitle}</h3>}
-            {shouldEditTitle && <input onChange={listenTitleInputChange} />}
-            <span onClick={handleTitleChangeState}>
+            {!shouldEditTitle ? (
+              <h3>{titleValue}</h3>
+            ) : (
+              <input onChange={handleInputChange} />
+            )}
+            <span onClick={toggleTitleChange}>
               <FaRegEdit />
             </span>
           </div>
         </div>
         <div>
-          <Button handleClick={toggleSaveModal} mainButton={false}>
+          <Button handleClick={saveModalToggle} mainButton={false}>
             Save
           </Button>
-          <Button handleClick={togglePublishModal} mainButton={true}>
+          <Button handleClick={publishModalToggle} mainButton={true}>
             Publish
           </Button>
         </div>
