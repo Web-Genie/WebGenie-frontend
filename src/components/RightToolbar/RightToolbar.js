@@ -11,8 +11,7 @@ import TextDetailEditor from "../EditorToolbar/TextDetailSubtoolBar";
 import TextPositionEditor from "../EditorToolbar/TextPositionSubtoolBar";
 import ToolbarContainer from "../ToolbarContainer/ToolbarContainer";
 
-function RightToolbar({}) {
-  const propertyName = "text";
+function RightToolbar({ propertyName }) {
   return (
     <EditorToolbar>
       <ToolbarContainer>
