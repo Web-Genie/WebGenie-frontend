@@ -15,7 +15,7 @@ function RightToolbar({ propertyName }) {
   return (
     <EditorToolbar>
       <ToolbarContainer>
-        {"text" === "text" && (
+        {propertyName === "text" && (
           <>
             <TextDetailEditor />
             <TextPositionEditor />
@@ -28,7 +28,7 @@ function RightToolbar({ propertyName }) {
             <OpacityEditor />
           </>
         )}
-        {propertyName === "image" && (
+        {"image" === "image" && (
           <>
             <OpacityEditor />
             <ImageBrightnessEditor />
