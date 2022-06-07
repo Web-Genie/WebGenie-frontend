@@ -2,6 +2,7 @@ import React from "react";
 import { FaAlignCenter, FaAlignLeft, FaAlignRight } from "react-icons/fa";
 
 import SubtoolbarTitle from "./SubtoolbarTitle";
+
 function TextPositionSubtoolBar() {
   return (
     <div className="choiceContainer">

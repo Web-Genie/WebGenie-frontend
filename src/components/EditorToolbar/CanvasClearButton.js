@@ -5,7 +5,7 @@ import ToolbarButton from "../Button/ToolbarButton";
 function CanvasClearButton() {
   return (
     <div className="clearCanvasButtonContainer">
-      <ToolbarButton>Clear Canvas</ToolbarButton>
+      <ToolbarButton name="clearCanvas">Clear Canvas</ToolbarButton>
     </div>
   );
 }

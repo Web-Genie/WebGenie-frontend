@@ -5,17 +5,17 @@ import { RADIUS_AND_BRIGHTNESS_RANGE } from "../../constants/constants";
 import SelectDetail from "./SelectDetailSubtoolBar";
 import SubtoolbarTitle from "./SubtoolbarTitle";
 
-function TextDetailSubtoolBar() {
-  const fontType = ["inter", "고딕", "굴림"];
+const fontType = ["inter", "고딕", "굴림"];
 
+function TextDetailSubtoolBar() {
   return (
     <div className="choiceContainer">
       <SubtoolbarTitle title="Edit text" />
       <div className="textDetailChoice">
-        <SelectDetail detailValue={fontType} className="fontType" />
+        <SelectDetail detailValue={fontType} className="font" />
         <SelectDetail
           detailValue={RADIUS_AND_BRIGHTNESS_RANGE}
-          className="fontSize"
+          className="font"
         />
       </div>
       <div className="detailContainer">
