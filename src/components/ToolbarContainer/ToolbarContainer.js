@@ -145,16 +145,19 @@ const ToolbarContainerBody = styled.div`
     justify-content: space-evenly;
     flex-direction: row;
     align-items: center;
-
+    padding: 0px 8px;
     .fontType {
-      width: 135px;
+      width: 140px;
+      margin-right: 15px;
+      font-size: 13px;
+      font-weight: 500px;
     }
     .fontSize {
       width: 60px;
     }
   }
 
-  .clearCanavs {
+  .clearCanvasButtonContainer {
     position: fixed;
     left: 92%;
     transform: translate(-50%, 400px);

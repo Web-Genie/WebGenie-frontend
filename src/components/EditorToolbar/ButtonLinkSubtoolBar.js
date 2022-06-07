@@ -7,8 +7,8 @@ import SubtoolbarTitle from "./SubtoolbarTitle";
 function ButtonLinkSubtoolBar() {
   return (
     <div className="choiceContainer">
-      <SubtoolbarTitle title={"Add Link"} />
-      <ToolbarButton name={"link"}>
+      <SubtoolbarTitle title="Add Link" />
+      <ToolbarButton name="link">
         <FaLink />
       </ToolbarButton>
     </div>
