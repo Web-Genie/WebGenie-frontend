@@ -3,7 +3,7 @@ import { FaAlignCenter, FaAlignLeft, FaAlignRight } from "react-icons/fa";
 
 import SubtoolbarTitle from "./SubtoolbarTitle";
 
-function TextPositionEditor() {
+function TextPositionSubtoolBar() {
   return (
     <div className="choiceContainer">
       <SubtoolbarTitle title={"Edit Position"} />
@@ -24,4 +24,4 @@ function TextPositionEditor() {
   );
 }
 
-export default TextPositionEditor;
+export default TextPositionSubtoolBar;
