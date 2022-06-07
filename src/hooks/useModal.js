@@ -1,22 +1,14 @@
 import { useCallback, useState } from "react";
 
 import {
-  DEPLOY_ICON,
-  NEW_EDITOR_ACCEPT_MESSAGE,
-  NEW_EDITOR_DENY_MESSAGE,
-  NEW_EDITOR_REMINDER_MESSAGE,
-  PUBLISH_ACCEPT_MESSAGE,
-  PUBLISH_DENY_MESSAGE,
-  PUBLISH_REMINDER_MESSAGE,
-  QUESTION_ICON,
-  SAVE_ACCEPT_MESSAGE,
-  SAVE_DENY_MESSAGE,
-  SAVE_ICON,
-  SAVE_REMINDER_MESSAGE,
+  MODAL_ICON_STATE,
+  NEW_EDITOR_MODAL_MESSAGE,
+  PUBLISH_MODAL_MESSAGE,
+  SAVE_MODAL_MESSAGE,
 } from "../constants/constants";
 
-const useModal = (initialState = false) => {
-  const [shouldDisplayModal, setShouldDisplayModal] = useState(initialState);
+const useModal = () => {
+  const [shouldDisplayModal, setShouldDisplayModal] = useState(false);
   const [message, setMessage] = useState({
     titleMessage: null,
     proceedButtonText: null,
@@ -27,30 +19,30 @@ const useModal = (initialState = false) => {
   const createNewSiteModalToggle = useCallback(() => {
     setShouldDisplayModal((state) => !state);
     setMessage({
-      titleMessage: NEW_EDITOR_REMINDER_MESSAGE,
-      proceedButtonText: NEW_EDITOR_ACCEPT_MESSAGE,
-      denyButtonText: NEW_EDITOR_DENY_MESSAGE,
-      iconType: QUESTION_ICON,
+      titleMessage: NEW_EDITOR_MODAL_MESSAGE.titleMessage,
+      proceedButtonText: NEW_EDITOR_MODAL_MESSAGE.acceptButtonMessage,
+      denyButtonText: NEW_EDITOR_MODAL_MESSAGE.denyButtonMessage,
+      iconType: MODAL_ICON_STATE.questionState,
     });
   }, []);
 
   const saveModalToggle = useCallback(() => {
     setShouldDisplayModal((state) => !state);
     setMessage({
-      titleMessage: SAVE_REMINDER_MESSAGE,
-      proceedButtonText: SAVE_ACCEPT_MESSAGE,
-      denyButtonText: SAVE_DENY_MESSAGE,
-      iconType: SAVE_ICON,
+      titleMessage: SAVE_MODAL_MESSAGE.titleMessage,
+      proceedButtonText: SAVE_MODAL_MESSAGE.acceptButtonMessage,
+      denyButtonText: SAVE_MODAL_MESSAGE.denyButtonMessage,
+      iconType: MODAL_ICON_STATE.saveState,
     });
   }, []);
 
   const publishModalToggle = useCallback(() => {
     setShouldDisplayModal((state) => !state);
     setMessage({
-      titleMessage: PUBLISH_REMINDER_MESSAGE,
-      proceedButtonText: PUBLISH_ACCEPT_MESSAGE,
-      denyButtonText: PUBLISH_DENY_MESSAGE,
-      iconType: DEPLOY_ICON,
+      titleMessage: PUBLISH_MODAL_MESSAGE.titleMessage,
+      proceedButtonText: PUBLISH_MODAL_MESSAGE.acceptButtonMessage,
+      denyButtonText: PUBLISH_MODAL_MESSAGE.denyButtonMessage,
+      iconType: MODAL_ICON_STATE.deployState,
     });
   }, []);
 
