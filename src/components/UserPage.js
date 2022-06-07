@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 
 import mockImage from "../../assets/mockData.png";
+import Button from "../Button/Button";
 import {
   NEW_EDITOR_ACCEPT_MESSAGE,
   NEW_EDITOR_REMINDER_MESSAGE,
   NO_MESSAGE,
   QUESTION_ICON,
-} from "../../constants/constants";
-import api from "../../services/api";
-import Button from "../Button/Button";
-import Header from "../Header/Header";
-import Modal from "../Modal/Modal";
-import ModalContent from "../ModalContent/ModalContent";
-import Navigation from "../Navigation/Navigation";
-import UserCollection from "../UserCollection/UserCollection";
+} from "../constants/constants";
+import api from "../services/api";
+import Header from "./Header/Header";
+import Modal from "./Modal/Modal";
+import ModalContent from "./ModalContent";
+import Navigation from "./Navigation/Navigation";
+import UserCollection from "./UserCollection/UserCollection";
 
 function UserPage() {
   const [userInformation, setUserInformation] = useState({});
