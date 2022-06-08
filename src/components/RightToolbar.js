@@ -5,13 +5,19 @@ import ButtonRadiusEditor from "./ButtonRadiusSubtoolBar.js";
 import CanvasClearButton from "./CanvasClearButton";
 import ColorChangeSubToolBar from "./ColorChangeSubToolBar";
 import EditorToolbar from "./EditorToolbar";
+import ImageBlurEditor from "./ImageBlurSubtoolBar";
 import ImageBrightnessEditor from "./ImageBrightnessSubtoolBar";
 import OpacityEditor from "./OpacityChangeSubtoolBar";
 import TextDetailEditor from "./TextDetailSubtoolBar";
 import TextPositionEditor from "./TextPositionSubtoolBar";
 import ToolbarContainer from "./ToolbarContainer";
 
-function RightToolbar({ propertyName }) {
+function RightToolbar({
+  onChangeOpacity,
+  onChangeBrightness,
+  onChangeBlur
+}) {
+  const propertyName = "button";
   return (
     <EditorToolbar>
       <ToolbarContainer>
@@ -30,11 +36,12 @@ function RightToolbar({ propertyName }) {
         )}
         {propertyName === "image" && (
           <>
-            <OpacityEditor />
-            <ImageBrightnessEditor />
+            <OpacityEditor onChangeOpacity={onChangeOpacity} />
+            <ImageBrightnessEditor onChangeBrightness={onChangeBrightness} />
+            <ImageBlurEditor onChangeBlur={onChangeBlur} />
           </>
         )}
-        {propertyName !== "" && propertyName !== "image" ? (
+        {propertyName !== "image" || propertyName === undefined ? (
           <>
             <ColorChangeSubToolBar />
           </>
