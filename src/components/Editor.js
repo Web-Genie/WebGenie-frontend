@@ -27,14 +27,16 @@ function Editor() {
 
   const [imageOpacity, setImageOpacity] = useState(1);
   const [imageBrightness, setImageBrightness] = useState(1);
-  console.log("밝기", imageBrightness);
-  console.log("투명도", imageOpacity);
+  const [imageBlur, setImageBlur] = useState(0);
 
   const handleImgOpacity = (event) => {
     setImageOpacity(event.target.value);
   };
   const handleImgBrightness = (event) => {
     setImageBrightness(event.target.value);
+  };
+  const handleImgBlur = (event) => {
+    setImageBlur(event.target.value);
   };
 
   return (
@@ -81,8 +83,16 @@ function Editor() {
       </Navigation>
       <EditorBody>
         <LeftToolbar />
-        <EditorTemplate imageOpacity={imageOpacity} imageBrightness={imageBrightness}/>
-        <RightToolbar handleImgOpacity={handleImgOpacity} handleImgBrightness={handleImgBrightness}/>
+        <EditorTemplate
+          imageOpacity={imageOpacity}
+          imageBrightness={imageBrightness}
+          imageBlur={imageBlur}
+        />
+        <RightToolbar
+          handleImgOpacity={handleImgOpacity}
+          handleImgBrightness={handleImgBrightness}
+          handleImgBlur={handleImgBlur}
+        />
       </EditorBody>
     </>
   );
