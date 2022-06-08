@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
 function useDragAndDrop() {
+  const targetRef = useRef(null);
+  const parentRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [coordinates, setCoordinates] = useState({
     x: 0,
@@ -8,18 +10,20 @@ function useDragAndDrop() {
     leftPercentage: 0,
     topPercentage: 0,
   });
-  const ref = useRef(null);
-  const parentRef = useRef(null);
 
   function onMouseMove(event) {
     const rect = parentRef.current.getBoundingClientRect();
 
     if (!isDragging) return;
 
-    setCoordinates({
-      x: event.clientX - ref.current.offsetWidth / 2 - rect.x,
-      y: event.clientY - ref.current.offsetHeight / 2 - rect.y,
-    });
+    if (event.clientX > rect.x && event.clientY > rect.y) {
+      setCoordinates({
+        x: event.clientX - targetRef.current.offsetWidth / 2 - rect.x,
+        y: event.clientY - targetRef.current.offsetHeight / 2 - rect.y,
+      });
+    } else {
+      setIsDragging(false);
+    }
 
     event.stopPropagation();
     event.preventDefault();
@@ -35,27 +39,36 @@ function useDragAndDrop() {
   function onMouseDown(event) {
     const rect = parentRef.current.getBoundingClientRect();
 
-    ref.current = event.target;
+    targetRef.current = event.target;
 
     setIsDragging(true);
     if (event.button !== 0) return;
 
     setCoordinates({
-      x: event.clientX - ref.current.offsetWidth / 2 - rect.x,
-      y: event.clientY - ref.current.offsetHeight / 2 - rect.y,
+      x: event.clientX - targetRef.current.offsetWidth / 2 - rect.x,
+      y: event.clientY - targetRef.current.offsetHeight / 2 - rect.y,
     });
 
     event.stopPropagation();
     event.preventDefault();
   }
 
-  if (ref.current && ref.current !== parentRef.current && isDragging) {
+  if (
+    targetRef.current &&
+    targetRef.current !== parentRef.current &&
+    isDragging
+  ) {
     const parentContainerWidth =
       parentRef.current.getBoundingClientRect().width;
     const parentContainerHeight =
       parentRef.current.getBoundingClientRect().height;
-    ref.current.style.left = `${(coordinates.x / parentContainerWidth) * 100}%`;
-    ref.current.style.top = `${(coordinates.y / parentContainerHeight) * 100}%`;
+
+    targetRef.current.style.left = `${
+      (coordinates.x / parentContainerWidth) * 100
+    }%`;
+    targetRef.current.style.top = `${
+      (coordinates.y / parentContainerHeight) * 100
+    }%`;
   }
 
   useEffect(() => {
