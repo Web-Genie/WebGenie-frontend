@@ -9,7 +9,7 @@ const ToolbarButtonBody = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: ${(props) => (props.name === "clearCanvas" ? "12px 14px" : "9px")};
+  padding: ${(props) => (props.name === "clearCanvas" ? "12px 14px" : "8px")};
   border: 1px solid #e5e5e5;
   border-radius: 6px;
   width: ${(props) => (props.name === "link" ? "150px" : null)};

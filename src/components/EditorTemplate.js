@@ -210,7 +210,7 @@ const EditorTemplateBody = styled.div`
 
   .textDetailChoice {
     display: flex;
-    margin: 0 3px 0 3px;
+    margin: 0px 3px;
     justify-content: space-evenly;
     flex-direction: row;
     align-items: center;
@@ -233,7 +233,7 @@ const EditorTemplateBody = styled.div`
 
   .clearCanvasButtonContainer {
     position: flex;
-    margin: 40px 80px;
+    margin: 20px 20px;
   }
 
   .sampleColor {
