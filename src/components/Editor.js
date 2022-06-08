@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaArrowLeft, FaRegEdit } from "react-icons/fa";
 import styled from "styled-components";
 
@@ -17,6 +17,7 @@ import RightToolbar from "./RightToolbar";
 function Editor() {
   const { titleValue, shouldEditTitle, handleInputChange, toggleTitleChange } =
     useInput();
+  const [shouldShowWideView, setShouldShowWideView] = useState(false);
   const {
     shouldDisplayModal,
     saveModalToggle,
@@ -24,6 +25,10 @@ function Editor() {
     closeModal,
     message,
   } = useModal();
+
+  const toggleWideView = () => {
+    setShouldShowWideView((state) => !state);
+  };
 
   return (
     <>
@@ -62,15 +67,18 @@ function Editor() {
           <Button handleClick={saveModalToggle} mainButton={false}>
             Save
           </Button>
+          <Button handleClick={toggleWideView} mainButton={false}>
+            Wide View
+          </Button>
           <Button handleClick={publishModalToggle} mainButton={true}>
             Publish
           </Button>
         </div>
       </Navigation>
       <EditorBody>
-        <LeftToolbar />
-        <EditorTemplate />
-        <RightToolbar />
+        {!shouldShowWideView && <LeftToolbar />}
+        <EditorTemplate displayWideView={shouldShowWideView} />
+        {!shouldShowWideView && <RightToolbar />}
       </EditorBody>
     </>
   );
