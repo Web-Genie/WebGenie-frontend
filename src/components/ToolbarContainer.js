@@ -10,6 +10,7 @@ const ToolbarContainerBody = styled.div`
   flex-direction: column;
   width: 100%;
   color: #263238;
+  user-select: none;
 
   .category {
     margin-bottom: 10px;
@@ -21,7 +22,7 @@ const ToolbarContainerBody = styled.div`
   .choiceContainer {
     display: flex;
     flex-direction: column;
-    margin: 10px 20px;
+    margin: 10px 15px;
     padding: 5px;
   }
 
@@ -31,6 +32,10 @@ const ToolbarContainerBody = styled.div`
     font-size: 32px;
     font-weight: 500;
     cursor: pointer;
+
+    :hover {
+      opacity: 0.5;
+    }
   }
 
   h2 {
@@ -39,6 +44,10 @@ const ToolbarContainerBody = styled.div`
     font-size: 28px;
     font-weight: 500;
     cursor: pointer;
+
+    :hover {
+      opacity: 0.5;
+    }
   }
 
   h3 {
@@ -47,6 +56,10 @@ const ToolbarContainerBody = styled.div`
     font-size: 24px;
     font-weight: 500;
     cursor: pointer;
+
+    :hover {
+      opacity: 0.5;
+    }
   }
 
   h4 {
@@ -55,6 +68,10 @@ const ToolbarContainerBody = styled.div`
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;
+
+    :hover {
+      opacity: 0.5;
+    }
   }
 
   h5 {
@@ -63,6 +80,10 @@ const ToolbarContainerBody = styled.div`
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
+
+    :hover {
+      opacity: 0.5;
+    }
   }
 
   h6 {
@@ -70,6 +91,10 @@ const ToolbarContainerBody = styled.div`
     font-size: 12px;
     font-weight: 500;
     cursor: pointer;
+
+    :hover {
+      opacity: 0.5;
+    }
   }
 
   .textbox {
@@ -79,6 +104,10 @@ const ToolbarContainerBody = styled.div`
     border-radius: 5px;
     font-size: 15px;
     cursor: pointer;
+
+    :hover {
+      opacity: 0.5;
+    }
 
     ::placeholder {
       font-size: 14px;
@@ -102,6 +131,10 @@ const ToolbarContainerBody = styled.div`
     margin-right: 10px;
     background-color: #98a2b3;
     cursor: pointer;
+
+    :hover {
+      opacity: 0.5;
+    }
   }
 
   .circle {
@@ -110,6 +143,10 @@ const ToolbarContainerBody = styled.div`
     border-radius: 50%;
     background-color: #98a2b3;
     cursor: pointer;
+
+    :hover {
+      opacity: 0.5;
+    }
   }
 
   .triangle {
@@ -120,6 +157,10 @@ const ToolbarContainerBody = styled.div`
     border-bottom: 42px solid #98a2b3;
     margin-left: 10px;
     cursor: pointer;
+
+    :hover {
+      opacity: 0.5;
+    }
   }
 
   .samepleButton {
@@ -129,6 +170,10 @@ const ToolbarContainerBody = styled.div`
     gap: 12px;
     background: white;
     cursor: pointer;
+
+    :hover {
+      opacity: 0.5;
+    }
   }
 
   .colorPalette {
@@ -142,8 +187,8 @@ const ToolbarContainerBody = styled.div`
 
   .textDetailChoice {
     display: flex;
-    margin: 0 3px 0 3px;
     justify-content: space-evenly;
+    margin: 0 3px 0 3px;
     flex-direction: row;
     align-items: center;
     font-weight: 500px;
@@ -164,8 +209,9 @@ const ToolbarContainerBody = styled.div`
   }
 
   .clearCanvasButtonContainer {
-    position: flex;
-    margin: 40px 80px;
+    display: flex;
+    justify-content: center;
+    margin: 20px 20px;
   }
 
   .sampleColor {

@@ -1,3 +1,5 @@
+import { drag } from "../utils/index";
+
 function TextBoxChoice() {
   return (
     <div className="choiceContainer">
@@ -5,7 +7,13 @@ function TextBoxChoice() {
         <p>Add Text Box</p>
       </div>
       <div className="textBoxChoice">
-        <input className="textbox" placeholder="Enter Something" />
+        <input
+          draggable
+          id="textbox"
+          className="textbox"
+          placeholder="Enter Something"
+          onDragStart={drag}
+        />
       </div>
     </div>
   );

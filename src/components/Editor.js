@@ -17,6 +17,7 @@ import RightToolbar from "./RightToolbar";
 function Editor() {
   const { titleValue, shouldEditTitle, handleInputChange, toggleTitleChange } =
     useInput();
+  const [shouldShowWideView, setShouldShowWideView] = useState(false);
   const {
     shouldDisplayModal,
     saveModalToggle,
@@ -24,6 +25,10 @@ function Editor() {
     closeModal,
     message,
   } = useModal();
+
+  const toggleWideView = () => {
+    setShouldShowWideView((state) => !state);
+  };
 
   const [imageOpacity, setImageOpacity] = useState(1);
   const [imageBrightness, setImageBrightness] = useState(1);
@@ -76,12 +81,18 @@ function Editor() {
           <Button handleClick={saveModalToggle} mainButton={false}>
             Save
           </Button>
+          <Button handleClick={toggleWideView} mainButton={false}>
+            Wide View
+          </Button>
           <Button handleClick={publishModalToggle} mainButton={true}>
             Publish
           </Button>
         </div>
       </Navigation>
       <EditorBody>
+        {!shouldShowWideView && <LeftToolbar />}
+        <EditorTemplate displayWideView={shouldShowWideView} />
+        {!shouldShowWideView && <RightToolbar />}
         <LeftToolbar />
         <EditorTemplate
           imageOpacity={imageOpacity}
