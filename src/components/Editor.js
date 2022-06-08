@@ -28,6 +28,7 @@ function Editor() {
   const [imageOpacity, setImageOpacity] = useState(1);
   const [imageBrightness, setImageBrightness] = useState(1);
   console.log("밝기", imageBrightness);
+  console.log("투명도", imageOpacity);
 
   const handleImgOpacity = (event) => {
     setImageOpacity(event.target.value);
@@ -35,7 +36,6 @@ function Editor() {
   const handleImgBrightness = (event) => {
     setImageBrightness(event.target.value);
   };
-
 
   return (
     <>
