@@ -16,7 +16,6 @@ function LeftToolbar() {
         <TextChoice />
         <TextBoxChoice />
         <ImageChoice />
-        <ShapeChoice />
         <ButtonChoice />
         <BackgroundChoice />
       </ToolbarContainer>
