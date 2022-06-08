@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
+import testImg from "../assets/test.jpg"; //테스트 이미지 추후 삭제 요망
 import useDragAndDrop from "../hooks/useDragAndDrop";
 import {
   handleDragEnter,
