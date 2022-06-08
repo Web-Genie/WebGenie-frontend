@@ -11,7 +11,7 @@ import TextDetailEditor from "./TextDetailSubtoolBar";
 import TextPositionEditor from "./TextPositionSubtoolBar";
 import ToolbarContainer from "./ToolbarContainer";
 
-function RightToolbar({ propertyName }) {
+function RightToolbar({ propertyName, handleImgOpacity, handleImgBrightness }) {
   return (
     <EditorToolbar>
       <ToolbarContainer>
@@ -28,10 +28,10 @@ function RightToolbar({ propertyName }) {
             <OpacityEditor />
           </>
         )}
-        {propertyName === "image" && (
+        {"image" === "image" && (
           <>
-            <OpacityEditor />
-            <ImageBrightnessEditor />
+            <OpacityEditor handleImgOpacity={handleImgOpacity}/>
+            <ImageBrightnessEditor handleImgBrightness={handleImgBrightness}/>
           </>
         )}
         {propertyName !== "" && propertyName !== "image" ? (

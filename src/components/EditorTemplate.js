@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-function EditorTemplate() {
-  return <EditorTemplateBody></EditorTemplateBody>;
+import testImg from "../assets/test.jpg";
+
+function EditorTemplate({ imageOpacity, imageBrightness }) {
+
+  return (
+    <EditorTemplateBody>
+      <img src={testImg} width={500} style={{opacity:imageOpacity, filter: `brightness(${imageBrightness})`}}/>
+    </EditorTemplateBody>
+  );
 }
 
 const EditorTemplateBody = styled.div`
