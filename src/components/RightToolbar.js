@@ -13,9 +13,9 @@ import TextPositionEditor from "./TextPositionSubtoolBar";
 import ToolbarContainer from "./ToolbarContainer";
 
 function RightToolbar({
-  handleImgOpacity,
-  handleImgBrightness,
-  handleImgBlur,
+  onChangeOpacity,
+  onChangeBrightness,
+  onChangeBlur
 }) {
   const propertyName = "button";
   return (
@@ -36,9 +36,9 @@ function RightToolbar({
         )}
         {propertyName === "image" && (
           <>
-            <OpacityEditor handleImgOpacity={handleImgOpacity} />
-            <ImageBrightnessEditor handleImgBrightness={handleImgBrightness} />
-            <ImageBlurEditor handleImgBlur={handleImgBlur} />
+            <OpacityEditor onChangeOpacity={onChangeOpacity} />
+            <ImageBrightnessEditor onChangeBrightness={onChangeBrightness} />
+            <ImageBlurEditor onChangeBlur={onChangeBlur} />
           </>
         )}
         {propertyName !== "image" || propertyName === undefined ? (

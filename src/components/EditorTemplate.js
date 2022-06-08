@@ -3,7 +3,12 @@ import styled from "styled-components";
 
 import testImg from "../assets/test.jpg"; //테스트 이미지 추후 삭제 요망
 
-function EditorTemplate({ imageOpacity, imageBrightness, imageBlur }) {
+function EditorTemplate({
+  imageOpacity,
+  imageBrightness,
+  imageBlur,
+  buttonOpacity,
+}) {
   return (
     <EditorTemplateBody>
       <Image
@@ -26,6 +31,9 @@ const Image = styled.img`
 const Button = styled.button`
   padding: 30px 50px;
   font-size: 50px;
+  opacity: ${(props) => `${props.buttonOpacity}`};
+  border-radius: 10px;
+  background-color: red;
 `;
 
 const EditorTemplateBody = styled.div`

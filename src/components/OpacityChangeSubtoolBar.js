@@ -4,11 +4,11 @@ import { OPACITY_RANGE } from "../constants/constants";
 import SelectDetail from "./SelectDetailSubtoolBar";
 import SubtoolbarTitle from "./SubtoolbarTitle";
 
-function OpacityEditorSubtoolBar({ handleImgOpacity }) {
+function OpacityEditorSubtoolBar({ onChangeOpacity }) {
   return (
     <div className="choiceContainer">
       <SubtoolbarTitle title="Edit Opacity" />
-      <SelectDetail title="opacity" detailValue={OPACITY_RANGE} handleImgOpacity={handleImgOpacity}/>
+      <SelectDetail title="opacity" detailValue={OPACITY_RANGE} onChange={onChangeOpacity}/>
     </div>
   );
 }
