@@ -1,16 +1,32 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import testImg from "../assets/test.jpg";
+import testImg from "../assets/test.jpg"; //테스트 이미지 추후 삭제 요망
 
-function EditorTemplate({ imageOpacity, imageBrightness }) {
-
+function EditorTemplate({ imageOpacity, imageBrightness, imageBlur }) {
   return (
     <EditorTemplateBody>
-      <img src={testImg} width={500} style={{opacity:imageOpacity, filter: `brightness(${imageBrightness})`}}/>
+      <Image
+        src={testImg}
+        width={500}
+        imageBrightness={imageBrightness}
+        imageOpacity={imageOpacity}
+        imageBlur={imageBlur}
+      />
+      <Button>Test Button</Button>
     </EditorTemplateBody>
   );
 }
+const Image = styled.img`
+  opacity: ${(props) => `${props.imageOpacity}`};
+  filter: brightness(${(props) => `${props.imageBrightness}`})
+    blur(${(props) => `${props.imageBlur}`}px);
+`;
+
+const Button = styled.button`
+  padding: 30px 50px;
+  font-size: 50px;
+`;
 
 const EditorTemplateBody = styled.div`
   height: 78vh;

@@ -25,6 +25,7 @@ function ImageBrightnessSubtoolBar({ handleImgBrightness }) {
 const BrightnessBar = styled.div`
   .brightness {
     width: 100%;
+    cursor: pointer;
   }
 `;
 
