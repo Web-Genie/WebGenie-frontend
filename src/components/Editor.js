@@ -30,6 +30,20 @@ function Editor() {
     setShouldShowWideView((state) => !state);
   };
 
+  const [imageOpacity, setImageOpacity] = useState(1);
+  const [imageBrightness, setImageBrightness] = useState(1);
+  const [imageBlur, setImageBlur] = useState(0);
+
+  const handleImgOpacity = (event) => {
+    setImageOpacity(event.target.value);
+  };
+  const handleImgBrightness = (event) => {
+    setImageBrightness(event.target.value);
+  };
+  const handleImgBlur = (event) => {
+    setImageBlur(event.target.value);
+  };
+
   return (
     <>
       {shouldDisplayModal && (
@@ -79,6 +93,17 @@ function Editor() {
         {!shouldShowWideView && <LeftToolbar />}
         <EditorTemplate displayWideView={shouldShowWideView} />
         {!shouldShowWideView && <RightToolbar />}
+        <LeftToolbar />
+        <EditorTemplate
+          imageOpacity={imageOpacity}
+          imageBrightness={imageBrightness}
+          imageBlur={imageBlur}
+        />
+        <RightToolbar
+          onChangeOpacity={handleImgOpacity}
+          onChangeBrightness={handleImgBrightness}
+          onChangeBlur={handleImgBlur}
+        />
       </EditorBody>
     </>
   );

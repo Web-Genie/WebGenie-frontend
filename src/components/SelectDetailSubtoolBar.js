@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-function SelectDetailSubtoolBar({ detailValue, className }) {
+function SelectDetailSubtoolBar({ detailValue, className, handleImgOpacity }) {
   return (
     <SelectBody className={className}>
-      <select className={className}>
+      <select className={className} onChange={handleImgOpacity}>
         {detailValue &&
           detailValue.map((value) => (
             <option key={value} value={value}>
