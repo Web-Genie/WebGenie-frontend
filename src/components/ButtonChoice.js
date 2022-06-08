@@ -1,3 +1,5 @@
+import { drag } from "../utils";
+
 function ButtonChoice() {
   return (
     <div className="choiceContainer">
@@ -5,7 +7,14 @@ function ButtonChoice() {
         <p>Add Button</p>
       </div>
       <div className="buttonChoice">
-        <button className="samepleButton">Button</button>
+        <button
+          draggable
+          id="button"
+          className="samepleButton"
+          onDragStart={drag}
+        >
+          Button
+        </button>
       </div>
     </div>
   );
