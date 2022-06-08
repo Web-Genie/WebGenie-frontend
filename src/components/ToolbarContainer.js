@@ -22,7 +22,7 @@ const ToolbarContainerBody = styled.div`
   .choiceContainer {
     display: flex;
     flex-direction: column;
-    margin: 10px 20px;
+    margin: 10px 15px;
     padding: 5px;
   }
 
@@ -187,8 +187,8 @@ const ToolbarContainerBody = styled.div`
 
   .textDetailChoice {
     display: flex;
-    margin: 0 3px 0 3px;
     justify-content: space-evenly;
+    margin: 0 3px 0 3px;
     flex-direction: row;
     align-items: center;
     font-weight: 500px;
@@ -209,8 +209,9 @@ const ToolbarContainerBody = styled.div`
   }
 
   .clearCanvasButtonContainer {
-    position: flex;
-    margin: 40px 80px;
+    display: flex;
+    justify-content: center;
+    margin: 20px 20px;
   }
 
   .sampleColor {
