@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import SubtoolbarTitle from "./SubtoolbarTitle";
 
-function ImageBrightnessSubtoolBar({ handleImgBrightness }) {
+function ImageBrightnessSubtoolBar({ onChangeBrightness }) {
   return (
     <div className="choiceContainer">
       <SubtoolbarTitle title="Edit Brightness" />
@@ -15,7 +15,7 @@ function ImageBrightnessSubtoolBar({ handleImgBrightness }) {
           max="1"
           step="0.01"
           list="tickmarks"
-          onChange={handleImgBrightness}
+          onChange={onChangeBrightness}
         />
       </BrightnessBar>
     </div>

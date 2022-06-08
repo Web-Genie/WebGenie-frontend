@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import SubtoolbarTitle from "./SubtoolbarTitle";
 
-function ImageBlurSubtoolBar({ handleImgBlur }) {
+function ImageBlurSubtoolBar({ onChangeBlur }) {
   return (
     <div className="choiceContainer">
       <SubtoolbarTitle title="Edit Blur" />
@@ -15,7 +15,7 @@ function ImageBlurSubtoolBar({ handleImgBlur }) {
           max="10"
           step="0.05"
           list="tickmarks"
-          onChange={handleImgBlur}
+          onChange={onChangeBlur}
         />
       </BlurBar>
     </div>

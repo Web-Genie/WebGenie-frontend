@@ -89,9 +89,9 @@ function Editor() {
           imageBlur={imageBlur}
         />
         <RightToolbar
-          handleImgOpacity={handleImgOpacity}
-          handleImgBrightness={handleImgBrightness}
-          handleImgBlur={handleImgBlur}
+          onChangeOpacity={handleImgOpacity}
+          onChangeBrightness={handleImgBrightness}
+          onChangeBlur={handleImgBlur}
         />
       </EditorBody>
     </>
