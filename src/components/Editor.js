@@ -31,7 +31,6 @@ function Editor() {
   };
 
   const [color, setColor] = useState("");
-
   const [imageOpacity, setImageOpacity] = useState(1);
   const [imageBrightness, setImageBrightness] = useState(1);
   const [imageBlur, setImageBlur] = useState(0);
@@ -95,12 +94,16 @@ function Editor() {
       </Navigation>
       <EditorBody>
         {!shouldShowWideView && <LeftToolbar />}
-        <EditorTemplate displayWideView={shouldShowWideView} />
+        <EditorTemplate
+          displayWideView={shouldShowWideView}
+          colorName={color}
+        />
         {!shouldShowWideView && (
           <RightToolbar
             onChangeOpacity={handleImgOpacity}
             onChangeBrightness={handleImgBrightness}
             onChangeBlur={handleImgBlur}
+            changeColor={setColor}
           />
         )}
       </EditorBody>
