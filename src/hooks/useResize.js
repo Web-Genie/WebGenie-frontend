@@ -63,11 +63,11 @@ function useResize() {
     startX = event.clientX;
     startY = event.clientY;
 
-    if (targetRef.current && event.target.nodeName === "DIV") {
+    if (targetRef.current && event.target.tagName === "DIV") {
       targetRef.current.onmousemove = null;
     }
 
-    if (parentRef.current === null && event.target.nodeName === "DIV") {
+    if (parentRef.current === null && event.target.tagName === "DIV") {
       parentRef.current = event.target;
 
       return;
@@ -79,20 +79,25 @@ function useResize() {
       } else {
         targetRef.current.style.border = "none";
       }
+
       targetRef.current = null;
+
       setIsResizing(false);
 
       return;
     }
 
-    if (!targetRef.current && event.target.nodeName !== "DIV") {
+    if (!targetRef.current && event.target.tagName !== "DIV") {
       targetRef.current = event.target;
       targetRef.current.style.border = "2px dashed black";
+
       if (targetRef.current.tagName !== "BUTTON") {
         targetRef.current.style.padding = "7px 10px";
       }
+
       targetRef.current.onmousedown = handleMouseDown;
       targetRef.current.onmouseup = handleMouseUp;
+
       setIsResizing(true);
 
       return;
@@ -101,19 +106,22 @@ function useResize() {
     if (
       targetRef.current &&
       event.target !== targetRef.current &&
-      event.target.nodeName !== "DIV"
+      event.target.tagName !== "DIV"
     ) {
       if (targetRef.current.tagName === "BUTTON") {
         targetRef.current.style.border = "1px solid #e5e5e5";
       } else {
         targetRef.current.style.border = "none";
       }
+
       targetRef.current = event.target;
 
       targetRef.current.style.border = "2px dashed black";
+
       if (targetRef.current.tagName !== "BUTTON") {
         targetRef.current.style.padding = "7px 10px";
       }
+
       targetRef.current.onmousedown = handleMouseDown;
       targetRef.current.onmouseup = handleMouseUp;
 
@@ -129,6 +137,7 @@ function useResize() {
 
   if (isResizing && shouldDelete) {
     targetRef.current.remove();
+
     setShouldDelete(false);
   }
 
