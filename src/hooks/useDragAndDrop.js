@@ -94,7 +94,7 @@ function useDragAndDrop() {
     };
   }, [isDragging]);
 
-  return [parentRef];
+  return [parentRef, targetRef];
 }
 
 export default useDragAndDrop;

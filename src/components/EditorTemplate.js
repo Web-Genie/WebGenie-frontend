@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import testImg from "../assets/test.jpg"; //테스트 이미지 추후 삭제 요망
@@ -10,8 +10,12 @@ import {
   handleDrop,
 } from "../utils";
 
-function EditorTemplate({ displayWideView }) {
-  const [parentRef] = useDragAndDrop();
+function EditorTemplate({ displayWideView, colorName }) {
+  const [parentRef, targetRef] = useDragAndDrop();
+
+  if (targetRef.current !== null) {
+    targetRef.current.style.background = colorName;
+  }
 
   return (
     <EditorTemplateBody
