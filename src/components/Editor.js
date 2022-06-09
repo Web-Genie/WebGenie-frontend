@@ -39,9 +39,11 @@ function Editor() {
   const handleImgOpacity = (event) => {
     setImageOpacity(event.target.value);
   };
+
   const handleImgBrightness = (event) => {
     setImageBrightness(event.target.value);
   };
+
   const handleImgBlur = (event) => {
     setImageBlur(event.target.value);
   };
@@ -93,22 +95,14 @@ function Editor() {
       </Navigation>
       <EditorBody>
         {!shouldShowWideView && <LeftToolbar />}
-        <EditorTemplate
-          displayWideView={shouldShowWideView}
-          colorName={color}
-        />
-        {!shouldShowWideView && <RightToolbar changeColor={setColor} />}
-        <LeftToolbar />
-        <EditorTemplate
-          imageOpacity={imageOpacity}
-          imageBrightness={imageBrightness}
-          imageBlur={imageBlur}
-        />
-        <RightToolbar
-          onChangeOpacity={handleImgOpacity}
-          onChangeBrightness={handleImgBrightness}
-          onChangeBlur={handleImgBlur}
-        />
+        <EditorTemplate displayWideView={shouldShowWideView} />
+        {!shouldShowWideView && (
+          <RightToolbar
+            onChangeOpacity={handleImgOpacity}
+            onChangeBrightness={handleImgBrightness}
+            onChangeBlur={handleImgBlur}
+          />
+        )}
       </EditorBody>
     </>
   );
