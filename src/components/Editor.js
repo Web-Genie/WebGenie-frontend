@@ -15,8 +15,7 @@ import Navigation from "./Navigation";
 import RightToolbar from "./RightToolbar";
 
 function Editor() {
-  const { titleValue, shouldEditTitle, handleInputChange, toggleTitleChange } =
-    useInput();
+  const { shouldEditValue, handleInputChange, toggleInputChange } = useInput();
   const [shouldShowWideView, setShouldShowWideView] = useState(false);
   const {
     shouldDisplayModal,
@@ -29,10 +28,6 @@ function Editor() {
   const toggleWideView = () => {
     setShouldShowWideView((state) => !state);
   };
-
-  const [imageOpacity, setImageOpacity] = useState(1);
-  const [imageBrightness, setImageBrightness] = useState(1);
-  const [imageBlur, setImageBlur] = useState(0);
 
   const handleImgOpacity = (event) => {
     setImageOpacity(event.target.value);
@@ -69,12 +64,12 @@ function Editor() {
             <FaArrowLeft />
           </span>
           <div className="titleNavbar">
-            {!shouldEditTitle ? (
-              <h3>{titleValue}</h3>
+            {!shouldEditValue ? (
+              <h3>{"title from database"}</h3>
             ) : (
               <input onChange={handleInputChange} />
             )}
-            <span onClick={toggleTitleChange}>
+            <span onClick={toggleInputChange}>
               <FaRegEdit />
             </span>
           </div>
