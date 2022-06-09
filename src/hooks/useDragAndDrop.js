@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-function useDragAndDrop() {
+function useDragAndDrop(resizingState, setResizingState) {
   const targetRef = useRef(null);
   const parentRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -12,6 +12,11 @@ function useDragAndDrop() {
   });
 
   function onMouseMove(event) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    if (resizingState) return;
+
     const rect = parentRef.current.getBoundingClientRect();
 
     if (!isDragging) return;
@@ -24,9 +29,6 @@ function useDragAndDrop() {
     } else {
       setIsDragging(false);
     }
-
-    event.stopPropagation();
-    event.preventDefault();
   }
 
   function onMouseUp(event) {
@@ -37,6 +39,9 @@ function useDragAndDrop() {
   }
 
   function onMouseDown(event) {
+    event.stopPropagation();
+    event.preventDefault();
+
     const rect = parentRef.current.getBoundingClientRect();
 
     targetRef.current = event.target;
@@ -48,15 +53,13 @@ function useDragAndDrop() {
       x: event.clientX - targetRef.current.offsetWidth / 2 - rect.x,
       y: event.clientY - targetRef.current.offsetHeight / 2 - rect.y,
     });
-
-    event.stopPropagation();
-    event.preventDefault();
   }
 
   if (
     targetRef.current &&
     targetRef.current !== parentRef.current &&
-    isDragging
+    isDragging &&
+    !resizingState
   ) {
     const parentContainerWidth =
       parentRef.current.getBoundingClientRect().width;
