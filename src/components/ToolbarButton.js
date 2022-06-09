@@ -1,8 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-function ToolbarButton({ children, name }) {
-  return <ToolbarButtonBody name={name}>{children}</ToolbarButtonBody>;
+function ToolbarButton({ children, name, handleClick }) {
+  return (
+    <ToolbarButtonBody name={name} onClick={handleClick}>
+      {children}
+    </ToolbarButtonBody>
+  );
 }
 
 const ToolbarButtonBody = styled.button`

@@ -15,9 +15,10 @@ import ToolbarContainer from "./ToolbarContainer";
 function RightToolbar({
   onChangeOpacity,
   onChangeBrightness,
-  onChangeBlur
+  onChangeBlur,
+  changeColor,
+  propertyName,
 }) {
-  const propertyName = "button";
   return (
     <EditorToolbar>
       <ToolbarContainer>
@@ -43,7 +44,7 @@ function RightToolbar({
         )}
         {propertyName !== "image" || propertyName === undefined ? (
           <>
-            <ColorChangeSubToolBar />
+            <ColorChangeSubToolBar changeColor={changeColor} />
           </>
         ) : null}
         <CanvasClearButton />
