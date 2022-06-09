@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 
+import { TEXT_CHOICES } from "../constants/constants";
+import { SubToolbarContext } from "../context/subToolbarContext";
 import ButtonLinkEditor from "./ButtonLinkSubtoolBar";
 import ButtonRadiusEditor from "./ButtonRadiusSubtoolBar.js";
 import CanvasClearButton from "./CanvasClearButton";
@@ -12,36 +14,33 @@ import TextDetailEditor from "./TextDetailSubtoolBar";
 import TextPositionEditor from "./TextPositionSubtoolBar";
 import ToolbarContainer from "./ToolbarContainer";
 
-function RightToolbar({
-  onChangeOpacity,
-  onChangeBrightness,
-  onChangeBlur
-}) {
-  const propertyName = "button";
+function RightToolbar({ onChangeOpacity, onChangeBrightness, onChangeBlur }) {
+  const { subToolbarType } = useContext(SubToolbarContext);
+
   return (
     <EditorToolbar>
       <ToolbarContainer>
-        {propertyName === "text" && (
+        {TEXT_CHOICES.includes(subToolbarType) && (
           <>
             <TextDetailEditor />
             <TextPositionEditor />
           </>
         )}
-        {propertyName === "button" && (
+        {subToolbarType === "BUTTON" && (
           <>
             <ButtonLinkEditor />
             <ButtonRadiusEditor />
             <OpacityEditor />
           </>
         )}
-        {propertyName === "image" && (
+        {subToolbarType === "image" && (
           <>
             <OpacityEditor onChangeOpacity={onChangeOpacity} />
             <ImageBrightnessEditor onChangeBrightness={onChangeBrightness} />
             <ImageBlurEditor onChangeBlur={onChangeBlur} />
           </>
         )}
-        {propertyName !== "image" || propertyName === undefined ? (
+        {subToolbarType !== "image" || subToolbarType === undefined ? (
           <>
             <ColorChangeSubToolBar />
           </>
