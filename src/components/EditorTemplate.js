@@ -11,9 +11,10 @@ import {
 } from "../utils";
 
 function EditorTemplate({ displayWideView, colorName }) {
-  const [parentRef, targetRef] = useDragAndDrop();
+  const [handleResizeTarget, isResizing, setIsResizing] = useResize();
+  const [parentRef, targetRef] = useDragAndDrop(isResizing, setIsResizing);
 
-  if (targetRef.current !== null) {
+  if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
     targetRef.current.style.background = colorName;
   }
 
