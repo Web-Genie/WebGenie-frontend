@@ -1,6 +1,4 @@
-import { useCallback, useContext, useState } from "react";
-
-import { UserContext } from "../context/userContext";
+import { useCallback, useState } from "react";
 
 const useInput = (currentLocationBeingUsed, currentTitle) => {
   const [inputValue, setInputValue] = useState("https://");
