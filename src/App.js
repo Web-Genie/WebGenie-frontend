@@ -1,22 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import Editor from "./components/Editor";
 import Login from "./components/Login";
 import UserPage from "./components/UserPage";
+import { UserContext } from "./context/userContext";
 
 function App() {
-  const [userToken, setUserToken] = useState(localStorage.getItem("idToken"));
+  const { isLoggedIn } = useContext(UserContext);
 
   return (
     <>
       <Routes>
-        <Route
-          path="/"
-          element={
-            userToken ? <UserPage /> : <Login handleUser={setUserToken} />
-          }
-        />
+        <Route path="/" element={isLoggedIn ? <UserPage /> : <Login />} />
         <Route path="/editor/:id" element={<Editor />} />
       </Routes>
     </>

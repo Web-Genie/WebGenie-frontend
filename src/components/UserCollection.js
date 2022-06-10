@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
+import emptyCollection from "../assets/emptyCollection.png";
 import placeholderImage from "../assets/placeholder.png";
 
 function UserCollection({ collections }) {
   return (
     <UserContents>
-      {collections &&
+      {collections ? (
         collections.map((userWebsites, idx) => (
           <UserWebsites key={idx}>
             <img src={placeholderImage} />
@@ -13,7 +14,13 @@ function UserCollection({ collections }) {
               <p>{userWebsites.title}</p>
             </div>
           </UserWebsites>
-        ))}
+        ))
+      ) : (
+        <EmptyCollectionContainer>
+          <img src={emptyCollection} />
+          <h1>생성된 웹사이트가 없습니다.</h1>
+        </EmptyCollectionContainer>
+      )}
     </UserContents>
   );
 }
@@ -59,6 +66,23 @@ const UserWebsites = styled.div`
 
   :hover {
     opacity: 0.6;
+  }
+`;
+
+const EmptyCollectionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    width: 400px;
+    margin-top: 80px;
+    opacity: 0.9;
+  }
+
+  h1 {
+    margin-top: 50px;
+    font-weight: 500;
   }
 `;
 
