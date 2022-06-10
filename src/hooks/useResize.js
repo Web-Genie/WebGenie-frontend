@@ -8,7 +8,8 @@ import { getElementValue } from "../utils";
 
 function useResize() {
   const [isResizing, setIsResizing] = useState(false);
-  const { setSubToolbarType } = useContext(SubToolbarContext);
+  const { setSubToolbarType, setSubToolbarValue, subToolbarValue } =
+    useContext(SubToolbarContext);
   const { inputValue, shouldAddLink, setShouldAddLink } =
     useContext(InputFieldContext);
 
@@ -72,6 +73,7 @@ function useResize() {
 
     if (targetRef.current && event.target.tagName === "DIV") {
       targetRef.current.onmousemove = null;
+      setSubToolbarValue("");
     }
 
     if (parentRef.current === null && event.target.tagName === "DIV") {

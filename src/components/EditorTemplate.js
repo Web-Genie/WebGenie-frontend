@@ -16,6 +16,7 @@ import {
 function EditorTemplate({ displayWideView, backgroundColorName }) {
   const [handleResizeTarget, isResizing, setIsResizing] = useResize();
   const [parentRef, targetRef] = useDragAndDrop(isResizing, setIsResizing);
+  // const ref = useMouseClick();
   const {
     subToolbarType,
     subToolbarValue,
@@ -30,7 +31,6 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
     fontType,
     setFontType,
   } = useContext(SubToolbarContext);
-  const ref = useMouseClick();
 
   if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
     if (TEXT_CHOICES.includes(subToolbarType)) {
@@ -62,7 +62,7 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
       }
 
       targetRef.current.style.fontSize = `${subToolbarValue}px`;
-    } else if (subToolbarType === "BUTTON" && ref.current) {
+    } else if (subToolbarType === "BUTTON") {
       targetRef.current.style.background = subToolbarValue;
     }
   }
