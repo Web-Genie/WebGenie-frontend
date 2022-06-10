@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaArrowLeft, FaRegEdit } from "react-icons/fa";
 import styled from "styled-components";
 
 import mockImage from "../assets/mockData.png";
+import { SubToolbarContext } from "../context/subToolbarContext";
 import useInput from "../hooks/useInput";
 import useModal from "../hooks/useModal";
 import Button from "./Button";
@@ -24,6 +25,7 @@ function Editor() {
     closeModal,
     message,
   } = useModal();
+  const { subToolbarValue, setSubToolbarValue } = useContext(SubToolbarContext);
 
   const toggleWideView = () => {
     setShouldShowWideView((state) => !state);
@@ -108,7 +110,6 @@ function Editor() {
             onChangeOpacity={handleImgOpacity}
             onChangeBrightness={handleImgBrightness}
             onChangeBlur={handleImgBlur}
-            changeColor={setColor}
             changeFontSize={setFontSize}
           />
         )}

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 
+import { SubToolbarContext } from "../context/subToolbarContext";
 import useDragAndDrop from "../hooks/useDragAndDrop";
 import useResize from "../hooks/useResize";
 import {
@@ -10,23 +11,21 @@ import {
   handleDrop,
 } from "../utils";
 
-function EditorTemplate({
-  displayWideView,
-  colorName,
-  backgroundColorName,
-  fontSize,
-}) {
+function EditorTemplate({ displayWideView, backgroundColorName, fontSize }) {
   const [handleResizeTarget, isResizing, setIsResizing] = useResize();
   const [parentRef, targetRef] = useDragAndDrop(isResizing, setIsResizing);
+  const { setSubToolbarValue, subToolbarType, subToolbarValue } =
+    useContext(SubToolbarContext);
 
   if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
-    if (targetRef.current.tagName === "BUTTON") {
-      targetRef.current.style.background = colorName;
+    if (subToolbarType === "BUTTON") {
+      targetRef.current.style.background = subToolbarValue;
     } else {
-      targetRef.current.style.color = colorName;
+      targetRef.current.style.color = setSubToolbarValue;
     }
-    targetRef.current.style.fontStyle = "italic";
-    targetRef.current.style.fontSize = `${fontSize}px`;
+
+    targetRef.current.style.fontWeight = "Bold";
+    targetRef.current.style.fontSize = `${subToolbarValue}px`;
   }
 
   if (parentRef.current !== null && parentRef.current.tagName === "DIV") {

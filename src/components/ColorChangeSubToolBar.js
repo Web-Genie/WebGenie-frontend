@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { RiPaintFill } from "react-icons/ri";
 import styled from "styled-components";
 
+import { SubToolbarContext } from "../context/subToolbarContext";
 import SubtoolbarTitle from "./SubtoolbarTitle";
 import ToolbarButton from "./ToolbarButton";
 
-function ColorChangeSubToolBar({ changeColor }) {
+function ColorChangeSubToolBar() {
+  const { setSubToolbarValue } = useContext(SubToolbarContext);
+
   const handleColorChange = (event) => {
-    changeColor(event.target.value);
+    setSubToolbarValue(event.target.value);
   };
 
   return (
@@ -21,6 +24,7 @@ function ColorChangeSubToolBar({ changeColor }) {
               className="colorPalette"
               type="color"
               onChange={handleColorChange}
+              defaultValue="##ffffff"
             />
           </ToolbarButton>
         </ColorBackground>

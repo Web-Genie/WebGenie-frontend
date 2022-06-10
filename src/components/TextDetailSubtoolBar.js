@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaBold, FaItalic, FaUnderline } from "react-icons/fa";
 
 import { RADIUS_AND_BRIGHTNESS_RANGE } from "../constants/constants";
-import useDragAndDrop from "../hooks/useDragAndDrop";
+import { SubToolbarContext } from "../context/subToolbarContext";
 import SelectDetail from "./SelectDetailSubtoolBar";
 import SubtoolbarTitle from "./SubtoolbarTitle";
 
 const fontType = ["inter", "고딕", "굴림"];
 
-function TextDetailSubtoolBar({ changeFontSize }) {
+function TextDetailSubtoolBar() {
   return (
     <div className="choiceContainer">
       <SubtoolbarTitle title="Edit text" />
@@ -16,7 +16,6 @@ function TextDetailSubtoolBar({ changeFontSize }) {
         <SelectDetail detailValue={fontType} className="font" />
         <SelectDetail
           detailValue={RADIUS_AND_BRIGHTNESS_RANGE}
-          changeFontSize={changeFontSize}
           className="font"
         />
       </div>

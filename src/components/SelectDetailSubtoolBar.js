@@ -1,19 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 
-function SelectDetailSubtoolBar({
-  detailValue,
-  className,
-  handleImgOpacity,
-  changeFontSize,
-}) {
+import { SubToolbarContext } from "../context/subToolbarContext";
+
+function SelectDetailSubtoolBar({ detailValue, className, handleImgOpacity }) {
+  const { setSubToolbarValue } = useContext(SubToolbarContext);
   const handleOption = (event) => {
-    if (className === "font") {
-      console.log(event.target.value);
-      changeFontSize(event.target.value);
-    } else {
-      console.log("opacity", event.target.value);
-    }
+    setSubToolbarValue(event.target.value);
   };
 
   return (

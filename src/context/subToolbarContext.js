@@ -7,6 +7,8 @@ const InputFieldContext = createContext(undefined);
 
 const SubToolbarTypeProvider = ({ children }) => {
   const [subToolbarType, setSubToolbarType] = useState();
+  const [subToolbarValue, setSubToolbarValue] = useState("");
+
   const {
     inputValue,
     shouldEditValue,
@@ -18,7 +20,14 @@ const SubToolbarTypeProvider = ({ children }) => {
   } = useInput();
 
   return (
-    <SubToolbarContext.Provider value={{ subToolbarType, setSubToolbarType }}>
+    <SubToolbarContext.Provider
+      value={{
+        subToolbarType,
+        setSubToolbarType,
+        subToolbarValue,
+        setSubToolbarValue,
+      }}
+    >
       <InputFieldContext.Provider
         value={{
           inputValue,
