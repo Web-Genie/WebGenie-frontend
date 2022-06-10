@@ -5,7 +5,11 @@ import styled from "styled-components";
 import SubtoolbarTitle from "./SubtoolbarTitle";
 import ToolbarButton from "./ToolbarButton";
 
-function ColorChangeSubToolBar() {
+function ColorChangeSubToolBar({ changeColor }) {
+  const handleColorChange = (event) => {
+    changeColor(event.target.value);
+  };
+
   return (
     <div className="choiceContainer">
       <SubtoolbarTitle title="Edit color" />
@@ -13,7 +17,11 @@ function ColorChangeSubToolBar() {
         <ColorBackground>
           <ToolbarButton>
             <RiPaintFill />
-            <input className="colorPalette" type="color" />
+            <input
+              className="colorPalette"
+              type="color"
+              onChange={handleColorChange}
+            />
           </ToolbarButton>
         </ColorBackground>
       </>
