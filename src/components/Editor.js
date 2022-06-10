@@ -1,37 +1,73 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaArrowLeft, FaRegEdit } from "react-icons/fa";
 import styled from "styled-components";
 
-import mockImage from "../assets/mockData.png";
-import { EDITOR } from "../constants/constants";
+import {
+  ID_TOKEN,
+  REQUEST_DATA_INFORMATION_EDITOR,
+} from "../constants/constants";
 import { UserContext } from "../context/userContext";
+import useAxios from "../hooks/useAxios";
 import useInput from "../hooks/useInput";
 import useModal from "../hooks/useModal";
+import { handleLogout } from "../services/auth";
 import Button from "./Button";
 import EditorTemplate from "./EditorTemplate";
 import Header from "./Header";
 import LeftToolbar from "./LeftToolbar";
+import Loader from "./Loader";
 import Modal from "./Modal";
 import ModalContent from "./ModalContent";
 import Navigation from "./Navigation";
 import RightToolbar from "./RightToolbar";
-function Editor() {
-  const { fetchedData } = useContext(UserContext);
-  const { userTitle, shouldEditValue, handleInputChange, toggleInputChange } =
-    useInput(EDITOR, fetchedData.result.title);
-  const [shouldShowWideView, setShouldShowWideView] = useState(false);
 
+function Editor() {
+  const { userInformation, editor } = useContext(UserContext);
+  let currentEditorId = window.location.pathname
+    .split("/")
+    .filter((item) => item !== "editor")
+    .join("");
+  const { userTitle, shouldEditValue, handleInputChange, toggleInputChange } =
+    useInput("editor", editor);
+  const [shouldShowWideView, setShouldShowWideView] = useState(false);
   const {
     shouldDisplayModal,
     saveModalToggle,
     publishModalToggle,
     closeModal,
     message,
-  } = useModal();
+  } = useModal(userTitle, currentEditorId);
 
   const toggleWideView = () => {
     setShouldShowWideView((state) => !state);
   };
+
+  const { fetchData } = useAxios(
+    {
+      method: "get",
+      url: `/websites/${currentEditorId}`,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem(ID_TOKEN)}`,
+        params: currentEditorId,
+      },
+    },
+    ID_TOKEN,
+    REQUEST_DATA_INFORMATION_EDITOR
+  );
+
+  useEffect(() => {
+    if (!userInformation && editor) return;
+
+    fetchData();
+  }, []);
+
+  if (!editor) {
+    return <Loader />;
+  }
+
+  if (!userTitle) {
+    return <Loader />;
+  }
 
   return (
     <>
@@ -42,13 +78,19 @@ function Editor() {
             primaryButtonText={message.proceedButtonText}
             secondaryButtonText={message.denyButtonText}
             modalIconState={message.iconType}
+            currentTitle={userTitle}
+            params={message.params}
+            requestType={message.requestType}
             handleClick={closeModal}
           />
         </Modal>
       )}
       <Header>
         <h1>WebGenie</h1>
-        <img src={mockImage} />
+        <LogoutSection>
+          <img src={localStorage.getItem("avatar")} />
+          <Button handleClick={handleLogout}>logout</Button>
+        </LogoutSection>
       </Header>
       <Navigation>
         <div className="editorNavbar">
@@ -94,6 +136,13 @@ const EditorBody = styled.div`
   height: 84vh;
   overflow: hidden;
   background-color: #f5f5f5;
+`;
+
+const LogoutSection = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 30px;
 `;
 
 export default Editor;
