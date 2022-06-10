@@ -3,11 +3,7 @@ import styled from "styled-components";
 
 function ToolbarButton({ children, name, handleClick }) {
   return (
-<<<<<<< HEAD
-    <ToolbarButtonBody onClick={handleClick} name={name}>
-=======
     <ToolbarButtonBody name={name} onClick={handleClick}>
->>>>>>> cc236400154341e73c71acbc30671023e727ae24
       {children}
     </ToolbarButtonBody>
   );
