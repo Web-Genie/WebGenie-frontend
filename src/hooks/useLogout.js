@@ -1,5 +1,6 @@
 import { useContext } from "react";
 
+import { ID_TOKEN } from "../constants/constants";
 import { UserContext } from "../context/userContext";
 import { firebaseAuth } from "../services/firebase";
 
@@ -10,9 +11,9 @@ const useLogout = () => {
     try {
       await firebaseAuth.signOut();
 
-      localStorage.removeItem("idToken");
+      localStorage.removeItem(ID_TOKEN);
 
-      setIsLoggedIn(localStorage.getItem("idToken"));
+      setIsLoggedIn(localStorage.getItem(ID_TOKEN));
       setFetchedData(null);
     } catch (error) {
       console.log(error);
