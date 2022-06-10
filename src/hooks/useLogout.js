@@ -4,7 +4,7 @@ import { UserContext } from "../context/userContext";
 import { firebaseAuth } from "../services/firebase";
 
 const useLogout = () => {
-  const { setIsLoggedIn, setUserInformation } = useContext(UserContext);
+  const { setIsLoggedIn, setFetchedData } = useContext(UserContext);
 
   const handleLogout = async () => {
     try {
@@ -13,7 +13,7 @@ const useLogout = () => {
       localStorage.removeItem("idToken");
 
       setIsLoggedIn(localStorage.getItem("idToken"));
-      setUserInformation(null);
+      setFetchedData(null);
     } catch (error) {
       console.log(error);
     }

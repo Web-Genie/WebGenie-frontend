@@ -4,7 +4,7 @@ import styled from "styled-components";
 function Loader() {
   return (
     <LoaderContainer>
-      <DotLoader color={"#023E8A"} size={100} />
+      <DotLoader color="#023E8A" size={100} />
     </LoaderContainer>
   );
 }
