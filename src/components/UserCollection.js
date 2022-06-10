@@ -6,7 +6,7 @@ import placeholderImage from "../assets/placeholder.png";
 function UserCollection({ collections }) {
   return (
     <UserContents>
-      {collections ? (
+      {collections.length ? (
         collections.map((userWebsites, idx) => (
           <UserWebsites key={idx}>
             <img src={placeholderImage} />
