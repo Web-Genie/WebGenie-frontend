@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 
 import {
+  ID_TOKEN,
   MODAL_ICON_STATE,
   NEW_EDITOR_MODAL_MESSAGE,
   PUBLISH_MODAL_MESSAGE,
@@ -29,7 +30,7 @@ const useModal = () => {
         url: "/websites",
         data: { title: "" },
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("idToken")}`,
+          Authorization: `Bearer ${localStorage.getItem(ID_TOKEN)}`,
         },
       },
     });
@@ -47,7 +48,7 @@ const useModal = () => {
         url: "/websites/:website_id",
         body: { title: title, userCode: usercode },
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("idToken")}`,
+          Authorization: `Bearer ${localStorage.getItem(ID_TOKEN)}`,
         },
         params: {
           websiteId: `${websiteId}`,
@@ -67,7 +68,7 @@ const useModal = () => {
         method: "delete",
         url: "/websites/:website_id",
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("idToken")}`,
+          Authorization: `Bearer ${localStorage.getItem(ID_TOKEN)}`,
         },
         params: {
           websiteId: `${websiteId}`,
