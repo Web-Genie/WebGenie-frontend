@@ -2,7 +2,10 @@ import { FcGlobe, FcMultipleInputs, FcQuestions } from "react-icons/fc";
 import { MdClose } from "react-icons/md";
 import styled from "styled-components";
 
-import { ID_TOKEN, REQUEST_DATA_INFORMATION } from "../constants/constants";
+import {
+  ID_TOKEN,
+  REQUEST_DATA_INFORMATION_USER,
+} from "../constants/constants";
 import useAxios from "../hooks/useAxios";
 import Button from "./Button";
 
@@ -20,7 +23,12 @@ function ModalContent({
     deploy: <FcGlobe />,
     save: <FcMultipleInputs />,
   };
-  const { fetchData } = useAxios(params, localStorage.getItem(ID_TOKEN));
+
+  const { fetchData } = useAxios(
+    params,
+    localStorage.getItem(ID_TOKEN),
+    requestType
+  );
 
   const handleTitleInput = (event) => {
     params.data.title = event.target.value;
@@ -33,7 +41,7 @@ function ModalContent({
       </h3>
       <h1>{modalIconMap[modalIconState]}</h1>
       <h2>{modalText}</h2>
-      {requestType === REQUEST_DATA_INFORMATION && (
+      {requestType === REQUEST_DATA_INFORMATION_USER && (
         <NewSiteModalInputContainer>
           <span>Title:</span>
           <input onChange={handleTitleInput} />
