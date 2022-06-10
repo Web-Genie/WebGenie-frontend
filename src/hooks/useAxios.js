@@ -1,26 +1,33 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { UserContext } from "../context/userContext";
 import api from "../services/api";
 
-const useAxios = (params, idToken) => {
-  const { userInformation, isLoggedIn, setUserInformation } =
-    useContext(UserContext);
+const useAxios = (params, idToken, category = null) => {
+  const { setFetchedData, setUserInformation } = useContext(UserContext);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (userInformation) return;
-      if (!idToken) return;
+  const fetchData = async () => {
+    if (!idToken) return;
+    if (!params) return;
 
+    if (category === "USER") {
       const result = await api(params);
 
       setUserInformation(result.data);
-    };
+    } else {
+      navigate("/creatingnewwebsite");
 
-    fetchData();
-  }, [isLoggedIn]);
+      const result = await api(params);
 
-  return { userInformation };
+      navigate(`/editor/${result.data.result._id}`);
+
+      setFetchedData(result.data);
+    }
+  };
+
+  return { fetchData };
 };
 
 export default useAxios;
