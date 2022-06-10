@@ -32,10 +32,10 @@ function useDragAndDrop(resizingState, setResizingState) {
   }
 
   function onMouseUp(event) {
-    setIsDragging(false);
-
     event.stopPropagation();
     event.preventDefault();
+
+    setIsDragging(false);
   }
 
   function onMouseDown(event) {
@@ -75,10 +75,14 @@ function useDragAndDrop(resizingState, setResizingState) {
   }
 
   useEffect(() => {
+    if (!parentRef.current) return;
+
     parentRef.current.addEventListener("mousedown", onMouseDown);
 
     return () => {
-      parentRef.current.removeEventListener("mousedown", onMouseDown);
+      if (parentRef.current) {
+        parentRef.current.removeEventListener("mousedown", onMouseDown);
+      }
     };
   }, [parentRef.current]);
 
