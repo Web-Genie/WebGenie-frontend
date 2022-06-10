@@ -1,10 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
+import {
+  InputFieldContext,
+  SubToolbarContext,
+} from "../context/subToolbarContext";
 import { getElementValue } from "../utils";
 
 function useResize() {
   const [isResizing, setIsResizing] = useState(false);
-  const [shouldDelete, setShouldDelete] = useState(false);
+  const { setSubToolbarType } = useContext(SubToolbarContext);
+  const { inputValue, shouldAddLink, setShouldAddLink } =
+    useContext(InputFieldContext);
+
   const parentRef = useRef(null);
   const targetRef = useRef(null);
   let leftOrRightDirection = "";
@@ -69,7 +76,7 @@ function useResize() {
 
     if (parentRef.current === null && event.target.tagName === "DIV") {
       parentRef.current = event.target;
-
+      setSubToolbarType(targetRef.current.tagName);
       return;
     }
 
@@ -79,6 +86,7 @@ function useResize() {
       } else {
         targetRef.current.style.border = "none";
       }
+      setSubToolbarType(targetRef.current.tagName);
 
       targetRef.current = null;
 
@@ -97,6 +105,10 @@ function useResize() {
 
       targetRef.current.onmousedown = handleMouseDown;
       targetRef.current.onmouseup = handleMouseUp;
+
+      if (targetRef.current) {
+        setSubToolbarType(targetRef.current.tagName);
+      }
 
       setIsResizing(true);
 
@@ -125,29 +137,26 @@ function useResize() {
       targetRef.current.onmousedown = handleMouseDown;
       targetRef.current.onmouseup = handleMouseUp;
 
+      if (targetRef.current) {
+        setSubToolbarType(targetRef.current.tagName);
+      }
+
       setIsResizing(true);
     }
   };
 
-  const handleDeleteKey = (event) => {
-    if (event.key === "Backspace") {
-      setShouldDelete(true);
-    }
-  };
-
-  if (isResizing && shouldDelete) {
-    targetRef.current.remove();
-
-    setShouldDelete(false);
-  }
-
   useEffect(() => {
-    document.addEventListener("keydown", handleDeleteKey);
+    if (!shouldAddLink) return;
 
-    return () => {
-      document.removeEventListener("keydown", handleDeleteKey);
-    };
-  }, [isResizing]);
+    const linkElement = document.createElement("a");
+
+    linkElement.href = inputValue;
+    linkElement.innerText = targetRef.current.innerText;
+    targetRef.current.innerText = "";
+    targetRef.current.appendChild(linkElement);
+
+    setShouldAddLink(false);
+  }, [shouldAddLink]);
 
   return [handleResizeTarget, isResizing, setIsResizing];
 }
