@@ -6,14 +6,17 @@ import Login from "./components/Login";
 import UserPage from "./components/UserPage";
 
 function App() {
-  const [userToken, setUserToken] = useState(
-    localStorage.getItem("accessToken")
-  );
+  const [userToken, setUserToken] = useState(localStorage.getItem("idToken"));
 
   return (
     <>
       <Routes>
-        <Route path="/" element={userToken ? <UserPage /> : <Login />} />
+        <Route
+          path="/"
+          element={
+            userToken ? <UserPage /> : <Login handleUser={setUserToken} />
+          }
+        />
         <Route path="/editor/:id" element={<Editor />} />
       </Routes>
     </>

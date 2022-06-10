@@ -1,3 +1,4 @@
+import firebase from "firebase";
 import React from "react";
 import styled from "styled-components";
 
@@ -9,17 +10,19 @@ import { firebaseAuth, googleProvider } from "../services/firebase";
 import LoginButton from "./LoginButton";
 import LoginSVG from "./LoginSVG";
 
-function Login() {
+function Login({ handleUser }) {
   const handleGoogleLogin = async () => {
     try {
-      const loggedInResult = await firebaseAuth.signInWithPopup(googleProvider);
-      const accessToken = loggedInResult.credential.accessToken;
+      await firebaseAuth.signInWithPopup(googleProvider);
+      const idToken = await firebase.auth().currentUser.getIdToken();
 
-      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("idToken", idToken);
 
-      await api.post("/login", {
+      handleUser(idToken);
+
+      const result = await api.get("/login", {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${idToken}`,
         },
       });
     } catch (error) {
