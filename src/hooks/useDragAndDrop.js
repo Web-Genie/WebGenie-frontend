@@ -97,7 +97,7 @@ function useDragAndDrop(resizingState, setResizingState) {
     };
   }, [isDragging]);
 
-  return [parentRef];
+  return [parentRef, targetRef];
 }
 
 export default useDragAndDrop;
