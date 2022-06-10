@@ -29,6 +29,14 @@ function Editor() {
     setShouldShowWideView((state) => !state);
   };
 
+<<<<<<< HEAD
+=======
+  const [color, setColor] = useState("");
+  const [imageOpacity, setImageOpacity] = useState(1);
+  const [imageBrightness, setImageBrightness] = useState(1);
+  const [imageBlur, setImageBlur] = useState(0);
+
+>>>>>>> cc236400154341e73c71acbc30671023e727ae24
   const handleImgOpacity = (event) => {
     setImageOpacity(event.target.value);
   };
@@ -88,12 +96,16 @@ function Editor() {
       </Navigation>
       <EditorBody>
         {!shouldShowWideView && <LeftToolbar />}
-        <EditorTemplate displayWideView={shouldShowWideView} />
+        <EditorTemplate
+          displayWideView={shouldShowWideView}
+          colorName={color}
+        />
         {!shouldShowWideView && (
           <RightToolbar
             onChangeOpacity={handleImgOpacity}
             onChangeBrightness={handleImgBrightness}
             onChangeBlur={handleImgBlur}
+            changeColor={setColor}
           />
         )}
       </EditorBody>

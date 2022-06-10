@@ -14,9 +14,19 @@ import TextDetailEditor from "./TextDetailSubtoolBar";
 import TextPositionEditor from "./TextPositionSubtoolBar";
 import ToolbarContainer from "./ToolbarContainer";
 
+<<<<<<< HEAD
 function RightToolbar({ onChangeOpacity, onChangeBrightness, onChangeBlur }) {
   const { subToolbarType } = useContext(SubToolbarContext);
 
+=======
+function RightToolbar({
+  onChangeOpacity,
+  onChangeBrightness,
+  onChangeBlur,
+  changeColor,
+  propertyName,
+}) {
+>>>>>>> cc236400154341e73c71acbc30671023e727ae24
   return (
     <EditorToolbar>
       <ToolbarContainer>
@@ -42,7 +52,7 @@ function RightToolbar({ onChangeOpacity, onChangeBrightness, onChangeBlur }) {
         )}
         {subToolbarType !== "image" || subToolbarType === undefined ? (
           <>
-            <ColorChangeSubToolBar />
+            <ColorChangeSubToolBar changeColor={changeColor} />
           </>
         ) : null}
         <CanvasClearButton />
