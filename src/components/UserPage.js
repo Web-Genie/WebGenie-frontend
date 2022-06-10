@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 
-import { REQUEST_DATA_INFORMATION } from "../constants/constants";
+import { REQUEST_DATA_INFORMATION_USER } from "../constants/constants";
 import { ID_TOKEN } from "../constants/constants";
 import { UserContext } from "../context/userContext";
 import useAxios from "../hooks/useAxios";
@@ -31,7 +31,7 @@ function UserPage() {
       },
     },
     idToken,
-    REQUEST_DATA_INFORMATION
+    REQUEST_DATA_INFORMATION_USER
   );
 
   useEffect(() => {
@@ -53,7 +53,7 @@ function UserPage() {
             modalIconState={message.iconType}
             params={message.params}
             handleClick={closeModal}
-            requestType={REQUEST_DATA_INFORMATION}
+            requestType={REQUEST_DATA_INFORMATION_USER}
           />
         </Modal>
       )}
@@ -88,4 +88,5 @@ const LogoutSection = styled.div`
   justify-content: center;
   margin-right: 30px;
 `;
+
 export default UserPage;
