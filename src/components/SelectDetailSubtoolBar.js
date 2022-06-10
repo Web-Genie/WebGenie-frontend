@@ -4,10 +4,12 @@ import styled from "styled-components";
 import { SubToolbarContext } from "../context/subToolbarContext";
 
 function SelectDetailSubtoolBar({ detailValue, className, handleImgOpacity }) {
-  const { setSubToolbarValue } = useContext(SubToolbarContext);
+  const { setSubToolbarValue, fontType, setFontType } =
+    useContext(SubToolbarContext);
 
   const handleOption = (event) => {
     setSubToolbarValue(event.target.value);
+    setFontType(event.target.value);
   };
 
   return (

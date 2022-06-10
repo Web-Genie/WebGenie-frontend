@@ -35,3 +35,14 @@ export const SIZE_RADIUS_AND_BRIGHTNESS_RANGE = [
 ];
 
 export const TEXT_CHOICES = ["H1", "H2", "H3", "H4", "H5", "H6"];
+
+export const FONT_TYPE = [
+  "inter",
+  "AppleGothic",
+  "Geogia",
+  "serif",
+  "monospace",
+  "cursive",
+];
+
+export const TEXT_ALIGN = ["left", "center", "right"];

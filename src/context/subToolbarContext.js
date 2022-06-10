@@ -12,6 +12,7 @@ const SubToolbarTypeProvider = ({ children }) => {
   const [isItalic, setIsItalic] = useState(false);
   const [isUnderLine, setIsUnderLine] = useState(false);
   const [textAlign, setTextAlign] = useState("");
+  const [fontType, setFontType] = useState("");
 
   const {
     inputValue,
@@ -38,6 +39,8 @@ const SubToolbarTypeProvider = ({ children }) => {
         setIsUnderLine,
         textAlign,
         setTextAlign,
+        fontType,
+        setFontType,
       }}
     >
       <InputFieldContext.Provider

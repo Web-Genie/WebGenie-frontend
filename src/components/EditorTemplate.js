@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 
-import { TEXT_CHOICES } from "../constants/constants";
+import { FONT_TYPE, TEXT_ALIGN, TEXT_CHOICES } from "../constants/constants";
 import { SubToolbarContext } from "../context/subToolbarContext";
 import useDragAndDrop from "../hooks/useDragAndDrop";
 import useMouseClick from "../hooks/useMouseClick";
@@ -27,6 +27,8 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
     setIsUnderLine,
     textAlign,
     setTextAlign,
+    fontType,
+    setFontType,
   } = useContext(SubToolbarContext);
   const ref = useMouseClick();
 
@@ -38,25 +40,25 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
         targetRef.current.style.fontWeight = "Bold";
         setIsBold(false);
       }
+
       if (isItalic) {
         targetRef.current.style.fontStyle = "italic";
         setIsItalic(false);
       }
+
       if (isUnderLine) {
         targetRef.current.style.textDecoration = "underline";
         setIsUnderLine(false);
       }
-      if (textAlign === "left") {
-        targetRef.current.style.textAlign = "left";
+
+      if (TEXT_ALIGN.includes(textAlign)) {
+        targetRef.current.style.textAlign = textAlign;
         setTextAlign("");
       }
-      if (textAlign === "right") {
-        targetRef.current.style.textAlign = "right";
-        setTextAlign("");
-      }
-      if (textAlign === "center") {
-        targetRef.current.style.textAlign = "center";
-        setTextAlign("");
+
+      if (FONT_TYPE.includes(fontType)) {
+        targetRef.current.style.fontFamily = fontType;
+        setFontType("");
       }
 
       targetRef.current.style.fontSize = `${subToolbarValue}px`;

@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { FaBold, FaItalic, FaUnderline } from "react-icons/fa";
 
-import { SIZE_RADIUS_AND_BRIGHTNESS_RANGE } from "../constants/constants";
+import {
+  FONT_TYPE,
+  SIZE_RADIUS_AND_BRIGHTNESS_RANGE,
+} from "../constants/constants";
 import { SubToolbarContext } from "../context/subToolbarContext";
 import SelectDetail from "./SelectDetailSubtoolBar";
 import SubtoolbarTitle from "./SubtoolbarTitle";
-
-const fontType = ["inter", "고딕", "굴림"];
 
 function TextDetailSubtoolBar() {
   const { setIsBold, setIsItalic, setIsUnderLine } =
@@ -28,7 +29,7 @@ function TextDetailSubtoolBar() {
     <div className="choiceContainer">
       <SubtoolbarTitle title="Edit text" />
       <div className="textDetailChoice">
-        <SelectDetail detailValue={fontType} className="font" />
+        <SelectDetail detailValue={FONT_TYPE} className="font" />
         <SelectDetail
           detailValue={SIZE_RADIUS_AND_BRIGHTNESS_RANGE}
           className="font"
