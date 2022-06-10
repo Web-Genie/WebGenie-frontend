@@ -8,7 +8,7 @@ import {
   SAVE_MODAL_MESSAGE,
 } from "../constants/constants";
 
-const useModal = () => {
+const useModal = (editorTitle, editorId) => {
   const [shouldDisplayModal, setShouldDisplayModal] = useState(false);
   const [message, setMessage] = useState({
     titleMessage: null,
@@ -28,7 +28,7 @@ const useModal = () => {
       params: {
         method: "post",
         url: "/websites",
-        data: { title: "" },
+        data: { title: editorTitle },
         headers: {
           Authorization: `Bearer ${localStorage.getItem(ID_TOKEN)}`,
         },
@@ -36,7 +36,7 @@ const useModal = () => {
     });
   }, []);
 
-  const saveModalToggle = useCallback(() => {
+  const saveModalToggle = () => {
     setShouldDisplayModal((state) => !state);
     setMessage({
       titleMessage: SAVE_MODAL_MESSAGE.titleMessage,
@@ -44,18 +44,16 @@ const useModal = () => {
       denyButtonText: SAVE_MODAL_MESSAGE.denyButtonMessage,
       iconType: MODAL_ICON_STATE.saveState,
       params: {
-        method: "post",
+        method: "patch",
         url: "/websites/:website_id",
-        body: { title: title, userCode: usercode },
+        data: { title: editorTitle, userCode: "", websiteId: editorId },
         headers: {
           Authorization: `Bearer ${localStorage.getItem(ID_TOKEN)}`,
         },
-        params: {
-          websiteId: `${websiteId}`,
-        },
       },
+      requestType: "Save",
     });
-  }, []);
+  };
 
   const publishModalToggle = useCallback(() => {
     setShouldDisplayModal((state) => !state);
@@ -71,7 +69,7 @@ const useModal = () => {
           Authorization: `Bearer ${localStorage.getItem(ID_TOKEN)}`,
         },
         params: {
-          websiteId: `${websiteId}`,
+          websiteId: editorId,
         },
       },
     });
