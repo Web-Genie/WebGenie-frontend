@@ -10,12 +10,23 @@ import {
   handleDrop,
 } from "../utils";
 
-function EditorTemplate({ displayWideView, colorName, backgroundColorName }) {
+function EditorTemplate({
+  displayWideView,
+  colorName,
+  backgroundColorName,
+  fontSize,
+}) {
   const [handleResizeTarget, isResizing, setIsResizing] = useResize();
   const [parentRef, targetRef] = useDragAndDrop(isResizing, setIsResizing);
 
   if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
-    targetRef.current.style.background = colorName;
+    if (targetRef.current.tagName === "BUTTON") {
+      targetRef.current.style.background = colorName;
+    } else {
+      targetRef.current.style.color = colorName;
+    }
+    targetRef.current.style.fontStyle = "italic";
+    targetRef.current.style.fontSize = `${fontSize}px`;
   }
 
   if (parentRef.current !== null && parentRef.current.tagName === "DIV") {

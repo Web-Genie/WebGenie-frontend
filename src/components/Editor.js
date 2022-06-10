@@ -31,7 +31,7 @@ function Editor() {
 
   const [color, setColor] = useState("");
   const [backgroundColor, setBackgroundColor] = useState("");
-  console.log(backgroundColor);
+  const [fontSize, setFontSize] = useState("");
   const [imageOpacity, setImageOpacity] = useState(1);
   const [imageBrightness, setImageBrightness] = useState(1);
   const [imageBlur, setImageBlur] = useState(0);
@@ -101,6 +101,7 @@ function Editor() {
           displayWideView={shouldShowWideView}
           colorName={color}
           backgroundColorName={backgroundColor}
+          fontSize={fontSize}
         />
         {!shouldShowWideView && (
           <RightToolbar
@@ -108,6 +109,7 @@ function Editor() {
             onChangeBrightness={handleImgBrightness}
             onChangeBlur={handleImgBlur}
             changeColor={setColor}
+            changeFontSize={setFontSize}
           />
         )}
       </EditorBody>

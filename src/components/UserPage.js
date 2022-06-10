@@ -14,25 +14,6 @@ function UserPage() {
   const [userInformation, setUserInformation] = useState({});
   const { shouldDisplayModal, createNewSiteModalToggle, closeModal, message } =
     useModal();
-  const accessToken = localStorage.getItem("accessToken");
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      const result = await api.get("/data/user.json", {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      });
-
-      setUserInformation(result.data.userInformation);
-
-      return result;
-    };
-
-    fetchUser();
-  }, []);
 
   return (
     <>

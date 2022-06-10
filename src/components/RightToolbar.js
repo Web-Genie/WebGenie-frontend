@@ -19,26 +19,28 @@ function RightToolbar({
   onChangeBrightness,
   onChangeBlur,
   changeColor,
+  changeFontSize,
 }) {
   // const { subToolbarType } = useContext(SubToolbarContext);
-  const subToolbarType = "BUTTON";
+  const subToolbarType = "";
 
   return (
     <EditorToolbar>
       <ToolbarContainer>
-        {TEXT_CHOICES.includes(subToolbarType) && (
-          <>
-            <TextDetailEditor />
-            <TextPositionEditor />
-          </>
-        )}
+        <>
+          <TextDetailEditor changeFontSize={changeFontSize} />
+          <TextPositionEditor />
+        </>
+        {/* {TEXT_CHOICES.includes(subToolbarType) && (
+         
+        )} */}
         {subToolbarType === "BUTTON" && (
           <>
             <ButtonLinkEditor />
             <ButtonRadiusEditor />
-            <OpacityEditor />
           </>
         )}
+        <OpacityEditor />
         {subToolbarType === "image" && (
           <>
             <OpacityEditor onChangeOpacity={onChangeOpacity} />
@@ -48,10 +50,9 @@ function RightToolbar({
         )}
         {subToolbarType === "BUTTON" ||
         TEXT_CHOICES.includes(subToolbarType) ? (
-          <>
-            <ColorChangeSubToolBar changeColor={changeColor} />
-          </>
+          <></>
         ) : null}
+        <ColorChangeSubToolBar changeColor={changeColor} />
         <CanvasClearButton />
       </ToolbarContainer>
     </EditorToolbar>

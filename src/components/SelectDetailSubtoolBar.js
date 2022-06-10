@@ -1,10 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 
-function SelectDetailSubtoolBar({ detailValue, className, handleImgOpacity }) {
+function SelectDetailSubtoolBar({
+  detailValue,
+  className,
+  handleImgOpacity,
+  changeFontSize,
+}) {
+  const handleOption = (event) => {
+    if (className === "font") {
+      console.log(event.target.value);
+      changeFontSize(event.target.value);
+    } else {
+      console.log("opacity", event.target.value);
+    }
+  };
+
   return (
     <SelectBody className={className}>
-      <select className={className} onChange={handleImgOpacity}>
+      <select className={className} onChange={handleOption}>
         {detailValue &&
           detailValue.map((value) => (
             <option key={value} value={value}>
@@ -32,7 +46,7 @@ const SelectBody = styled.div`
     font-weight: 400;
     padding: ${(props) => (props.className === "font" ? "1px" : "8px")};
     border: ${(props) =>
-    props.className === "font" ? null : "1px solid #e5e5e5"};
+      props.className === "font" ? null : "1px solid #e5e5e5"};
     margin-left: ${(props) => (props.className === "font" ? null : "12px")};
     cursor: pointer;
   }
