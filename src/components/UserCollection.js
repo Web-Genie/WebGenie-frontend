@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import emptyCollection from "../assets/emptyCollection.png";
@@ -8,11 +9,13 @@ function UserCollection({ collections }) {
     <UserContents>
       {collections.length ? (
         collections.map((userWebsites, idx) => (
-          <UserWebsites key={idx}>
-            <img src={placeholderImage} />
-            <div>
-              <p>{userWebsites.title}</p>
-            </div>
+          <UserWebsites key={userWebsites._id}>
+            <Link to={`/editor/${userWebsites._id}`}>
+              <img src={placeholderImage} />
+              <div>
+                <p>{userWebsites.title}</p>
+              </div>
+            </Link>
           </UserWebsites>
         ))
       ) : (
@@ -32,6 +35,10 @@ const UserContents = styled.div`
   height: 84vh;
   overflow-y: scroll;
   background-color: rgb(249, 249, 249);
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 const UserWebsites = styled.div`
@@ -46,9 +53,15 @@ const UserWebsites = styled.div`
   border-radius: 10px;
   background-color: white;
   cursor: pointer;
+  transition: all 0.3s ease;
 
   div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
+    height: auto;
+    margin-top: 20px;
   }
 
   img {
@@ -59,13 +72,14 @@ const UserWebsites = styled.div`
 
   p {
     margin: 0px 5px;
-    padding-bottom: 23px;
-    font-size: 20px;
     text-align: center;
+    font-size: 20px;
+    color: black;
   }
 
   :hover {
     opacity: 0.6;
+    transform: scale(1.1);
   }
 `;
 
