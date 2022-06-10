@@ -1,25 +1,31 @@
 import { useCallback, useState } from "react";
 
-const TEMPORARY_TITLE = "New Title 2";
-
-const useInput = (initialValue = TEMPORARY_TITLE) => {
-  const [titleValue, setTitleValue] = useState(initialValue);
-  const [shouldEditTitle, setShouldEditTitle] = useState(false);
+const useInput = () => {
+  const [inputValue, setInputValue] = useState("https://");
+  const [shouldEditValue, setShouldEditValue] = useState(false);
+  const [shouldAddLink, setShouldAddLink] = useState(false);
 
   const handleInputChange = (event) => {
-    setTitleValue(event.target.value);
+    setInputValue(event.target.value);
   };
 
-  const toggleTitleChange = useCallback(
-    () => setShouldEditTitle((state) => !state),
-    []
-  );
+  const toggleInputChange = useCallback(() => {
+    setShouldEditValue((state) => !state);
+  }, []);
+
+  const toggleAddLink = useCallback(() => {
+    setShouldEditValue((state) => !state);
+    setShouldAddLink(true);
+  }, []);
 
   return {
-    titleValue,
-    shouldEditTitle,
+    inputValue,
+    shouldEditValue,
     handleInputChange,
-    toggleTitleChange,
+    toggleInputChange,
+    shouldAddLink,
+    toggleAddLink,
+    setShouldAddLink,
   };
 };
 
