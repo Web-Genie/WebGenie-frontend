@@ -24,7 +24,7 @@ const HeaderContainer = styled.div`
   img {
     width: 50px;
     height: 50px;
-    margin: 15px 25px 10px 0px;
+    margin: 15px 20px 10px 0px;
     border-radius: 50%;
   }
 `;

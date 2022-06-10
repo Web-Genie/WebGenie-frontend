@@ -1,30 +1,27 @@
 import firebase from "firebase";
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 
 import googleLogo from "../assets/googleLogo.png";
 import loginImage from "../assets/loginImage.png";
 import webGenieLogo from "../assets/logo_transparent.png";
-import api from "../services/api";
+import { UserContext } from "../context/userContext";
 import { firebaseAuth, googleProvider } from "../services/firebase";
 import LoginButton from "./LoginButton";
 import LoginSVG from "./LoginSVG";
 
-function Login({ handleUser }) {
+function Login() {
+  const { setIsLoggedIn } = useContext(UserContext);
+
   const handleGoogleLogin = async () => {
     try {
       await firebaseAuth.signInWithPopup(googleProvider);
+
       const idToken = await firebase.auth().currentUser.getIdToken();
 
       localStorage.setItem("idToken", idToken);
 
-      handleUser(idToken);
-
-      const result = await api.get("/login", {
-        headers: {
-          Authorization: `Bearer ${idToken}`,
-        },
-      });
+      setIsLoggedIn(localStorage.getItem("idToken"));
     } catch (error) {
       console.log(error);
     }

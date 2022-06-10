@@ -1,38 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
+import styled from "styled-components";
 
-import mockImage from "../assets/mockData.png";
+import useAxios from "../hooks/useAxios";
+import useLogout from "../hooks/useLogout";
 import useModal from "../hooks/useModal";
-import api from "../services/api";
 import Button from "./Button";
 import Header from "./Header";
+import Loader from "./Loader";
 import Modal from "./Modal";
 import ModalContent from "./ModalContent";
 import Navigation from "./Navigation";
 import UserCollection from "./UserCollection";
 
 function UserPage() {
-  const [userInformation, setUserInformation] = useState({});
   const { shouldDisplayModal, createNewSiteModalToggle, closeModal, message } =
     useModal();
-  const accessToken = localStorage.getItem("accessToken");
+  const { handleLogout } = useLogout();
+  const idToken = localStorage.getItem("idToken");
+  const { userInformation } = useAxios(
+    {
+      method: "get",
+      url: "/login",
+      headers: {
+        Authorization: `Bearer ${idToken}`,
+      },
+    },
+    idToken
+  );
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      const result = await api.get("/data/user.json", {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      });
-
-      setUserInformation(result.data.userInformation);
-
-      return result;
-    };
-
-    fetchUser();
-  }, []);
+  if (!userInformation) {
+    return <Loader />;
+  }
 
   return (
     <>
@@ -49,7 +47,12 @@ function UserPage() {
       )}
       <Header>
         <h1>WebGenie</h1>
-        <img src={mockImage} />
+        {userInformation && (
+          <LogoutSection>
+            <img src={userInformation.user.image} />
+            <Button handleClick={handleLogout}>logout</Button>
+          </LogoutSection>
+        )}
       </Header>
       <Navigation>
         <h2>My Collection</h2>
@@ -67,4 +70,10 @@ function UserPage() {
   );
 }
 
+const LogoutSection = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 30px;
+`;
 export default UserPage;
