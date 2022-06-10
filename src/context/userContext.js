@@ -1,14 +1,24 @@
 import React, { createContext, useState } from "react";
 
+import { ID_TOKEN } from "../constants/constants";
+
 const UserContext = createContext(undefined);
 
 const UserContextTypeProvider = ({ children }) => {
   const [userInformation, setUserInformation] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("idToken"));
+  const [fetchedData, setFetchedData] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem(ID_TOKEN));
 
   return (
     <UserContext.Provider
-      value={{ userInformation, setUserInformation, isLoggedIn, setIsLoggedIn }}
+      value={{
+        fetchedData,
+        userInformation,
+        isLoggedIn,
+        setFetchedData,
+        setIsLoggedIn,
+        setUserInformation,
+      }}
     >
       {children}
     </UserContext.Provider>
