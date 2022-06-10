@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import mockImage from "../assets/mockData.png";
 import useModal from "../hooks/useModal";
-import api from "../services/api";
 import Button from "./Button";
 import Header from "./Header";
 import Modal from "./Modal";

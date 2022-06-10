@@ -3,7 +3,6 @@ import { FaArrowLeft, FaRegEdit } from "react-icons/fa";
 import styled from "styled-components";
 
 import mockImage from "../assets/mockData.png";
-import { SubToolbarContext } from "../context/subToolbarContext";
 import useInput from "../hooks/useInput";
 import useModal from "../hooks/useModal";
 import Button from "./Button";
@@ -25,15 +24,12 @@ function Editor() {
     closeModal,
     message,
   } = useModal();
-  const { subToolbarValue, setSubToolbarValue } = useContext(SubToolbarContext);
 
   const toggleWideView = () => {
     setShouldShowWideView((state) => !state);
   };
 
-  const [color, setColor] = useState("");
   const [backgroundColor, setBackgroundColor] = useState("");
-  const [fontSize, setFontSize] = useState("");
   const [imageOpacity, setImageOpacity] = useState(1);
   const [imageBrightness, setImageBrightness] = useState(1);
   const [imageBlur, setImageBlur] = useState(0);
@@ -101,16 +97,13 @@ function Editor() {
         )}
         <EditorTemplate
           displayWideView={shouldShowWideView}
-          colorName={color}
           backgroundColorName={backgroundColor}
-          fontSize={fontSize}
         />
         {!shouldShowWideView && (
           <RightToolbar
             onChangeOpacity={handleImgOpacity}
             onChangeBrightness={handleImgBrightness}
             onChangeBlur={handleImgBlur}
-            changeFontSize={setFontSize}
           />
         )}
       </EditorBody>

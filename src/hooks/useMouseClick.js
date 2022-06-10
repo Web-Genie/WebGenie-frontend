@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const useMouseClick = () => {
   const ref = useRef(null);

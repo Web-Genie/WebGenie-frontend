@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 
+import { TEXT_CHOICES } from "../constants/constants";
 import { SubToolbarContext } from "../context/subToolbarContext";
 import useDragAndDrop from "../hooks/useDragAndDrop";
+import useMouseClick from "../hooks/useMouseClick";
 import useResize from "../hooks/useResize";
 import {
   handleDragEnter,
@@ -11,21 +13,56 @@ import {
   handleDrop,
 } from "../utils";
 
-function EditorTemplate({ displayWideView, backgroundColorName, fontSize }) {
+function EditorTemplate({ displayWideView, backgroundColorName }) {
   const [handleResizeTarget, isResizing, setIsResizing] = useResize();
   const [parentRef, targetRef] = useDragAndDrop(isResizing, setIsResizing);
-  const { setSubToolbarValue, subToolbarType, subToolbarValue } =
-    useContext(SubToolbarContext);
+  const {
+    subToolbarType,
+    subToolbarValue,
+    isBold,
+    isItalic,
+    setIsBold,
+    setIsItalic,
+    isUnderLine,
+    setIsUnderLine,
+    textAlign,
+    setTextAlign,
+  } = useContext(SubToolbarContext);
+  const ref = useMouseClick();
 
   if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
-    if (subToolbarType === "BUTTON") {
-      targetRef.current.style.background = subToolbarValue;
-    } else {
-      targetRef.current.style.color = setSubToolbarValue;
-    }
+    if (TEXT_CHOICES.includes(subToolbarType)) {
+      targetRef.current.style.color = subToolbarValue;
 
-    targetRef.current.style.fontWeight = "Bold";
-    targetRef.current.style.fontSize = `${subToolbarValue}px`;
+      if (isBold) {
+        targetRef.current.style.fontWeight = "Bold";
+        setIsBold(false);
+      }
+      if (isItalic) {
+        targetRef.current.style.fontStyle = "italic";
+        setIsItalic(false);
+      }
+      if (isUnderLine) {
+        targetRef.current.style.textDecoration = "underline";
+        setIsUnderLine(false);
+      }
+      if (textAlign === "left") {
+        targetRef.current.style.textAlign = "left";
+        setTextAlign("");
+      }
+      if (textAlign === "right") {
+        targetRef.current.style.textAlign = "right";
+        setTextAlign("");
+      }
+      if (textAlign === "center") {
+        targetRef.current.style.textAlign = "center";
+        setTextAlign("");
+      }
+
+      targetRef.current.style.fontSize = `${subToolbarValue}px`;
+    } else if (subToolbarType === "BUTTON" && ref.current) {
+      targetRef.current.style.background = subToolbarValue;
+    }
   }
 
   if (parentRef.current !== null && parentRef.current.tagName === "DIV") {

@@ -8,6 +8,10 @@ const InputFieldContext = createContext(undefined);
 const SubToolbarTypeProvider = ({ children }) => {
   const [subToolbarType, setSubToolbarType] = useState();
   const [subToolbarValue, setSubToolbarValue] = useState("");
+  const [isBold, setIsBold] = useState(false);
+  const [isItalic, setIsItalic] = useState(false);
+  const [isUnderLine, setIsUnderLine] = useState(false);
+  const [textAlign, setTextAlign] = useState("");
 
   const {
     inputValue,
@@ -26,6 +30,14 @@ const SubToolbarTypeProvider = ({ children }) => {
         setSubToolbarType,
         subToolbarValue,
         setSubToolbarValue,
+        isBold,
+        setIsBold,
+        isItalic,
+        setIsItalic,
+        isUnderLine,
+        setIsUnderLine,
+        textAlign,
+        setTextAlign,
       }}
     >
       <InputFieldContext.Provider
