@@ -43,7 +43,6 @@ function Editor() {
     closeModal,
     message,
   } = useModal(userTitle, currentEditorId);
-
   const toggleWideView = () => {
     setShouldShowWideView((state) => !state);
   };
