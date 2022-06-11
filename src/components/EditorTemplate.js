@@ -17,8 +17,6 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
   const [parentRef, targetRef] = useDragAndDrop(isResizing, setIsResizing);
   const {
     subToolbarType,
-    subToolbarValue,
-    setSubToolbarValue,
     isBold,
     isItalic,
     setIsBold,
@@ -29,22 +27,19 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
     setTextAlign,
     fontType,
     setFontType,
-    hasColor,
-    setHasColor,
     colorValue,
     setColorValue,
-    hasButtonColor,
-    setHasButtonColor,
     buttonColor,
     setButtonColor,
+    fontSize,
+    setFontSize,
   } = useContext(SubToolbarContext);
 
   if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
     if (TEXT_CHOICES.includes(subToolbarType)) {
-      if (hasColor) {
+      if (colorValue) {
         targetRef.current.style.color = colorValue;
         setColorValue("");
-        setHasColor(false);
       }
       if (isBold) {
         targetRef.current.style.fontWeight = "Bold";
@@ -71,15 +66,15 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
         setFontType("");
       }
 
-      targetRef.current.style.fontSize = `${subToolbarValue}px`;
-    }
-    if (subToolbarType === "BUTTON") {
-      // setHasButtonColor(true);
-      if (hasButtonColor) {
-        targetRef.current.style.background = buttonColor;
-        setButtonColor("");
-        setHasButtonColor(false);
+      if (fontSize) {
+        targetRef.current.style.fontSize = `${fontSize}px`;
+        setFontSize("");
       }
+    }
+
+    if (subToolbarType === "BUTTON" && buttonColor) {
+      targetRef.current.style.background = buttonColor;
+      setButtonColor("");
     }
   }
 

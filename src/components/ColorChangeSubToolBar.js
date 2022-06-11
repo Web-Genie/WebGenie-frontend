@@ -8,20 +8,13 @@ import SubtoolbarTitle from "./SubtoolbarTitle";
 import ToolbarButton from "./ToolbarButton";
 
 function ColorChangeSubToolBar() {
-  const {
-    setHasColor,
-    setColorValue,
-    setHasButtonColor,
-    setButtonColor,
-    subToolbarType,
-  } = useContext(SubToolbarContext);
+  const { setColorValue, setButtonColor, subToolbarType } =
+    useContext(SubToolbarContext);
 
   const handleColorChange = (event) => {
     if (TEXT_CHOICES.includes(subToolbarType)) {
-      setHasColor(true);
       setColorValue(event.target.value);
     } else {
-      setHasButtonColor(true);
       setButtonColor(event.target.value);
     }
   };

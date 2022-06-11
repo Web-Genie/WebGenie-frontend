@@ -4,11 +4,10 @@ import styled from "styled-components";
 import { SubToolbarContext } from "../context/subToolbarContext";
 
 function SelectDetailSubtoolBar({ detailValue, className, handleImgOpacity }) {
-  const { setSubToolbarValue, fontType, setFontType } =
-    useContext(SubToolbarContext);
+  const { setFontSize, setFontType } = useContext(SubToolbarContext);
 
   const handleOption = (event) => {
-    setSubToolbarValue(event.target.value);
+    setFontSize(event.target.value);
     setFontType(event.target.value);
   };
 
@@ -42,7 +41,7 @@ const SelectBody = styled.div`
     font-weight: 400;
     padding: ${(props) => (props.className === "font" ? "1px" : "8px")};
     border: ${(props) =>
-    props.className === "font" ? null : "1px solid #e5e5e5"};
+      props.className === "font" ? null : "1px solid #e5e5e5"};
     margin-left: ${(props) => (props.className === "font" ? null : "12px")};
     cursor: pointer;
   }

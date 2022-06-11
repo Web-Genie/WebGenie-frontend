@@ -7,15 +7,13 @@ const InputFieldContext = createContext(undefined);
 
 const SubToolbarTypeProvider = ({ children }) => {
   const [subToolbarType, setSubToolbarType] = useState();
-  const [subToolbarValue, setSubToolbarValue] = useState("");
+  const [fontSize, setFontSize] = useState("");
   const [isBold, setIsBold] = useState(false);
   const [isItalic, setIsItalic] = useState(false);
   const [isUnderLine, setIsUnderLine] = useState(false);
   const [textAlign, setTextAlign] = useState("");
   const [fontType, setFontType] = useState("");
-  const [hasColor, setHasColor] = useState(false);
   const [colorValue, setColorValue] = useState("");
-  const [hasButtonColor, setHasButtonColor] = useState(false);
   const [buttonColor, setButtonColor] = useState("");
 
   const {
@@ -33,8 +31,8 @@ const SubToolbarTypeProvider = ({ children }) => {
       value={{
         subToolbarType,
         setSubToolbarType,
-        subToolbarValue,
-        setSubToolbarValue,
+        fontSize,
+        setFontSize,
         isBold,
         setIsBold,
         isItalic,
@@ -45,12 +43,8 @@ const SubToolbarTypeProvider = ({ children }) => {
         setTextAlign,
         fontType,
         setFontType,
-        hasColor,
-        setHasColor,
         colorValue,
         setColorValue,
-        hasButtonColor,
-        setHasButtonColor,
         buttonColor,
         setButtonColor,
       }}
