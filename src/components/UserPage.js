@@ -21,7 +21,6 @@ function UserPage() {
   const { handleLogout } = useLogout();
   const { userInformation } = useContext(UserContext);
   const idToken = localStorage.getItem(ID_TOKEN);
-
   const { fetchData } = useAxios(
     {
       method: "get",
