@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { FONT_TYPE, TEXT_ALIGN, TEXT_CHOICES } from "../constants/constants";
 import { SubToolbarContext } from "../context/subToolbarContext";
 import useDragAndDrop from "../hooks/useDragAndDrop";
-import useMouseClick from "../hooks/useMouseClick";
 import useResize from "../hooks/useResize";
 import {
   handleDragEnter,
@@ -16,7 +15,6 @@ import {
 function EditorTemplate({ displayWideView, backgroundColorName }) {
   const [handleResizeTarget, isResizing, setIsResizing] = useResize();
   const [parentRef, targetRef] = useDragAndDrop(isResizing, setIsResizing);
-  // const ref = useMouseClick();
   const {
     subToolbarType,
     subToolbarValue,
@@ -30,6 +28,7 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
     setTextAlign,
     fontType,
     setFontType,
+    setSubToolbarValue,
   } = useContext(SubToolbarContext);
 
   if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
