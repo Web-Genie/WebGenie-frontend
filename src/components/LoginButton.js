@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
@@ -6,6 +7,11 @@ function LoginButton({ children, handleLogin }) {
     <SocialLoginButton onClick={handleLogin}>{children}</SocialLoginButton>
   );
 }
+
+LoginButton.propTypes = {
+  children: PropTypes.array.isRequired,
+  handleLogin: PropTypes.func,
+};
 
 const SocialLoginButton = styled.button`
   display: flex;

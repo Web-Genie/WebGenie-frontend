@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import PropTypes from "prop-types";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 
 import { FONT_TYPE, TEXT_ALIGN, TEXT_CHOICES } from "../constants/constants";
@@ -35,52 +36,58 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
     setFontSize,
   } = useContext(SubToolbarContext);
 
-  if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
-    if (TEXT_CHOICES.includes(subToolbarType)) {
-      if (colorValue) {
-        targetRef.current.style.color = colorValue;
-        setColorValue("");
+  useEffect(() => {
+    if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
+      if (TEXT_CHOICES.includes(subToolbarType)) {
+        if (colorValue) {
+          targetRef.current.style.color = colorValue;
+          setColorValue("");
+        }
+        if (isBold) {
+          targetRef.current.style.fontWeight = "Bold";
+          setIsBold(false);
+        }
+        if (isItalic) {
+          targetRef.current.style.fontStyle = "italic";
+          setIsItalic(false);
+        }
+        if (isUnderLine) {
+          targetRef.current.style.textDecoration = "underline";
+          setIsUnderLine(false);
+        }
+        if (TEXT_ALIGN.includes(textAlign)) {
+          targetRef.current.style.textAlign = textAlign;
+          setTextAlign("");
+        }
+        if (FONT_TYPE.includes(fontType)) {
+          targetRef.current.style.fontFamily = fontType;
+          setFontType("");
+        }
+        if (fontSize) {
+          targetRef.current.style.fontSize = `${fontSize}px`;
+          setFontSize("");
+        }
       }
-      if (isBold) {
-        targetRef.current.style.fontWeight = "Bold";
-        setIsBold(false);
-      }
+      if (subToolbarType === "BUTTON" && buttonColor) {
+        targetRef.current.style.background = buttonColor;
 
-      if (isItalic) {
-        targetRef.current.style.fontStyle = "italic";
-        setIsItalic(false);
-      }
-
-      if (isUnderLine) {
-        targetRef.current.style.textDecoration = "underline";
-        setIsUnderLine(false);
-      }
-
-      if (TEXT_ALIGN.includes(textAlign)) {
-        targetRef.current.style.textAlign = textAlign;
-        setTextAlign("");
-      }
-
-      if (FONT_TYPE.includes(fontType)) {
-        targetRef.current.style.fontFamily = fontType;
-        setFontType("");
-      }
-
-      if (fontSize) {
-        targetRef.current.style.fontSize = `${fontSize}px`;
-        setFontSize("");
+        setButtonColor("");
       }
     }
-
-    if (subToolbarType === "BUTTON" && buttonColor) {
-      targetRef.current.style.background = buttonColor;
-      setButtonColor("");
+    if (parentRef.current !== null && parentRef.current.tagName === "DIV") {
+      parentRef.current.style.background = backgroundColorName;
     }
-  }
-
-  if (parentRef.current !== null && parentRef.current.tagName === "DIV") {
-    parentRef.current.style.background = backgroundColorName;
-  }
+  }, [
+    colorValue,
+    textAlign,
+    fontType,
+    buttonColor,
+    fontSize,
+    isBold,
+    isItalic,
+    isUnderLine,
+    backgroundColorName,
+  ]);
 
   return (
     <EditorTemplateBody
@@ -94,6 +101,11 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
     />
   );
 }
+
+EditorTemplate.propTypes = {
+  displayWideView: PropTypes.bool.isRequired,
+  backgroundColorName: PropTypes.string.isRequired,
+};
 
 const EditorTemplateBody = styled.div`
   position: relative;

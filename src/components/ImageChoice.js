@@ -3,6 +3,19 @@ import { FaCloudUploadAlt, FaImage } from "react-icons/fa";
 import ToolbarButton from "./ToolbarButton";
 
 function ImageChoice() {
+  const handleImage = (event) => {
+    const imageFile = event.target.files[0];
+
+    const newImage = document.createElement("img");
+    newImage.setAttribute("class", "img");
+    newImage.setAttribute("draggable", "false");
+    newImage.src = URL.createObjectURL(imageFile);
+
+    document.body
+      .getElementsByClassName("sc-gsnTZi iGRmMq")[0]
+      .appendChild(newImage);
+  };
+
   return (
     <div className="choiceContainer">
       <div className="category">
@@ -11,7 +24,7 @@ function ImageChoice() {
       <div className="imageUploadingChoice">
         <ToolbarButton>
           <FaCloudUploadAlt />
-          <p className="text">Upload</p>
+          <input type="file" className="text" onChange={handleImage} />
         </ToolbarButton>
         <ToolbarButton>
           <FaImage />

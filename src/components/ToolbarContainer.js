@@ -1,9 +1,14 @@
+import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
 function ToolbarContainer({ children }) {
   return <ToolbarContainerBody>{children}</ToolbarContainerBody>;
 }
+
+ToolbarContainer.propTypes = {
+  children: PropTypes.array,
+};
 
 const ToolbarContainerBody = styled.div`
   display: flex;

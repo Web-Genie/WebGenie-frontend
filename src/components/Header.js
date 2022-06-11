@@ -1,8 +1,13 @@
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 function Header({ children }) {
   return <HeaderContainer>{children}</HeaderContainer>;
 }
+
+Header.propTypes = {
+  children: PropTypes.array.isRequired,
+};
 
 const HeaderContainer = styled.div`
   display: flex;

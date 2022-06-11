@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import placeholderImage from "../assets/placeholder.png";
@@ -17,6 +18,10 @@ function UserCollection({ collections }) {
     </UserContents>
   );
 }
+
+UserCollection.propTypes = {
+  collections: PropTypes.array,
+};
 
 const UserContents = styled.div`
   display: flex;
