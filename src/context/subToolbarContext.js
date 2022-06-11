@@ -15,6 +15,7 @@ const SubToolbarTypeProvider = ({ children }) => {
   const [fontType, setFontType] = useState("");
   const [colorValue, setColorValue] = useState("");
   const [buttonColor, setButtonColor] = useState("");
+  const [imageSrc, setImageSrc] = useState("");
 
   const {
     inputValue,
@@ -47,6 +48,8 @@ const SubToolbarTypeProvider = ({ children }) => {
         setColorValue,
         buttonColor,
         setButtonColor,
+        imageSrc,
+        setImageSrc,
       }}
     >
       <InputFieldContext.Provider
@@ -58,6 +61,8 @@ const SubToolbarTypeProvider = ({ children }) => {
           shouldAddLink,
           toggleAddLink,
           setShouldAddLink,
+          imageSrc,
+          setImageSrc,
         }}
       >
         {children}

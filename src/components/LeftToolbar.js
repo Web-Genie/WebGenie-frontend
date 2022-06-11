@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import useDragAndDrop from "../hooks/useDragAndDrop";
 import BackgroundChoice from "./BackgroundChoice";
 import ButtonChoice from "./ButtonChoice";
 import EditorToolbar from "./EditorToolbar";

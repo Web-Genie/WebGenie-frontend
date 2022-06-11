@@ -34,7 +34,10 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
     setButtonColor,
     fontSize,
     setFontSize,
+    imageSrc,
+    setImageSrc,
   } = useContext(SubToolbarContext);
+  console.log(imageSrc);
 
   useEffect(() => {
     if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
@@ -77,6 +80,14 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
     if (parentRef.current !== null && parentRef.current.tagName === "DIV") {
       parentRef.current.style.background = backgroundColorName;
     }
+    if (imageSrc) {
+      const newImage = document.createElement("img");
+      newImage.setAttribute("class", "img");
+      newImage.setAttribute("draggable", "false");
+      newImage.src = URL.createObjectURL(imageSrc);
+      parentRef.current.appendChild(newImage);
+      console.log(parentRef);
+    }
   }, [
     colorValue,
     textAlign,
@@ -87,6 +98,7 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
     isItalic,
     isUnderLine,
     backgroundColorName,
+    imageSrc,
   ]);
 
   return (
