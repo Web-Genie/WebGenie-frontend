@@ -14,6 +14,20 @@ const NavigationContainer = styled.div`
     margin: 15px 0px 10px 20px;
   }
 
+  h3 {
+    animation: myAnim 1s ease 0s 1 normal forwards;
+  }
+
+  @keyframes myAnim {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
   button {
     margin: 15px 25px 10px 0px;
   }

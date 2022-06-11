@@ -53,7 +53,6 @@ function UserPage() {
             modalIconState={message.iconType}
             params={message.params}
             handleClick={closeModal}
-            requestType={REQUEST_DATA_INFORMATION_USER}
           />
         </Modal>
       )}

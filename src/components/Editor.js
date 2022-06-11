@@ -9,8 +9,8 @@ import {
 import { UserContext } from "../context/userContext";
 import useAxios from "../hooks/useAxios";
 import useInput from "../hooks/useInput";
+import useLogout from "../hooks/useLogout";
 import useModal from "../hooks/useModal";
-import { handleLogout } from "../services/auth";
 import Button from "./Button";
 import EditorTemplate from "./EditorTemplate";
 import Header from "./Header";
@@ -22,13 +22,19 @@ import Navigation from "./Navigation";
 import RightToolbar from "./RightToolbar";
 
 function Editor() {
-  const { userInformation, editor } = useContext(UserContext);
+  const { editor } = useContext(UserContext);
+  const { handleLogout } = useLogout();
   let currentEditorId = window.location.pathname
     .split("/")
     .filter((item) => item !== "editor")
     .join("");
-  const { userTitle, shouldEditValue, handleInputChange, toggleInputChange } =
-    useInput("editor", editor);
+  const {
+    userTitle,
+    shouldEditValue,
+    handleInputChange,
+    toggleInputChange,
+    setUserTitle,
+  } = useInput("editor", editor);
   const [shouldShowWideView, setShouldShowWideView] = useState(false);
   const {
     shouldDisplayModal,
@@ -56,8 +62,9 @@ function Editor() {
   );
 
   useEffect(() => {
-    if (!userInformation && editor) return;
+    if (editor) return;
 
+    setUserTitle(null);
     fetchData();
   }, []);
 
@@ -65,7 +72,7 @@ function Editor() {
     return <Loader />;
   }
 
-  if (!userTitle) {
+  if (!userTitle && !shouldEditValue) {
     return <Loader />;
   }
 
