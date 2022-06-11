@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React, { useContext } from "react";
 
 import { TEXT_CHOICES } from "../constants/constants";
@@ -51,5 +52,11 @@ function RightToolbar({ onChangeOpacity, onChangeBrightness, onChangeBlur }) {
     </EditorToolbar>
   );
 }
+
+RightToolbar.propTypes = {
+  onChangeOpacity: PropTypes.func,
+  onChangeBrightness: PropTypes.func,
+  onChangeBlur: PropTypes.func,
+};
 
 export default RightToolbar;

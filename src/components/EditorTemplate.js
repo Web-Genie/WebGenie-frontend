@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React, { useContext } from "react";
 import styled from "styled-components";
 
@@ -94,6 +95,11 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
     />
   );
 }
+
+EditorTemplate.propTypes = {
+  displayWideView: PropTypes.bool.isRequired,
+  backgroundColorName: PropTypes.string.isRequired,
+};
 
 const EditorTemplateBody = styled.div`
   position: relative;

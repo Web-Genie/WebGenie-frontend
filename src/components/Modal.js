@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
@@ -12,6 +13,10 @@ function Modal({ children }) {
     </ModalPortal>
   );
 }
+
+Modal.propTypes = {
+  children: PropTypes.object.isRequired,
+};
 
 const ModalContainer = styled.div`
   display: flex;

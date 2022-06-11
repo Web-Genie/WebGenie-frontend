@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { FaImage, FaPaintRoller } from "react-icons/fa";
 
 import ToolbarButton from "./ToolbarButton";
@@ -29,5 +30,9 @@ function BackgroundChoice({ changeBackground }) {
     </div>
   );
 }
+
+BackgroundChoice.propTypes = {
+  changeBackground: PropTypes.func.isRequired,
+};
 
 export default BackgroundChoice;

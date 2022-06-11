@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React, { useContext } from "react";
 import styled from "styled-components";
 
@@ -24,6 +25,12 @@ function SelectDetailSubtoolBar({ detailValue, className, handleImgOpacity }) {
     </SelectBody>
   );
 }
+
+SelectDetailSubtoolBar.propTypes = {
+  detailValue: PropTypes.array,
+  className: PropTypes.string,
+  handleImgOpacity: PropTypes.func,
+};
 
 const SelectBody = styled.div`
   background: ${(props) => (props.className === "font" ? "white" : null)};

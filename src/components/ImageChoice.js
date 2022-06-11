@@ -1,5 +1,4 @@
 import { FaCloudUploadAlt, FaImage } from "react-icons/fa";
-import { MdViewInAr } from "react-icons/md";
 
 import ToolbarButton from "./ToolbarButton";
 
