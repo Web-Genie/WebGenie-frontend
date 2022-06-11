@@ -13,6 +13,10 @@ const SubToolbarTypeProvider = ({ children }) => {
   const [isUnderLine, setIsUnderLine] = useState(false);
   const [textAlign, setTextAlign] = useState("");
   const [fontType, setFontType] = useState("");
+  const [hasColor, setHasColor] = useState(false);
+  const [colorValue, setColorValue] = useState("");
+  const [hasButtonColor, setHasButtonColor] = useState(false);
+  const [buttonColor, setButtonColor] = useState("");
 
   const {
     inputValue,
@@ -41,6 +45,14 @@ const SubToolbarTypeProvider = ({ children }) => {
         setTextAlign,
         fontType,
         setFontType,
+        hasColor,
+        setHasColor,
+        colorValue,
+        setColorValue,
+        hasButtonColor,
+        setHasButtonColor,
+        buttonColor,
+        setButtonColor,
       }}
     >
       <InputFieldContext.Provider

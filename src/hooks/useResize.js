@@ -63,7 +63,6 @@ function useResize() {
 
   const handleMouseUp = () => {
     if (targetRef.current) {
-      console.log(targetRef.current);
       targetRef.current.onmousemove = null;
     }
   };

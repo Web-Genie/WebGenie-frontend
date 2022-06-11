@@ -18,6 +18,7 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
   const {
     subToolbarType,
     subToolbarValue,
+    setSubToolbarValue,
     isBold,
     isItalic,
     setIsBold,
@@ -28,13 +29,23 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
     setTextAlign,
     fontType,
     setFontType,
-    setSubToolbarValue,
+    hasColor,
+    setHasColor,
+    colorValue,
+    setColorValue,
+    hasButtonColor,
+    setHasButtonColor,
+    buttonColor,
+    setButtonColor,
   } = useContext(SubToolbarContext);
 
   if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
     if (TEXT_CHOICES.includes(subToolbarType)) {
-      targetRef.current.style.color = subToolbarValue;
-
+      if (hasColor) {
+        targetRef.current.style.color = colorValue;
+        setColorValue("");
+        setHasColor(false);
+      }
       if (isBold) {
         targetRef.current.style.fontWeight = "Bold";
         setIsBold(false);
@@ -61,8 +72,14 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
       }
 
       targetRef.current.style.fontSize = `${subToolbarValue}px`;
-    } else if (subToolbarType === "BUTTON") {
-      targetRef.current.style.background = subToolbarValue;
+    }
+    if (subToolbarType === "BUTTON") {
+      // setHasButtonColor(true);
+      if (hasButtonColor) {
+        targetRef.current.style.background = buttonColor;
+        setButtonColor("");
+        setHasButtonColor(false);
+      }
     }
   }
 
