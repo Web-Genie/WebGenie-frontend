@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaArrowLeft, FaRegEdit } from "react-icons/fa";
 import styled from "styled-components";
 
 import mockImage from "../assets/mockData.png";
+import { EDITOR } from "../constants/constants";
+import { UserContext } from "../context/userContext";
 import useInput from "../hooks/useInput";
 import useModal from "../hooks/useModal";
 import Button from "./Button";
@@ -13,10 +15,12 @@ import Modal from "./Modal";
 import ModalContent from "./ModalContent";
 import Navigation from "./Navigation";
 import RightToolbar from "./RightToolbar";
-
 function Editor() {
-  const { shouldEditValue, handleInputChange, toggleInputChange } = useInput();
+  const { fetchedData } = useContext(UserContext);
+  const { userTitle, shouldEditValue, handleInputChange, toggleInputChange } =
+    useInput(EDITOR, fetchedData.result.title);
   const [shouldShowWideView, setShouldShowWideView] = useState(false);
+
   const {
     shouldDisplayModal,
     saveModalToggle,
@@ -27,18 +31,6 @@ function Editor() {
 
   const toggleWideView = () => {
     setShouldShowWideView((state) => !state);
-  };
-
-  const handleImgOpacity = (event) => {
-    setImageOpacity(event.target.value);
-  };
-
-  const handleImgBrightness = (event) => {
-    setImageBrightness(event.target.value);
-  };
-
-  const handleImgBlur = (event) => {
-    setImageBlur(event.target.value);
   };
 
   return (
@@ -60,12 +52,12 @@ function Editor() {
       </Header>
       <Navigation>
         <div className="editorNavbar">
-          <span>
+          <a href="/">
             <FaArrowLeft />
-          </span>
+          </a>
           <div className="titleNavbar">
             {!shouldEditValue ? (
-              <h3>{"title from database"}</h3>
+              <h3>{userTitle}</h3>
             ) : (
               <input onChange={handleInputChange} />
             )}
@@ -88,18 +80,8 @@ function Editor() {
       </Navigation>
       <EditorBody>
         {!shouldShowWideView && <LeftToolbar />}
-        <EditorTemplate
-          displayWideView={shouldShowWideView}
-          colorName={color}
-        />
-        {!shouldShowWideView && (
-          <RightToolbar
-            onChangeOpacity={handleImgOpacity}
-            onChangeBrightness={handleImgBrightness}
-            onChangeBlur={handleImgBlur}
-            changeColor={setColor}
-          />
-        )}
+        <EditorTemplate displayWideView={shouldShowWideView} />
+        {!shouldShowWideView && <RightToolbar />}
       </EditorBody>
     </>
   );

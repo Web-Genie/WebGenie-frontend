@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 
 import {
+  ID_TOKEN,
   MODAL_ICON_STATE,
   NEW_EDITOR_MODAL_MESSAGE,
   PUBLISH_MODAL_MESSAGE,
@@ -14,6 +15,7 @@ const useModal = () => {
     proceedButtonText: null,
     denyButtonText: null,
     iconType: null,
+    params: null,
   });
 
   const createNewSiteModalToggle = useCallback(() => {
@@ -23,6 +25,14 @@ const useModal = () => {
       proceedButtonText: NEW_EDITOR_MODAL_MESSAGE.acceptButtonMessage,
       denyButtonText: NEW_EDITOR_MODAL_MESSAGE.denyButtonMessage,
       iconType: MODAL_ICON_STATE.questionState,
+      params: {
+        method: "post",
+        url: "/websites",
+        data: { title: "" },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem(ID_TOKEN)}`,
+        },
+      },
     });
   }, []);
 
@@ -33,6 +43,17 @@ const useModal = () => {
       proceedButtonText: SAVE_MODAL_MESSAGE.acceptButtonMessage,
       denyButtonText: SAVE_MODAL_MESSAGE.denyButtonMessage,
       iconType: MODAL_ICON_STATE.saveState,
+      params: {
+        method: "post",
+        url: "/websites/:website_id",
+        body: { title: title, userCode: usercode },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem(ID_TOKEN)}`,
+        },
+        params: {
+          websiteId: `${websiteId}`,
+        },
+      },
     });
   }, []);
 
@@ -43,6 +64,16 @@ const useModal = () => {
       proceedButtonText: PUBLISH_MODAL_MESSAGE.acceptButtonMessage,
       denyButtonText: PUBLISH_MODAL_MESSAGE.denyButtonMessage,
       iconType: MODAL_ICON_STATE.deployState,
+      params: {
+        method: "delete",
+        url: "/websites/:website_id",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem(ID_TOKEN)}`,
+        },
+        params: {
+          websiteId: `${websiteId}`,
+        },
+      },
     });
   }, []);
 

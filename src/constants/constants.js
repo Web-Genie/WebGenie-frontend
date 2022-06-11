@@ -35,3 +35,7 @@ export const RADIUS_AND_BRIGHTNESS_RANGE = [
 ];
 
 export const TEXT_CHOICES = ["H1", "H2", "H3", "H4", "H5", "H6"];
+
+export const REQUEST_DATA_INFORMATION = "USER";
+export const EDITOR = "EDITOR";
+export const ID_TOKEN = "idToken";

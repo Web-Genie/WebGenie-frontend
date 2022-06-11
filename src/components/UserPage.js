@@ -1,6 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 
+import { REQUEST_DATA_INFORMATION } from "../constants/constants";
+import { ID_TOKEN } from "../constants/constants";
+import { UserContext } from "../context/userContext";
 import useAxios from "../hooks/useAxios";
 import useLogout from "../hooks/useLogout";
 import useModal from "../hooks/useModal";
@@ -16,8 +19,10 @@ function UserPage() {
   const { shouldDisplayModal, createNewSiteModalToggle, closeModal, message } =
     useModal();
   const { handleLogout } = useLogout();
-  const idToken = localStorage.getItem("idToken");
-  const { userInformation } = useAxios(
+  const { userInformation } = useContext(UserContext);
+  const idToken = localStorage.getItem(ID_TOKEN);
+
+  const { fetchData } = useAxios(
     {
       method: "get",
       url: "/login",
@@ -25,8 +30,13 @@ function UserPage() {
         Authorization: `Bearer ${idToken}`,
       },
     },
-    idToken
+    idToken,
+    REQUEST_DATA_INFORMATION
   );
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   if (!userInformation) {
     return <Loader />;
@@ -41,7 +51,9 @@ function UserPage() {
             primaryButtonText={message.proceedButtonText}
             secondaryButtonText={message.denyButtonText}
             modalIconState={message.iconType}
+            params={message.params}
             handleClick={closeModal}
+            requestType={REQUEST_DATA_INFORMATION}
           />
         </Modal>
       )}
@@ -64,7 +76,7 @@ function UserPage() {
         </Button>
       </Navigation>
       {userInformation && (
-        <UserCollection collections={userInformation.userCollections} />
+        <UserCollection collections={userInformation.websites} />
       )}
     </>
   );

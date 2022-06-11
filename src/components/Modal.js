@@ -37,12 +37,12 @@ const ModalBody = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin: 30px;
+    margin: 10px 20px;
   }
 
   h1 {
     margin-top: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     font-size: 80px;
   }
 

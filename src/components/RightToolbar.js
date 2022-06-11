@@ -5,7 +5,6 @@ import { SubToolbarContext } from "../context/subToolbarContext";
 import ButtonLinkEditor from "./ButtonLinkSubtoolBar";
 import ButtonRadiusEditor from "./ButtonRadiusSubtoolBar.js";
 import CanvasClearButton from "./CanvasClearButton";
-import ColorChangeSubToolBar from "./ColorChangeSubToolBar";
 import EditorToolbar from "./EditorToolbar";
 import ImageBlurEditor from "./ImageBlurSubtoolBar";
 import ImageBrightnessEditor from "./ImageBrightnessSubtoolBar";
@@ -40,11 +39,7 @@ function RightToolbar({ onChangeOpacity, onChangeBrightness, onChangeBlur }) {
             <ImageBlurEditor onChangeBlur={onChangeBlur} />
           </>
         )}
-        {subToolbarType !== "image" || subToolbarType === undefined ? (
-          <>
-            <ColorChangeSubToolBar changeColor={changeColor} />
-          </>
-        ) : null}
+
         <CanvasClearButton />
       </ToolbarContainer>
     </EditorToolbar>
