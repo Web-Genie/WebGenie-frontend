@@ -76,7 +76,11 @@ function useResize() {
 
     if (parentRef.current === null && event.target.tagName === "DIV") {
       parentRef.current = event.target;
-      setSubToolbarType(targetRef.current.tagName);
+
+      if (targetRef.current) {
+        setSubToolbarType(targetRef.current.tagName);
+      }
+
       return;
     }
 

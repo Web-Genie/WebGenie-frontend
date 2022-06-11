@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { TEXT_CHOICES } from "../constants/constants";
 import { SubToolbarContext } from "../context/subToolbarContext";
 import ButtonLinkEditor from "./ButtonLinkSubtoolBar";
-import ButtonRadiusEditor from "./ButtonRadiusSubtoolBar.js";
+import ButtonRadiusEditor from "./ButtonRadiusSubtoolBar";
 import CanvasClearButton from "./CanvasClearButton";
 import EditorToolbar from "./EditorToolbar";
 import ImageBlurEditor from "./ImageBlurSubtoolBar";
