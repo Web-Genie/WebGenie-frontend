@@ -75,13 +75,11 @@ function useResize() {
       targetRef.current.onmousemove = null;
     }
 
-    if (
-      parentRef.current === null &&
-      event.target.tagName === "DIV" &&
-      targetRef.current
-    ) {
-      parentRef.current = event.target;
-      setSubToolbarType(targetRef.current.tagName);
+    if (parentRef.current === null && event.target.tagName === "DIV") {
+      if (targetRef.current) {
+        setSubToolbarType(targetRef.current.tagName);
+      }
+
       return;
     }
 
