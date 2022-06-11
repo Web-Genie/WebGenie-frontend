@@ -1,4 +1,9 @@
-import { FcGlobe, FcMultipleInputs, FcQuestions } from "react-icons/fc";
+import {
+  FcFullTrash,
+  FcGlobe,
+  FcMultipleInputs,
+  FcQuestions,
+} from "react-icons/fc";
 import { MdClose } from "react-icons/md";
 import styled from "styled-components";
 
@@ -19,6 +24,7 @@ function ModalContent({
     question: <FcQuestions />,
     deploy: <FcGlobe />,
     save: <FcMultipleInputs />,
+    delete: <FcFullTrash />,
   };
 
   const { fetchData } = useAxios(
