@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Editor from "./components/Editor";
 import Loader from "./components/Loader";
 import Login from "./components/Login";
-import UserPage from "./components/UserPage";
+import UserWebsites from "./components/UserWebsites";
 import { UserContext } from "./context/userContext";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={isLoggedIn ? <UserPage /> : <Login />} />
+        <Route path="/" element={isLoggedIn ? <UserWebsites /> : <Login />} />
         <Route path="/editor/:id" element={<Editor />} />
         <Route path="/creatingnewwebsite" element={<Loader />} />
       </Routes>
