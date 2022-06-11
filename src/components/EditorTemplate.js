@@ -35,9 +35,7 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
     fontSize,
     setFontSize,
     imageSrc,
-    setImageSrc,
   } = useContext(SubToolbarContext);
-  console.log(imageSrc);
 
   useEffect(() => {
     if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
@@ -85,8 +83,8 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
       newImage.setAttribute("class", "img");
       newImage.setAttribute("draggable", "false");
       newImage.src = URL.createObjectURL(imageSrc);
+
       parentRef.current.appendChild(newImage);
-      console.log(parentRef);
     }
   }, [
     colorValue,

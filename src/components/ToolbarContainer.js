@@ -123,6 +123,39 @@ const ToolbarContainerBody = styled.div`
   .imageUploadingChoice {
     display: flex;
     justify-content: space-evenly;
+    /* justify-content: space-between; */
+    /* margin-right: 2px; */
+  }
+
+  .filebox label {
+    display: flex;
+    padding: 10px 18px;
+    margin-right: 7px;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 400;
+
+    :hover {
+      opacity: 0.7;
+    }
+  }
+
+  .filebox input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
   }
 
   .shapeChoices {
