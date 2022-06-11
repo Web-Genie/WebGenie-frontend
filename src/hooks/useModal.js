@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 import {
+  DELETE_MODAL_MESSAGE,
   ID_TOKEN,
   MODAL_ICON_STATE,
   NEW_EDITOR_MODAL_MESSAGE,
@@ -63,6 +64,25 @@ const useModal = (editorTitle, editorId) => {
     });
   }, []);
 
+  const deleteSiteModalMessage = useCallback((event) => {
+    setShouldDisplayModal((state) => !state);
+    setMessage({
+      titleMessage: DELETE_MODAL_MESSAGE.titleMessage,
+      proceedButtonText: DELETE_MODAL_MESSAGE.acceptButtonMessage,
+      denyButtonText: DELETE_MODAL_MESSAGE.denyButtonMessage,
+      iconType: MODAL_ICON_STATE.deleteState,
+      modalType: "delete",
+      params: {
+        method: "delete",
+        url: "/websites/:website_id",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem(ID_TOKEN)}`,
+          params: event.target.getAttribute("value"),
+        },
+      },
+    });
+  }, []);
+
   const closeModal = useCallback(
     () => setShouldDisplayModal((state) => !state),
     []
@@ -95,6 +115,7 @@ const useModal = (editorTitle, editorId) => {
     createNewSiteModalToggle,
     saveModalToggle,
     publishModalToggle,
+    deleteSiteModalMessage,
     closeModal,
     message,
     userCode,
