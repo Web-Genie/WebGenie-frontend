@@ -6,24 +6,17 @@ import ToolbarButton from "./ToolbarButton";
 function ImageChoice() {
   const handleImage = (event) => {
     const file = event.target.files[0];
-    // console.log();
-    // const name = document.querySelector(".sc-gsnTZi iGRmMq");
-    // console.log(name);
-    // name.textContent = file.name;
 
-    const imageDiv = document.createElement("div");
     const newImage = document.createElement("img");
     newImage.setAttribute("class", "img");
-
+    newImage.setAttribute("draggable", "false");
     newImage.src = URL.createObjectURL(file);
-    console.log(newImage);
-    imageDiv.appendChild(newImage);
-    // const container = document.body.
-    // console.log(container);
+
     document.body
       .getElementsByClassName("sc-gsnTZi iGRmMq")[0]
-      .appendChild(imageDiv);
+      .appendChild(newImage);
   };
+
   return (
     <div className="choiceContainer">
       <div className="category">
@@ -32,9 +25,7 @@ function ImageChoice() {
       <div className="imageUploadingChoice">
         <ToolbarButton>
           <FaCloudUploadAlt />
-          <input type="file" className="text" onChange={handleImage}>
-            {/* Upload */}
-          </input>
+          <input type="file" className="text" onChange={handleImage} />
         </ToolbarButton>
         <ToolbarButton>
           <FaImage />
