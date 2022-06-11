@@ -57,8 +57,8 @@ const UserWebsites = styled.div`
   box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   background-color: white;
-  cursor: pointer;
   transition: all 0.3s ease;
+  cursor: pointer;
 
   div {
     display: flex;
