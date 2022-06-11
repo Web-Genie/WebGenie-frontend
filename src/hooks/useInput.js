@@ -43,6 +43,7 @@ const useInput = (currentLocationBeingUsed, value) => {
     toggleAddLink,
     setShouldAddLink,
     userTitle,
+    setUserTitle,
   };
 };
 

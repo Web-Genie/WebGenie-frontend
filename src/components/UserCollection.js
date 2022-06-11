@@ -8,7 +8,7 @@ function UserCollection({ collections }) {
   return (
     <UserContents>
       {collections.length ? (
-        collections.map((userWebsites, idx) => (
+        collections.map((userWebsites) => (
           <UserWebsites key={userWebsites._id}>
             <Link to={`/editor/${userWebsites._id}`}>
               <img src={placeholderImage} />
