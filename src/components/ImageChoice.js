@@ -4,12 +4,12 @@ import ToolbarButton from "./ToolbarButton";
 
 function ImageChoice() {
   const handleImage = (event) => {
-    const file = event.target.files[0];
+    const imageFile = event.target.files[0];
 
     const newImage = document.createElement("img");
     newImage.setAttribute("class", "img");
     newImage.setAttribute("draggable", "false");
-    newImage.src = URL.createObjectURL(file);
+    newImage.src = URL.createObjectURL(imageFile);
 
     document.body
       .getElementsByClassName("sc-gsnTZi iGRmMq")[0]
