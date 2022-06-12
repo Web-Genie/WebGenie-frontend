@@ -88,7 +88,7 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
     if (localImageSrc) {
       const newImage = document.createElement("img");
 
-      newImage.setAttribute("class", "img");
+      newImage.setAttribute("id", "img");
       newImage.setAttribute("draggable", "false");
       newImage.src = URL.createObjectURL(localImageSrc);
       parentRef.current.appendChild(newImage);
@@ -99,7 +99,7 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
     if (hasImageUrl) {
       const newImage = document.createElement("img");
 
-      newImage.setAttribute("class", "img");
+      newImage.setAttribute("id", "img");
       newImage.setAttribute("draggable", "false");
       newImage.src = imageUrl;
       parentRef.current.appendChild(newImage);
