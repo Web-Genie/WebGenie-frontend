@@ -7,12 +7,14 @@ import {
   NEW_EDITOR_MODAL_MESSAGE,
   PUBLISH_MODAL_MESSAGE,
   SAVE_MODAL_MESSAGE,
+  SAVE_REMINDER_MODAL_MESSAGE,
 } from "../constants/constants";
 import { retrieveURL } from "../utils";
 
 const useModal = (editorTitle, editorId) => {
   const currentEditorId = retrieveURL();
   const [shouldDisplayModal, setShouldDisplayModal] = useState(false);
+  const [shouldUseSaveModal, setShouldUseSaveModal] = useState(false);
   const [userCode, setUserCode] = useState();
   const [message, setMessage] = useState({
     titleMessage: null,
@@ -42,6 +44,7 @@ const useModal = (editorTitle, editorId) => {
 
   const saveModalToggle = () => {
     setShouldDisplayModal((state) => !state);
+    setShouldUseSaveModal(true);
   };
 
   const publishModalToggle = useCallback(() => {
@@ -61,6 +64,7 @@ const useModal = (editorTitle, editorId) => {
           websiteId: editorId,
         },
       },
+      requestType: "Delete",
     });
   }, []);
 
@@ -83,12 +87,27 @@ const useModal = (editorTitle, editorId) => {
     });
   }, []);
 
-  const closeModal = useCallback(
-    () => setShouldDisplayModal((state) => !state),
-    []
-  );
+  const saveReminderModalToggle = useCallback((event) => {
+    setShouldDisplayModal((state) => !state);
+    setMessage({
+      titleMessage: SAVE_REMINDER_MODAL_MESSAGE.titleMessage,
+      proceedButtonText: SAVE_REMINDER_MODAL_MESSAGE.acceptButtonMessage,
+      denyButtonText: SAVE_REMINDER_MODAL_MESSAGE.denyButtonMessage,
+      iconType: MODAL_ICON_STATE.remindState,
+      modalType: "remind",
+      requestType: "Reminder",
+      shouldGoHomepage: true,
+    });
+  }, []);
+
+  const closeModal = useCallback(() => {
+    setShouldDisplayModal((state) => !state);
+    setShouldUseSaveModal(false);
+  }, []);
 
   useEffect(() => {
+    if (!shouldUseSaveModal) return;
+
     setMessage({
       titleMessage: SAVE_MODAL_MESSAGE.titleMessage,
       proceedButtonText: SAVE_MODAL_MESSAGE.acceptButtonMessage,
@@ -108,7 +127,7 @@ const useModal = (editorTitle, editorId) => {
       },
       requestType: "Save",
     });
-  }, [userCode]);
+  }, [shouldUseSaveModal, userCode]);
 
   return {
     shouldDisplayModal,
@@ -120,6 +139,7 @@ const useModal = (editorTitle, editorId) => {
     message,
     userCode,
     setUserCode,
+    saveReminderModalToggle,
   };
 };
 
