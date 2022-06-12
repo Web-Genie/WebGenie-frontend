@@ -1,6 +1,7 @@
 import {
   FcFullTrash,
   FcGlobe,
+  FcHighPriority,
   FcMultipleInputs,
   FcQuestions,
 } from "react-icons/fc";
@@ -9,6 +10,7 @@ import styled from "styled-components";
 
 import { ID_TOKEN } from "../constants/constants";
 import useAxios from "../hooks/useAxios";
+import { sendUserToHomepage } from "../utils/index";
 import Button from "./Button";
 
 function ModalContent({
@@ -19,12 +21,14 @@ function ModalContent({
   params,
   handleClick,
   requestType,
+  shouldGoHomepage,
 }) {
   const modalIconMap = {
     question: <FcQuestions />,
     deploy: <FcGlobe />,
     save: <FcMultipleInputs />,
     delete: <FcFullTrash />,
+    remind: <FcHighPriority />,
   };
 
   const { fetchData } = useAxios(
@@ -50,7 +54,10 @@ function ModalContent({
           <input onChange={handleTitleInput} />
         </NewSiteModalInputContainer>
       )}
-      <Button handleClick={fetchData} mainButton={true}>
+      <Button
+        handleClick={goHomepage ? sendUserToHomepage : fetchData}
+        mainButton={true}
+      >
         {primaryButtonText}
       </Button>
       <Button handleClick={handleClick} margin="13px">
