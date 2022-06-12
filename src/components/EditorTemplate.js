@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 import useDragAndDrop from "../hooks/useDragAndDrop";
@@ -10,13 +10,32 @@ import {
   handleDrop,
 } from "../utils";
 
-function EditorTemplate({ displayWideView, colorName }) {
+function EditorTemplate({
+  displayWideView,
+  colorName,
+  modalStatus,
+  saveUserCode,
+  editorInformation,
+}) {
   const [handleResizeTarget, isResizing, setIsResizing] = useResize();
   const [parentRef, targetRef] = useDragAndDrop(isResizing, setIsResizing);
 
   if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
     targetRef.current.style.background = colorName;
   }
+
+  useEffect(() => {
+    if (!modalStatus) return;
+    if (!parentRef.current) return;
+
+    saveUserCode(parentRef.current.innerHTML);
+  }, [modalStatus]);
+
+  useEffect(() => {
+    if (!editorInformation.result) return;
+
+    parentRef.current.innerHTML = editorInformation.result.userSavedCode;
+  }, [editorInformation.result[0]]);
 
   return (
     <EditorTemplateBody
@@ -27,6 +46,7 @@ function EditorTemplate({ displayWideView, colorName }) {
       onDragLeave={handleDragLeave}
       onClick={handleResizeTarget}
       wideView={displayWideView}
+      onChange={() => console.log("hi")}
     />
   );
 }

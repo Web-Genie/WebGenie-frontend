@@ -11,6 +11,7 @@ import useAxios from "../hooks/useAxios";
 import useInput from "../hooks/useInput";
 import useLogout from "../hooks/useLogout";
 import useModal from "../hooks/useModal";
+import { retrieveURL } from "../utils/index";
 import Button from "./Button";
 import EditorTemplate from "./EditorTemplate";
 import Header from "./Header";
@@ -22,27 +23,21 @@ import Navigation from "./Navigation";
 import RightToolbar from "./RightToolbar";
 
 function Editor() {
-  const { editor } = useContext(UserContext);
+  const currentEditorId = retrieveURL();
+  const { editor, title } = useContext(UserContext);
   const { handleLogout } = useLogout();
-  let currentEditorId = window.location.pathname
-    .split("/")
-    .filter((item) => item !== "editor")
-    .join("");
-  const {
-    userTitle,
-    shouldEditValue,
-    handleInputChange,
-    toggleInputChange,
-    setUserTitle,
-  } = useInput("editor", editor);
+  const { userTitle, shouldEditValue, handleInputChange, toggleInputChange } =
+    useInput("editor", editor);
   const [shouldShowWideView, setShouldShowWideView] = useState(false);
   const {
     shouldDisplayModal,
     saveModalToggle,
     publishModalToggle,
     closeModal,
+    setUserCode,
     message,
   } = useModal(userTitle, currentEditorId);
+
   const toggleWideView = () => {
     setShouldShowWideView((state) => !state);
   };
@@ -63,15 +58,10 @@ function Editor() {
   useEffect(() => {
     if (editor) return;
 
-    setUserTitle(null);
     fetchData();
   }, []);
 
   if (!editor) {
-    return <Loader />;
-  }
-
-  if (!userTitle && !shouldEditValue) {
     return <Loader />;
   }
 
@@ -105,7 +95,7 @@ function Editor() {
           </a>
           <div className="titleNavbar">
             {!shouldEditValue ? (
-              <h3>{userTitle}</h3>
+              <h3>{title === userTitle ? title : userTitle}</h3>
             ) : (
               <input onChange={handleInputChange} />
             )}
@@ -128,7 +118,12 @@ function Editor() {
       </Navigation>
       <EditorBody>
         {!shouldShowWideView && <LeftToolbar />}
-        <EditorTemplate displayWideView={shouldShowWideView} />
+        <EditorTemplate
+          modalStatus={shouldDisplayModal}
+          saveUserCode={setUserCode}
+          editorInformation={editor}
+          displayWideView={shouldShowWideView}
+        />
         {!shouldShowWideView && <RightToolbar />}
       </EditorBody>
     </>

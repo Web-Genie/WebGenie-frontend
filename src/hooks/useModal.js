@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import {
   ID_TOKEN,
@@ -7,9 +7,12 @@ import {
   PUBLISH_MODAL_MESSAGE,
   SAVE_MODAL_MESSAGE,
 } from "../constants/constants";
+import { retrieveURL } from "../utils";
 
 const useModal = (editorTitle, editorId) => {
+  const currentEditorId = retrieveURL();
   const [shouldDisplayModal, setShouldDisplayModal] = useState(false);
+  const [userCode, setUserCode] = useState();
   const [message, setMessage] = useState({
     titleMessage: null,
     proceedButtonText: null,
@@ -38,21 +41,6 @@ const useModal = (editorTitle, editorId) => {
 
   const saveModalToggle = () => {
     setShouldDisplayModal((state) => !state);
-    setMessage({
-      titleMessage: SAVE_MODAL_MESSAGE.titleMessage,
-      proceedButtonText: SAVE_MODAL_MESSAGE.acceptButtonMessage,
-      denyButtonText: SAVE_MODAL_MESSAGE.denyButtonMessage,
-      iconType: MODAL_ICON_STATE.saveState,
-      params: {
-        method: "patch",
-        url: "/websites/:website_id",
-        data: { title: editorTitle, userCode: "", websiteId: editorId },
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem(ID_TOKEN)}`,
-        },
-      },
-      requestType: "Save",
-    });
   };
 
   const publishModalToggle = useCallback(() => {
@@ -80,6 +68,28 @@ const useModal = (editorTitle, editorId) => {
     []
   );
 
+  useEffect(() => {
+    setMessage({
+      titleMessage: SAVE_MODAL_MESSAGE.titleMessage,
+      proceedButtonText: SAVE_MODAL_MESSAGE.acceptButtonMessage,
+      denyButtonText: SAVE_MODAL_MESSAGE.denyButtonMessage,
+      iconType: MODAL_ICON_STATE.saveState,
+      params: {
+        method: "patch",
+        url: "/websites/:website_id",
+        data: {
+          title: editorTitle,
+          editorCode: userCode,
+          websiteId: currentEditorId,
+        },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem(ID_TOKEN)}`,
+        },
+      },
+      requestType: "Save",
+    });
+  }, [userCode]);
+
   return {
     shouldDisplayModal,
     createNewSiteModalToggle,
@@ -87,6 +97,8 @@ const useModal = (editorTitle, editorId) => {
     publishModalToggle,
     closeModal,
     message,
+    userCode,
+    setUserCode,
   };
 };
 
