@@ -25,6 +25,7 @@ const ModalContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(2px);
   text-align: center;
+  z-index: 1000;
 `;
 
 const ModalBody = styled.div`

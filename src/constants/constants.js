@@ -16,10 +16,17 @@ export const PUBLISH_MODAL_MESSAGE = {
   denyButtonMessage: "아직 배포하기 싫어요.",
 };
 
+export const DELETE_MODAL_MESSAGE = {
+  titleMessage: "정말로 삭제하시겠습니까?",
+  acceptButtonMessage: "네, 삭제시켜주세요.",
+  denyButtonMessage: "아니요, 삭제하기 싫어요.",
+};
+
 export const MODAL_ICON_STATE = {
   questionState: "question",
   deployState: "deploy",
   saveState: "save",
+  deleteState: "delete",
 };
 
 export const NO_MESSAGE = "아니요.";

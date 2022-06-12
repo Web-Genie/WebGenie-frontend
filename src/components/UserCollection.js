@@ -1,15 +1,19 @@
+import { MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import emptyCollection from "../assets/emptyCollection.png";
 import placeholderImage from "../assets/placeholder.png";
 
-function UserCollection({ collections }) {
+function UserCollection({ collections, toggleDeleteModal }) {
   return (
     <UserContents>
       {collections.length ? (
         collections.map((userWebsites) => (
           <UserWebsites key={userWebsites._id}>
+            <h3 value={userWebsites._id}>
+              <MdClose onClick={toggleDeleteModal} value={userWebsites._id} />
+            </h3>
             <Link to={`/editor/${userWebsites._id}`}>
               <img src={placeholderImage} />
               <div>
@@ -42,6 +46,7 @@ const UserContents = styled.div`
 `;
 
 const UserWebsites = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,8 +57,8 @@ const UserWebsites = styled.div`
   box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   background-color: white;
-  cursor: pointer;
   transition: all 0.3s ease;
+  cursor: pointer;
 
   div {
     display: flex;
@@ -68,6 +73,7 @@ const UserWebsites = styled.div`
     height: 150px;
     width: 300px;
     border-radius: 10px 10px 0px 0px;
+    user-select: none;
   }
 
   p {
@@ -77,9 +83,34 @@ const UserWebsites = styled.div`
     color: black;
   }
 
-  :hover {
-    opacity: 0.6;
-    transform: scale(1.1);
+  h3 {
+    position: absolute;
+    z-index: 100;
+    width: 30px;
+    height: 30px;
+    right: -10px;
+    top: -10px;
+    font-size: 30px;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    :hover {
+      transform: scale(1.2);
+    }
+  }
+
+  a {
+    transition: all 0.3s ease;
+
+    :hover {
+      opacity: 0.6;
+    }
+  }
+
+  path {
+    pointer-events: none;
   }
 `;
 

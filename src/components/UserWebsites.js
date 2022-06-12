@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import styled from "styled-components";
 
 import { REQUEST_DATA_INFORMATION_USER } from "../constants/constants";
@@ -16,8 +16,13 @@ import Navigation from "./Navigation";
 import UserCollection from "./UserCollection";
 
 function UserPage() {
-  const { shouldDisplayModal, createNewSiteModalToggle, closeModal, message } =
-    useModal();
+  const {
+    shouldDisplayModal,
+    createNewSiteModalToggle,
+    deleteSiteModalMessage,
+    closeModal,
+    message,
+  } = useModal();
   const { handleLogout } = useLogout();
   const { userInformation } = useContext(UserContext);
   const idToken = localStorage.getItem(ID_TOKEN);
@@ -34,6 +39,8 @@ function UserPage() {
   );
 
   useEffect(() => {
+    if (userInformation) return;
+
     fetchData();
   }, []);
 
@@ -50,6 +57,7 @@ function UserPage() {
             primaryButtonText={message.proceedButtonText}
             secondaryButtonText={message.denyButtonText}
             modalIconState={message.iconType}
+            requestType={message.modalType}
             params={message.params}
             handleClick={closeModal}
           />
@@ -74,7 +82,10 @@ function UserPage() {
         </Button>
       </Navigation>
       {userInformation && (
-        <UserCollection collections={userInformation.websites} />
+        <UserCollection
+          toggleDeleteModal={deleteSiteModalMessage}
+          collections={userInformation.websites}
+        />
       )}
     </>
   );

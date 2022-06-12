@@ -31,6 +31,13 @@ const useAxios = (params, idToken, category = null) => {
       setTitle(result.data.changedTitle);
       setEditor(result.data);
       navigate(`/editor/${result.data.result._id}`);
+    } else if (category === "delete") {
+      navigate("/creatingnewwebsite");
+
+      const result = await api(params);
+
+      setUserInformation(result.data);
+      navigate("/");
     } else {
       navigate("/creatingnewwebsite");
 
