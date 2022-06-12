@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 
 import BackgroundChoice from "./BackgroundChoice";
@@ -7,17 +8,21 @@ import ImageChoice from "./ImageChoice";
 import TextChoice from "./TextChoice";
 import ToolbarContainer from "./ToolbarContainer";
 
-function LeftToolbar() {
+function LeftToolbar({ changeBackground }) {
   return (
     <EditorToolbar>
       <ToolbarContainer>
         <TextChoice />
         <ImageChoice />
         <ButtonChoice />
-        <BackgroundChoice />
+        <BackgroundChoice changeBackground={changeBackground} />
       </ToolbarContainer>
     </EditorToolbar>
   );
 }
+
+LeftToolbar.propTypes = {
+  changeBackground: PropTypes.func.isRequired,
+};
 
 export default LeftToolbar;

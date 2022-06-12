@@ -1,32 +1,49 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaBold, FaItalic, FaUnderline } from "react-icons/fa";
 
-import { RADIUS_AND_BRIGHTNESS_RANGE } from "../constants/constants";
+import {
+  FONT_TYPE,
+  SIZE_RADIUS_AND_BRIGHTNESS_RANGE,
+} from "../constants/constants";
+import { SubToolbarContext } from "../context/subToolbarContext";
 import SelectDetail from "./SelectDetailSubtoolBar";
 import SubtoolbarTitle from "./SubtoolbarTitle";
 
-const fontType = ["inter", "고딕", "굴림"];
-
 function TextDetailSubtoolBar() {
+  const { setIsBold, setIsItalic, setIsUnderLine } =
+    useContext(SubToolbarContext);
+
+  const handleBold = () => {
+    setIsBold(true);
+  };
+
+  const handleItalic = () => {
+    setIsItalic(true);
+  };
+
+  const handleUnderLine = () => {
+    setIsUnderLine(true);
+  };
+
   return (
     <div className="choiceContainer">
       <SubtoolbarTitle title="Edit text" />
       <div className="textDetailChoice">
-        <SelectDetail detailValue={fontType} className="font" />
+        <SelectDetail detailValue={FONT_TYPE} className="font" />
         <SelectDetail
-          detailValue={RADIUS_AND_BRIGHTNESS_RANGE}
+          detailValue={SIZE_RADIUS_AND_BRIGHTNESS_RANGE}
           className="font"
         />
       </div>
       <div className="detailContainer">
         <div className="detailItem">
-          <span className="rightBorder">
+          <span className="rightBorder" onClick={handleBold}>
             <FaBold />
           </span>
-          <span>
+          <span onClick={handleItalic}>
             <FaItalic />
           </span>
-          <span className="leftBorder">
+          <span className="leftBorder" onClick={handleUnderLine}>
             <FaUnderline />
           </span>
         </div>

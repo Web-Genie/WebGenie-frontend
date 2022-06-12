@@ -16,8 +16,6 @@ import Navigation from "./Navigation";
 import UserCollection from "./UserCollection";
 
 function UserPage() {
-  console.log("git test");
-
   const {
     shouldDisplayModal,
     createNewSiteModalToggle,

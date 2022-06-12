@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import {
   FcFullTrash,
   FcGlobe,
@@ -9,9 +10,11 @@ import { MdClose } from "react-icons/md";
 import styled from "styled-components";
 
 import { ID_TOKEN } from "../constants/constants";
+import { SubToolbarContext } from "../context/subToolbarContext";
 import useAxios from "../hooks/useAxios";
 import { sendUserToHomepage } from "../utils/index";
 import Button from "./Button";
+import Modal from "./Modal";
 
 function ModalContent({
   modalText = "",
@@ -23,6 +26,8 @@ function ModalContent({
   requestType,
   shouldGoHomepage,
 }) {
+  const { setImageUrl, setHasImageUrl } = useContext(SubToolbarContext);
+
   const modalIconMap = {
     question: <FcQuestions />,
     deploy: <FcGlobe />,
@@ -66,6 +71,14 @@ function ModalContent({
     </div>
   );
 }
+
+ModalContent.propTypes = {
+  modalText: PropTypes.string.isRequired,
+  primaryButtonText: PropTypes.string.isRequired,
+  secondaryButtonText: PropTypes.string.isRequired,
+  modalIconState: PropTypes.string,
+  handleClick: PropTypes.func.isRequired,
+};
 
 const NewSiteModalInputContainer = styled.p`
   display: flex;

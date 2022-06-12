@@ -5,6 +5,7 @@ import { SubToolbarContext } from "../context/subToolbarContext";
 import ButtonLinkEditor from "./ButtonLinkSubtoolBar";
 import ButtonRadiusEditor from "./ButtonRadiusSubtoolBar";
 import CanvasClearButton from "./CanvasClearButton";
+import ColorChangeSubToolBar from "./ColorChangeSubToolBar";
 import EditorToolbar from "./EditorToolbar";
 import ImageBlurEditor from "./ImageBlurSubtoolBar";
 import ImageBrightnessEditor from "./ImageBrightnessSubtoolBar";
@@ -32,14 +33,19 @@ function RightToolbar({ onChangeOpacity, onChangeBrightness, onChangeBlur }) {
             <OpacityEditor />
           </>
         )}
-        {subToolbarType === "image" && (
+        {subToolbarType === "IMG" && (
           <>
             <OpacityEditor onChangeOpacity={onChangeOpacity} />
             <ImageBrightnessEditor onChangeBrightness={onChangeBrightness} />
             <ImageBlurEditor onChangeBlur={onChangeBlur} />
           </>
         )}
-
+        {subToolbarType === "BUTTON" ||
+        TEXT_CHOICES.includes(subToolbarType) ? (
+          <>
+            <ColorChangeSubToolBar />
+          </>
+        ) : null}
         <CanvasClearButton />
       </ToolbarContainer>
     </EditorToolbar>

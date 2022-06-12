@@ -39,6 +39,7 @@ function Editor() {
     message,
     saveReminderModalToggle,
   } = useModal(userTitle, currentEditorId);
+  const [backgroundColor, setBackgroundColor] = useState("");
 
   const toggleWideView = () => {
     setShouldShowWideView((state) => !state);
@@ -128,13 +129,16 @@ function Editor() {
         </div>
       </Navigation>
       <EditorBody>
-        {!shouldShowWideView && <LeftToolbar />}
+        {!shouldShowWideView && (
+          <LeftToolbar changeBackground={setBackgroundColor} />
+        )}
         <EditorTemplate
           modalStatus={shouldDisplayModal}
           saveUserCode={setUserCode}
           editorInformation={editor}
           displayWideView={shouldShowWideView}
           retrieveParentRefState={setParentRefState}
+          backgroundColorName={backgroundColor}
         />
         {!shouldShowWideView && <RightToolbar />}
       </EditorBody>

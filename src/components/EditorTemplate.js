@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 
+import { FONT_TYPE, TEXT_ALIGN, TEXT_CHOICES } from "../constants/constants";
+import { SubToolbarContext } from "../context/subToolbarContext";
 import useDragAndDrop from "../hooks/useDragAndDrop";
 import useResize from "../hooks/useResize";
 import {
@@ -12,7 +14,7 @@ import {
 
 function EditorTemplate({
   displayWideView,
-  colorName,
+  backgroundColorName,
   modalStatus,
   saveUserCode,
   editorInformation,
@@ -20,10 +22,123 @@ function EditorTemplate({
 }) {
   const [handleResizeTarget, isResizing, setIsResizing] = useResize();
   const [parentRef, targetRef] = useDragAndDrop(isResizing, setIsResizing);
+  const {
+    subToolbarType,
+    isBold,
+    isItalic,
+    setIsBold,
+    setIsItalic,
+    isUnderLine,
+    setIsUnderLine,
+    textAlign,
+    setTextAlign,
+    fontType,
+    setFontType,
+    colorValue,
+    setColorValue,
+    buttonColor,
+    setButtonColor,
+    fontSize,
+    setFontSize,
+    localImageSrc,
+    setLocalImageSrc,
+    hasClearCanvas,
+    hasImageUrl,
+    imageUrl,
+    setImageUrl,
+    setHasImageUrl,
+    setHasClearCanvas,
+  } = useContext(SubToolbarContext);
 
-  if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
-    targetRef.current.style.background = colorName;
-  }
+  useEffect(() => {
+    if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
+      if (TEXT_CHOICES.includes(subToolbarType)) {
+        if (colorValue) {
+          targetRef.current.style.color = colorValue;
+          setColorValue("");
+        }
+        if (isBold) {
+          targetRef.current.style.fontWeight = "Bold";
+          setIsBold(false);
+        }
+        if (isItalic) {
+          targetRef.current.style.fontStyle = "italic";
+          setIsItalic(false);
+        }
+        if (isUnderLine) {
+          targetRef.current.style.textDecoration = "underline";
+          setIsUnderLine(false);
+        }
+        if (TEXT_ALIGN.includes(textAlign)) {
+          targetRef.current.style.textAlign = textAlign;
+          setTextAlign("");
+        }
+        if (FONT_TYPE.includes(fontType)) {
+          targetRef.current.style.fontFamily = fontType;
+          setFontType("");
+        }
+        if (fontSize) {
+          targetRef.current.style.fontSize = `${fontSize}px`;
+          setFontSize("");
+        }
+      }
+      if (subToolbarType === "BUTTON" && buttonColor) {
+        targetRef.current.style.background = buttonColor;
+
+        setButtonColor("");
+      }
+    }
+    if (parentRef.current !== null && parentRef.current.tagName === "DIV") {
+      parentRef.current.style.background = backgroundColorName;
+    }
+
+    if (localImageSrc) {
+      const newImage = document.createElement("img");
+      const imageSrc = URL.createObjectURL(localImageSrc);
+
+      newImage.setAttribute("id", "img");
+      newImage.setAttribute("alt", `${imageSrc}`);
+      newImage.setAttribute("draggable", "false");
+      newImage.setAttribute("src", `${imageSrc}`);
+      parentRef.current.appendChild(newImage);
+
+      setLocalImageSrc("");
+    }
+
+    if (hasImageUrl) {
+      const newImage = document.createElement("img");
+
+      newImage.setAttribute("id", "img");
+      newImage.setAttribute("alt", imageUrl);
+      newImage.setAttribute("draggable", "false");
+      newImage.setAttribute("src", imageUrl);
+      parentRef.current.appendChild(newImage);
+
+      setImageUrl("");
+      setHasImageUrl(false);
+    }
+
+    if (hasClearCanvas) {
+      parentRef.current.innerHTML = "";
+      parentRef.current.style.background = "black";
+      console.log(parentRef.current.style.background);
+
+      setHasClearCanvas(false);
+    }
+  }, [
+    colorValue,
+    textAlign,
+    fontType,
+    buttonColor,
+    fontSize,
+    isBold,
+    isItalic,
+    isUnderLine,
+    backgroundColorName,
+    localImageSrc,
+    hasImageUrl,
+    hasClearCanvas,
+  ]);
 
   useEffect(() => {
     if (!modalStatus) return;
