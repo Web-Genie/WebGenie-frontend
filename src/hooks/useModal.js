@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 
 import {
+  ADD_IMG_URL_MESSAGE,
   ID_TOKEN,
   MODAL_ICON_STATE,
   NEW_EDITOR_MODAL_MESSAGE,
@@ -78,10 +79,9 @@ const useModal = (editorTitle, editorId) => {
   const imageURLModalToggle = useCallback(() => {
     setShouldDisplayModal((state) => !state);
     setMessage({
-      titleMessage: "image url을 입력해주세요",
-      proceedButtonText: "확인",
-      denyButtonText: "취소",
-      iconType: "",
+      titleMessage: ADD_IMG_URL_MESSAGE.titleMessage,
+      proceedButtonText: ADD_IMG_URL_MESSAGE.acceptButtonMessage,
+      denyButtonText: ADD_IMG_URL_MESSAGE.denyButtonMessage,
     });
   }, []);
 
