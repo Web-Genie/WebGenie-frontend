@@ -13,7 +13,14 @@ import {
   handleDrop,
 } from "../utils";
 
-function EditorTemplate({ displayWideView, backgroundColorName }) {
+function EditorTemplate({
+  displayWideView,
+  modalStatus,
+  saveUserCode,
+  editorInformation,
+  retrieveParentRefState,
+  backgroundColorName,
+}) {
   const [handleResizeTarget, isResizing, setIsResizing] = useResize();
   const [parentRef, targetRef] = useDragAndDrop(isResizing, setIsResizing);
   const {
@@ -98,6 +105,25 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
     backgroundColorName,
     imageSrc,
   ]);
+
+  useEffect(() => {
+    if (!modalStatus) return;
+    if (!parentRef.current) return;
+
+    saveUserCode(parentRef.current.innerHTML);
+  }, [modalStatus]);
+
+  useEffect(() => {
+    if (!editorInformation.result) return;
+
+    parentRef.current.innerHTML = editorInformation.result.userSavedCode;
+  }, [editorInformation.result[0]]);
+
+  useEffect(() => {
+    if (parentRef.current) {
+      retrieveParentRefState(parentRef.current);
+    }
+  }, []);
 
   return (
     <EditorTemplateBody

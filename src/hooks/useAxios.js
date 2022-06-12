@@ -5,7 +5,7 @@ import { UserContext } from "../context/userContext";
 import api from "../services/api";
 
 const useAxios = (params, idToken, category = null) => {
-  const { setFetchedData, setUserInformation, setEditor } =
+  const { setFetchedData, setUserInformation, setEditor, setTitle } =
     useContext(UserContext);
   const navigate = useNavigate();
 
@@ -28,7 +28,16 @@ const useAxios = (params, idToken, category = null) => {
 
       const result = await api(params);
 
-      navigate(`/editor/${result.data._id}`);
+      setTitle(result.data.changedTitle);
+      setEditor(result.data);
+      navigate(`/editor/${result.data.result._id}`);
+    } else if (category === "delete") {
+      navigate("/creatingnewwebsite");
+
+      const result = await api(params);
+
+      setUserInformation(result.data);
+      navigate("/");
     } else {
       navigate("/creatingnewwebsite");
 

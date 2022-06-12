@@ -123,22 +123,19 @@ const ToolbarContainerBody = styled.div`
   .imageUploadingChoice {
     display: flex;
     justify-content: space-evenly;
-    /* justify-content: space-between; */
-    /* margin-right: 2px; */
   }
 
   .filebox label {
     display: flex;
     padding: 10px 18px;
     margin-right: 7px;
-    font-size: inherit;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: 6px;
     line-height: normal;
     vertical-align: middle;
     background-color: #fdfdfd;
     cursor: pointer;
-    border: 1px solid #ebebeb;
-    border-bottom-color: #e2e2e2;
-    border-radius: 6px;
     font-size: 13px;
     font-weight: 400;
 

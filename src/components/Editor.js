@@ -11,6 +11,7 @@ import useAxios from "../hooks/useAxios";
 import useInput from "../hooks/useInput";
 import useLogout from "../hooks/useLogout";
 import useModal from "../hooks/useModal";
+import { retrieveURL } from "../utils/index";
 import Button from "./Button";
 import EditorTemplate from "./EditorTemplate";
 import Header from "./Header";
@@ -22,27 +23,23 @@ import Navigation from "./Navigation";
 import RightToolbar from "./RightToolbar";
 
 function Editor() {
-  const { editor } = useContext(UserContext);
+  const currentEditorId = retrieveURL();
+  const [parentRefState, setParentRefState] = useState("");
+  const { editor, title } = useContext(UserContext);
   const { handleLogout } = useLogout();
-  let currentEditorId = window.location.pathname
-    .split("/")
-    .filter((item) => item !== "editor")
-    .join("");
-  const {
-    userTitle,
-    shouldEditValue,
-    handleInputChange,
-    toggleInputChange,
-    setUserTitle,
-  } = useInput("editor", editor);
+  const { userTitle, shouldEditValue, handleInputChange, toggleInputChange } =
+    useInput("editor", editor);
   const [shouldShowWideView, setShouldShowWideView] = useState(false);
   const {
     shouldDisplayModal,
     saveModalToggle,
     publishModalToggle,
     closeModal,
+    setUserCode,
     message,
+    saveReminderModalToggle,
   } = useModal(userTitle, currentEditorId);
+
   const toggleWideView = () => {
     setShouldShowWideView((state) => !state);
   };
@@ -79,7 +76,6 @@ function Editor() {
   useEffect(() => {
     if (editor) return;
 
-    setUserTitle(null);
     fetchData();
   }, []);
 
@@ -87,9 +83,13 @@ function Editor() {
     return <Loader />;
   }
 
-  if (!userTitle && !shouldEditValue) {
-    return <Loader />;
-  }
+  const checkChangedCode = () => {
+    if (parentRefState.innerHTML === editor.result.userSavedCode) {
+      window.location.replace("/");
+    } else {
+      saveReminderModalToggle();
+    }
+  };
 
   return (
     <>
@@ -100,6 +100,7 @@ function Editor() {
             primaryButtonText={message.proceedButtonText}
             secondaryButtonText={message.denyButtonText}
             modalIconState={message.iconType}
+            shouldGoHomepage={message.shouldGoHomepage}
             currentTitle={userTitle}
             params={message.params}
             requestType={message.requestType}
@@ -116,12 +117,12 @@ function Editor() {
       </Header>
       <Navigation>
         <div className="editorNavbar">
-          <a href="/">
+          <a onClick={checkChangedCode}>
             <FaArrowLeft />
           </a>
           <div className="titleNavbar">
             {!shouldEditValue ? (
-              <h3>{userTitle}</h3>
+              <h3>{title === userTitle ? title : userTitle}</h3>
             ) : (
               <input onChange={handleInputChange} />
             )}
@@ -155,6 +156,11 @@ function Editor() {
             onChangeOpacity={handleImgOpacity}
             onChangeBrightness={handleImgBrightness}
             onChangeBlur={handleImgBlur}
+            modalStatus={shouldDisplayModal}
+            saveUserCode={setUserCode}
+            editorInformation={editor}
+            displayWideView={shouldShowWideView}
+            retrieveParentRefState={setParentRefState}
           />
         )}
       </EditorBody>

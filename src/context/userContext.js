@@ -9,6 +9,8 @@ const UserContextTypeProvider = ({ children }) => {
   const [fetchedData, setFetchedData] = useState(null);
   const [editor, setEditor] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem(ID_TOKEN));
+  const [title, setTitle] = useState();
+  const [userCode, setUserCode] = useState();
 
   return (
     <UserContext.Provider
@@ -21,6 +23,10 @@ const UserContextTypeProvider = ({ children }) => {
         setIsLoggedIn,
         setUserInformation,
         setEditor,
+        title,
+        setTitle,
+        userCode,
+        setUserCode,
       }}
     >
       {children}

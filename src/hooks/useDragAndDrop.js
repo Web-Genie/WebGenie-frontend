@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-function useDragAndDrop(resizingState, setResizingState) {
+function useDragAndDrop(resizingState) {
   const targetRef = useRef(null);
   const parentRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);

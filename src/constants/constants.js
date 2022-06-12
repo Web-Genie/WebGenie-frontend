@@ -16,10 +16,24 @@ export const PUBLISH_MODAL_MESSAGE = {
   denyButtonMessage: "아직 배포하기 싫어요.",
 };
 
+export const DELETE_MODAL_MESSAGE = {
+  titleMessage: "정말로 삭제하시겠습니까?",
+  acceptButtonMessage: "네, 삭제시켜주세요.",
+  denyButtonMessage: "아니요, 삭제하기 싫어요.",
+};
+
+export const SAVE_REMINDER_MODAL_MESSAGE = {
+  titleMessage: "저장하지 않고 나가시겠습니까?",
+  acceptButtonMessage: "네, 그냥 나갈게요.",
+  denyButtonMessage: "아니요, 저장하고 나갈게요.",
+};
+
 export const MODAL_ICON_STATE = {
   questionState: "question",
   deployState: "deploy",
   saveState: "save",
+  deleteState: "delete",
+  remindState: "remind",
 };
 
 export const NO_MESSAGE = "아니요.";
