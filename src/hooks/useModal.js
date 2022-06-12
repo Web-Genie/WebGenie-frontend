@@ -75,6 +75,16 @@ const useModal = (editorTitle, editorId) => {
     });
   }, []);
 
+  const imageURLModalToggle = useCallback(() => {
+    setShouldDisplayModal((state) => !state);
+    setMessage({
+      titleMessage: "image url을 입력해주세요",
+      proceedButtonText: "확인",
+      denyButtonText: "취소",
+      iconType: "",
+    });
+  }, []);
+
   const closeModal = useCallback(
     () => setShouldDisplayModal((state) => !state),
     []
@@ -85,6 +95,7 @@ const useModal = (editorTitle, editorId) => {
     createNewSiteModalToggle,
     saveModalToggle,
     publishModalToggle,
+    imageURLModalToggle,
     closeModal,
     message,
   };
