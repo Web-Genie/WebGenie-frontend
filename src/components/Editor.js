@@ -24,6 +24,7 @@ import RightToolbar from "./RightToolbar";
 
 function Editor() {
   const currentEditorId = retrieveURL();
+  const [parentRefState, setParentRefState] = useState("");
   const { editor, title } = useContext(UserContext);
   const { handleLogout } = useLogout();
   const { userTitle, shouldEditValue, handleInputChange, toggleInputChange } =
@@ -36,6 +37,7 @@ function Editor() {
     closeModal,
     setUserCode,
     message,
+    saveReminderModalToggle,
   } = useModal(userTitle, currentEditorId);
 
   const toggleWideView = () => {
@@ -65,6 +67,14 @@ function Editor() {
     return <Loader />;
   }
 
+  const checkChangedCode = () => {
+    if (parentRefState.innerHTML === editor.result.userSavedCode) {
+      window.location.replace("/");
+    } else {
+      saveReminderModalToggle();
+    }
+  };
+
   return (
     <>
       {shouldDisplayModal && (
@@ -74,6 +84,7 @@ function Editor() {
             primaryButtonText={message.proceedButtonText}
             secondaryButtonText={message.denyButtonText}
             modalIconState={message.iconType}
+            shouldGoHomepage={message.shouldGoHomepage}
             currentTitle={userTitle}
             params={message.params}
             requestType={message.requestType}
@@ -90,7 +101,7 @@ function Editor() {
       </Header>
       <Navigation>
         <div className="editorNavbar">
-          <a href="/">
+          <a onClick={checkChangedCode}>
             <FaArrowLeft />
           </a>
           <div className="titleNavbar">
@@ -123,6 +134,7 @@ function Editor() {
           saveUserCode={setUserCode}
           editorInformation={editor}
           displayWideView={shouldShowWideView}
+          retrieveParentRefState={setParentRefState}
         />
         {!shouldShowWideView && <RightToolbar />}
       </EditorBody>
