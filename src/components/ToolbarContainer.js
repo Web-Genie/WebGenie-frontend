@@ -123,13 +123,11 @@ const ToolbarContainerBody = styled.div`
   .imageUploadingChoice {
     display: flex;
     justify-content: space-evenly;
-    /* justify-content: space-between; */
-    /* margin-right: 2px; */
   }
 
   .filebox label {
     display: flex;
-    padding: 10px 18px;
+    padding: 10px 17px;
     margin-right: 7px;
     font-size: inherit;
     line-height: normal;
@@ -158,47 +156,8 @@ const ToolbarContainerBody = styled.div`
     border: 0;
   }
 
-  .shapeChoices {
-    display: flex;
-    justify-content: space-evenly;
-  }
-
-  .square {
-    width: 42px;
-    height: 42px;
-    margin-right: 10px;
-    background-color: #98a2b3;
-    cursor: pointer;
-
-    :hover {
-      opacity: 0.5;
-    }
-  }
-
-  .circle {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background-color: #98a2b3;
-    cursor: pointer;
-
-    :hover {
-      opacity: 0.5;
-    }
-  }
-
-  .triangle {
-    width: 0;
-    height: 0;
-    border-left: 27px solid transparent;
-    border-right: 27px solid transparent;
-    border-bottom: 42px solid #98a2b3;
-    margin-left: 10px;
-    cursor: pointer;
-
-    :hover {
-      opacity: 0.5;
-    }
+  .localImage {
+    margin-right: 2.2px;
   }
 
   .samepleButton {

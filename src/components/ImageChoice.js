@@ -26,7 +26,9 @@ function ImageChoice() {
         <div className="filebox">
           <div className="filebox">
             <label htmlFor="ex_file">
-              <FaCloudUploadAlt />
+              <p className="localImage">
+                <FaCloudUploadAlt />
+              </p>
               Upload
             </label>
             <input type="file" id="ex_file" onChange={handleImage} />
