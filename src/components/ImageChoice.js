@@ -15,6 +15,7 @@ function ImageChoice() {
 
   const handleImage = (event) => {
     setLocalImageSrc(event.target.files[0]);
+    event.target.value = "";
   };
 
   return (

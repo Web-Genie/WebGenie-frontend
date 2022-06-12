@@ -119,11 +119,13 @@ function EditorTemplate({
     }
 
     if (hasClearCanvas) {
+      console.log(parentRef.current.style.backgroundColor);
+      const a = parentRef.current;
+      a.style.backgroundColor = "white";
       parentRef.current.innerHTML = "";
-      parentRef.current.style.background = "black";
-      console.log(parentRef.current.style.background);
-
       setHasClearCanvas(false);
+
+      //
     }
   }, [
     colorValue,

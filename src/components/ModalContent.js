@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useContext } from "react";
 import {
   FcFullTrash,
   FcGlobe,
@@ -14,7 +15,6 @@ import { SubToolbarContext } from "../context/subToolbarContext";
 import useAxios from "../hooks/useAxios";
 import { sendUserToHomepage } from "../utils/index";
 import Button from "./Button";
-import Modal from "./Modal";
 
 function ModalContent({
   modalText = "",
@@ -26,7 +26,8 @@ function ModalContent({
   requestType,
   shouldGoHomepage,
 }) {
-  const { setImageUrl, setHasImageUrl } = useContext(SubToolbarContext);
+  const { setImageUrl, setHasImageUrl, imageUrl } =
+    useContext(SubToolbarContext);
 
   const modalIconMap = {
     question: <FcQuestions />,
@@ -46,6 +47,15 @@ function ModalContent({
     params.data.title = event.target.value;
   };
 
+  const handleImageInput = (event) => {
+    setImageUrl(event.target.value);
+  };
+
+  const insertImage = () => {
+    setHasImageUrl(true);
+    handleClick();
+  };
+
   return (
     <div>
       <h3>
@@ -53,18 +63,41 @@ function ModalContent({
       </h3>
       <h1>{modalIconMap[modalIconState]}</h1>
       <h2>{modalText}</h2>
-      {!requestType && (
+      {!requestType && modalIconState && (
         <NewSiteModalInputContainer>
           <span>Title:</span>
           <input onChange={handleTitleInput} />
         </NewSiteModalInputContainer>
       )}
-      <Button
+      {!modalIconState && !requestType && (
+        <ImgURLMocalInputContainer>
+          <span></span>
+          <input className="imgURL" onChange={handleImageInput} />
+        </ImgURLMocalInputContainer>
+      )}
+      {imageUrl ? (
+        <Button
+          handleClick={
+            !modalIconState && !requestType ? insertImage : fetchData
+          }
+          mainButton={true}
+        >
+          {primaryButtonText}
+        </Button>
+      ) : (
+        <Button
+          handleClick={shouldGoHomepage ? sendUserToHomepage : fetchData}
+          mainButton={true}
+        >
+          {primaryButtonText}
+        </Button>
+      )}
+      {/* <Button
         handleClick={goHomepage ? sendUserToHomepage : fetchData}
         mainButton={true}
       >
         {primaryButtonText}
-      </Button>
+      </Button> */}
       <Button handleClick={handleClick} margin="13px">
         {secondaryButtonText}
       </Button>
@@ -99,5 +132,23 @@ const NewSiteModalInputContainer = styled.p`
     padding: 3px 10px;
   }
 `;
-
+const ImgURLMocalInputContainer = styled.p`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+  span {
+    margin-right: 5px;
+    font-size: 18px;
+  }
+  input {
+    background: white;
+    border: 1px solid #5e5e5e;
+    border-radius: 7px;
+    width: 400px;
+    height: 30px;
+    padding: 8px;
+    margin-bottom: 40px;
+  }
+`;
 export default ModalContent;

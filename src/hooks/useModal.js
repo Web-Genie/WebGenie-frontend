@@ -100,6 +100,15 @@ const useModal = (editorTitle, editorId) => {
     });
   }, []);
 
+  const imageURLModalToggle = useCallback(() => {
+    setShouldDisplayModal((state) => !state);
+    setMessage({
+      titleMessage: "img",
+      proceedButtonText: "yes",
+      denyButtonText: "no",
+    });
+  }, []);
+
   const closeModal = useCallback(() => {
     setShouldDisplayModal((state) => !state);
     setShouldUseSaveModal(false);
@@ -140,6 +149,7 @@ const useModal = (editorTitle, editorId) => {
     userCode,
     setUserCode,
     saveReminderModalToggle,
+    imageURLModalToggle,
   };
 };
 
