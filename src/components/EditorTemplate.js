@@ -16,6 +16,7 @@ function EditorTemplate({
   modalStatus,
   saveUserCode,
   editorInformation,
+  retrieveParentRefState,
 }) {
   const [handleResizeTarget, isResizing, setIsResizing] = useResize();
   const [parentRef, targetRef] = useDragAndDrop(isResizing, setIsResizing);
@@ -37,6 +38,12 @@ function EditorTemplate({
     parentRef.current.innerHTML = editorInformation.result.userSavedCode;
   }, [editorInformation.result[0]]);
 
+  useEffect(() => {
+    if (parentRef.current) {
+      retrieveParentRefState(parentRef.current);
+    }
+  }, []);
+
   return (
     <EditorTemplateBody
       ref={parentRef}
@@ -46,7 +53,6 @@ function EditorTemplate({
       onDragLeave={handleDragLeave}
       onClick={handleResizeTarget}
       wideView={displayWideView}
-      onChange={() => console.log("hi")}
     />
   );
 }
