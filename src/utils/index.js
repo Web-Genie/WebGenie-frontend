@@ -75,3 +75,27 @@ export const retrieveURL = () => {
 export const sendUserToHomepage = () => {
   window.location.replace("/");
 };
+
+export const generateEditorDeleteElement = () => {
+  const deleteNodeElement = document.createElement("p");
+
+  const deleteCurrentElement = (event) => {
+    event.stopPropagation();
+    event.target.parentNode.remove();
+  };
+
+  deleteNodeElement.style.display = "flex";
+  deleteNodeElement.style.justifyContent = "center";
+  deleteNodeElement.style.alignItems = "center";
+  deleteNodeElement.style.position = "absolute";
+  deleteNodeElement.innerHTML = "&#x2715;";
+  deleteNodeElement.style.background = "rgba(0,0,0,0.4)";
+  deleteNodeElement.style.color = "white";
+  deleteNodeElement.style.borderRadius = "50%";
+  deleteNodeElement.style.width = "30px";
+  deleteNodeElement.style.height = "30px";
+  deleteNodeElement.style.fontSize = "23px";
+  deleteNodeElement.onclick = deleteCurrentElement;
+
+  return deleteNodeElement;
+};

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 
 import { REQUEST_DATA_INFORMATION_USER } from "../constants/constants";
@@ -16,8 +16,6 @@ import Navigation from "./Navigation";
 import UserCollection from "./UserCollection";
 
 function UserPage() {
-  console.log("git test");
-
   const {
     shouldDisplayModal,
     createNewSiteModalToggle,

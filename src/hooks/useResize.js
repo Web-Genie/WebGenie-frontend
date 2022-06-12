@@ -1,19 +1,21 @@
 import { useContext, useEffect, useRef, useState } from "react";
+import { MdClose } from "react-icons/md";
 
 import {
   InputFieldContext,
   SubToolbarContext,
 } from "../context/subToolbarContext";
 import { getElementValue } from "../utils";
+import { generateEditorDeleteElement } from "../utils/index";
 
 function useResize() {
+  const parentRef = useRef(null);
+  const targetRef = useRef(null);
   const [isResizing, setIsResizing] = useState(false);
   const { setSubToolbarType } = useContext(SubToolbarContext);
   const { inputValue, shouldAddLink, setShouldAddLink } =
     useContext(InputFieldContext);
 
-  const parentRef = useRef(null);
-  const targetRef = useRef(null);
   let leftOrRightDirection = "";
   let oldPageX = 0;
   let startX = null;
@@ -89,6 +91,7 @@ function useResize() {
         targetRef.current.style.border = "1px solid #e5e5e5";
       } else {
         targetRef.current.style.border = "none";
+        targetRef.current.childNodes[1].remove();
       }
       setSubToolbarType(targetRef.current.tagName);
 
@@ -98,10 +101,14 @@ function useResize() {
 
       return;
     }
-
     if (!targetRef.current && event.target.tagName !== "DIV") {
       targetRef.current = event.target;
+
+      const closeButton = generateEditorDeleteElement(targetRef.current);
+
       targetRef.current.style.border = "2px dashed black";
+
+      targetRef.current.appendChild(closeButton);
 
       if (targetRef.current.tagName !== "BUTTON") {
         targetRef.current.style.padding = "7px 10px";
@@ -124,15 +131,19 @@ function useResize() {
       event.target !== targetRef.current &&
       event.target.tagName !== "DIV"
     ) {
+      const closeButton = generateEditorDeleteElement(targetRef.current);
+
       if (targetRef.current.tagName === "BUTTON") {
         targetRef.current.style.border = "1px solid #e5e5e5";
       } else {
         targetRef.current.style.border = "none";
+        targetRef.current.childNodes[1].remove();
       }
 
       targetRef.current = event.target;
 
       targetRef.current.style.border = "2px dashed black";
+      targetRef.current.appendChild(closeButton);
 
       if (targetRef.current.tagName !== "BUTTON") {
         targetRef.current.style.padding = "7px 10px";
