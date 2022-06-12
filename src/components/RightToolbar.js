@@ -34,7 +34,7 @@ function RightToolbar({ onChangeOpacity, onChangeBrightness, onChangeBlur }) {
             <OpacityEditor />
           </>
         )}
-        {subToolbarType === "image" && (
+        {subToolbarType === "IMG" && (
           <>
             <OpacityEditor onChangeOpacity={onChangeOpacity} />
             <ImageBrightnessEditor onChangeBrightness={onChangeBrightness} />
