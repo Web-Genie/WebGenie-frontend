@@ -71,3 +71,7 @@ export const retrieveURL = () => {
 
   return currentEditorId;
 };
+
+export const sendUserToHomepage = () => {
+  window.location.replace("/");
+};
