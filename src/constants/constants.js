@@ -28,6 +28,12 @@ export const SAVE_REMINDER_MODAL_MESSAGE = {
   denyButtonMessage: "아니요, 저장하고 나갈게요.",
 };
 
+export const INSERT_IMG_URL_MODAL_MESSAGE = {
+  titleMessage: "image URL을 입력해주세요",
+  acceptButtonMessage: "확인",
+  denyButtonMessage: "취소",
+};
+
 export const MODAL_ICON_STATE = {
   questionState: "question",
   deployState: "deploy",

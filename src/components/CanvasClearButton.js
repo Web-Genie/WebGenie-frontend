@@ -4,10 +4,12 @@ import { SubToolbarContext } from "../context/subToolbarContext";
 import ToolbarButton from "./ToolbarButton";
 
 function CanvasClearButton() {
-  const { setHasClearCanvas } = useContext(SubToolbarContext);
+  const { setClearCanavasBackgroundColor, setIsCavasClear } =
+    useContext(SubToolbarContext);
 
   const handleCanvas = () => {
-    setHasClearCanvas(true);
+    setClearCanavasBackgroundColor("white");
+    setIsCavasClear(true);
   };
 
   return (

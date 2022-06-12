@@ -71,7 +71,7 @@ function ModalContent({
       )}
       {!modalIconState && !requestType && (
         <ImgURLMocalInputContainer>
-          <span></span>
+          <span />
           <input className="imgURL" onChange={handleImageInput} />
         </ImgURLMocalInputContainer>
       )}
@@ -92,12 +92,6 @@ function ModalContent({
           {primaryButtonText}
         </Button>
       )}
-      {/* <Button
-        handleClick={goHomepage ? sendUserToHomepage : fetchData}
-        mainButton={true}
-      >
-        {primaryButtonText}
-      </Button> */}
       <Button handleClick={handleClick} margin="13px">
         {secondaryButtonText}
       </Button>

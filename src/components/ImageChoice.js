@@ -25,15 +25,13 @@ function ImageChoice() {
       </div>
       <div className="imageUploadingChoice">
         <div className="filebox">
-          <div className="filebox">
-            <label htmlFor="ex_file">
-              <p className="localImage">
-                <FaCloudUploadAlt />
-              </p>
-              Upload
-            </label>
-            <input type="file" id="ex_file" onChange={handleImage} />
-          </div>
+          <label htmlFor="file">
+            <p className="localImage">
+              <FaCloudUploadAlt />
+            </p>
+            Upload
+          </label>
+          <input type="file" id="file" onChange={handleImage} />
         </div>
         <ToolbarButton>
           <FaImage />

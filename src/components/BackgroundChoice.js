@@ -6,6 +6,7 @@ function BackgroundChoice({ changeBackground }) {
   const handleBackgroundColorChange = (event) => {
     changeBackground(event.target.value);
   };
+
   return (
     <div className="choiceContainer">
       <div className="category">

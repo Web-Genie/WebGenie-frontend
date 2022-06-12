@@ -47,7 +47,10 @@ function EditorTemplate({
     imageUrl,
     setImageUrl,
     setHasImageUrl,
-    setHasClearCanvas,
+    clearCanvasBackgroundColor,
+    setClearCanavasBackgroundColor,
+    isCanvasClear,
+    setIsCavasClear,
   } = useContext(SubToolbarContext);
 
   useEffect(() => {
@@ -88,8 +91,10 @@ function EditorTemplate({
         setButtonColor("");
       }
     }
-    if (parentRef.current !== null && parentRef.current.tagName === "DIV") {
-      parentRef.current.style.background = backgroundColorName;
+
+    if (clearCanvasBackgroundColor === "white") {
+      parentRef.current.style.backgroundColor = "white";
+      parentRef.current.innerHTML = "";
     }
 
     if (localImageSrc) {
@@ -117,16 +122,6 @@ function EditorTemplate({
       setImageUrl("");
       setHasImageUrl(false);
     }
-
-    if (hasClearCanvas) {
-      console.log(parentRef.current.style.backgroundColor);
-      const a = parentRef.current;
-      a.style.backgroundColor = "white";
-      parentRef.current.innerHTML = "";
-      setHasClearCanvas(false);
-
-      //
-    }
   }, [
     colorValue,
     textAlign,
@@ -136,11 +131,17 @@ function EditorTemplate({
     isBold,
     isItalic,
     isUnderLine,
-    backgroundColorName,
     localImageSrc,
     hasImageUrl,
-    hasClearCanvas,
+    isCanvasClear,
   ]);
+
+  if (
+    backgroundColorName !== "" ||
+    (backgroundColorName === "" && targetRef.current)
+  ) {
+    parentRef.current.style.background = backgroundColorName;
+  }
 
   useEffect(() => {
     if (!modalStatus) return;

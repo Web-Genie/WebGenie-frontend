@@ -18,9 +18,9 @@ const SubToolbarTypeProvider = ({ children }) => {
   const [localImageSrc, setLocalImageSrc] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [hasImageUrl, setHasImageUrl] = useState(false);
-
-  const [hasClearCanvas, setHasClearCanvas] = useState(false);
-
+  const [clearCanvasBackgroundColor, setClearCanavasBackgroundColor] =
+    useState("");
+  const [isCanvasClear, setIsCavasClear] = useState(false);
   const {
     inputValue,
     shouldEditValue,
@@ -54,8 +54,10 @@ const SubToolbarTypeProvider = ({ children }) => {
         setButtonColor,
         localImageSrc,
         setLocalImageSrc,
-        hasClearCanvas,
-        setHasClearCanvas,
+        clearCanvasBackgroundColor,
+        setClearCanavasBackgroundColor,
+        isCanvasClear,
+        setIsCavasClear,
         imageUrl,
         setImageUrl,
         hasImageUrl,
