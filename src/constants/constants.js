@@ -46,3 +46,7 @@ export const FONT_TYPE = [
 ];
 
 export const TEXT_ALIGN = ["left", "center", "right"];
+export const REQUEST_DATA_INFORMATION_USER = "USER";
+export const REQUEST_DATA_INFORMATION_EDITOR = "EDITOR";
+export const EDITOR = "EDITOR";
+export const ID_TOKEN = "idToken";

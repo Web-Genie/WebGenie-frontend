@@ -1,12 +1,17 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-const useInput = () => {
+const useInput = (currentLocationBeingUsed, value) => {
   const [inputValue, setInputValue] = useState("https://");
   const [shouldEditValue, setShouldEditValue] = useState(false);
   const [shouldAddLink, setShouldAddLink] = useState(false);
+  const [userTitle, setUserTitle] = useState();
 
   const handleInputChange = (event) => {
-    setInputValue(event.target.value);
+    if (currentLocationBeingUsed === "editor") {
+      setUserTitle(event.target.value);
+    } else {
+      setInputValue(event.target.value);
+    }
   };
 
   const toggleInputChange = useCallback(() => {
@@ -18,6 +23,17 @@ const useInput = () => {
     setShouldAddLink(true);
   }, []);
 
+  useEffect(() => {
+    if (!value) return;
+    if (shouldEditValue) return;
+
+    if (value.result[0]) {
+      setUserTitle(value.result[0].title);
+    } else {
+      setUserTitle(value.result.title);
+    }
+  }, [value]);
+
   return {
     inputValue,
     shouldEditValue,
@@ -26,6 +42,8 @@ const useInput = () => {
     shouldAddLink,
     toggleAddLink,
     setShouldAddLink,
+    userTitle,
+    setUserTitle,
   };
 };
 

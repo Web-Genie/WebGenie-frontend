@@ -55,10 +55,12 @@ const NavigationContainer = styled.div`
     display: flex;
     font-size: 24px;
     margin-left: 25px;
+    transition: all 0.2s ease;
     cursor: pointer;
 
     :hover {
       opacity: 0.6;
+      transform: scale(1.2);
     }
   }
 
@@ -71,6 +73,20 @@ const NavigationContainer = styled.div`
     display: flex;
     align-items: center;
     margin-left: 30px;
+  }
+
+  a {
+    display: flex;
+    margin-left: 25px;
+    color: black;
+    font-size: 24px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+
+    :hover {
+      opacity: 0.6;
+      transform: scale(1.2);
+    }
   }
 `;
 
