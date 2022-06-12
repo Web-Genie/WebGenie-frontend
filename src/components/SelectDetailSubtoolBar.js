@@ -48,7 +48,7 @@ const SelectBody = styled.div`
     font-weight: 400;
     padding: ${(props) => (props.className === "font" ? "1px" : "8px")};
     border: ${(props) =>
-    props.className === "font" ? null : "1px solid #e5e5e5"};
+      props.className === "font" ? null : "1px solid #e5e5e5"};
     margin-left: ${(props) => (props.className === "font" ? null : "12px")};
     cursor: pointer;
   }

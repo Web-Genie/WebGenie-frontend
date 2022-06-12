@@ -7,6 +7,7 @@ const InputFieldContext = createContext(undefined);
 
 const SubToolbarTypeProvider = ({ children }) => {
   const [subToolbarType, setSubToolbarType] = useState();
+<<<<<<< HEAD
   const [fontSize, setFontSize] = useState("");
   const [isBold, setIsBold] = useState(false);
   const [isItalic, setIsItalic] = useState(false);
@@ -17,6 +18,8 @@ const SubToolbarTypeProvider = ({ children }) => {
   const [buttonColor, setButtonColor] = useState("");
   const [imageSrc, setImageSrc] = useState("");
 
+=======
+>>>>>>> origin/main
   const {
     inputValue,
     shouldEditValue,
@@ -28,6 +31,7 @@ const SubToolbarTypeProvider = ({ children }) => {
   } = useInput();
 
   return (
+<<<<<<< HEAD
     <SubToolbarContext.Provider
       value={{
         subToolbarType,
@@ -52,6 +56,9 @@ const SubToolbarTypeProvider = ({ children }) => {
         setImageSrc,
       }}
     >
+=======
+    <SubToolbarContext.Provider value={{ subToolbarType, setSubToolbarType }}>
+>>>>>>> origin/main
       <InputFieldContext.Provider
         value={{
           inputValue,
@@ -61,8 +68,11 @@ const SubToolbarTypeProvider = ({ children }) => {
           shouldAddLink,
           toggleAddLink,
           setShouldAddLink,
+<<<<<<< HEAD
           imageSrc,
           setImageSrc,
+=======
+>>>>>>> origin/main
         }}
       >
         {children}

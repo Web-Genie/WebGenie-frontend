@@ -1,21 +1,40 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaArrowLeft, FaRegEdit } from "react-icons/fa";
 import styled from "styled-components";
 
-import mockImage from "../assets/mockData.png";
+import {
+  ID_TOKEN,
+  REQUEST_DATA_INFORMATION_EDITOR,
+} from "../constants/constants";
+import { UserContext } from "../context/userContext";
+import useAxios from "../hooks/useAxios";
 import useInput from "../hooks/useInput";
+import useLogout from "../hooks/useLogout";
 import useModal from "../hooks/useModal";
 import Button from "./Button";
 import EditorTemplate from "./EditorTemplate";
 import Header from "./Header";
 import LeftToolbar from "./LeftToolbar";
+import Loader from "./Loader";
 import Modal from "./Modal";
 import ModalContent from "./ModalContent";
 import Navigation from "./Navigation";
 import RightToolbar from "./RightToolbar";
 
 function Editor() {
-  const { shouldEditValue, handleInputChange, toggleInputChange } = useInput();
+  const { editor } = useContext(UserContext);
+  const { handleLogout } = useLogout();
+  let currentEditorId = window.location.pathname
+    .split("/")
+    .filter((item) => item !== "editor")
+    .join("");
+  const {
+    userTitle,
+    shouldEditValue,
+    handleInputChange,
+    toggleInputChange,
+    setUserTitle,
+  } = useInput("editor", editor);
   const [shouldShowWideView, setShouldShowWideView] = useState(false);
   const {
     shouldDisplayModal,
@@ -23,8 +42,7 @@ function Editor() {
     publishModalToggle,
     closeModal,
     message,
-  } = useModal();
-
+  } = useModal(userTitle, currentEditorId);
   const toggleWideView = () => {
     setShouldShowWideView((state) => !state);
   };
@@ -45,6 +63,33 @@ function Editor() {
   const handleImgBlur = (event) => {
     setImageBlur(event.target.value);
   };
+  const { fetchData } = useAxios(
+    {
+      method: "get",
+      url: `/websites/${currentEditorId}`,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem(ID_TOKEN)}`,
+        params: currentEditorId,
+      },
+    },
+    ID_TOKEN,
+    REQUEST_DATA_INFORMATION_EDITOR
+  );
+
+  useEffect(() => {
+    if (editor) return;
+
+    setUserTitle(null);
+    fetchData();
+  }, []);
+
+  if (!editor) {
+    return <Loader />;
+  }
+
+  if (!userTitle && !shouldEditValue) {
+    return <Loader />;
+  }
 
   return (
     <>
@@ -55,22 +100,28 @@ function Editor() {
             primaryButtonText={message.proceedButtonText}
             secondaryButtonText={message.denyButtonText}
             modalIconState={message.iconType}
+            currentTitle={userTitle}
+            params={message.params}
+            requestType={message.requestType}
             handleClick={closeModal}
           />
         </Modal>
       )}
       <Header>
         <h1>WebGenie</h1>
-        <img src={mockImage} />
+        <LogoutSection>
+          <img src={localStorage.getItem("avatar")} />
+          <Button handleClick={handleLogout}>logout</Button>
+        </LogoutSection>
       </Header>
       <Navigation>
         <div className="editorNavbar">
-          <span>
+          <a href="/">
             <FaArrowLeft />
-          </span>
+          </a>
           <div className="titleNavbar">
             {!shouldEditValue ? (
-              <h3>{"title from database"}</h3>
+              <h3>{userTitle}</h3>
             ) : (
               <input onChange={handleInputChange} />
             )}
@@ -92,20 +143,9 @@ function Editor() {
         </div>
       </Navigation>
       <EditorBody>
-        {!shouldShowWideView && (
-          <LeftToolbar changeBackground={setBackgroundColor} />
-        )}
-        <EditorTemplate
-          displayWideView={shouldShowWideView}
-          backgroundColorName={backgroundColor}
-        />
-        {!shouldShowWideView && (
-          <RightToolbar
-            onChangeOpacity={handleImgOpacity}
-            onChangeBrightness={handleImgBrightness}
-            onChangeBlur={handleImgBlur}
-          />
-        )}
+        {!shouldShowWideView && <LeftToolbar />}
+        <EditorTemplate displayWideView={shouldShowWideView} />
+        {!shouldShowWideView && <RightToolbar />}
       </EditorBody>
     </>
   );
@@ -118,6 +158,13 @@ const EditorBody = styled.div`
   height: 84vh;
   overflow: hidden;
   background-color: #f5f5f5;
+`;
+
+const LogoutSection = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 30px;
 `;
 
 export default Editor;
