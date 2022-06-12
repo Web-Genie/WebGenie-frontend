@@ -35,6 +35,7 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
     fontSize,
     setFontSize,
     imageSrc,
+    hasClearCanvas,
   } = useContext(SubToolbarContext);
 
   useEffect(() => {
@@ -98,6 +99,10 @@ function EditorTemplate({ displayWideView, backgroundColorName }) {
     backgroundColorName,
     imageSrc,
   ]);
+
+  if (hasClearCanvas) {
+    parentRef.current.innerHTML = "";
+  }
 
   return (
     <EditorTemplateBody

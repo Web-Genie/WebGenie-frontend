@@ -16,6 +16,7 @@ const SubToolbarTypeProvider = ({ children }) => {
   const [colorValue, setColorValue] = useState("");
   const [buttonColor, setButtonColor] = useState("");
   const [imageSrc, setImageSrc] = useState("");
+  const [hasClearCanvas, setHasClearCanvas] = useState(false);
 
   const {
     inputValue,
@@ -50,6 +51,8 @@ const SubToolbarTypeProvider = ({ children }) => {
         setButtonColor,
         imageSrc,
         setImageSrc,
+        hasClearCanvas,
+        setHasClearCanvas,
       }}
     >
       <InputFieldContext.Provider
