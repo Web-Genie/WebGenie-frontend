@@ -1,13 +1,12 @@
 import PropTypes from "prop-types";
 import { FcGlobe, FcMultipleInputs, FcQuestions } from "react-icons/fc";
 import { MdClose } from "react-icons/md";
-
-import Button from "./Button";
-import Modal from "./Modal";
 import styled from "styled-components";
 
 import { ID_TOKEN } from "../constants/constants";
 import useAxios from "../hooks/useAxios";
+import Button from "./Button";
+import Modal from "./Modal";
 
 function ModalContent({
   modalText = "",
@@ -22,6 +21,16 @@ function ModalContent({
     question: <FcQuestions />,
     deploy: <FcGlobe />,
     save: <FcMultipleInputs />,
+  };
+
+  const { fetchData } = useAxios(
+    params,
+    localStorage.getItem(ID_TOKEN),
+    requestType
+  );
+
+  const handleTitleInput = (event) => {
+    params.data.title = event.target.value;
   };
 
   return (
@@ -54,6 +63,7 @@ ModalContent.propTypes = {
   modalIconState: PropTypes.string.isRequired,
   handleClick: PropTypes.func.isRequired,
 };
+
 const NewSiteModalInputContainer = styled.p`
   display: flex;
   justify-content: center;

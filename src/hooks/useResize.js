@@ -8,12 +8,7 @@ import { getElementValue } from "../utils";
 
 function useResize() {
   const [isResizing, setIsResizing] = useState(false);
-<<<<<<< HEAD
-  const { setSubToolbarType, setSubToolbarValue, subToolbarValue } =
-    useContext(SubToolbarContext);
-=======
   const { setSubToolbarType } = useContext(SubToolbarContext);
->>>>>>> origin/main
   const { inputValue, shouldAddLink, setShouldAddLink } =
     useContext(InputFieldContext);
 
@@ -80,11 +75,8 @@ function useResize() {
     }
 
     if (parentRef.current === null && event.target.tagName === "DIV") {
-<<<<<<< HEAD
-=======
       parentRef.current = event.target;
 
->>>>>>> origin/main
       if (targetRef.current) {
         setSubToolbarType(targetRef.current.tagName);
       }

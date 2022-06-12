@@ -143,9 +143,20 @@ function Editor() {
         </div>
       </Navigation>
       <EditorBody>
-        {!shouldShowWideView && <LeftToolbar />}
-        <EditorTemplate displayWideView={shouldShowWideView} />
-        {!shouldShowWideView && <RightToolbar />}
+        {!shouldShowWideView && (
+          <LeftToolbar changeBackground={setBackgroundColor} />
+        )}
+        <EditorTemplate
+          displayWideView={shouldShowWideView}
+          backgroundColorName={backgroundColor}
+        />
+        {!shouldShowWideView && (
+          <RightToolbar
+            onChangeOpacity={handleImgOpacity}
+            onChangeBrightness={handleImgBrightness}
+            onChangeBlur={handleImgBlur}
+          />
+        )}
       </EditorBody>
     </>
   );

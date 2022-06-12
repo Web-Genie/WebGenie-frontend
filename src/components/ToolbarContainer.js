@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 import PropTypes from "prop-types";
-=======
->>>>>>> origin/main
 import React from "react";
 import styled from "styled-components";
 
@@ -9,13 +6,10 @@ function ToolbarContainer({ children }) {
   return <ToolbarContainerBody>{children}</ToolbarContainerBody>;
 }
 
-<<<<<<< HEAD
 ToolbarContainer.propTypes = {
   children: PropTypes.array,
 };
 
-=======
->>>>>>> origin/main
 const ToolbarContainerBody = styled.div`
   display: flex;
   flex-direction: column;
@@ -129,7 +123,6 @@ const ToolbarContainerBody = styled.div`
   .imageUploadingChoice {
     display: flex;
     justify-content: space-evenly;
-<<<<<<< HEAD
     /* justify-content: space-between; */
     /* margin-right: 2px; */
   }
@@ -163,8 +156,6 @@ const ToolbarContainerBody = styled.div`
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     border: 0;
-=======
->>>>>>> origin/main
   }
 
   .shapeChoices {

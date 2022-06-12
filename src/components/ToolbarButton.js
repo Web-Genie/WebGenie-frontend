@@ -1,31 +1,21 @@
-<<<<<<< HEAD
 import PropTypes from "prop-types";
-=======
->>>>>>> origin/main
 import React from "react";
 import styled from "styled-components";
 
 function ToolbarButton({ children, name, handleClick }) {
   return (
-<<<<<<< HEAD
     <ToolbarButtonBody name={name} onClick={handleClick}>
-=======
-    <ToolbarButtonBody onClick={handleClick} name={name}>
->>>>>>> origin/main
       {children}
     </ToolbarButtonBody>
   );
 }
 
-<<<<<<< HEAD
 ToolbarButton.propTypes = {
   children: PropTypes.any,
   name: PropTypes.string,
   handleClick: PropTypes.func,
 };
 
-=======
->>>>>>> origin/main
 const ToolbarButtonBody = styled.button`
   display: flex;
   align-items: center;
