@@ -55,7 +55,7 @@ function ModalContent({
         </NewSiteModalInputContainer>
       )}
       <Button
-        handleClick={goHomepage ? sendUserToHomepage : fetchData}
+        handleClick={shouldGoHomepage ? sendUserToHomepage : fetchData}
         mainButton={true}
       >
         {primaryButtonText}
