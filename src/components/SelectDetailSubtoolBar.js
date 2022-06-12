@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 
-function SelectDetailSubtoolBar({ detailValue, className, handleImgOpacity }) {
+import { InputFieldContext } from "../context/subToolbarContext";
+
+function SelectDetailSubtoolBar({ detailValue, className }) {
+  const { handleInputChange } = useContext(InputFieldContext);
+
   return (
     <SelectBody className={className}>
-      <select className={className} onChange={handleImgOpacity}>
+      <select className={className} onChange={handleInputChange}>
         {detailValue &&
           detailValue.map((value) => (
             <option key={value} value={value}>
@@ -32,7 +36,7 @@ const SelectBody = styled.div`
     font-weight: 400;
     padding: ${(props) => (props.className === "font" ? "1px" : "8px")};
     border: ${(props) =>
-    props.className === "font" ? null : "1px solid #e5e5e5"};
+      props.className === "font" ? null : "1px solid #e5e5e5"};
     margin-left: ${(props) => (props.className === "font" ? null : "12px")};
     cursor: pointer;
   }
