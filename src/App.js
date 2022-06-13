@@ -18,7 +18,6 @@ function App() {
         <Route path="/" element={isLoggedIn ? <UserWebsites /> : <Login />} />
         <Route path="/editor/:id" element={<Editor />} />
         <Route path="/creatingnewwebsite" element={<Loader />} />
-        <Route path="/*" element={<ErrorSection />} />
         <Route path="/userwebsite/:id/deployed" element={<DeployedWebsite />} />
         <Route path="/*" element={<ErrorSection />} />
       </Routes>
