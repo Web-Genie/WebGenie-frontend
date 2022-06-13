@@ -1,5 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 
+import { FONT_TYPE } from "../constants/constants";
 import {
   InputFieldContext,
   SubToolbarContext,
@@ -19,6 +20,8 @@ function useResize() {
     setShouldAddLink,
     buttonRadius,
     buttonOpacity,
+    fontSize,
+    fontType,
   } = useContext(InputFieldContext);
 
   let leftOrRightDirection = "";
@@ -228,6 +231,18 @@ function useResize() {
       targetRef.current.style.opacity = buttonOpacity;
     }
   }, [buttonRadius, buttonOpacity]);
+
+  useEffect(() => {
+    if (!targetRef.current) return;
+
+    if (FONT_TYPE.includes(fontType)) {
+      targetRef.current.style.fontFamily = fontType;
+    }
+
+    if (fontSize) {
+      targetRef.current.style.fontSize = `${fontSize}px`;
+    }
+  }, [fontSize, fontType]);
 
   return [handleResizeTarget, isResizing, setIsResizing];
 }

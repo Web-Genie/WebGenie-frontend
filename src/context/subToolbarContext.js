@@ -19,6 +19,7 @@ const SubToolbarTypeProvider = ({ children }) => {
   const [clearCanvasBackgroundColor, setClearCanavasBackgroundColor] =
     useState("");
   const [isCanvasClear, setIsCavasClear] = useState(false);
+
   const {
     inputValue,
     shouldEditValue,
@@ -31,6 +32,10 @@ const SubToolbarTypeProvider = ({ children }) => {
     setButtonRadius,
     buttonOpacity,
     setButtonOpacity,
+    fontSize,
+    setFontSize,
+    fontType,
+    setFontType,
   } = useInput();
 
   return (
@@ -75,6 +80,10 @@ const SubToolbarTypeProvider = ({ children }) => {
           setButtonRadius,
           buttonOpacity,
           setButtonOpacity,
+          fontSize,
+          setFontSize,
+          fontType,
+          setFontType,
         }}
       >
         {children}

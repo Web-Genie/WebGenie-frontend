@@ -29,10 +29,15 @@ function TextDetailSubtoolBar() {
     <div className="choiceContainer">
       <SubtoolbarTitle title="Edit text" />
       <div className="textDetailChoice">
-        <SelectDetail detailValue={FONT_TYPE} className="font" />
+        <SelectDetail
+          detailValue={FONT_TYPE}
+          className="fontType"
+          type="font"
+        />
         <SelectDetail
           detailValue={SIZE_RADIUS_AND_BRIGHTNESS_RANGE}
-          className="font"
+          className="fontSize"
+          type="font"
         />
       </div>
       <div className="detailContainer">
