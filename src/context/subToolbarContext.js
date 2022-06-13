@@ -6,7 +6,20 @@ const SubToolbarContext = createContext(undefined);
 const InputFieldContext = createContext(undefined);
 
 const SubToolbarTypeProvider = ({ children }) => {
-  const [subToolbarType, setSubToolbarType] = useState(null);
+  const [subToolbarType, setSubToolbarType] = useState();
+  const [isBold, setIsBold] = useState(false);
+  const [isItalic, setIsItalic] = useState(false);
+  const [isUnderLine, setIsUnderLine] = useState(false);
+  const [textAlign, setTextAlign] = useState("");
+  const [colorValue, setColorValue] = useState("");
+  const [buttonColor, setButtonColor] = useState("");
+  const [localImageSrc, setLocalImageSrc] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [hasImageUrl, setHasImageUrl] = useState(false);
+  const [clearCanvasBackgroundColor, setClearCanavasBackgroundColor] =
+    useState("");
+  const [isCanvasClear, setIsCavasClear] = useState(false);
+
   const {
     inputValue,
     shouldEditValue,
@@ -19,6 +32,10 @@ const SubToolbarTypeProvider = ({ children }) => {
     setButtonRadius,
     buttonOpacity,
     setButtonOpacity,
+    fontSize,
+    setFontSize,
+    fontType,
+    setFontType,
   } = useInput();
 
   return (
@@ -26,6 +43,28 @@ const SubToolbarTypeProvider = ({ children }) => {
       value={{
         subToolbarType,
         setSubToolbarType,
+        isBold,
+        setIsBold,
+        isItalic,
+        setIsItalic,
+        isUnderLine,
+        setIsUnderLine,
+        textAlign,
+        setTextAlign,
+        colorValue,
+        setColorValue,
+        buttonColor,
+        setButtonColor,
+        localImageSrc,
+        setLocalImageSrc,
+        clearCanvasBackgroundColor,
+        setClearCanavasBackgroundColor,
+        isCanvasClear,
+        setIsCavasClear,
+        imageUrl,
+        setImageUrl,
+        hasImageUrl,
+        setHasImageUrl,
       }}
     >
       <InputFieldContext.Provider
@@ -41,6 +80,10 @@ const SubToolbarTypeProvider = ({ children }) => {
           setButtonRadius,
           buttonOpacity,
           setButtonOpacity,
+          fontSize,
+          setFontSize,
+          fontType,
+          setFontType,
         }}
       >
         {children}

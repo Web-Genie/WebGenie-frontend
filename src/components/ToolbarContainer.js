@@ -1,9 +1,14 @@
+import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
 function ToolbarContainer({ children }) {
   return <ToolbarContainerBody>{children}</ToolbarContainerBody>;
 }
+
+ToolbarContainer.propTypes = {
+  children: PropTypes.array,
+};
 
 const ToolbarContainerBody = styled.div`
   display: flex;
@@ -120,47 +125,37 @@ const ToolbarContainerBody = styled.div`
     justify-content: space-evenly;
   }
 
-  .shapeChoices {
+  .filebox label {
     display: flex;
-    justify-content: space-evenly;
-  }
-
-  .square {
-    width: 42px;
-    height: 42px;
-    margin-right: 10px;
-    background-color: #98a2b3;
+    padding: 10px 17px;
+    margin-right: 7px;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: 6px;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #fdfdfd;
     cursor: pointer;
-
+    font-weight: 400;
     :hover {
-      opacity: 0.5;
+      opacity: 0.7;
     }
   }
 
-  .circle {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background-color: #98a2b3;
-    cursor: pointer;
-
-    :hover {
-      opacity: 0.5;
-    }
+  .filebox input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
   }
 
-  .triangle {
-    width: 0;
-    height: 0;
-    border-left: 27px solid transparent;
-    border-right: 27px solid transparent;
-    border-bottom: 42px solid #98a2b3;
-    margin-left: 10px;
-    cursor: pointer;
-
-    :hover {
-      opacity: 0.5;
-    }
+  .localImage {
+    margin-right: 2.2px;
   }
 
   .samepleButton {
