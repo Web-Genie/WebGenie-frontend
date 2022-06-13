@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 
+import DeployedWebsite from "./components/DeployedWebsite";
 import Editor from "./components/Editor";
 import ErrorSection from "./components/ErrorSection";
 import Loader from "./components/Loader";
@@ -17,6 +18,8 @@ function App() {
         <Route path="/" element={isLoggedIn ? <UserWebsites /> : <Login />} />
         <Route path="/editor/:id" element={<Editor />} />
         <Route path="/creatingnewwebsite" element={<Loader />} />
+        <Route path="/*" element={<ErrorSection />} />
+        <Route path="/userwebsite/:id/deployed" element={<DeployedWebsite />} />
         <Route path="/*" element={<ErrorSection />} />
       </Routes>
     </>
