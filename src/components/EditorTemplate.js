@@ -96,12 +96,11 @@ function EditorTemplate({
 
     if (localImageSrc) {
       const newImage = document.createElement("img");
-      const imageSrc = URL.createObjectURL(localImageSrc);
 
       newImage.setAttribute("id", "img");
-      newImage.setAttribute("alt", `${imageSrc}`);
+      newImage.setAttribute("alt", `${localImageSrc}`);
       newImage.setAttribute("draggable", "false");
-      newImage.setAttribute("src", `${imageSrc}`);
+      newImage.setAttribute("src", `${localImageSrc}`);
       parentRef.current.appendChild(newImage);
 
       setLocalImageSrc("");

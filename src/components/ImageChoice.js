@@ -1,8 +1,10 @@
+import axios from "axios";
 import { useContext, useState } from "react";
 import { FaCloudUploadAlt, FaImage } from "react-icons/fa";
 
 import { SubToolbarContext } from "../context/subToolbarContext";
 import useModal from "../hooks/useModal";
+import api from "../services/api";
 import Modal from "./Modal";
 import ModalContent from "./ModalContent";
 import ToolbarButton from "./ToolbarButton";
@@ -12,8 +14,18 @@ function ImageChoice() {
   const { shouldDisplayModal, closeModal, imageURLModalToggle, message } =
     useModal();
 
-  const handleImage = (event) => {
-    setLocalImageSrc(event.target.files[0]);
+  const handleImage = async (event) => {
+    const formData = new FormData();
+    formData.append("imageFile", event.target.files[0]);
+
+    const location = await api.post("/image", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    setLocalImageSrc(location.data.location);
+
     event.target.value = "";
   };
 
