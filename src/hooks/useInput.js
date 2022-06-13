@@ -11,7 +11,6 @@ const useInput = (currentLocationBeingUsed, value) => {
   const [fontType, setFontType] = useState("");
 
   const handleInputChange = (event) => {
-    console.log(event.target.className, event.target.value);
     if (currentLocationBeingUsed === "editor") {
       setUserTitle(event.target.value);
     } else if (event.target.className === "buttonRadius") {
