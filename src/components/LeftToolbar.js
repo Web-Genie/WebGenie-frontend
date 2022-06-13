@@ -15,7 +15,7 @@ function LeftToolbar({ changeBackground }) {
         <TextChoice />
         <ImageChoice />
         <ButtonChoice />
-        <BackgroundChoice changeBackground={changeBackground} />
+        <BackgroundChoice handleBackgroundColor={changeBackground} />
       </ToolbarContainer>
     </EditorToolbar>
   );

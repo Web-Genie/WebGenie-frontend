@@ -9,7 +9,6 @@ import ToolbarButton from "./ToolbarButton";
 
 function ImageChoice() {
   const { setLocalImageSrc } = useContext(SubToolbarContext);
-  const [shouldShowWideView, setShouldShowWideView] = useState(false);
   const { shouldDisplayModal, closeModal, imageURLModalToggle, message } =
     useModal();
 

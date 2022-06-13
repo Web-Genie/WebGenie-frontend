@@ -2,9 +2,9 @@ import { FaImage, FaPaintRoller } from "react-icons/fa";
 
 import ToolbarButton from "./ToolbarButton";
 
-function BackgroundChoice({ changeBackground }) {
+function BackgroundChoice({ handleBackgroundColor }) {
   const handleBackgroundColorChange = (event) => {
-    changeBackground(event.target.value);
+    handleBackgroundColor(event.target.value);
   };
 
   return (

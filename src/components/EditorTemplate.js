@@ -42,13 +42,10 @@ function EditorTemplate({
     setFontSize,
     localImageSrc,
     setLocalImageSrc,
-    hasClearCanvas,
     hasImageUrl,
     imageUrl,
     setImageUrl,
     setHasImageUrl,
-    clearCanvasBackgroundColor,
-    setClearCanavasBackgroundColor,
     isCanvasClear,
     setIsCavasClear,
   } = useContext(SubToolbarContext);
@@ -92,9 +89,9 @@ function EditorTemplate({
       }
     }
 
-    if (clearCanvasBackgroundColor === "white") {
-      parentRef.current.style.backgroundColor = "white";
+    if (isCanvasClear) {
       parentRef.current.innerHTML = "";
+      setIsCavasClear(false);
     }
 
     if (localImageSrc) {
@@ -136,11 +133,8 @@ function EditorTemplate({
     isCanvasClear,
   ]);
 
-  if (
-    backgroundColorName !== "" ||
-    (backgroundColorName === "" && targetRef.current)
-  ) {
-    parentRef.current.style.background = backgroundColorName;
+  if (backgroundColorName) {
+    targetRef.current.style.backgroundColor = backgroundColorName;
   }
 
   useEffect(() => {

@@ -76,12 +76,7 @@ function ModalContent({
         </ImgURLMocalInputContainer>
       )}
       {imageUrl ? (
-        <Button
-          handleClick={
-            !modalIconState && !requestType ? insertImage : fetchData
-          }
-          mainButton={true}
-        >
+        <Button handleClick={insertImage} mainButton={true}>
           {primaryButtonText}
         </Button>
       ) : (
