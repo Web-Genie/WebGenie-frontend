@@ -2,8 +2,8 @@ import { createProxyMiddleware } from "http-proxy-middleware";
 
 module.exports = function (app) {
   app.use(
-    createProxyMiddleware("/api", {
-      target: "http://localhost:5000",
+    createProxyMiddleware("/", {
+      target: "http://webgenieserver-dev.ap-northeast-2.elasticbeanstalk.com",
       changeOrigin: true,
     })
   );
