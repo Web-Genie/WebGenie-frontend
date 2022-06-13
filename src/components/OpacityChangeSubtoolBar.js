@@ -11,6 +11,7 @@ function OpacityEditorSubtoolBar({ onChangeOpacity }) {
       <SubtoolbarTitle title="Edit Opacity" />
       <SelectDetail
         title="opacity"
+        className="opacity"
         detailValue={OPACITY_RANGE}
         onChange={onChangeOpacity}
       />

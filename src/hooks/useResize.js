@@ -1,5 +1,4 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { MdClose } from "react-icons/md";
 
 import {
   InputFieldContext,
@@ -11,10 +10,16 @@ import { generateEditorDeleteElement } from "../utils/index";
 function useResize() {
   const parentRef = useRef(null);
   const targetRef = useRef(null);
+  const [shouldEditText, setShouldEditText] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
   const { setSubToolbarType } = useContext(SubToolbarContext);
-  const { inputValue, shouldAddLink, setShouldAddLink } =
-    useContext(InputFieldContext);
+  const {
+    inputValue,
+    shouldAddLink,
+    setShouldAddLink,
+    buttonRadius,
+    buttonOpacity,
+  } = useContext(InputFieldContext);
 
   let leftOrRightDirection = "";
   let oldPageX = 0;
@@ -22,6 +27,8 @@ function useResize() {
   let startY = null;
 
   const handleMouseMove = (event) => {
+    if (shouldEditText) return;
+
     let [currentElementWidth, currentElementHeight] = getElementValue(
       targetRef.current
     );
@@ -68,6 +75,17 @@ function useResize() {
     }
   };
 
+  const editText = (event) => {
+    if (!shouldEditText) {
+      event.target.previousSibling.contentEditable = true;
+      event.target.previousSibling.focus();
+    } else {
+      event.target.previousSibling.contentEditable = false;
+    }
+
+    setShouldEditText((state) => !state);
+  };
+
   const handleResizeTarget = (event) => {
     startX = event.clientX;
     startY = event.clientY;
@@ -89,9 +107,11 @@ function useResize() {
     if (targetRef.current && event.target === targetRef.current) {
       if (targetRef.current.tagName === "BUTTON") {
         targetRef.current.style.border = "1px solid #e5e5e5";
+        targetRef.current.previousSibling.remove();
       } else {
         targetRef.current.style.border = "none";
-        targetRef.current.childNodes[1].remove();
+        targetRef.current.previousSibling.remove();
+        targetRef.current.nextSibling.remove();
       }
       setSubToolbarType(targetRef.current.tagName);
 
@@ -104,14 +124,23 @@ function useResize() {
     if (!targetRef.current && event.target.tagName !== "DIV") {
       targetRef.current = event.target;
 
-      const closeButton = generateEditorDeleteElement(targetRef.current);
-
+      const deleteButton = generateEditorDeleteElement(
+        targetRef.current,
+        "&#x2715;"
+      );
+      const editTextButton = generateEditorDeleteElement(
+        targetRef.current,
+        "&#x270E;",
+        true
+      );
+      editTextButton.onclick = editText;
       targetRef.current.style.border = "2px dashed black";
 
-      targetRef.current.appendChild(closeButton);
+      targetRef.current.insertAdjacentElement("beforebegin", deleteButton);
 
       if (targetRef.current.tagName !== "BUTTON") {
         targetRef.current.style.padding = "7px 10px";
+        targetRef.current.insertAdjacentElement("afterend", editTextButton);
       }
 
       targetRef.current.onmousedown = handleMouseDown;
@@ -131,22 +160,40 @@ function useResize() {
       event.target !== targetRef.current &&
       event.target.tagName !== "DIV"
     ) {
-      const closeButton = generateEditorDeleteElement(targetRef.current);
-
       if (targetRef.current.tagName === "BUTTON") {
         targetRef.current.style.border = "1px solid #e5e5e5";
+
+        if (targetRef.current.previousSibling) {
+          targetRef.current.previousSibling.remove();
+        }
       } else {
         targetRef.current.style.border = "none";
-        targetRef.current.childNodes[1].remove();
+
+        if (targetRef.current.previousSibling) {
+          targetRef.current.previousSibling.remove();
+          targetRef.current.nextSibling.remove();
+        }
       }
 
       targetRef.current = event.target;
 
+      const deleteButton = generateEditorDeleteElement(
+        targetRef.current,
+        "&#x2715;"
+      );
+      const editTextButton = generateEditorDeleteElement(
+        targetRef.current,
+        "&#x270E;",
+        true
+      );
+
+      editTextButton.onclick = editText;
       targetRef.current.style.border = "2px dashed black";
-      targetRef.current.appendChild(closeButton);
+      targetRef.current.insertAdjacentElement("beforebegin", deleteButton);
 
       if (targetRef.current.tagName !== "BUTTON") {
         targetRef.current.style.padding = "7px 10px";
+        targetRef.current.insertAdjacentElement("afterend", editTextButton);
       }
 
       targetRef.current.onmousedown = handleMouseDown;
@@ -172,6 +219,15 @@ function useResize() {
 
     setShouldAddLink(false);
   }, [shouldAddLink]);
+
+  useEffect(() => {
+    if (!targetRef.current) return;
+
+    if (targetRef.current.tagName === "BUTTON") {
+      targetRef.current.style.borderRadius = `${buttonRadius}px`;
+      targetRef.current.style.opacity = buttonOpacity;
+    }
+  }, [buttonRadius, buttonOpacity]);
 
   return [handleResizeTarget, isResizing, setIsResizing];
 }

@@ -1,19 +1,14 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 
-import { SubToolbarContext } from "../context/subToolbarContext";
+import { InputFieldContext } from "../context/subToolbarContext";
 
-function SelectDetailSubtoolBar({ detailValue, className, handleImgOpacity }) {
-  const { setFontSize, setFontType } = useContext(SubToolbarContext);
-
-  const handleOption = (event) => {
-    setFontSize(event.target.value);
-    setFontType(event.target.value);
-  };
+function SelectDetailSubtoolBar({ detailValue, className }) {
+  const { handleInputChange } = useContext(InputFieldContext);
 
   return (
     <SelectBody className={className}>
-      <select className={className} onChange={handleOption}>
+      <select className={className} onChange={handleInputChange}>
         {detailValue &&
           detailValue.map((value) => (
             <option key={value} value={value}>

@@ -7,12 +7,10 @@ const InputFieldContext = createContext(undefined);
 
 const SubToolbarTypeProvider = ({ children }) => {
   const [subToolbarType, setSubToolbarType] = useState();
-  const [fontSize, setFontSize] = useState("");
   const [isBold, setIsBold] = useState(false);
   const [isItalic, setIsItalic] = useState(false);
   const [isUnderLine, setIsUnderLine] = useState(false);
   const [textAlign, setTextAlign] = useState("");
-  const [fontType, setFontType] = useState("");
   const [colorValue, setColorValue] = useState("");
   const [buttonColor, setButtonColor] = useState("");
   const [localImageSrc, setLocalImageSrc] = useState("");
@@ -29,6 +27,10 @@ const SubToolbarTypeProvider = ({ children }) => {
     shouldAddLink,
     toggleAddLink,
     setShouldAddLink,
+    buttonRadius,
+    setButtonRadius,
+    buttonOpacity,
+    setButtonOpacity,
   } = useInput();
 
   return (
@@ -36,8 +38,6 @@ const SubToolbarTypeProvider = ({ children }) => {
       value={{
         subToolbarType,
         setSubToolbarType,
-        fontSize,
-        setFontSize,
         isBold,
         setIsBold,
         isItalic,
@@ -46,8 +46,6 @@ const SubToolbarTypeProvider = ({ children }) => {
         setIsUnderLine,
         textAlign,
         setTextAlign,
-        fontType,
-        setFontType,
         colorValue,
         setColorValue,
         buttonColor,
@@ -73,6 +71,10 @@ const SubToolbarTypeProvider = ({ children }) => {
           shouldAddLink,
           toggleAddLink,
           setShouldAddLink,
+          buttonRadius,
+          setButtonRadius,
+          buttonOpacity,
+          setButtonOpacity,
         }}
       >
         {children}
