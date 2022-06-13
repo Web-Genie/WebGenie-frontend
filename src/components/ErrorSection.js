@@ -28,7 +28,7 @@ function ErrorSection() {
             <h2>Page not found</h2>
           </div>
           <p>
-            The page you are looking for doesn’t exist or an other error
+            The page you are looking for doesn’t exist or another error
             occurred, go back to home page.
           </p>
           <div className="buttonContainer">
