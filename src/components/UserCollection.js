@@ -9,19 +9,43 @@ function UserCollection({ collections, toggleDeleteModal }) {
   return (
     <UserContents>
       {collections.length ? (
-        collections.map((userWebsites) => (
-          <UserWebsites key={userWebsites._id}>
-            <h3 value={userWebsites._id}>
-              <MdClose onClick={toggleDeleteModal} value={userWebsites._id} />
-            </h3>
-            <Link to={`/editor/${userWebsites._id}`}>
-              <img src={placeholderImage} />
-              <div>
-                <p>{userWebsites.title}</p>
-              </div>
-            </Link>
-          </UserWebsites>
-        ))
+        collections.map((userWebsites) => {
+          if (userWebsites.isDeployed) {
+            return (
+              <UserWebsites key={userWebsites._id}>
+                <h3 value={userWebsites._id}>
+                  <MdClose
+                    onClick={toggleDeleteModal}
+                    value={userWebsites._id}
+                  />
+                </h3>
+                <Link to={`/userwebsite/${userWebsites._id}/deployed`}>
+                  <img src={placeholderImage} />
+                  <div>
+                    <p>{userWebsites.title}</p>
+                  </div>
+                </Link>
+              </UserWebsites>
+            );
+          } else {
+            return (
+              <UserWebsites key={userWebsites._id}>
+                <h3 value={userWebsites._id}>
+                  <MdClose
+                    onClick={toggleDeleteModal}
+                    value={userWebsites._id}
+                  />
+                </h3>
+                <Link to={`/editor/${userWebsites._id}`}>
+                  <img src={placeholderImage} />
+                  <div>
+                    <p>{userWebsites.title}</p>
+                  </div>
+                </Link>
+              </UserWebsites>
+            );
+          }
+        })
       ) : (
         <EmptyCollectionContainer>
           <img src={emptyCollection} />
