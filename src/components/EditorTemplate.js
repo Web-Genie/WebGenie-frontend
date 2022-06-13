@@ -408,6 +408,7 @@ const EditorTemplateBody = styled.div`
       height: 20px;
       padding: 7px 25px;
       cursor: pointer;
+
       :hover {
         opacity: 0.5;
       }

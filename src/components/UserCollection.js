@@ -101,6 +101,7 @@ const UserWebsites = styled.div`
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.2s ease;
+
     :hover {
       transform: scale(1.2);
     }
