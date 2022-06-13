@@ -4,11 +4,17 @@ const useInput = (currentLocationBeingUsed, value) => {
   const [inputValue, setInputValue] = useState("https://");
   const [shouldEditValue, setShouldEditValue] = useState(false);
   const [shouldAddLink, setShouldAddLink] = useState(false);
+  const [buttonRadius, setButtonRadius] = useState(null);
+  const [buttonOpacity, setButtonOpacity] = useState(null);
   const [userTitle, setUserTitle] = useState();
 
   const handleInputChange = (event) => {
     if (currentLocationBeingUsed === "editor") {
       setUserTitle(event.target.value);
+    } else if (event.target.className === "buttonRadius") {
+      setButtonRadius(event.target.value);
+    } else if (event.target.className === "opacity") {
+      setButtonOpacity(event.target.value);
     } else {
       setInputValue(event.target.value);
     }
@@ -44,6 +50,9 @@ const useInput = (currentLocationBeingUsed, value) => {
     setShouldAddLink,
     userTitle,
     setUserTitle,
+    buttonRadius,
+    buttonOpacity,
+    setButtonOpacity,
   };
 };
 

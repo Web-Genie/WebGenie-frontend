@@ -13,8 +13,13 @@ function useResize() {
   const [shouldEditText, setShouldEditText] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
   const { setSubToolbarType } = useContext(SubToolbarContext);
-  const { inputValue, shouldAddLink, setShouldAddLink } =
-    useContext(InputFieldContext);
+  const {
+    inputValue,
+    shouldAddLink,
+    setShouldAddLink,
+    buttonRadius,
+    buttonOpacity,
+  } = useContext(InputFieldContext);
 
   let leftOrRightDirection = "";
   let oldPageX = 0;
@@ -102,6 +107,7 @@ function useResize() {
     if (targetRef.current && event.target === targetRef.current) {
       if (targetRef.current.tagName === "BUTTON") {
         targetRef.current.style.border = "1px solid #e5e5e5";
+        targetRef.current.previousSibling.remove();
       } else {
         targetRef.current.style.border = "none";
         targetRef.current.previousSibling.remove();
@@ -131,10 +137,10 @@ function useResize() {
       targetRef.current.style.border = "2px dashed black";
 
       targetRef.current.insertAdjacentElement("beforebegin", deleteButton);
-      targetRef.current.insertAdjacentElement("afterend", editTextButton);
 
       if (targetRef.current.tagName !== "BUTTON") {
         targetRef.current.style.padding = "7px 10px";
+        targetRef.current.insertAdjacentElement("afterend", editTextButton);
       }
 
       targetRef.current.onmousedown = handleMouseDown;
@@ -156,6 +162,10 @@ function useResize() {
     ) {
       if (targetRef.current.tagName === "BUTTON") {
         targetRef.current.style.border = "1px solid #e5e5e5";
+
+        if (targetRef.current.previousSibling) {
+          targetRef.current.previousSibling.remove();
+        }
       } else {
         targetRef.current.style.border = "none";
 
@@ -180,10 +190,10 @@ function useResize() {
       editTextButton.onclick = editText;
       targetRef.current.style.border = "2px dashed black";
       targetRef.current.insertAdjacentElement("beforebegin", deleteButton);
-      targetRef.current.insertAdjacentElement("afterend", editTextButton);
 
       if (targetRef.current.tagName !== "BUTTON") {
         targetRef.current.style.padding = "7px 10px";
+        targetRef.current.insertAdjacentElement("afterend", editTextButton);
       }
 
       targetRef.current.onmousedown = handleMouseDown;
@@ -209,6 +219,15 @@ function useResize() {
 
     setShouldAddLink(false);
   }, [shouldAddLink]);
+
+  useEffect(() => {
+    if (!targetRef.current) return;
+
+    if (targetRef.current.tagName === "BUTTON") {
+      targetRef.current.style.borderRadius = `${buttonRadius}px`;
+      targetRef.current.style.opacity = buttonOpacity;
+    }
+  }, [buttonRadius, buttonOpacity]);
 
   return [handleResizeTarget, isResizing, setIsResizing];
 }

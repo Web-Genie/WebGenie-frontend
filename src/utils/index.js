@@ -91,8 +91,14 @@ export const generateEditorDeleteElement = (
 
   const deleteCurrentElement = (event) => {
     event.stopPropagation();
-    event.target.nextSibling.remove();
-    event.target.nextElementSibling.remove();
+
+    if (event.target.nextSibling.tagName === "BUTTON") {
+      event.target.nextSibling.remove();
+    } else {
+      event.target.nextElementSibling.remove();
+      event.target.nextSibling.remove();
+    }
+
     event.target.remove();
   };
 
