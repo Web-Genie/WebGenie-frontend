@@ -93,6 +93,7 @@ export const generateEditorDeleteElement = (
     event.stopPropagation();
 
     if (event.target.nextSibling.tagName === "BUTTON") {
+      event.target.nextElementSibling.remove();
       event.target.nextSibling.remove();
     } else {
       event.target.nextElementSibling.remove();
