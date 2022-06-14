@@ -100,12 +100,25 @@ export const generateEditorDeleteElement = () => {
   return deleteNodeElement;
 };
 
+export const generatedImageElement = (localImage) => {
+  const newImage = document.createElement("img");
+
+  newImage.setAttribute("id", "img");
+  newImage.setAttribute("alt", `${localImage}`);
+  newImage.setAttribute("draggable", "false");
+  newImage.setAttribute("src", `${localImage}`);
+  newImage.style.position = "absolute";
+
+  return newImage;
+};
+
 export const saveLocalStorage = (location) => {
   if (localStorage.getItem("localImgSrc") === null) {
     localStorage.setItem("localImgSrc", "[]");
   }
-  const oldData = JSON.parse(localStorage.getItem("localImgSrc"));
-  oldData.push(location);
 
-  localStorage.setItem("localImgSrc", JSON.stringify(oldData));
+  const preData = JSON.parse(localStorage.getItem("localImgSrc"));
+  preData.push(location);
+
+  localStorage.setItem("localImgSrc", JSON.stringify(preData));
 };

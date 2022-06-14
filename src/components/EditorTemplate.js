@@ -6,6 +6,7 @@ import { SubToolbarContext } from "../context/subToolbarContext";
 import useDragAndDrop from "../hooks/useDragAndDrop";
 import useResize from "../hooks/useResize";
 import {
+  generatedImageElement,
   handleDragEnter,
   handleDragLeave,
   handleDragOver,
@@ -83,26 +84,14 @@ function EditorTemplate({
     }
 
     if (localImageSrc) {
-      const newImage = document.createElement("img");
-
-      newImage.setAttribute("id", "img");
-      newImage.setAttribute("alt", `${localImageSrc}`);
-      newImage.setAttribute("draggable", "false");
-      newImage.setAttribute("src", `${localImageSrc}`);
-      newImage.style.position = "absolute";
+      const newImage = generatedImageElement(localImageSrc);
       parentRef.current.appendChild(newImage);
 
       setLocalImageSrc("");
     }
 
     if (hasImageUrl) {
-      const newImage = document.createElement("img");
-
-      newImage.setAttribute("id", "img");
-      newImage.setAttribute("alt", imageUrl);
-      newImage.setAttribute("draggable", "false");
-      newImage.setAttribute("src", imageUrl);
-      newImage.style.position = "absolute";
+      const newImage = generatedImageElement(imageUrl);
       parentRef.current.appendChild(newImage);
 
       setImageUrl("");

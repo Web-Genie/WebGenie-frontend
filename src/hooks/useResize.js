@@ -50,10 +50,7 @@ function useResize() {
       oldPageX = mouseEvent.pageX;
     })(event);
 
-    if (
-      targetRef.current.tagName !== "BUTTON" &&
-      targetRef.current.tagName !== "IMG"
-    ) {
+    if (targetRef.current.tagName !== "BUTTON") {
       if (leftOrRightDirection === "right") {
         targetRef.current.style.fontSize = `${(currentElementFontSize += 1)}px`;
       } else if (leftOrRightDirection === "left") {
@@ -67,13 +64,6 @@ function useResize() {
         amountOfWidthToIncrease / 90)}px`;
       targetRef.current.style.height = `${(currentElementHeight +=
         amountOfHeightToIncrease / 90)}px`;
-    } else if (targetRef.current.tagName === "IMG") {
-      if (leftOrRightDirection === "right") {
-        targetRef.current.style.width = `${(currentElementWidth += 1)}px`;
-      } else if (leftOrRightDirection === "left") {
-        targetRef.current.style.width = `${(currentElementWidth -= 1)}px`;
-      }
-      targetRef.current.style.width = `${(currentElementWidth += 0.000001)}px`;
     }
   };
 
