@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FaArrowLeft, FaRegEdit } from "react-icons/fa";
-import { RiWindowLine } from "react-icons/ri";
 import styled from "styled-components";
 
 import {
@@ -12,7 +11,6 @@ import useAxios from "../hooks/useAxios";
 import useInput from "../hooks/useInput";
 import useLogout from "../hooks/useLogout";
 import useModal from "../hooks/useModal";
-import api from "../services/api";
 import { retrieveURL } from "../utils/index";
 import Button from "./Button";
 import EditorTemplate from "./EditorTemplate";
@@ -60,20 +58,6 @@ function Editor() {
   };
   const toggleWideView = () => {
     setShouldShowWideView((state) => !state);
-  };
-
-  window.onpopstate = async (event) => {
-    const savedLocalImage = localStorage.getItem("localImgSrc");
-
-    if (event && savedLocalImage) {
-      await api.delete(`/image/${savedLocalImage}`, {
-        headers: {
-          params: savedLocalImage,
-        },
-      });
-
-      localStorage.removeItem("localImgSrc");
-    }
   };
 
   const { fetchData } = useAxios(

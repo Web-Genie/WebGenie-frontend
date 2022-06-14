@@ -98,6 +98,15 @@ const useModal = (editorTitle, editorId) => {
       modalType: "remind",
       requestType: "Reminder",
       shouldGoHomepage: true,
+      params: {
+        method: "delete",
+        url: "/image/:image_key",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem(ID_TOKEN)}`,
+          params: localStorage.getItem("localImgSrc"),
+        },
+      },
+      requestType: "RemoveImage",
     });
   }, []);
 
