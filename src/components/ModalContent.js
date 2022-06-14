@@ -13,7 +13,7 @@ import styled from "styled-components";
 import { ID_TOKEN } from "../constants/constants";
 import { SubToolbarContext } from "../context/subToolbarContext";
 import useAxios from "../hooks/useAxios";
-import { sendUserToHomepage } from "../utils/index";
+import api from "../services/api";
 import Button from "./Button";
 
 function ModalContent({
@@ -28,6 +28,7 @@ function ModalContent({
 }) {
   const { setImageUrl, setHasImageUrl, imageUrl } =
     useContext(SubToolbarContext);
+  const { localImageSrc } = useContext(SubToolbarContext);
 
   const modalIconMap = {
     question: <FcQuestions />,
@@ -54,6 +55,22 @@ function ModalContent({
   const insertImage = () => {
     setHasImageUrl(true);
     handleClick();
+  };
+
+  const sendUserToHomepage = async () => {
+    const savedLocalImage = localStorage.getItem("localImgSrc");
+
+    if (savedLocalImage) {
+      localStorage.removeItem("localImgSrc");
+
+      await api.delete("/image/delete", {
+        headers: {
+          params: savedLocalImage,
+        },
+      });
+    }
+
+    window.location.replace("/");
   };
 
   return (

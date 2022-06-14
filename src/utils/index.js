@@ -1,3 +1,10 @@
+import React, { useContext, useEffect } from "react";
+
+import { ID_TOKEN } from "../constants/constants";
+import { SubToolbarContext } from "../context/subToolbarContext";
+import api from "../services/api";
+
+// console.log(localImageSrc);
 export const handleDragEnter = (event) => {
   event.preventDefault();
   event.stopPropagation();
@@ -72,7 +79,7 @@ export const retrieveURL = () => {
   return currentEditorId;
 };
 
-export const sendUserToHomepage = () => {
+export const sendUserToHomepage = async () => {
   window.location.replace("/");
 };
 

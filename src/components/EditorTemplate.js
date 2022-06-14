@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 
-import { FONT_TYPE, TEXT_ALIGN, TEXT_CHOICES } from "../constants/constants";
+import { TEXT_ALIGN, TEXT_CHOICES } from "../constants/constants";
 import { SubToolbarContext } from "../context/subToolbarContext";
 import useDragAndDrop from "../hooks/useDragAndDrop";
 import useResize from "../hooks/useResize";
@@ -32,14 +32,10 @@ function EditorTemplate({
     setIsUnderLine,
     textAlign,
     setTextAlign,
-    fontType,
-    setFontType,
     colorValue,
     setColorValue,
     buttonColor,
     setButtonColor,
-    fontSize,
-    setFontSize,
     localImageSrc,
     setLocalImageSrc,
     hasImageUrl,
@@ -73,14 +69,6 @@ function EditorTemplate({
           targetRef.current.style.textAlign = textAlign;
           setTextAlign("");
         }
-        if (FONT_TYPE.includes(fontType)) {
-          targetRef.current.style.fontFamily = fontType;
-          setFontType("");
-        }
-        if (fontSize) {
-          targetRef.current.style.fontSize = `${fontSize}px`;
-          setFontSize("");
-        }
       }
       if (subToolbarType === "BUTTON" && buttonColor) {
         targetRef.current.style.background = buttonColor;
@@ -101,6 +89,7 @@ function EditorTemplate({
       newImage.setAttribute("alt", `${localImageSrc}`);
       newImage.setAttribute("draggable", "false");
       newImage.setAttribute("src", `${localImageSrc}`);
+      newImage.style.position = "absolute";
       parentRef.current.appendChild(newImage);
 
       setLocalImageSrc("");
@@ -113,6 +102,7 @@ function EditorTemplate({
       newImage.setAttribute("alt", imageUrl);
       newImage.setAttribute("draggable", "false");
       newImage.setAttribute("src", imageUrl);
+      newImage.style.position = "absolute";
       parentRef.current.appendChild(newImage);
 
       setImageUrl("");
@@ -121,9 +111,7 @@ function EditorTemplate({
   }, [
     colorValue,
     textAlign,
-    fontType,
     buttonColor,
-    fontSize,
     isBold,
     isItalic,
     isUnderLine,
@@ -354,7 +342,7 @@ const EditorTemplateBody = styled.div`
 
   .textDetailChoice {
     display: flex;
-    margin: 0px 3px;
+    margin: 0px 2px;
     justify-content: space-evenly;
     flex-direction: row;
     align-items: center;
@@ -362,16 +350,16 @@ const EditorTemplateBody = styled.div`
     font-size: 15px;
 
     .fontType {
-      width: 107px;
-      padding-right: 22px;
+      width: 60px;
+      padding-right: 7px;
       margin: 0px;
       border: none;
     }
 
     .fontSize {
-      width: 20px;
+      width: 25px;
       border: none;
-      padding-left: 0px;
+      padding-right: 10px;
     }
   }
 

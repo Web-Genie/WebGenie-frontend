@@ -1,8 +1,12 @@
-import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaCloudUploadAlt, FaImage } from "react-icons/fa";
 
+import {
+  ID_TOKEN,
+  REQUEST_DATA_INFORMATION_EDITOR,
+} from "../constants/constants";
 import { SubToolbarContext } from "../context/subToolbarContext";
+import useAxios from "../hooks/useAxios";
 import useModal from "../hooks/useModal";
 import api from "../services/api";
 import Modal from "./Modal";
@@ -13,6 +17,7 @@ function ImageChoice() {
   const { setLocalImageSrc } = useContext(SubToolbarContext);
   const { shouldDisplayModal, closeModal, imageURLModalToggle, message } =
     useModal();
+  const [imageFormData, setImageFromData] = useState(null);
 
   const handleImage = async (event) => {
     const formData = new FormData();
@@ -25,6 +30,11 @@ function ImageChoice() {
     });
 
     setLocalImageSrc(location.data.location);
+
+    localStorage.setItem(
+      "localImgSrc",
+      location.data.location.split(".com/")[1]
+    );
 
     event.target.value = "";
   };

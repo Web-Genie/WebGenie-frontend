@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { SubToolbarContext } from "../context/subToolbarContext";
 import { UserContext } from "../context/userContext";
 import api from "../services/api";
 
 const useAxios = (params, idToken, category = null) => {
   const { setFetchedData, setUserInformation, setEditor, setTitle } =
     useContext(UserContext);
+  const { setLocalImageSrc } = useContext(SubToolbarContext);
   const navigate = useNavigate();
 
   const fetchData = async () => {
@@ -23,6 +25,7 @@ const useAxios = (params, idToken, category = null) => {
 
       setEditor(result.data);
     } else if (category === "Save") {
+      localStorage.removeItem("localImgSrc");
       navigate("/creatingnewwebsite");
 
       const result = await api(params);
@@ -37,6 +40,11 @@ const useAxios = (params, idToken, category = null) => {
 
       setUserInformation(result.data);
       navigate("/");
+    } else if (category === "imageUpload") {
+      navigate("/creatingnewwebsite");
+
+      const location = await api(params);
+      setLocalImageSrc(location.data.location);
     } else {
       navigate("/creatingnewwebsite");
 
