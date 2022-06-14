@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { RiPaintFill } from "react-icons/ri";
 import styled from "styled-components";
 
+import { TEXT_CHOICES } from "../constants/constants";
+import { SubToolbarContext } from "../context/subToolbarContext";
 import SubtoolbarTitle from "./SubtoolbarTitle";
 import ToolbarButton from "./ToolbarButton";
 
-function ColorChangeSubToolBar({ changeColor }) {
+function ColorChangeSubToolBar() {
+  const { setColorValue, setButtonColor, subToolbarType } =
+    useContext(SubToolbarContext);
+
   const handleColorChange = (event) => {
-    changeColor(event.target.value);
+    if (TEXT_CHOICES.includes(subToolbarType)) {
+      setColorValue(event.target.value);
+    } else {
+      setButtonColor(event.target.value);
+    }
   };
 
   return (

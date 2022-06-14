@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
@@ -8,6 +9,12 @@ function ToolbarButton({ children, name, handleClick }) {
     </ToolbarButtonBody>
   );
 }
+
+ToolbarButton.propTypes = {
+  children: PropTypes.any,
+  name: PropTypes.string,
+  handleClick: PropTypes.func,
+};
 
 const ToolbarButtonBody = styled.button`
   display: flex;

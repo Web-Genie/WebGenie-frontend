@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
@@ -21,6 +22,10 @@ function ImageBlurSubtoolBar({ onChangeBlur }) {
     </div>
   );
 }
+
+ImageBlurSubtoolBar.propTypes = {
+  onChangeBlur: PropTypes.func.isRequired,
+};
 
 const BlurBar = styled.div`
   .blur {

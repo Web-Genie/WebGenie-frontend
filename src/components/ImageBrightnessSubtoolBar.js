@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
@@ -21,6 +22,10 @@ function ImageBrightnessSubtoolBar({ onChangeBrightness }) {
     </div>
   );
 }
+
+ImageBrightnessSubtoolBar.propTypes = {
+  onChangeBrightness: PropTypes.func.isRequired,
+};
 
 const BrightnessBar = styled.div`
   .brightness {

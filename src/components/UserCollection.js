@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -55,6 +56,10 @@ function UserCollection({ collections, toggleDeleteModal }) {
     </UserContents>
   );
 }
+
+UserCollection.propTypes = {
+  collections: PropTypes.array,
+};
 
 const UserContents = styled.div`
   display: flex;

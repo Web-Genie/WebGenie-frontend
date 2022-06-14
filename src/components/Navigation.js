@@ -1,8 +1,13 @@
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 function Navigation({ children }) {
   return <NavigationContainer>{children}</NavigationContainer>;
 }
+
+Navigation.propTypes = {
+  children: PropTypes.array.isRequired,
+};
 
 const NavigationContainer = styled.div`
   display: flex;

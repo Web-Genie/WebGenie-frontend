@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 
+import { TEXT_ALIGN, TEXT_CHOICES } from "../constants/constants";
+import { SubToolbarContext } from "../context/subToolbarContext";
 import useDragAndDrop from "../hooks/useDragAndDrop";
 import useResize from "../hooks/useResize";
 import {
@@ -12,7 +14,7 @@ import {
 
 function EditorTemplate({
   displayWideView,
-  colorName,
+  backgroundColorName,
   modalStatus,
   saveUserCode,
   editorInformation,
@@ -20,9 +22,107 @@ function EditorTemplate({
 }) {
   const [handleResizeTarget, isResizing, setIsResizing] = useResize();
   const [parentRef, targetRef] = useDragAndDrop(isResizing, setIsResizing);
+  const {
+    subToolbarType,
+    isBold,
+    isItalic,
+    setIsBold,
+    setIsItalic,
+    isUnderLine,
+    setIsUnderLine,
+    textAlign,
+    setTextAlign,
+    colorValue,
+    setColorValue,
+    buttonColor,
+    setButtonColor,
+    localImageSrc,
+    setLocalImageSrc,
+    hasImageUrl,
+    imageUrl,
+    setImageUrl,
+    setHasImageUrl,
+    isCanvasClear,
+    setIsCavasClear,
+  } = useContext(SubToolbarContext);
 
-  if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
-    targetRef.current.style.background = colorName;
+  useEffect(() => {
+    if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
+      if (TEXT_CHOICES.includes(subToolbarType)) {
+        if (colorValue) {
+          targetRef.current.style.color = colorValue;
+          setColorValue("");
+        }
+        if (isBold) {
+          targetRef.current.style.fontWeight = "Bold";
+          setIsBold(false);
+        }
+        if (isItalic) {
+          targetRef.current.style.fontStyle = "italic";
+          setIsItalic(false);
+        }
+        if (isUnderLine) {
+          targetRef.current.style.textDecoration = "underline";
+          setIsUnderLine(false);
+        }
+        if (TEXT_ALIGN.includes(textAlign)) {
+          targetRef.current.style.textAlign = textAlign;
+          setTextAlign("");
+        }
+      }
+      if (subToolbarType === "BUTTON" && buttonColor) {
+        targetRef.current.style.background = buttonColor;
+
+        setButtonColor("");
+      }
+    }
+
+    if (isCanvasClear) {
+      parentRef.current.innerHTML = "";
+      setIsCavasClear(false);
+    }
+
+    if (localImageSrc) {
+      const newImage = document.createElement("img");
+      const imageSrc = URL.createObjectURL(localImageSrc);
+
+      newImage.setAttribute("id", "img");
+      newImage.setAttribute("alt", `${imageSrc}`);
+      newImage.setAttribute("draggable", "false");
+      newImage.setAttribute("src", `${imageSrc}`);
+      newImage.style.position = "absolute";
+      parentRef.current.appendChild(newImage);
+
+      setLocalImageSrc("");
+    }
+
+    if (hasImageUrl) {
+      const newImage = document.createElement("img");
+
+      newImage.setAttribute("id", "img");
+      newImage.setAttribute("alt", imageUrl);
+      newImage.setAttribute("draggable", "false");
+      newImage.setAttribute("src", imageUrl);
+      newImage.style.position = "absolute";
+      parentRef.current.appendChild(newImage);
+
+      setImageUrl("");
+      setHasImageUrl(false);
+    }
+  }, [
+    colorValue,
+    textAlign,
+    buttonColor,
+    isBold,
+    isItalic,
+    isUnderLine,
+    localImageSrc,
+    hasImageUrl,
+    isCanvasClear,
+  ]);
+
+  if (backgroundColorName) {
+    targetRef.current.style.backgroundColor = backgroundColorName;
   }
 
   useEffect(() => {
@@ -243,7 +343,7 @@ const EditorTemplateBody = styled.div`
 
   .textDetailChoice {
     display: flex;
-    margin: 0px 3px;
+    margin: 0px 2px;
     justify-content: space-evenly;
     flex-direction: row;
     align-items: center;
@@ -251,16 +351,16 @@ const EditorTemplateBody = styled.div`
     font-size: 15px;
 
     .fontType {
-      width: 107px;
-      padding-right: 22px;
+      width: 60px;
+      padding-right: 7px;
       margin: 0px;
       border: none;
     }
 
     .fontSize {
-      width: 20px;
+      width: 25px;
       border: none;
-      padding-left: 0px;
+      padding-right: 10px;
     }
   }
 

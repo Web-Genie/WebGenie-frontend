@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import {
   DELETE_MODAL_MESSAGE,
   ID_TOKEN,
+  INSERT_IMG_URL_MODAL_MESSAGE,
   MODAL_ICON_STATE,
   NEW_EDITOR_MODAL_MESSAGE,
   PUBLISH_MODAL_MESSAGE,
@@ -101,6 +102,15 @@ const useModal = (editorTitle, editorId) => {
     });
   }, []);
 
+  const imageURLModalToggle = useCallback(() => {
+    setShouldDisplayModal((state) => !state);
+    setMessage({
+      titleMessage: INSERT_IMG_URL_MODAL_MESSAGE.titleMessage,
+      proceedButtonText: INSERT_IMG_URL_MODAL_MESSAGE.acceptButtonMessage,
+      denyButtonText: INSERT_IMG_URL_MODAL_MESSAGE.denyButtonMessage,
+    });
+  }, []);
+
   const closeModal = useCallback(() => {
     setShouldDisplayModal((state) => !state);
     setShouldUseSaveModal(false);
@@ -141,6 +151,7 @@ const useModal = (editorTitle, editorId) => {
     userCode,
     setUserCode,
     saveReminderModalToggle,
+    imageURLModalToggle,
   };
 };
 

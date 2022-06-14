@@ -18,7 +18,6 @@ const useAxios = (params, idToken, category = null) => {
       setEditor(result.data);
     } else if (category === "USER") {
       const result = await api(params);
-
       localStorage.setItem("avatar", result.data.user.image);
 
       setUserInformation(result.data);

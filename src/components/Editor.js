@@ -40,6 +40,22 @@ function Editor() {
     saveReminderModalToggle,
   } = useModal(userTitle, currentEditorId);
 
+  const [backgroundColor, setBackgroundColor] = useState("");
+  const [imageOpacity, setImageOpacity] = useState(1);
+  const [imageBrightness, setImageBrightness] = useState(1);
+  const [imageBlur, setImageBlur] = useState(0);
+
+  const handleImgOpacity = (event) => {
+    setImageOpacity(event.target.value);
+  };
+
+  const handleImgBrightness = (event) => {
+    setImageBrightness(event.target.value);
+  };
+
+  const handleImgBlur = (event) => {
+    setImageBlur(event.target.value);
+  };
   const toggleWideView = () => {
     setShouldShowWideView((state) => !state);
   };
@@ -128,15 +144,24 @@ function Editor() {
         </div>
       </Navigation>
       <EditorBody>
-        {!shouldShowWideView && <LeftToolbar />}
+        {!shouldShowWideView && (
+          <LeftToolbar changeBackground={setBackgroundColor} />
+        )}
         <EditorTemplate
           modalStatus={shouldDisplayModal}
           saveUserCode={setUserCode}
           editorInformation={editor}
           displayWideView={shouldShowWideView}
           retrieveParentRefState={setParentRefState}
+          backgroundColorName={backgroundColor}
         />
-        {!shouldShowWideView && <RightToolbar />}
+        {!shouldShowWideView && (
+          <RightToolbar
+            onChangeOpacity={handleImgOpacity}
+            onChangeBrightness={handleImgBrightness}
+            onChangeBlur={handleImgBlur}
+          />
+        )}
       </EditorBody>
     </>
   );
