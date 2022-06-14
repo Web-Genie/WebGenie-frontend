@@ -81,9 +81,18 @@ function useResize() {
 
   const editText = (event) => {
     if (!shouldEditText) {
-      event.target.previousSibling.contentEditable = true;
-      event.target.previousSibling.focus();
+      if (event.target.previousSibling.childNodes[0].tagName === "A") {
+        event.target.previousSibling.childNodes[0].contentEditable = true;
+        event.target.previousSibling.childNodes[0].focus();
+      } else {
+        event.target.previousSibling.contentEditable = true;
+        event.target.previousSibling.focus();
+      }
     } else {
+      if (event.target.previousSibling.tagName === "BUTTON") {
+        event.target.previousSibling.style.border = "black";
+      }
+
       event.target.previousSibling.contentEditable = false;
     }
 
@@ -112,6 +121,7 @@ function useResize() {
       if (targetRef.current.tagName === "BUTTON") {
         targetRef.current.style.border = "1px solid #e5e5e5";
         targetRef.current.previousSibling.remove();
+        targetRef.current.nextSibling.remove();
       } else {
         targetRef.current.style.border = "none";
         targetRef.current.previousSibling.remove();
@@ -141,6 +151,7 @@ function useResize() {
       targetRef.current.style.border = "2px dashed black";
 
       targetRef.current.insertAdjacentElement("beforebegin", deleteButton);
+      targetRef.current.insertAdjacentElement("afterend", editTextButton);
 
       if (targetRef.current.tagName !== "BUTTON") {
         targetRef.current.style.padding = "7px 10px";
@@ -169,6 +180,7 @@ function useResize() {
 
         if (targetRef.current.previousSibling) {
           targetRef.current.previousSibling.remove();
+          targetRef.current.nextSibling.remove();
         }
       } else {
         targetRef.current.style.border = "none";
@@ -194,6 +206,7 @@ function useResize() {
       editTextButton.onclick = editText;
       targetRef.current.style.border = "2px dashed black";
       targetRef.current.insertAdjacentElement("beforebegin", deleteButton);
+      targetRef.current.insertAdjacentElement("afterend", editTextButton);
 
       if (targetRef.current.tagName !== "BUTTON") {
         targetRef.current.style.padding = "7px 10px";

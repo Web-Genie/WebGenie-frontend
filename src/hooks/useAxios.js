@@ -13,10 +13,13 @@ const useAxios = (params, idToken, category = null) => {
   const navigate = useNavigate();
 
   const fetchData = async () => {
-    if (!idToken) return;
     if (!params) return;
 
-    if (category === "USER") {
+    if (!idToken) {
+      const result = await api(params);
+
+      setEditor(result.data);
+    } else if (category === "USER") {
       const result = await api(params);
       localStorage.setItem("avatar", result.data.user.image);
 
@@ -51,6 +54,10 @@ const useAxios = (params, idToken, category = null) => {
 
       await api(params);
       localStorage.removeItem("localImgSrc");
+    } else if (category === "Publish") {
+      navigate("/creatingnewwebsite");
+
+      await api(params);
 
       window.location.replace("/");
     } else {

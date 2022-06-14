@@ -48,27 +48,6 @@ const useModal = (editorTitle, editorId) => {
     setShouldUseSaveModal(true);
   };
 
-  const publishModalToggle = useCallback(() => {
-    setShouldDisplayModal((state) => !state);
-    setMessage({
-      titleMessage: PUBLISH_MODAL_MESSAGE.titleMessage,
-      proceedButtonText: PUBLISH_MODAL_MESSAGE.acceptButtonMessage,
-      denyButtonText: PUBLISH_MODAL_MESSAGE.denyButtonMessage,
-      iconType: MODAL_ICON_STATE.deployState,
-      params: {
-        method: "delete",
-        url: "/websites/:website_id",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem(ID_TOKEN)}`,
-        },
-        params: {
-          websiteId: editorId,
-        },
-      },
-      requestType: "Delete",
-    });
-  }, []);
-
   const deleteSiteModalMessage = useCallback((event) => {
     setShouldDisplayModal((state) => !state);
     setMessage({
@@ -107,6 +86,28 @@ const useModal = (editorTitle, editorId) => {
         },
       },
       requestType: "RemoveImage",
+    });
+  }, []);
+
+  const publishModalToggle = useCallback(() => {
+    setShouldDisplayModal((state) => !state);
+    setMessage({
+      titleMessage: PUBLISH_MODAL_MESSAGE.titleMessage,
+      proceedButtonText: PUBLISH_MODAL_MESSAGE.acceptButtonMessage,
+      denyButtonText: PUBLISH_MODAL_MESSAGE.denyButtonMessage,
+      iconType: MODAL_ICON_STATE.deployState,
+      modalType: "Publish",
+      params: {
+        method: "patch",
+        url: "/websites/:website_id/deploy",
+        data: {
+          websiteId: currentEditorId,
+        },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem(ID_TOKEN)}`,
+        },
+      },
+      requestType: "Publish",
     });
   }, []);
 
