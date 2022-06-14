@@ -41,9 +41,13 @@ const useAxios = (params, idToken, category = null) => {
       setUserInformation(result.data);
       navigate("/");
     } else if (category === "imageUpload") {
-      navigate("/creatingnewwebsite");
-
       const location = await api(params);
+
+      localStorage.setItem(
+        "localImgSrc",
+        location.data.location.split(".com/")[1]
+      );
+
       setLocalImageSrc(location.data.location);
     } else {
       navigate("/creatingnewwebsite");

@@ -28,7 +28,6 @@ function ModalContent({
 }) {
   const { setImageUrl, setHasImageUrl, imageUrl } =
     useContext(SubToolbarContext);
-  const { localImageSrc } = useContext(SubToolbarContext);
 
   const modalIconMap = {
     question: <FcQuestions />,
@@ -61,14 +60,13 @@ function ModalContent({
     const savedLocalImage = localStorage.getItem("localImgSrc");
 
     if (savedLocalImage) {
-      localStorage.removeItem("localImgSrc");
-
-      await api.delete("/image/delete", {
+      await api.delete(`/image/${savedLocalImage}`, {
         headers: {
           params: savedLocalImage,
         },
       });
     }
+    localStorage.removeItem("localImgSrc");
 
     window.location.replace("/");
   };
