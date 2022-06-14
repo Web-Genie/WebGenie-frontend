@@ -55,7 +55,7 @@ function useResize() {
       } else if (leftOrRightDirection === "left") {
         targetRef.current.style.fontSize = `${(currentElementFontSize -= 1)}px`;
       }
-    } else if (targetRef.current.tagName === "BUTTON") {
+    } else if (targetRef.current.tagName === "BUTTON") { //이부분에 로직추가 if IMG라면
       let amountOfWidthToIncrease = event.clientX - startX;
       let amountOfHeightToIncrease = event.clientY - startY;
 
