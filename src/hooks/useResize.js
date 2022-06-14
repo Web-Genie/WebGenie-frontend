@@ -35,6 +35,7 @@ function useResize() {
     let [currentElementWidth, currentElementHeight] = getElementValue(
       targetRef.current
     );
+
     let currentElementFontSize = Number(
       getElementValue(targetRef.current, "font-size", "font")
     );
@@ -49,13 +50,16 @@ function useResize() {
       oldPageX = mouseEvent.pageX;
     })(event);
 
-    if (targetRef.current.tagName !== "BUTTON") {
+    if (
+      targetRef.current.tagName !== "BUTTON" &&
+      targetRef.current.tagName !== "IMG"
+    ) {
       if (leftOrRightDirection === "right") {
         targetRef.current.style.fontSize = `${(currentElementFontSize += 1)}px`;
       } else if (leftOrRightDirection === "left") {
         targetRef.current.style.fontSize = `${(currentElementFontSize -= 1)}px`;
       }
-    } else if (targetRef.current.tagName === "BUTTON") { //이부분에 로직추가 if IMG라면
+    } else if (targetRef.current.tagName === "BUTTON") {
       let amountOfWidthToIncrease = event.clientX - startX;
       let amountOfHeightToIncrease = event.clientY - startY;
 
@@ -63,6 +67,13 @@ function useResize() {
         amountOfWidthToIncrease / 90)}px`;
       targetRef.current.style.height = `${(currentElementHeight +=
         amountOfHeightToIncrease / 90)}px`;
+    } else if (targetRef.current.tagName === "IMG") {
+      if (leftOrRightDirection === "right") {
+        targetRef.current.style.width = `${(currentElementWidth += 1)}px`;
+      } else if (leftOrRightDirection === "left") {
+        targetRef.current.style.width = `${(currentElementWidth -= 1)}px`;
+      }
+      targetRef.current.style.width = `${(currentElementWidth += 0.000001)}px`;
     }
   };
 
