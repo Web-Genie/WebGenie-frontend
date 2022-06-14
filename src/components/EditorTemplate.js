@@ -45,9 +45,12 @@ function EditorTemplate({
     setHasImageUrl,
     isCanvasClear,
     setIsCavasClear,
+    imageBrightness,
+    imageBlur,
   } = useContext(SubToolbarContext);
   const { imageOpacity } = useContext(InputFieldContext);
-  console.log("투명도", imageOpacity);
+
+  console.log("imageBrightness", imageBrightness);
 
   useEffect(() => {
     if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
@@ -87,6 +90,7 @@ function EditorTemplate({
 
     if (targetRef.current !== null && targetRef.current.tagName === "IMG") {
       targetRef.current.style.opacity = imageOpacity;
+      targetRef.current.style.filter = `blur(${imageBlur}px) brightness(${imageBrightness})`;
     }
 
     if (localImageSrc) {
@@ -127,6 +131,8 @@ function EditorTemplate({
     hasImageUrl,
     isCanvasClear,
     imageOpacity,
+    imageBlur,
+    imageBrightness,
   ]);
 
   if (backgroundColorName) {

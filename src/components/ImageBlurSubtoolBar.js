@@ -1,10 +1,16 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 
+import { SubToolbarContext } from "../context/subToolbarContext";
 import SubtoolbarTitle from "./SubtoolbarTitle";
 
 function ImageBlurSubtoolBar({ onChangeBlur }) {
+  const { setImageBlur } = useContext(SubToolbarContext);
+  const handleImageBlur = (event) => {
+    setImageBlur(event.target.value);
+  };
+
   return (
     <div className="choiceContainer">
       <SubtoolbarTitle title="Edit Blur" />
@@ -16,7 +22,7 @@ function ImageBlurSubtoolBar({ onChangeBlur }) {
           max="10"
           step="0.05"
           list="tickmarks"
-          onChange={onChangeBlur}
+          onChange={handleImageBlur}
         />
       </BlurBar>
     </div>
