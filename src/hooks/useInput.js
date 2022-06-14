@@ -9,6 +9,7 @@ const useInput = (currentLocationBeingUsed, value) => {
   const [userTitle, setUserTitle] = useState();
   const [fontSize, setFontSize] = useState("");
   const [fontType, setFontType] = useState("");
+  const [imageOpacity, setImageOpacity] = useState(1);
 
   const handleInputChange = (event) => {
     if (currentLocationBeingUsed === "editor") {
@@ -17,6 +18,7 @@ const useInput = (currentLocationBeingUsed, value) => {
       setButtonRadius(event.target.value);
     } else if (event.target.className === "opacity") {
       setButtonOpacity(event.target.value);
+      setImageOpacity(event.target.value);
     } else if (event.target.className === "fontSize") {
       setFontSize(event.target.value);
     } else if (event.target.className === "fontType") {
@@ -63,6 +65,8 @@ const useInput = (currentLocationBeingUsed, value) => {
     setFontSize,
     fontType,
     setFontType,
+    imageOpacity,
+    setImageOpacity,
   };
 };
 

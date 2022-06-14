@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { TEXT_ALIGN, TEXT_CHOICES } from "../constants/constants";
 import { SubToolbarContext } from "../context/subToolbarContext";
+import { InputFieldContext } from "../context/subToolbarContext";
 import useDragAndDrop from "../hooks/useDragAndDrop";
 import useResize from "../hooks/useResize";
 import {
@@ -45,6 +46,8 @@ function EditorTemplate({
     isCanvasClear,
     setIsCavasClear,
   } = useContext(SubToolbarContext);
+  const { imageOpacity } = useContext(InputFieldContext);
+  console.log("투명도", imageOpacity);
 
   useEffect(() => {
     if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
@@ -80,6 +83,10 @@ function EditorTemplate({
     if (isCanvasClear) {
       parentRef.current.innerHTML = "";
       setIsCavasClear(false);
+    }
+
+    if (targetRef.current !== null && targetRef.current.tagName === "IMG") {
+      targetRef.current.style.opacity = imageOpacity;
     }
 
     if (localImageSrc) {
@@ -119,6 +126,7 @@ function EditorTemplate({
     localImageSrc,
     hasImageUrl,
     isCanvasClear,
+    imageOpacity,
   ]);
 
   if (backgroundColorName) {

@@ -36,6 +36,8 @@ const SubToolbarTypeProvider = ({ children }) => {
     setFontSize,
     fontType,
     setFontType,
+    imageOpacity,
+    setImageOpacity,
   } = useInput();
 
   return (
@@ -84,6 +86,8 @@ const SubToolbarTypeProvider = ({ children }) => {
           setFontSize,
           fontType,
           setFontType,
+          imageOpacity,
+          setImageOpacity,
         }}
       >
         {children}
