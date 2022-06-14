@@ -14,7 +14,7 @@ import TextDetailEditor from "./TextDetailSubtoolBar";
 import TextPositionEditor from "./TextPositionSubtoolBar";
 import ToolbarContainer from "./ToolbarContainer";
 
-function RightToolbar({ onChangeOpacity, onChangeBrightness, onChangeBlur }) {
+function RightToolbar() {
   const { subToolbarType } = useContext(SubToolbarContext);
 
   return (
@@ -35,9 +35,9 @@ function RightToolbar({ onChangeOpacity, onChangeBrightness, onChangeBlur }) {
         )}
         {subToolbarType === "IMG" && (
           <>
-            <OpacityEditor onChangeOpacity={onChangeOpacity} />
-            <ImageBrightnessEditor onChangeBrightness={onChangeBrightness} />
-            <ImageBlurEditor onChangeBlur={onChangeBlur} />
+            <OpacityEditor />
+            <ImageBrightnessEditor />
+            <ImageBlurEditor />
           </>
         )}
         {subToolbarType === "BUTTON" ||

@@ -1,11 +1,10 @@
-import PropTypes from "prop-types";
 import React, { useContext } from "react";
 import styled from "styled-components";
 
 import { SubToolbarContext } from "../context/subToolbarContext";
 import SubtoolbarTitle from "./SubtoolbarTitle";
 
-function ImageBrightnessSubtoolBar({ onChangeBrightness }) {
+function ImageBrightnessSubtoolBar() {
   const { setImageBrightness } = useContext(SubToolbarContext);
   const handleImageBrightness = (event) => {
     setImageBrightness(event.target.value);
@@ -28,10 +27,6 @@ function ImageBrightnessSubtoolBar({ onChangeBrightness }) {
     </div>
   );
 }
-
-ImageBrightnessSubtoolBar.propTypes = {
-  onChangeBrightness: PropTypes.func.isRequired,
-};
 
 const BrightnessBar = styled.div`
   .brightness {

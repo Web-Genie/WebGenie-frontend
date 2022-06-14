@@ -50,8 +50,6 @@ function EditorTemplate({
   } = useContext(SubToolbarContext);
   const { imageOpacity } = useContext(InputFieldContext);
 
-  console.log("imageBrightness", imageBrightness);
-
   useEffect(() => {
     if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
       if (TEXT_CHOICES.includes(subToolbarType)) {
