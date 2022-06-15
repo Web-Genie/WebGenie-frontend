@@ -50,7 +50,7 @@ function EditorTemplate({
     imageBlur,
   } = useContext(SubToolbarContext);
   const { imageOpacity } = useContext(InputFieldContext);
-
+  console.log("parent", parentRef, targetRef);
   useEffect(() => {
     if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
       if (TEXT_CHOICES.includes(subToolbarType)) {
@@ -75,7 +75,8 @@ function EditorTemplate({
           setTextAlign("");
         }
       }
-      if (subToolbarType === "BUTTON" && buttonColor) {
+      console.log(targetRef.current.tagName);
+      if (targetRef.current.tagName === "BUTTON" && buttonColor) {
         targetRef.current.style.background = buttonColor;
 
         setButtonColor("");
@@ -106,6 +107,10 @@ function EditorTemplate({
       setImageUrl("");
       setHasImageUrl(false);
     }
+
+    if (parentRef.current !== null && backgroundColorName) {
+      parentRef.current.style.backgroundColor = backgroundColorName;
+    }
   }, [
     colorValue,
     textAlign,
@@ -119,11 +124,8 @@ function EditorTemplate({
     imageOpacity,
     imageBlur,
     imageBrightness,
+    backgroundColorName,
   ]);
-
-  if (backgroundColorName) {
-    targetRef.current.style.backgroundColor = backgroundColorName;
-  }
 
   useEffect(() => {
     if (!modalStatus) return;

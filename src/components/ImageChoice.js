@@ -56,11 +56,9 @@ function ImageChoice() {
           </label>
           <input type="file" id="file" onChange={handleImageUpload} />
         </div>
-        <ToolbarButton>
+        <ToolbarButton handleClick={imageURLModalToggle}>
           <FaImage />
-          <p className="text" onClick={imageURLModalToggle}>
-            From URL
-          </p>
+          <p className="text">From URL</p>
         </ToolbarButton>
         {shouldDisplayModal && (
           <Modal>
