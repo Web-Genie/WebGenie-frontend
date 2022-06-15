@@ -21,6 +21,7 @@ function EditorTemplate({
   saveUserCode,
   editorInformation,
   retrieveParentRefState,
+  editorVersion,
 }) {
   const [handleResizeTarget, isResizing, setIsResizing] = useResize();
   const [parentRef, targetRef] = useDragAndDrop(isResizing, setIsResizing);
@@ -134,9 +135,13 @@ function EditorTemplate({
 
   useEffect(() => {
     if (!editorInformation.result) return;
-
-    parentRef.current.innerHTML = editorInformation.result.userSavedCode;
-  }, [editorInformation.result[0]]);
+    const savedCodeCollection = editorInformation.result.userSavedCode;
+    if (editorVersion) {
+      parentRef.current.innerHTML = savedCodeCollection[editorVersion].code;
+    } else {
+      parentRef.current.innerHTML = savedCodeCollection[0].code;
+    }
+  }, [editorInformation.result[0], editorVersion]);
 
   useEffect(() => {
     if (parentRef.current) {

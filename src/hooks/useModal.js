@@ -134,7 +134,7 @@ const useModal = (editorTitle, editorId) => {
       denyButtonText: SAVE_MODAL_MESSAGE.denyButtonMessage,
       iconType: MODAL_ICON_STATE.saveState,
       params: {
-        method: "patch",
+        method: "post",
         url: "/websites/:website_id",
         data: {
           title: editorTitle,
