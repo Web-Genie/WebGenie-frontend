@@ -90,11 +90,11 @@ function ModalContent({
 }
 
 ModalContent.propTypes = {
-  modalText: PropTypes.string.isRequired,
-  primaryButtonText: PropTypes.string.isRequired,
-  secondaryButtonText: PropTypes.string.isRequired,
+  modalText: PropTypes.string,
+  primaryButtonText: PropTypes.string,
+  secondaryButtonText: PropTypes.string,
   modalIconState: PropTypes.string,
-  handleClick: PropTypes.func.isRequired,
+  handleClick: PropTypes.func,
 };
 
 const NewSiteModalInputContainer = styled.p`

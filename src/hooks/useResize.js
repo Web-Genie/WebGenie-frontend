@@ -22,7 +22,9 @@ function useResize() {
     buttonRadius,
     buttonOpacity,
     fontSize,
+    setFontSize,
     fontType,
+    setFontType,
   } = useContext(InputFieldContext);
 
   let leftOrRightDirection = "";
@@ -278,10 +280,12 @@ function useResize() {
 
     if (FONT_TYPE.includes(fontType)) {
       targetRef.current.style.fontFamily = fontType;
+      setFontType("");
     }
 
     if (fontSize) {
       targetRef.current.style.fontSize = `${fontSize}px`;
+      setFontSize("");
     }
   }, [fontSize, fontType]);
 

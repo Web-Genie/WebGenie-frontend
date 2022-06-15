@@ -11,6 +11,7 @@ const UserContextTypeProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem(ID_TOKEN));
   const [title, setTitle] = useState();
   const [userCode, setUserCode] = useState();
+  const [savedBackgroundColor, setSavedBackgroundColor] = useState("");
 
   return (
     <UserContext.Provider
@@ -27,6 +28,8 @@ const UserContextTypeProvider = ({ children }) => {
         setTitle,
         userCode,
         setUserCode,
+        savedBackgroundColor,
+        setSavedBackgroundColor,
       }}
     >
       {children}

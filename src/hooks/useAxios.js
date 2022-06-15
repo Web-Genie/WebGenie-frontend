@@ -7,8 +7,13 @@ import api from "../services/api";
 import { saveLocalStorage } from "../utils";
 
 const useAxios = (params, idToken, category = null) => {
-  const { setFetchedData, setUserInformation, setEditor, setTitle } =
-    useContext(UserContext);
+  const {
+    setFetchedData,
+    setUserInformation,
+    setEditor,
+    setTitle,
+    setBackgroundColor,
+  } = useContext(UserContext);
   const { setLocalImageSrc } = useContext(SubToolbarContext);
   const navigate = useNavigate();
 
@@ -35,6 +40,7 @@ const useAxios = (params, idToken, category = null) => {
       const result = await api(params);
 
       setTitle(result.data.changedTitle);
+      //setBackgorundColor(result.data.backgroundColor..)
       setEditor(result.data);
       navigate(`/editor/${result.data.result._id}`);
     } else if (category === "delete") {
@@ -65,6 +71,7 @@ const useAxios = (params, idToken, category = null) => {
       navigate("/creatingnewwebsite");
 
       const result = await api(params);
+      console.log(result);
 
       navigate(`/editor/${result.data.result._id}`);
       setFetchedData(result.data);

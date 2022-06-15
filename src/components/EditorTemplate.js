@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { TEXT_ALIGN, TEXT_CHOICES } from "../constants/constants";
 import { SubToolbarContext } from "../context/subToolbarContext";
 import { InputFieldContext } from "../context/subToolbarContext";
+import { UserContext } from "../context/userContext";
 import useDragAndDrop from "../hooks/useDragAndDrop";
 import useResize from "../hooks/useResize";
 import {
@@ -50,6 +51,7 @@ function EditorTemplate({
     imageBlur,
   } = useContext(SubToolbarContext);
   const { imageOpacity } = useContext(InputFieldContext);
+  const { setSavedBackgroundColor } = useContext(UserContext);
 
   useEffect(() => {
     if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
@@ -109,6 +111,7 @@ function EditorTemplate({
 
     if (parentRef.current !== null && backgroundColorName) {
       parentRef.current.style.backgroundColor = backgroundColorName;
+      setSavedBackgroundColor(backgroundColorName);
     }
   }, [
     colorValue,

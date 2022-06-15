@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 
 import {
   DELETE_MODAL_MESSAGE,
@@ -10,6 +10,7 @@ import {
   SAVE_MODAL_MESSAGE,
   SAVE_REMINDER_MODAL_MESSAGE,
 } from "../constants/constants";
+import { UserContext } from "../context/userContext";
 import { retrieveURL } from "../utils";
 
 const useModal = (editorTitle, editorId) => {
@@ -24,6 +25,8 @@ const useModal = (editorTitle, editorId) => {
     iconType: null,
     params: null,
   });
+  const { savedBackgroundColor, setSavedBackgroundColor } =
+    useContext(UserContext);
 
   const createNewSiteModalToggle = useCallback(() => {
     setShouldDisplayModal((state) => !state);
@@ -134,12 +137,13 @@ const useModal = (editorTitle, editorId) => {
       denyButtonText: SAVE_MODAL_MESSAGE.denyButtonMessage,
       iconType: MODAL_ICON_STATE.saveState,
       params: {
-        method: "patch",
+        method: "post",
         url: "/websites/:website_id",
         data: {
           title: editorTitle,
           editorCode: userCode,
           websiteId: currentEditorId,
+          backgroundColor: savedBackgroundColor,
         },
         headers: {
           Authorization: `Bearer ${localStorage.getItem(ID_TOKEN)}`,
