@@ -1,3 +1,4 @@
+import { clear } from "@testing-library/user-event/dist/clear";
 import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 
@@ -23,6 +24,8 @@ function EditorTemplate({
   editorInformation,
   retrieveParentRefState,
   editorVersion,
+  clearCanvas,
+  handleCanvas,
 }) {
   const [handleResizeTarget, isResizing, setIsResizing] = useResize();
   const [parentRef, targetRef] = useDragAndDrop(isResizing, setIsResizing);
@@ -114,6 +117,11 @@ function EditorTemplate({
       parentRef.current.style.backgroundColor = backgroundColorName;
       setSavedBackgroundColor(backgroundColorName);
     }
+
+    if (parentRef.current !== null && isCanvasClear) {
+      parentRef.current.style.backgroundColor = "white";
+      setIsCavasClear(false);
+    }
   }, [
     colorValue,
     textAlign,
@@ -129,6 +137,14 @@ function EditorTemplate({
     imageBrightness,
     backgroundColorName,
   ]);
+
+  useEffect(() => {
+    if (clearCanvas && parentRef.current !== null) {
+      parentRef.current.innerHTML = "";
+      parentRef.current.style.background = "white";
+      handleCanvas(false);
+    }
+  }, [clearCanvas]);
 
   useEffect(() => {
     if (!modalStatus) return;
@@ -156,7 +172,7 @@ function EditorTemplate({
       retrieveParentRefState(parentRef.current);
     }
   }, []);
-  console.log(targetRef);
+
   return (
     <EditorTemplateBody
       ref={parentRef}

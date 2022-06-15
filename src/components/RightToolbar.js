@@ -4,7 +4,6 @@ import { TEXT_CHOICES } from "../constants/constants";
 import { SubToolbarContext } from "../context/subToolbarContext";
 import ButtonLinkEditor from "./ButtonLinkSubtoolBar";
 import ButtonRadiusEditor from "./ButtonRadiusSubtoolBar";
-import CanvasClearButton from "./CanvasClearButton";
 import ColorChangeSubToolBar from "./ColorChangeSubToolBar";
 import EditorToolbar from "./EditorToolbar";
 import ImageBlurEditor from "./ImageBlurSubtoolBar";
@@ -46,7 +45,6 @@ function RightToolbar() {
             <ColorChangeSubToolBar />
           </>
         ) : null}
-        <CanvasClearButton />
       </ToolbarContainer>
     </EditorToolbar>
   );
