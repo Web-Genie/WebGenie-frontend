@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { TEXT_ALIGN, TEXT_CHOICES } from "../constants/constants";
 import { SubToolbarContext } from "../context/subToolbarContext";
+import { InputFieldContext } from "../context/subToolbarContext";
 import useDragAndDrop from "../hooks/useDragAndDrop";
 import useResize from "../hooks/useResize";
 import {
@@ -44,7 +45,10 @@ function EditorTemplate({
     setHasImageUrl,
     isCanvasClear,
     setIsCavasClear,
+    imageBrightness,
+    imageBlur,
   } = useContext(SubToolbarContext);
+  const { imageOpacity } = useContext(InputFieldContext);
 
   useEffect(() => {
     if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
@@ -80,6 +84,11 @@ function EditorTemplate({
     if (isCanvasClear) {
       parentRef.current.innerHTML = "";
       setIsCavasClear(false);
+    }
+
+    if (targetRef.current !== null && targetRef.current.tagName === "IMG") {
+      targetRef.current.style.opacity = imageOpacity;
+      targetRef.current.style.filter = `blur(${imageBlur}px) brightness(${imageBrightness})`;
     }
 
     if (localImageSrc) {
@@ -119,6 +128,9 @@ function EditorTemplate({
     localImageSrc,
     hasImageUrl,
     isCanvasClear,
+    imageOpacity,
+    imageBlur,
+    imageBrightness,
   ]);
 
   if (backgroundColorName) {

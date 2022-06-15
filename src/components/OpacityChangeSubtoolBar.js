@@ -5,7 +5,7 @@ import { OPACITY_RANGE } from "../constants/constants";
 import SelectDetail from "./SelectDetailSubtoolBar";
 import SubtoolbarTitle from "./SubtoolbarTitle";
 
-function OpacityEditorSubtoolBar({ onChangeOpacity }) {
+function OpacityEditorSubtoolBar() {
   return (
     <div className="choiceContainer">
       <SubtoolbarTitle title="Edit Opacity" />
@@ -13,14 +13,9 @@ function OpacityEditorSubtoolBar({ onChangeOpacity }) {
         title="opacity"
         className="opacity"
         detailValue={OPACITY_RANGE}
-        onChange={onChangeOpacity}
       />
     </div>
   );
 }
-
-OpacityEditorSubtoolBar.propTypes = {
-  onChangeOpacity: PropTypes.func,
-};
 
 export default OpacityEditorSubtoolBar;

@@ -1,10 +1,15 @@
-import PropTypes from "prop-types";
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 
+import { SubToolbarContext } from "../context/subToolbarContext";
 import SubtoolbarTitle from "./SubtoolbarTitle";
 
-function ImageBrightnessSubtoolBar({ onChangeBrightness }) {
+function ImageBrightnessSubtoolBar() {
+  const { setImageBrightness } = useContext(SubToolbarContext);
+  const handleImageBrightness = (event) => {
+    setImageBrightness(event.target.value);
+  };
+
   return (
     <div className="choiceContainer">
       <SubtoolbarTitle title="Edit Brightness" />
@@ -16,16 +21,12 @@ function ImageBrightnessSubtoolBar({ onChangeBrightness }) {
           max="1"
           step="0.01"
           list="tickmarks"
-          onChange={onChangeBrightness}
+          onChange={handleImageBrightness}
         />
       </BrightnessBar>
     </div>
   );
 }
-
-ImageBrightnessSubtoolBar.propTypes = {
-  onChangeBrightness: PropTypes.func.isRequired,
-};
 
 const BrightnessBar = styled.div`
   .brightness {
