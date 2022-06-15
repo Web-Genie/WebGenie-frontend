@@ -156,7 +156,7 @@ function EditorTemplate({
       retrieveParentRefState(parentRef.current);
     }
   }, []);
-
+  console.log(targetRef);
   return (
     <EditorTemplateBody
       ref={parentRef}

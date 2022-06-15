@@ -153,6 +153,8 @@ export const generatedImageElement = (localImage) => {
   newImage.setAttribute("draggable", "false");
   newImage.setAttribute("src", `${localImage}`);
   newImage.style.position = "absolute";
+  newImage.style.maxHeight = "500px";
+  newImage.style.maxWidth = "500px";
 
   return newImage;
 };
