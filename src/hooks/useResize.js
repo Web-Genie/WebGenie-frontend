@@ -36,6 +36,7 @@ function useResize() {
     let [currentElementWidth, currentElementHeight] = getElementValue(
       targetRef.current
     );
+
     let currentElementFontSize = Number(
       getElementValue(targetRef.current, "font-size", "font")
     );
@@ -167,6 +168,7 @@ function useResize() {
 
       if (targetRef.current.tagName !== "BUTTON") {
         targetRef.current.style.padding = "7px 10px";
+        targetRef.current.insertAdjacentElement("afterend", editTextButton);
       }
 
       targetRef.current.onmousedown = handleMouseDown;
@@ -221,6 +223,7 @@ function useResize() {
 
       if (targetRef.current.tagName !== "BUTTON") {
         targetRef.current.style.padding = "7px 10px";
+        targetRef.current.insertAdjacentElement("afterend", editTextButton);
       }
 
       targetRef.current.onmousedown = handleMouseDown;

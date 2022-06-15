@@ -142,3 +142,26 @@ export const generateEditorDeleteElement = (
 
   return extraIconElement;
 };
+
+export const generatedImageElement = (localImage) => {
+  const newImage = document.createElement("img");
+
+  newImage.setAttribute("id", "img");
+  newImage.setAttribute("alt", `${localImage}`);
+  newImage.setAttribute("draggable", "false");
+  newImage.setAttribute("src", `${localImage}`);
+  newImage.style.position = "absolute";
+
+  return newImage;
+};
+
+export const saveLocalStorage = (location) => {
+  if (localStorage.getItem("localImgSrc") === null) {
+    localStorage.setItem("localImgSrc", "[]");
+  }
+
+  const preData = JSON.parse(localStorage.getItem("localImgSrc"));
+  preData.push(location);
+
+  localStorage.setItem("localImgSrc", JSON.stringify(preData));
+};

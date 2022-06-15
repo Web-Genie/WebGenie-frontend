@@ -58,6 +58,7 @@ export const TEXT_CHOICES = ["H1", "H2", "H3", "H4", "H5", "H6"];
 
 export const REQUEST_DATA_INFORMATION_USER = "USER";
 export const REQUEST_DATA_INFORMATION_EDITOR = "EDITOR";
+export const REQUEST_IMAGE_DATA_SAVE = "imageUpload";
 export const EDITOR = "EDITOR";
 export const ID_TOKEN = "idToken";
 export const FONT_TYPE = [

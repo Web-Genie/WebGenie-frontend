@@ -42,10 +42,10 @@ function RightToolbar() {
         )}
         {subToolbarType === "BUTTON" ||
         TEXT_CHOICES.includes(subToolbarType) ? (
-          <>
-            <ColorChangeSubToolBar />
-          </>
-        ) : null}
+            <>
+              <ColorChangeSubToolBar />
+            </>
+          ) : null}
         <CanvasClearButton />
       </ToolbarContainer>
     </EditorToolbar>
