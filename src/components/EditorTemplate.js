@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { TEXT_ALIGN, TEXT_CHOICES } from "../constants/constants";
@@ -24,6 +24,7 @@ function EditorTemplate({
   editorVersion,
 }) {
   const [handleResizeTarget, isResizing, setIsResizing] = useResize();
+  const [currentEditor, setCurrentEditor] = useState([]);
   const [parentRef, targetRef] = useDragAndDrop(isResizing, setIsResizing);
   const {
     subToolbarType,
@@ -138,8 +139,13 @@ function EditorTemplate({
     const savedCodeCollection = editorInformation.result.userSavedCode;
     if (editorVersion) {
       parentRef.current.innerHTML = savedCodeCollection[editorVersion].code;
+      setCurrentEditor((state) => [
+        ...state,
+        savedCodeCollection[editorVersion].code,
+      ]);
     } else {
       parentRef.current.innerHTML = savedCodeCollection[0].code;
+      setCurrentEditor((state) => [...state, savedCodeCollection[0].code]);
     }
   }, [editorInformation.result[0], editorVersion]);
 
@@ -149,10 +155,27 @@ function EditorTemplate({
     }
   }, []);
 
+  useEffect(() => {
+    const handleCtrlZ = (event) => {
+      if (event.metaKey && event.key === "z") {
+        if (currentEditor.length >= 2) {
+          currentEditor.pop();
+          parentRef.current.innerHTML = currentEditor[currentEditor.length - 1];
+        }
+      }
+    };
+
+    document.addEventListener("keydown", handleCtrlZ);
+
+    return () => {
+      document.removeEventListener("keydown", handleCtrlZ);
+    };
+  }, [currentEditor]);
+
   return (
     <EditorTemplateBody
       ref={parentRef}
-      onDrop={handleDrop}
+      onDrop={handleDrop(setCurrentEditor)}
       onDragOver={handleDragOver}
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
