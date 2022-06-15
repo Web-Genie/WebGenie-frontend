@@ -25,6 +25,8 @@ function EditorTemplate({
 }) {
   const [handleResizeTarget, isResizing, setIsResizing] = useResize();
   const [currentEditor, setCurrentEditor] = useState([]);
+  const [counter, setCounter] = useState(1);
+  const [copyingElement, setCopyingElement] = useState(null);
   const [parentRef, targetRef] = useDragAndDrop(isResizing, setIsResizing);
   const {
     subToolbarType,
@@ -137,6 +139,7 @@ function EditorTemplate({
   useEffect(() => {
     if (!editorInformation.result) return;
     const savedCodeCollection = editorInformation.result.userSavedCode;
+
     if (editorVersion) {
       parentRef.current.innerHTML = savedCodeCollection[editorVersion].code;
       setCurrentEditor((state) => [
@@ -156,21 +159,42 @@ function EditorTemplate({
   }, []);
 
   useEffect(() => {
-    const handleCtrlZ = (event) => {
+    const handleKeyboardEvent = (event) => {
       if (event.metaKey && event.key === "z") {
         if (currentEditor.length >= 2) {
           currentEditor.pop();
           parentRef.current.innerHTML = currentEditor[currentEditor.length - 1];
         }
       }
+      if (event.metaKey && event.key === "c") {
+        if (targetRef.current.tagName !== "DIV") {
+          setCopyingElement(targetRef.current);
+        }
+      }
+      if (event.metaKey && event.key === "v") {
+        const copyingElementLeft = Number(
+          copyingElement.style.left.replace("%", "")
+        );
+        const copyingElementTop = Number(
+          copyingElement.style.top.replace("%", "")
+        );
+        const clonedNode = copyingElement.cloneNode();
+
+        clonedNode.innerHTML = copyingElement.innerHTML;
+        clonedNode.style.left = `${copyingElementLeft + counter}%`;
+        clonedNode.style.top = `${copyingElementTop + counter}%`;
+
+        parentRef.current.appendChild(clonedNode);
+        setCurrentEditor((state) => [...state, parentRef.current.innerHTML]);
+        setCounter((counter) => counter + 1);
+      }
     };
 
-    document.addEventListener("keydown", handleCtrlZ);
-
+    document.addEventListener("keydown", handleKeyboardEvent);
     return () => {
-      document.removeEventListener("keydown", handleCtrlZ);
+      document.removeEventListener("keydown", handleKeyboardEvent);
     };
-  }, [currentEditor]);
+  }, [currentEditor, copyingElement, counter]);
 
   return (
     <EditorTemplateBody
