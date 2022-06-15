@@ -13,7 +13,7 @@ function ImageChoice() {
     useModal();
   const [imageFormData, setImageFromData] = useState(null);
 
-  const handleImage = async (event) => {
+  const handleImageUpload = async (event) => {
     setImageFromData(event.target.files[0]);
 
     event.target.value = "";
@@ -36,9 +36,9 @@ function ImageChoice() {
   );
 
   useEffect(() => {
-    if (imageFormData) {
-      fetchData();
-    }
+    if (!imageFormData) return;
+
+    fetchData();
   }, [imageFormData]);
 
   return (
@@ -54,7 +54,7 @@ function ImageChoice() {
             </p>
             Upload
           </label>
-          <input type="file" id="file" onChange={handleImage} />
+          <input type="file" id="file" onChange={handleImageUpload} />
         </div>
         <ToolbarButton>
           <FaImage />

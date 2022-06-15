@@ -54,6 +54,7 @@ const useAxios = (params, idToken, category = null) => {
 
       await api(params);
       localStorage.removeItem("localImgSrc");
+      navigate("/");
     } else if (category === "Publish") {
       navigate("/creatingnewwebsite");
 
