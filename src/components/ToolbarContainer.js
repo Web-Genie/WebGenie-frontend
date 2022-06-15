@@ -122,17 +122,16 @@ const ToolbarContainerBody = styled.div`
 
   .imageUploadingChoice {
     display: flex;
-    justify-content: space-evenly;
   }
 
   .filebox label {
     display: flex;
-    padding: 10px 17px;
-    margin-right: 7px;
+    padding: 7px 17px;
+    margin-right: 10px;
     border: 1px solid #ebebeb;
     border-bottom-color: #e2e2e2;
     border-radius: 6px;
-    font-size: inherit;
+    font-size: 13px;
     line-height: normal;
     vertical-align: middle;
     background-color: #fdfdfd;
@@ -156,6 +155,11 @@ const ToolbarContainerBody = styled.div`
 
   .localImage {
     margin-right: 2.2px;
+  }
+
+  .backgroundColorChoice {
+    display: flex;
+    padding: 2px 2px;
   }
 
   .samepleButton {
@@ -201,12 +205,6 @@ const ToolbarContainerBody = styled.div`
       border: none;
       padding-left: 0px;
     }
-  }
-
-  .clearCanvasButtonContainer {
-    display: flex;
-    justify-content: center;
-    margin: 20px 20px;
   }
 
   .sampleColor {

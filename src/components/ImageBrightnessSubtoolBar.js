@@ -6,6 +6,7 @@ import SubtoolbarTitle from "./SubtoolbarTitle";
 
 function ImageBrightnessSubtoolBar() {
   const { setImageBrightness } = useContext(SubToolbarContext);
+
   const handleImageBrightness = (event) => {
     setImageBrightness(event.target.value);
   };
