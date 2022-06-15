@@ -1,11 +1,10 @@
 import { useContext, useEffect, useRef } from "react";
-import styled from "styled-components";
 
 import { UserContext } from "../context/userContext";
 import useAxios from "../hooks/useAxios";
 
 function DeployedWebsite({ children }) {
-  const { editor } = useContext(UserContext);
+  const { editor, setEditor } = useContext(UserContext);
   const mainpageRef = useRef(null);
   const deployedEditorURL = window.location.pathname.split("/")[2];
   const { fetchData } = useAxios({
@@ -22,9 +21,11 @@ function DeployedWebsite({ children }) {
 
   useEffect(() => {
     if (editor) {
-      mainpageRef.current.innerHTML = editor.result.userSavedCode;
-      console.log(editor);
+      const savedCodeCollection = editor.result.userSavedCode;
+      mainpageRef.current.innerHTML = savedCodeCollection[0].code;
     }
+
+    setEditor(null);
   }, [editor]);
 
   return <div ref={mainpageRef}>{children}</div>;
