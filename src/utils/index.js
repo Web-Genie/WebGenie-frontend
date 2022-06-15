@@ -92,15 +92,14 @@ export const generateEditorDeleteElement = (
   const deleteCurrentElement = (event) => {
     event.stopPropagation();
 
-    if (event.target.nextSibling.tagName === "BUTTON") {
+    if (
+      event.target.nextSibling.tagName === "BUTTON" ||
+      event.target.nextSibling.tagName !== "IMG"
+    ) {
       event.target.nextElementSibling.remove();
       event.target.nextSibling.remove();
     } else {
-      if (clickedNode.current && clickedNode.current.tagName !== "IMG") {
-        event.target.nextElementSibling.remove();
-        event.target.nextSibling.remove();
-      }
-      event.target.nextSibling.remove();
+      event.target.nextElementSibling.remove();
     }
 
     event.target.remove();

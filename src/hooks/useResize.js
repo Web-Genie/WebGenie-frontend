@@ -140,7 +140,7 @@ function useResize() {
         if (targetRef.current.tagName !== "IMG") {
           targetRef.current.nextSibling.remove();
         }
-        targetRef.current.previousSibling.remove(); //연필표시가 따라다니도록 함.
+        targetRef.current.previousSibling.remove();
       }
       setSubToolbarType(targetRef.current.tagName);
 
