@@ -13,6 +13,7 @@ function useResize() {
   const targetRef = useRef(null);
   const [shouldEditText, setShouldEditText] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
+  const [isMoving, setIsMoving] = useState(true);
   const { setSubToolbarType } = useContext(SubToolbarContext);
   const {
     inputValue,
@@ -35,6 +36,7 @@ function useResize() {
     let [currentElementWidth, currentElementHeight] = getElementValue(
       targetRef.current
     );
+
     let currentElementFontSize = Number(
       getElementValue(targetRef.current, "font-size", "font")
     );
@@ -102,6 +104,18 @@ function useResize() {
     startX = event.clientX;
     startY = event.clientY;
 
+    if (event.target.style.border && event.target.tagName === "IMG") {
+      event.target.style.cursor = "move";
+      setIsMoving(false);
+    }
+    if (
+      event.target.style.border === "none" &&
+      event.target.tagName === "IMG"
+    ) {
+      event.target.style.cursor = "default";
+      setIsMoving(true);
+    }
+
     if (targetRef.current && event.target.tagName === "DIV") {
       targetRef.current.onmousemove = null;
     }
@@ -154,6 +168,7 @@ function useResize() {
 
       if (targetRef.current.tagName !== "BUTTON") {
         targetRef.current.style.padding = "7px 10px";
+        targetRef.current.insertAdjacentElement("afterend", editTextButton);
       }
 
       targetRef.current.onmousedown = handleMouseDown;
@@ -208,6 +223,7 @@ function useResize() {
 
       if (targetRef.current.tagName !== "BUTTON") {
         targetRef.current.style.padding = "7px 10px";
+        targetRef.current.insertAdjacentElement("afterend", editTextButton);
       }
 
       targetRef.current.onmousedown = handleMouseDown;

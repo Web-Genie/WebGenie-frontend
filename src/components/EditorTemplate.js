@@ -3,9 +3,11 @@ import styled from "styled-components";
 
 import { TEXT_ALIGN, TEXT_CHOICES } from "../constants/constants";
 import { SubToolbarContext } from "../context/subToolbarContext";
+import { InputFieldContext } from "../context/subToolbarContext";
 import useDragAndDrop from "../hooks/useDragAndDrop";
 import useResize from "../hooks/useResize";
 import {
+  generatedImageElement,
   handleDragEnter,
   handleDragLeave,
   handleDragOver,
@@ -45,7 +47,10 @@ function EditorTemplate({
     setHasImageUrl,
     isCanvasClear,
     setIsCavasClear,
+    imageBrightness,
+    imageBlur,
   } = useContext(SubToolbarContext);
+  const { imageOpacity } = useContext(InputFieldContext);
 
   useEffect(() => {
     if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
@@ -83,28 +88,20 @@ function EditorTemplate({
       setIsCavasClear(false);
     }
 
-    if (localImageSrc) {
-      const newImage = document.createElement("img");
-      const imageSrc = URL.createObjectURL(localImageSrc);
+    if (targetRef.current !== null && targetRef.current.tagName === "IMG") {
+      targetRef.current.style.opacity = imageOpacity;
+      targetRef.current.style.filter = `blur(${imageBlur}px) brightness(${imageBrightness})`;
+    }
 
-      newImage.setAttribute("id", "img");
-      newImage.setAttribute("alt", `${imageSrc}`);
-      newImage.setAttribute("draggable", "false");
-      newImage.setAttribute("src", `${imageSrc}`);
-      newImage.style.position = "absolute";
+    if (localImageSrc) {
+      const newImage = generatedImageElement(localImageSrc);
       parentRef.current.appendChild(newImage);
 
       setLocalImageSrc("");
     }
 
     if (hasImageUrl) {
-      const newImage = document.createElement("img");
-
-      newImage.setAttribute("id", "img");
-      newImage.setAttribute("alt", imageUrl);
-      newImage.setAttribute("draggable", "false");
-      newImage.setAttribute("src", imageUrl);
-      newImage.style.position = "absolute";
+      const newImage = generatedImageElement(imageUrl);
       parentRef.current.appendChild(newImage);
 
       setImageUrl("");
@@ -120,6 +117,9 @@ function EditorTemplate({
     localImageSrc,
     hasImageUrl,
     isCanvasClear,
+    imageOpacity,
+    imageBlur,
+    imageBrightness,
   ]);
 
   if (backgroundColorName) {

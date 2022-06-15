@@ -1,21 +1,45 @@
-import { useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaCloudUploadAlt, FaImage } from "react-icons/fa";
 
-import { SubToolbarContext } from "../context/subToolbarContext";
+import { ID_TOKEN, REQUEST_IMAGE_DATA_SAVE } from "../constants/constants";
+import useAxios from "../hooks/useAxios";
 import useModal from "../hooks/useModal";
 import Modal from "./Modal";
 import ModalContent from "./ModalContent";
 import ToolbarButton from "./ToolbarButton";
 
 function ImageChoice() {
-  const { setLocalImageSrc } = useContext(SubToolbarContext);
   const { shouldDisplayModal, closeModal, imageURLModalToggle, message } =
     useModal();
+  const [imageFormData, setImageFromData] = useState(null);
 
-  const handleImage = (event) => {
-    setLocalImageSrc(event.target.files[0]);
+  const handleImageUpload = async (event) => {
+    setImageFromData(event.target.files[0]);
+
     event.target.value = "";
   };
+
+  const formData = new FormData();
+  formData.append("imageFile", imageFormData);
+
+  const { fetchData } = useAxios(
+    {
+      method: "post",
+      url: "/image",
+      data: formData,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    },
+    ID_TOKEN,
+    REQUEST_IMAGE_DATA_SAVE
+  );
+
+  useEffect(() => {
+    if (!imageFormData) return;
+
+    fetchData();
+  }, [imageFormData]);
 
   return (
     <div className="choiceContainer">
@@ -30,7 +54,7 @@ function ImageChoice() {
             </p>
             Upload
           </label>
-          <input type="file" id="file" onChange={handleImage} />
+          <input type="file" id="file" onChange={handleImageUpload} />
         </div>
         <ToolbarButton>
           <FaImage />

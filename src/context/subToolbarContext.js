@@ -19,6 +19,8 @@ const SubToolbarTypeProvider = ({ children }) => {
   const [clearCanvasBackgroundColor, setClearCanavasBackgroundColor] =
     useState("");
   const [isCanvasClear, setIsCavasClear] = useState(false);
+  const [imageBrightness, setImageBrightness] = useState(1);
+  const [imageBlur, setImageBlur] = useState(0);
 
   const {
     inputValue,
@@ -36,6 +38,8 @@ const SubToolbarTypeProvider = ({ children }) => {
     setFontSize,
     fontType,
     setFontType,
+    imageOpacity,
+    setImageOpacity,
   } = useInput();
 
   return (
@@ -65,6 +69,10 @@ const SubToolbarTypeProvider = ({ children }) => {
         setImageUrl,
         hasImageUrl,
         setHasImageUrl,
+        imageBrightness,
+        setImageBrightness,
+        imageBlur,
+        setImageBlur,
       }}
     >
       <InputFieldContext.Provider
@@ -84,6 +92,8 @@ const SubToolbarTypeProvider = ({ children }) => {
           setFontSize,
           fontType,
           setFontType,
+          imageOpacity,
+          setImageOpacity,
         }}
       >
         {children}

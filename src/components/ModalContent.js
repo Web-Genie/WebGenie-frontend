@@ -13,7 +13,6 @@ import styled from "styled-components";
 import { ID_TOKEN } from "../constants/constants";
 import { SubToolbarContext } from "../context/subToolbarContext";
 import useAxios from "../hooks/useAxios";
-import { sendUserToHomepage } from "../utils/index";
 import Button from "./Button";
 
 function ModalContent({
@@ -24,7 +23,6 @@ function ModalContent({
   params,
   handleClick,
   requestType,
-  shouldGoHomepage,
 }) {
   const { setImageUrl, setHasImageUrl, imageUrl } =
     useContext(SubToolbarContext);
@@ -80,10 +78,7 @@ function ModalContent({
           {primaryButtonText}
         </Button>
       ) : (
-        <Button
-          handleClick={shouldGoHomepage ? sendUserToHomepage : fetchData}
-          mainButton={true}
-        >
+        <Button handleClick={fetchData} mainButton={true}>
           {primaryButtonText}
         </Button>
       )}
