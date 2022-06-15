@@ -26,6 +26,7 @@ function EditorTemplate({
   editorVersion,
   clearCanvas,
   handleCanvas,
+  handleBackgroundColor,
 }) {
   const [handleResizeTarget, isResizing, setIsResizing] = useResize();
   const [parentRef, targetRef] = useDragAndDrop(isResizing, setIsResizing);
@@ -116,11 +117,7 @@ function EditorTemplate({
     if (parentRef.current !== null && backgroundColorName) {
       parentRef.current.style.backgroundColor = backgroundColorName;
       setSavedBackgroundColor(backgroundColorName);
-    }
-
-    if (parentRef.current !== null && isCanvasClear) {
-      parentRef.current.style.backgroundColor = "white";
-      setIsCavasClear(false);
+      handleBackgroundColor("");
     }
   }, [
     colorValue,
@@ -141,7 +138,7 @@ function EditorTemplate({
   useEffect(() => {
     if (clearCanvas && parentRef.current !== null) {
       parentRef.current.innerHTML = "";
-      parentRef.current.style.background = "white";
+      parentRef.current.style.backgroundColor = "white";
       handleCanvas(false);
     }
   }, [clearCanvas]);

@@ -181,6 +181,7 @@ function Editor() {
           displayWideView={shouldShowWideView}
           retrieveParentRefState={setParentRefState}
           backgroundColorName={backgroundColor}
+          handleBackgroundColor={setBackgroundColor}
           editorVersion={displayingVersion}
           clearCanvas={clearCanvas}
           handleCanvas={setClearCanvas}
