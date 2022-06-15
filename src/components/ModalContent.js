@@ -135,4 +135,5 @@ const ImgURLMocalInputContainer = styled.p`
     margin-bottom: 40px;
   }
 `;
+
 export default ModalContent;

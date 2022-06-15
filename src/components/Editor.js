@@ -21,10 +21,14 @@ import Modal from "./Modal";
 import ModalContent from "./ModalContent";
 import Navigation from "./Navigation";
 import RightToolbar from "./RightToolbar";
+import VersionLog from "./VersionLog";
 
 function Editor() {
   const currentEditorId = retrieveURL();
   const [parentRefState, setParentRefState] = useState("");
+  const [shouldShowDifferentVersion, setShouldShowDifferentVersion] =
+    useState(false);
+  const [displayingVersion, setDisplayingVersion] = useState(null);
   const { editor, title } = useContext(UserContext);
   const { handleLogout } = useLogout();
   const { userTitle, shouldEditValue, handleInputChange, toggleInputChange } =
@@ -44,6 +48,10 @@ function Editor() {
   const [imageOpacity, setImageOpacity] = useState(1);
   const [imageBrightness, setImageBrightness] = useState(1);
   const [imageBlur, setImageBlur] = useState(0);
+
+  const toggleSavedVersionHistory = () => {
+    setShouldShowDifferentVersion((state) => !state);
+  };
 
   const handleImgOpacity = (event) => {
     setImageOpacity(event.target.value);
@@ -91,6 +99,12 @@ function Editor() {
     }
   };
 
+  const handleDisplayingVersionChange = (event) => {
+    setDisplayingVersion(
+      event.target.parentNode.parentNode.getAttribute("value")
+    );
+  };
+
   return (
     <>
       {shouldDisplayModal && (
@@ -135,6 +149,11 @@ function Editor() {
           <Button handleClick={saveModalToggle} mainButton={false}>
             Save
           </Button>
+          <Button handleClick={toggleSavedVersionHistory} mainButton={false}>
+            {shouldShowDifferentVersion
+              ? "Close Saved Version Log"
+              : "Saved Version Log"}
+          </Button>
           <Button handleClick={toggleWideView} mainButton={false}>
             Wide View
           </Button>
@@ -154,12 +173,19 @@ function Editor() {
           displayWideView={shouldShowWideView}
           retrieveParentRefState={setParentRefState}
           backgroundColorName={backgroundColor}
+          editorVersion={displayingVersion}
         />
-        {!shouldShowWideView && (
+        {!shouldShowWideView && !shouldShowDifferentVersion && (
           <RightToolbar
             onChangeOpacity={handleImgOpacity}
             onChangeBrightness={handleImgBrightness}
             onChangeBlur={handleImgBlur}
+          />
+        )}
+        {shouldShowDifferentVersion && (
+          <VersionLog
+            handleVersionChange={handleDisplayingVersionChange}
+            information={editor}
           />
         )}
       </EditorBody>
