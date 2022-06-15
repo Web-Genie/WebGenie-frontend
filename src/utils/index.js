@@ -96,7 +96,10 @@ export const generateEditorDeleteElement = (
       event.target.nextElementSibling.remove();
       event.target.nextSibling.remove();
     } else {
-      event.target.nextElementSibling.remove();
+      if (clickedNode.current && clickedNode.current.tagName !== "IMG") {
+        event.target.nextElementSibling.remove();
+        event.target.nextSibling.remove();
+      }
       event.target.nextSibling.remove();
     }
 

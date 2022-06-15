@@ -1,5 +1,4 @@
 import { useContext, useEffect, useRef } from "react";
-import styled from "styled-components";
 
 import { UserContext } from "../context/userContext";
 import useAxios from "../hooks/useAxios";
@@ -23,7 +22,6 @@ function DeployedWebsite({ children }) {
   useEffect(() => {
     if (editor) {
       mainpageRef.current.innerHTML = editor.result.userSavedCode;
-      console.log(editor);
     }
   }, [editor]);
 

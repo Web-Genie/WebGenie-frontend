@@ -50,7 +50,7 @@ function EditorTemplate({
     imageBlur,
   } = useContext(SubToolbarContext);
   const { imageOpacity } = useContext(InputFieldContext);
-  console.log("parent", parentRef, targetRef);
+
   useEffect(() => {
     if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
       if (TEXT_CHOICES.includes(subToolbarType)) {
@@ -75,7 +75,6 @@ function EditorTemplate({
           setTextAlign("");
         }
       }
-      console.log(targetRef.current.tagName);
       if (targetRef.current.tagName === "BUTTON" && buttonColor) {
         targetRef.current.style.background = buttonColor;
 
