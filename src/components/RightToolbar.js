@@ -42,10 +42,8 @@ function RightToolbar({ onChangeOpacity, onChangeBrightness, onChangeBlur }) {
         )}
         {subToolbarType === "BUTTON" ||
         TEXT_CHOICES.includes(subToolbarType) ? (
-          <>
             <ColorChangeSubToolBar />
-          </>
-        ) : null}
+          ) : null}
         <CanvasClearButton />
       </ToolbarContainer>
     </EditorToolbar>
