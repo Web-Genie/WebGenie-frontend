@@ -95,9 +95,9 @@ function ModalContent({
 }
 
 ModalContent.propTypes = {
-  modalText: PropTypes.string.isRequired,
-  primaryButtonText: PropTypes.string.isRequired,
-  secondaryButtonText: PropTypes.string.isRequired,
+  modalText: PropTypes.string,
+  primaryButtonText: PropTypes.string,
+  secondaryButtonText: PropTypes.string,
   modalIconState: PropTypes.string,
   handleClick: PropTypes.func.isRequired,
 };
@@ -140,4 +140,5 @@ const ImgURLMocalInputContainer = styled.p`
     margin-bottom: 40px;
   }
 `;
+
 export default ModalContent;
