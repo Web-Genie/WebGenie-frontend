@@ -142,8 +142,12 @@ function EditorTemplate({
     const savedCodeCollection = editorInformation.result.userSavedCode;
     if (editorVersion) {
       parentRef.current.innerHTML = savedCodeCollection[editorVersion].code;
+      parentRef.current.style.backgroundColor =
+        savedCodeCollection[editorVersion].backgroundColor;
     } else {
       parentRef.current.innerHTML = savedCodeCollection[0].code;
+      parentRef.current.style.backgroundColor =
+        savedCodeCollection[0].backgroundColor;
     }
   }, [editorInformation.result[0], editorVersion]);
 
