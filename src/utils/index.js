@@ -92,12 +92,14 @@ export const generateEditorDeleteElement = (
   const deleteCurrentElement = (event) => {
     event.stopPropagation();
 
-    if (event.target.nextSibling.tagName === "BUTTON") {
+    if (
+      event.target.nextSibling.tagName === "BUTTON" ||
+      event.target.nextSibling.tagName !== "IMG"
+    ) {
       event.target.nextElementSibling.remove();
       event.target.nextSibling.remove();
     } else {
       event.target.nextElementSibling.remove();
-      event.target.nextSibling.remove();
     }
 
     event.target.remove();
@@ -151,6 +153,8 @@ export const generatedImageElement = (localImage) => {
   newImage.setAttribute("draggable", "false");
   newImage.setAttribute("src", `${localImage}`);
   newImage.style.position = "absolute";
+  newImage.style.maxHeight = "500px";
+  newImage.style.maxWidth = "500px";
 
   return newImage;
 };

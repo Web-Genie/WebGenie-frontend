@@ -1,9 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import { clear } from "@testing-library/user-event/dist/clear";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 
 import { TEXT_ALIGN, TEXT_CHOICES } from "../constants/constants";
 import { SubToolbarContext } from "../context/subToolbarContext";
 import { InputFieldContext } from "../context/subToolbarContext";
+import { UserContext } from "../context/userContext";
 import useDragAndDrop from "../hooks/useDragAndDrop";
 import useResize from "../hooks/useResize";
 import {
@@ -22,6 +24,9 @@ function EditorTemplate({
   editorInformation,
   retrieveParentRefState,
   editorVersion,
+  clearCanvas,
+  handleCanvas,
+  handleBackgroundColor,
 }) {
   const [handleResizeTarget, isResizing, setIsResizing] = useResize();
   const [currentEditor, setCurrentEditor] = useState([]);
@@ -54,32 +59,38 @@ function EditorTemplate({
     imageBlur,
   } = useContext(SubToolbarContext);
   const { imageOpacity } = useContext(InputFieldContext);
+  const { setSavedBackgroundColor } = useContext(UserContext);
 
   useEffect(() => {
     if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
       if (TEXT_CHOICES.includes(subToolbarType)) {
         if (colorValue) {
           targetRef.current.style.color = colorValue;
+
           setColorValue("");
         }
         if (isBold) {
           targetRef.current.style.fontWeight = "Bold";
+
           setIsBold(false);
         }
         if (isItalic) {
           targetRef.current.style.fontStyle = "italic";
+
           setIsItalic(false);
         }
         if (isUnderLine) {
           targetRef.current.style.textDecoration = "underline";
+
           setIsUnderLine(false);
         }
         if (TEXT_ALIGN.includes(textAlign)) {
           targetRef.current.style.textAlign = textAlign;
+
           setTextAlign("");
         }
       }
-      if (subToolbarType === "BUTTON" && buttonColor) {
+      if (targetRef.current.tagName === "BUTTON" && buttonColor) {
         targetRef.current.style.background = buttonColor;
 
         setButtonColor("");
@@ -88,6 +99,7 @@ function EditorTemplate({
 
     if (isCanvasClear) {
       parentRef.current.innerHTML = "";
+
       setIsCavasClear(false);
     }
 
@@ -110,6 +122,13 @@ function EditorTemplate({
       setImageUrl("");
       setHasImageUrl(false);
     }
+
+    if (parentRef.current !== null && backgroundColorName) {
+      parentRef.current.style.backgroundColor = backgroundColorName;
+
+      setSavedBackgroundColor(backgroundColorName);
+      handleBackgroundColor("");
+    }
   }, [
     colorValue,
     textAlign,
@@ -123,11 +142,17 @@ function EditorTemplate({
     imageOpacity,
     imageBlur,
     imageBrightness,
+    backgroundColorName,
   ]);
 
-  if (backgroundColorName) {
-    targetRef.current.style.backgroundColor = backgroundColorName;
-  }
+  useEffect(() => {
+    if (clearCanvas && parentRef.current !== null) {
+      parentRef.current.innerHTML = "";
+      parentRef.current.style.backgroundColor = "white";
+
+      handleCanvas(false);
+    }
+  }, [clearCanvas]);
 
   useEffect(() => {
     if (!modalStatus) return;
@@ -142,13 +167,12 @@ function EditorTemplate({
 
     if (editorVersion) {
       parentRef.current.innerHTML = savedCodeCollection[editorVersion].code;
-      setCurrentEditor((state) => [
-        ...state,
-        savedCodeCollection[editorVersion].code,
-      ]);
+      parentRef.current.style.backgroundColor =
+        savedCodeCollection[editorVersion].backgroundColor;
     } else {
       parentRef.current.innerHTML = savedCodeCollection[0].code;
-      setCurrentEditor((state) => [...state, savedCodeCollection[0].code]);
+      parentRef.current.style.backgroundColor =
+        savedCodeCollection[0].backgroundColor;
     }
   }, [editorInformation.result[0], editorVersion]);
 
@@ -323,54 +347,6 @@ const EditorTemplateBody = styled.div`
     }
   }
 
-  .imageUploadingChoice {
-    display: flex;
-    justify-content: space-evenly;
-  }
-
-  .shapeChoices {
-    display: flex;
-    justify-content: space-evenly;
-  }
-
-  .square {
-    width: 42px;
-    height: 42px;
-    margin-right: 10px;
-    background-color: #98a2b3;
-    cursor: pointer;
-
-    :hover {
-      opacity: 0.5;
-    }
-  }
-
-  .circle {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background-color: #98a2b3;
-    cursor: pointer;
-
-    :hover {
-      opacity: 0.5;
-    }
-  }
-
-  .triangle {
-    width: 0;
-    height: 0;
-    border-left: 27px solid transparent;
-    border-right: 27px solid transparent;
-    border-bottom: 42px solid #98a2b3;
-    margin-left: 10px;
-    cursor: pointer;
-
-    :hover {
-      opacity: 0.5;
-    }
-  }
-
   .samepleButton {
     border: 1px solid #e5e5e5;
     border-radius: 6px;
@@ -414,11 +390,6 @@ const EditorTemplateBody = styled.div`
       border: none;
       padding-right: 10px;
     }
-  }
-
-  .clearCanvasButtonContainer {
-    position: flex;
-    margin: 20px 20px;
   }
 
   .sampleColor {

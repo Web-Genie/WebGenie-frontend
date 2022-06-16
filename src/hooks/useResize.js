@@ -22,7 +22,9 @@ function useResize() {
     buttonRadius,
     buttonOpacity,
     fontSize,
+    setFontSize,
     fontType,
+    setFontType,
   } = useContext(InputFieldContext);
 
   let leftOrRightDirection = "";
@@ -137,8 +139,10 @@ function useResize() {
         targetRef.current.nextSibling.remove();
       } else {
         targetRef.current.style.border = "none";
+        if (targetRef.current.tagName !== "IMG") {
+          targetRef.current.nextSibling.remove();
+        }
         targetRef.current.previousSibling.remove();
-        targetRef.current.nextSibling.remove();
       }
       setSubToolbarType(targetRef.current.tagName);
 
@@ -160,13 +164,19 @@ function useResize() {
         "&#x270E;",
         true
       );
+
       editTextButton.onclick = editText;
       targetRef.current.style.border = "2px dashed black";
 
       targetRef.current.insertAdjacentElement("beforebegin", deleteButton);
-      targetRef.current.insertAdjacentElement("afterend", editTextButton);
+      if (targetRef.current.tagName !== "IMG") {
+        targetRef.current.insertAdjacentElement("afterend", editTextButton);
+      }
 
-      if (targetRef.current.tagName !== "BUTTON") {
+      if (
+        targetRef.current.tagName !== "BUTTON" &&
+        targetRef.current.tagName !== "IMG"
+      ) {
         targetRef.current.style.padding = "7px 10px";
         targetRef.current.insertAdjacentElement("afterend", editTextButton);
       }
@@ -219,9 +229,15 @@ function useResize() {
       editTextButton.onclick = editText;
       targetRef.current.style.border = "2px dashed black";
       targetRef.current.insertAdjacentElement("beforebegin", deleteButton);
-      targetRef.current.insertAdjacentElement("afterend", editTextButton);
 
-      if (targetRef.current.tagName !== "BUTTON") {
+      if (targetRef.current.tagName !== "IMG") {
+        targetRef.current.insertAdjacentElement("afterend", editTextButton);
+      }
+
+      if (
+        targetRef.current.tagName !== "BUTTON" &&
+        targetRef.current.tagName !== "IMG"
+      ) {
         targetRef.current.style.padding = "7px 10px";
         targetRef.current.insertAdjacentElement("afterend", editTextButton);
       }
@@ -264,10 +280,12 @@ function useResize() {
 
     if (FONT_TYPE.includes(fontType)) {
       targetRef.current.style.fontFamily = fontType;
+      setFontType("");
     }
 
     if (fontSize) {
       targetRef.current.style.fontSize = `${fontSize}px`;
+      setFontSize("");
     }
   }, [fontSize, fontType]);
 
