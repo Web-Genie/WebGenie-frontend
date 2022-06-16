@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { TEXT_ALIGN, TEXT_CHOICES } from "../constants/constants";
 import { SubToolbarContext } from "../context/subToolbarContext";
 import { InputFieldContext } from "../context/subToolbarContext";
+import { UserContext } from "../context/userContext";
 import useDragAndDrop from "../hooks/useDragAndDrop";
 import useResize from "../hooks/useResize";
 import {
@@ -51,6 +52,7 @@ function EditorTemplate({
     imageBlur,
   } = useContext(SubToolbarContext);
   const { imageOpacity } = useContext(InputFieldContext);
+  const { setSavedBackgroundColor } = useContext(UserContext);
 
   useEffect(() => {
     if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
@@ -76,7 +78,7 @@ function EditorTemplate({
           setTextAlign("");
         }
       }
-      if (subToolbarType === "BUTTON" && buttonColor) {
+      if (targetRef.current.tagName === "BUTTON" && buttonColor) {
         targetRef.current.style.background = buttonColor;
 
         setButtonColor("");
@@ -107,6 +109,11 @@ function EditorTemplate({
       setImageUrl("");
       setHasImageUrl(false);
     }
+
+    if (parentRef.current !== null && backgroundColorName) {
+      parentRef.current.style.backgroundColor = backgroundColorName;
+      setSavedBackgroundColor(backgroundColorName);
+    }
   }, [
     colorValue,
     textAlign,
@@ -120,11 +127,8 @@ function EditorTemplate({
     imageOpacity,
     imageBlur,
     imageBrightness,
+    backgroundColorName,
   ]);
-
-  if (backgroundColorName) {
-    targetRef.current.style.backgroundColor = backgroundColorName;
-  }
 
   useEffect(() => {
     if (!modalStatus) return;
@@ -138,8 +142,12 @@ function EditorTemplate({
     const savedCodeCollection = editorInformation.result.userSavedCode;
     if (editorVersion) {
       parentRef.current.innerHTML = savedCodeCollection[editorVersion].code;
+      parentRef.current.style.backgroundColor =
+        savedCodeCollection[editorVersion].backgroundColor;
     } else {
       parentRef.current.innerHTML = savedCodeCollection[0].code;
+      parentRef.current.style.backgroundColor =
+        savedCodeCollection[0].backgroundColor;
     }
   }, [editorInformation.result[0], editorVersion]);
 

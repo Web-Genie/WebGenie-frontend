@@ -62,12 +62,12 @@ export const REQUEST_IMAGE_DATA_SAVE = "imageUpload";
 export const EDITOR = "EDITOR";
 export const ID_TOKEN = "idToken";
 export const FONT_TYPE = [
-  "inter",
   "AppleGothic",
   "Geogia",
   "serif",
   "monospace",
   "cursive",
+  "fantasy",
 ];
 
 export const TEXT_ALIGN = ["left", "center", "right"];
