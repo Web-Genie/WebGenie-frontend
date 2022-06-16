@@ -159,7 +159,7 @@ const ToolbarContainerBody = styled.div`
 
   .backgroundColorChoice {
     display: flex;
-    padding: 2px 2px;
+    padding: 2px;
   }
 
   .samepleButton {

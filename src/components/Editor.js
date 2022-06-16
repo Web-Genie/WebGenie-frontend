@@ -151,7 +151,7 @@ function Editor() {
           </div>
         </div>
         <div>
-          <Button handleClick={handleTemplate} warnningSignal={true}>
+          <Button handleClick={handleTemplate} warningSignal={true}>
             Clear Canvas
           </Button>
           <Button handleClick={saveModalToggle} mainButton={false}>

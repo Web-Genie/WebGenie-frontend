@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-function Button({ children, mainButton, handleClick, margin, warnningSignal }) {
+function Button({ children, mainButton, handleClick, margin, warningSignal }) {
   return (
     <ButtonBody
       onClick={handleClick}
       marginValue={margin}
       primaryButton={mainButton}
-      warnning={warnningSignal}
+      warning={warningSignal}
     >
       {children}
     </ButtonBody>
@@ -25,13 +25,13 @@ const ButtonBody = styled.button`
   border: ${(props) =>
     props.primaryButton
       ? "0"
-      : props.warnning
+      : props.warning
       ? "2px solid red"
       : "2px solid #0a6bff "};
   border-radius: 5px;
   background-color: ${(props) => (props.primaryButton ? "#0a6bff" : "white")};
   color: ${(props) =>
-    props.primaryButton ? "#fff" : props.warnning ? "red" : "#0a6bff"};
+    props.primaryButton ? "#fff" : props.warning ? "red" : "#0a6bff"};
   font-size: 16px;
   text-align: center;
   transition: all 0.2s cubic-bezier(0.22, 0.61, 0.36, 1);
