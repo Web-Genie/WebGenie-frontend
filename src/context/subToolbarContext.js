@@ -18,7 +18,7 @@ const SubToolbarTypeProvider = ({ children }) => {
   const [hasImageUrl, setHasImageUrl] = useState(false);
   const [clearCanvasBackgroundColor, setClearCanavasBackgroundColor] =
     useState("");
-  const [isCanvasClear, setIsCavasClear] = useState(false);
+  const [isCanvasClear, setIsCanvasClear] = useState(false);
   const [imageBrightness, setImageBrightness] = useState(1);
   const [imageBlur, setImageBlur] = useState(0);
 
@@ -64,7 +64,7 @@ const SubToolbarTypeProvider = ({ children }) => {
         clearCanvasBackgroundColor,
         setClearCanavasBackgroundColor,
         isCanvasClear,
-        setIsCavasClear,
+        setIsCanvasClear,
         imageUrl,
         setImageUrl,
         hasImageUrl,

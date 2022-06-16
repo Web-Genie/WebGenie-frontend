@@ -13,10 +13,7 @@ export const handleDragOver = (event) => {
   event.stopPropagation();
 };
 
-export const handleDrop = (event) => {
-  event.preventDefault();
-  event.stopPropagation();
-
+export const handleDrop = (trackChange) => (event) => {
   const data = event.dataTransfer.getData("text");
   const node = document.getElementById(data);
   const clonedNode = node.cloneNode(true);
@@ -31,6 +28,9 @@ export const handleDrop = (event) => {
   clonedNode.style.position = "absolute";
   clonedNode.style.left = `${(droppedLocationLeft / parentNodeWidth) * 95}%`;
   clonedNode.style.top = `${(droppedLocationTop / parentNodeHeight) * 95}%`;
+  clonedNode.style.zIndex = 100;
+
+  trackChange((state) => [...state, event.target.innerHTML]);
 
   event.target.appendChild(clonedNode);
 };
