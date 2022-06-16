@@ -1,3 +1,4 @@
+import { clear } from "@testing-library/user-event/dist/clear";
 import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 
@@ -23,6 +24,9 @@ function EditorTemplate({
   editorInformation,
   retrieveParentRefState,
   editorVersion,
+  clearCanvas,
+  handleCanvas,
+  handleBackgroundColor,
 }) {
   const [handleResizeTarget, isResizing, setIsResizing] = useResize();
   const [parentRef, targetRef] = useDragAndDrop(isResizing, setIsResizing);
@@ -59,22 +63,27 @@ function EditorTemplate({
       if (TEXT_CHOICES.includes(subToolbarType)) {
         if (colorValue) {
           targetRef.current.style.color = colorValue;
+
           setColorValue("");
         }
         if (isBold) {
           targetRef.current.style.fontWeight = "Bold";
+
           setIsBold(false);
         }
         if (isItalic) {
           targetRef.current.style.fontStyle = "italic";
+
           setIsItalic(false);
         }
         if (isUnderLine) {
           targetRef.current.style.textDecoration = "underline";
+
           setIsUnderLine(false);
         }
         if (TEXT_ALIGN.includes(textAlign)) {
           targetRef.current.style.textAlign = textAlign;
+
           setTextAlign("");
         }
       }
@@ -87,6 +96,7 @@ function EditorTemplate({
 
     if (isCanvasClear) {
       parentRef.current.innerHTML = "";
+
       setIsCavasClear(false);
     }
 
@@ -112,7 +122,9 @@ function EditorTemplate({
 
     if (parentRef.current !== null && backgroundColorName) {
       parentRef.current.style.backgroundColor = backgroundColorName;
+
       setSavedBackgroundColor(backgroundColorName);
+      handleBackgroundColor("");
     }
   }, [
     colorValue,
@@ -129,6 +141,15 @@ function EditorTemplate({
     imageBrightness,
     backgroundColorName,
   ]);
+
+  useEffect(() => {
+    if (clearCanvas && parentRef.current !== null) {
+      parentRef.current.innerHTML = "";
+      parentRef.current.style.backgroundColor = "white";
+
+      handleCanvas(false);
+    }
+  }, [clearCanvas]);
 
   useEffect(() => {
     if (!modalStatus) return;
@@ -284,54 +305,6 @@ const EditorTemplateBody = styled.div`
     }
   }
 
-  .imageUploadingChoice {
-    display: flex;
-    justify-content: space-evenly;
-  }
-
-  .shapeChoices {
-    display: flex;
-    justify-content: space-evenly;
-  }
-
-  .square {
-    width: 42px;
-    height: 42px;
-    margin-right: 10px;
-    background-color: #98a2b3;
-    cursor: pointer;
-
-    :hover {
-      opacity: 0.5;
-    }
-  }
-
-  .circle {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background-color: #98a2b3;
-    cursor: pointer;
-
-    :hover {
-      opacity: 0.5;
-    }
-  }
-
-  .triangle {
-    width: 0;
-    height: 0;
-    border-left: 27px solid transparent;
-    border-right: 27px solid transparent;
-    border-bottom: 42px solid #98a2b3;
-    margin-left: 10px;
-    cursor: pointer;
-
-    :hover {
-      opacity: 0.5;
-    }
-  }
-
   .samepleButton {
     border: 1px solid #e5e5e5;
     border-radius: 6px;
@@ -375,11 +348,6 @@ const EditorTemplateBody = styled.div`
       border: none;
       padding-right: 10px;
     }
-  }
-
-  .clearCanvasButtonContainer {
-    position: flex;
-    margin: 20px 20px;
   }
 
   .sampleColor {

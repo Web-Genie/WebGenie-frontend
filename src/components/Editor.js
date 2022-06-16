@@ -48,6 +48,7 @@ function Editor() {
   const [imageOpacity, setImageOpacity] = useState(1);
   const [imageBrightness, setImageBrightness] = useState(1);
   const [imageBlur, setImageBlur] = useState(0);
+  const [clearCanvas, setClearCanvas] = useState(false);
 
   const toggleSavedVersionHistory = () => {
     setShouldShowDifferentVersion((state) => !state);
@@ -105,6 +106,10 @@ function Editor() {
     );
   };
 
+  const handleTemplate = () => {
+    setClearCanvas(true);
+  };
+
   return (
     <>
       {shouldDisplayModal && (
@@ -146,6 +151,9 @@ function Editor() {
           </div>
         </div>
         <div>
+          <Button handleClick={handleTemplate} warningSignal={true}>
+            Clear Canvas
+          </Button>
           <Button handleClick={saveModalToggle} mainButton={false}>
             Save
           </Button>
@@ -173,7 +181,10 @@ function Editor() {
           displayWideView={shouldShowWideView}
           retrieveParentRefState={setParentRefState}
           backgroundColorName={backgroundColor}
+          handleBackgroundColor={setBackgroundColor}
           editorVersion={displayingVersion}
+          clearCanvas={clearCanvas}
+          handleCanvas={setClearCanvas}
         />
         {!shouldShowWideView && !shouldShowDifferentVersion && (
           <RightToolbar

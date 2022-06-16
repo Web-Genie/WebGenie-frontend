@@ -1,9 +1,9 @@
-import { FaImage, FaPaintRoller } from "react-icons/fa";
+import { FaPaintRoller } from "react-icons/fa";
 
 import ToolbarButton from "./ToolbarButton";
 
 function BackgroundChoice({ handleBackgroundColor }) {
-  const handleBackgroundColorChange = (event) => {
+  const handleBackgroundColorChanged = (event) => {
     handleBackgroundColor(event.target.value);
   };
 
@@ -12,18 +12,14 @@ function BackgroundChoice({ handleBackgroundColor }) {
       <div className="category">
         <p>Add Background</p>
       </div>
-      <div className="imageUploadingChoice">
-        <ToolbarButton>
+      <div className="backgroundColorChoice">
+        <ToolbarButton name="backgroundColorChoice">
           <FaPaintRoller />
           <input
             className="colorPalette"
             type="color"
-            onChange={handleBackgroundColorChange}
+            onChange={handleBackgroundColorChanged}
           />
-        </ToolbarButton>
-        <ToolbarButton>
-          <FaImage />
-          <p className="text">From URL</p>
         </ToolbarButton>
       </div>
     </div>
