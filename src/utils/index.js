@@ -93,18 +93,16 @@ export const generateEditorDeleteElement = (
     event.stopPropagation();
 
     if (
-      //버튼, 폰트
       event.target.nextSibling.tagName === "BUTTON" ||
       event.target.nextSibling.tagName !== "IMG"
     ) {
-      event.target.nextElementSibling.remove(); //버튼을 지움
-      event.target.nextSibling.remove(); //연필을 지움
+      event.target.nextElementSibling.remove();
+      event.target.nextSibling.remove();
     } else {
-      //이미지
-      event.target.nextElementSibling.remove(); //사진을 지움
+      event.target.nextElementSibling.remove();
     }
 
-    event.target.remove(); //x표
+    event.target.remove();
   };
 
   const extraIconMouseOverEffect = (event) => {
@@ -154,9 +152,11 @@ export const generatedImageElement = (localImage) => {
   newImage.setAttribute("alt", `${localImage}`);
   newImage.setAttribute("draggable", "false");
   newImage.setAttribute("src", `${localImage}`);
+  newImage.setAttribute("cursor", "pointer");
   newImage.style.position = "absolute";
   newImage.style.maxHeight = "500px";
   newImage.style.maxWidth = "500px";
+  newImage.style.cursor = "pointer";
 
   return newImage;
 };

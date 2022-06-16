@@ -65,7 +65,6 @@ function useResize() {
       targetRef.current.tagName === "BUTTON" ||
       targetRef.current.tagName === "IMG"
     ) {
-      console.log(targetRef.current.style.width);
       let amountOfWidthToIncrease = event.clientX - startX;
       let amountOfHeightToIncrease = event.clientY - startY;
 
@@ -208,7 +207,7 @@ function useResize() {
           targetRef.current.previousSibling
         ) {
           targetRef.current.previousSibling.remove();
-        } else {
+        } else if (targetRef.current.previousSibling) {
           targetRef.current.previousSibling.remove();
           targetRef.current.nextSibling.remove();
         }

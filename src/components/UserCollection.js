@@ -9,7 +9,7 @@ import placeholderImage from "../assets/placeholder.png";
 function UserCollection({ collections, toggleDeleteModal }) {
   return (
     <UserContents>
-      {collections.length ? (
+      {collections ? (
         collections.map((userWebsites) => {
           if (userWebsites.isDeployed) {
             return (
