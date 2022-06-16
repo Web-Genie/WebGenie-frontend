@@ -1,5 +1,4 @@
-import { clear } from "@testing-library/user-event/dist/clear";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { TEXT_ALIGN, TEXT_CHOICES } from "../constants/constants";
