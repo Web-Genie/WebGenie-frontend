@@ -1,3 +1,4 @@
+import { clear } from "@testing-library/user-event/dist/clear";
 import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 
@@ -23,8 +24,14 @@ function EditorTemplate({
   editorInformation,
   retrieveParentRefState,
   editorVersion,
+  clearCanvas,
+  handleCanvas,
+  handleBackgroundColor,
 }) {
   const [handleResizeTarget, isResizing, setIsResizing] = useResize();
+  const [currentEditor, setCurrentEditor] = useState([]);
+  const [counter, setCounter] = useState(1);
+  const [copyingElement, setCopyingElement] = useState(null);
   const [parentRef, targetRef] = useDragAndDrop(isResizing, setIsResizing);
   const {
     subToolbarType,
@@ -59,22 +66,27 @@ function EditorTemplate({
       if (TEXT_CHOICES.includes(subToolbarType)) {
         if (colorValue) {
           targetRef.current.style.color = colorValue;
+
           setColorValue("");
         }
         if (isBold) {
           targetRef.current.style.fontWeight = "Bold";
+
           setIsBold(false);
         }
         if (isItalic) {
           targetRef.current.style.fontStyle = "italic";
+
           setIsItalic(false);
         }
         if (isUnderLine) {
           targetRef.current.style.textDecoration = "underline";
+
           setIsUnderLine(false);
         }
         if (TEXT_ALIGN.includes(textAlign)) {
           targetRef.current.style.textAlign = textAlign;
+
           setTextAlign("");
         }
       }
@@ -87,6 +99,7 @@ function EditorTemplate({
 
     if (isCanvasClear) {
       parentRef.current.innerHTML = "";
+
       setIsCavasClear(false);
     }
 
@@ -112,7 +125,9 @@ function EditorTemplate({
 
     if (parentRef.current !== null && backgroundColorName) {
       parentRef.current.style.backgroundColor = backgroundColorName;
+
       setSavedBackgroundColor(backgroundColorName);
+      handleBackgroundColor("");
     }
   }, [
     colorValue,
@@ -131,6 +146,15 @@ function EditorTemplate({
   ]);
 
   useEffect(() => {
+    if (clearCanvas && parentRef.current !== null) {
+      parentRef.current.innerHTML = "";
+      parentRef.current.style.backgroundColor = "white";
+
+      handleCanvas(false);
+    }
+  }, [clearCanvas]);
+
+  useEffect(() => {
     if (!modalStatus) return;
     if (!parentRef.current) return;
 
@@ -140,6 +164,7 @@ function EditorTemplate({
   useEffect(() => {
     if (!editorInformation.result) return;
     const savedCodeCollection = editorInformation.result.userSavedCode;
+
     if (editorVersion) {
       parentRef.current.innerHTML = savedCodeCollection[editorVersion].code;
       parentRef.current.style.backgroundColor =
@@ -157,10 +182,48 @@ function EditorTemplate({
     }
   }, []);
 
+  useEffect(() => {
+    const handleKeyboardEvent = (event) => {
+      if (event.metaKey && event.key === "z") {
+        if (currentEditor.length >= 2) {
+          currentEditor.pop();
+          parentRef.current.innerHTML = currentEditor[currentEditor.length - 1];
+        }
+      }
+      if (event.metaKey && event.key === "c") {
+        if (targetRef.current.tagName !== "DIV") {
+          setCopyingElement(targetRef.current);
+        }
+      }
+      if (event.metaKey && event.key === "v") {
+        const copyingElementLeft = Number(
+          copyingElement.style.left.replace("%", "")
+        );
+        const copyingElementTop = Number(
+          copyingElement.style.top.replace("%", "")
+        );
+        const clonedNode = copyingElement.cloneNode();
+
+        clonedNode.innerHTML = copyingElement.innerHTML;
+        clonedNode.style.left = `${copyingElementLeft + counter}%`;
+        clonedNode.style.top = `${copyingElementTop + counter}%`;
+
+        parentRef.current.appendChild(clonedNode);
+        setCurrentEditor((state) => [...state, parentRef.current.innerHTML]);
+        setCounter((counter) => counter + 1);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyboardEvent);
+    return () => {
+      document.removeEventListener("keydown", handleKeyboardEvent);
+    };
+  }, [currentEditor, copyingElement, counter]);
+
   return (
     <EditorTemplateBody
       ref={parentRef}
-      onDrop={handleDrop}
+      onDrop={handleDrop(setCurrentEditor)}
       onDragOver={handleDragOver}
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
@@ -282,11 +345,6 @@ const EditorTemplateBody = styled.div`
       font-size: 14px;
       font-weight: 300;
     }
-  }
-
-  .imageUploadingChoice {
-    display: flex;
-    justify-content: space-evenly;
   }
 
   .samepleButton {

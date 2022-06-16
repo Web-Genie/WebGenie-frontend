@@ -6,6 +6,7 @@ import SubtoolbarTitle from "./SubtoolbarTitle";
 
 function ImageBlurSubtoolBar() {
   const { setImageBlur } = useContext(SubToolbarContext);
+
   const handleImageBlur = (event) => {
     setImageBlur(event.target.value);
   };
