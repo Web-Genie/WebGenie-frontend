@@ -93,16 +93,18 @@ export const generateEditorDeleteElement = (
     event.stopPropagation();
 
     if (
+      //버튼, 폰트
       event.target.nextSibling.tagName === "BUTTON" ||
       event.target.nextSibling.tagName !== "IMG"
     ) {
-      event.target.nextElementSibling.remove();
-      event.target.nextSibling.remove();
+      event.target.nextElementSibling.remove(); //버튼을 지움
+      event.target.nextSibling.remove(); //연필을 지움
     } else {
-      event.target.nextElementSibling.remove();
+      //이미지
+      event.target.nextElementSibling.remove(); //사진을 지움
     }
 
-    event.target.remove();
+    event.target.remove(); //x표
   };
 
   const extraIconMouseOverEffect = (event) => {
