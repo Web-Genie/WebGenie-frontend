@@ -86,7 +86,6 @@ function useResize() {
     }
   };
 
-  // targetRef.current.tagName === "IMG";
   const handleMouseDown = () => {
     if (targetRef.current) {
       targetRef.current.onmousemove = handleMouseMove;
