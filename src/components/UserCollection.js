@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import emptyCollection from "../assets/emptyCollection.png";
 import placeholderImage from "../assets/placeholder.png";
+import BackgroundChoice from "./BackgroundChoice";
 
 function UserCollection({ collections, toggleDeleteModal }) {
   return (
@@ -29,7 +30,7 @@ function UserCollection({ collections, toggleDeleteModal }) {
                 <Link to={`/userwebsite/${userWebsites._id}/deployed`}>
                   <iframe
                     className="previewWebsite"
-                    srcDoc={`${userWebsites.userSavedCode[0].code}`}
+                    srcDoc={`<div style="width: 100%; height:100vh; background-color:${userWebsites.userSavedCode[0].backgroundColor}">${userWebsites.userSavedCode[0].code}</div>`}
                   />
                   <div>
                     <p>{userWebsites.title}</p>
@@ -150,6 +151,8 @@ const UserWebsites = styled.div`
     border: 0;
     border-bottom: 1px solid skyblue;
     object-fit: contain;
+    /* width: 10vh;
+    height: ; */
   }
 `;
 
