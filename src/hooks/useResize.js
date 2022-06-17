@@ -13,7 +13,6 @@ function useResize() {
   const targetRef = useRef(null);
   const [shouldEditText, setShouldEditText] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
-  const [isMoving, setIsMoving] = useState(true);
   const { setSubToolbarType } = useContext(SubToolbarContext);
   const {
     inputValue,
@@ -53,13 +52,19 @@ function useResize() {
       oldPageX = mouseEvent.pageX;
     })(event);
 
-    if (targetRef.current.tagName !== "BUTTON") {
+    if (
+      targetRef.current.tagName !== "BUTTON" &&
+      targetRef.current.tagName !== "IMG"
+    ) {
       if (leftOrRightDirection === "right") {
         targetRef.current.style.fontSize = `${(currentElementFontSize += 1)}px`;
       } else if (leftOrRightDirection === "left") {
         targetRef.current.style.fontSize = `${(currentElementFontSize -= 1)}px`;
       }
-    } else if (targetRef.current.tagName === "BUTTON") {
+    } else if (
+      targetRef.current.tagName === "BUTTON" ||
+      targetRef.current.tagName === "IMG"
+    ) {
       let amountOfWidthToIncrease = event.clientX - startX;
       let amountOfHeightToIncrease = event.clientY - startY;
 
@@ -106,18 +111,6 @@ function useResize() {
     startX = event.clientX;
     startY = event.clientY;
 
-    if (event.target.style.border && event.target.tagName === "IMG") {
-      event.target.style.cursor = "move";
-      setIsMoving(false);
-    }
-    if (
-      event.target.style.border === "none" &&
-      event.target.tagName === "IMG"
-    ) {
-      event.target.style.cursor = "default";
-      setIsMoving(true);
-    }
-
     if (targetRef.current && event.target.tagName === "DIV") {
       targetRef.current.onmousemove = null;
     }
@@ -152,6 +145,7 @@ function useResize() {
 
       return;
     }
+
     if (!targetRef.current && event.target.tagName !== "DIV") {
       targetRef.current = event.target;
 
@@ -208,7 +202,12 @@ function useResize() {
       } else {
         targetRef.current.style.border = "none";
 
-        if (targetRef.current.previousSibling) {
+        if (
+          targetRef.current.tagName === "IMG" &&
+          targetRef.current.previousSibling
+        ) {
+          targetRef.current.previousSibling.remove();
+        } else if (targetRef.current.previousSibling) {
           targetRef.current.previousSibling.remove();
           targetRef.current.nextSibling.remove();
         }

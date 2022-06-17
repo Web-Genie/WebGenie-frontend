@@ -14,7 +14,7 @@ const useLogout = () => {
       await firebaseAuth.signOut();
 
       localStorage.removeItem(ID_TOKEN);
-
+      localStorage.removeItem("localImgSrc");
       setIsLoggedIn(localStorage.getItem(ID_TOKEN));
       setFetchedData(null);
       navigate("/");

@@ -391,14 +391,6 @@ const EditorTemplateBody = styled.div`
     }
   }
 
-  .sampleColor {
-    width: 20px;
-    height: 20px;
-    margin-left: 5px;
-    border-radius: 4px;
-    background-color: #63cc63;
-  }
-
   .detailContainer {
     display: flex;
     justify-content: center;
