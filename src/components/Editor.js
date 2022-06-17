@@ -93,7 +93,7 @@ function Editor() {
   }
 
   const checkChangedCode = () => {
-    if (parentRefState.innerHTML === editor.result.userSavedCode) {
+    if (parentRefState.innerHTML === editor.result.userSavedCode[0].code) {
       window.location.replace("/");
     } else {
       saveReminderModalToggle();
