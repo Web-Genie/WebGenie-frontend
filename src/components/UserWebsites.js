@@ -102,11 +102,6 @@ const LogoutSection = styled.div`
   align-items: center;
   justify-content: center;
   margin-right: 30px;
-
-  a {
-    color: black;
-    text-decoration: none;
-  }
 `;
 
 export default UserPage;
