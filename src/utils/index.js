@@ -130,7 +130,7 @@ export const generateEditorDeleteElement = (
   extraIconElement.style.height = "30px";
   extraIconElement.style.cursor = "pointer";
   extraIconElement.style.transition = "all 0.15s ease";
-  extraIconElement.style.zIndex = "100";
+  extraIconElement.style.zIndex = "1000";
 
   if (editIcon) {
     extraIconElement.style.left = `${clickedNode.offsetLeft + 25}px`;
