@@ -257,13 +257,6 @@ const EditorTemplateBody = styled.div`
     font-weight: 600;
   }
 
-  .choiceContainer {
-    display: flex;
-    flex-direction: column;
-    margin: 10px 20px;
-    padding: 5px;
-  }
-
   h1 {
     margin-bottom: 7px;
     color: #263238;

@@ -188,21 +188,19 @@ const ToolbarContainerBody = styled.div`
   .textDetailChoice {
     display: flex;
     justify-content: space-evenly;
-    margin: 0 3px 0 3px;
     flex-direction: row;
     align-items: center;
     font-weight: 500px;
     font-size: 15px;
 
     .fontType {
-      width: 107px;
-      padding-right: 22px;
-      margin: 0px;
+      width: 80px;
+      padding-right: 1px;
       border: none;
     }
 
     .fontSize {
-      width: 20px;
+      width: 42px;
       border: none;
       padding-left: 0px;
     }
