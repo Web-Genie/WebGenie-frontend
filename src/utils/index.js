@@ -30,6 +30,11 @@ export const handleDrop = (trackChange) => (event) => {
   clonedNode.style.top = `${(droppedLocationTop / parentNodeHeight) * 95}%`;
   clonedNode.style.zIndex = 100;
 
+  if (clonedNode.tagName === "BUTTON") {
+    clonedNode.style.width = "120px";
+    clonedNode.style.height = "31px";
+  }
+
   trackChange((state) => [...state, event.target.innerHTML]);
 
   event.target.appendChild(clonedNode);
@@ -125,7 +130,7 @@ export const generateEditorDeleteElement = (
   extraIconElement.style.height = "30px";
   extraIconElement.style.cursor = "pointer";
   extraIconElement.style.transition = "all 0.15s ease";
-  extraIconElement.style.zIndex = "100";
+  extraIconElement.style.zIndex = "1000";
 
   if (editIcon) {
     extraIconElement.style.left = `${clickedNode.offsetLeft + 25}px`;
@@ -153,8 +158,8 @@ export const generatedImageElement = (localImage) => {
   newImage.setAttribute("draggable", "false");
   newImage.setAttribute("src", `${localImage}`);
   newImage.style.position = "absolute";
-  newImage.style.maxHeight = "500px";
-  newImage.style.maxWidth = "500px";
+  newImage.style.height = "500px";
+  newImage.style.width = "500px";
   newImage.style.cursor = "pointer";
 
   return newImage;

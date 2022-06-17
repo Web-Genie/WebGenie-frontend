@@ -5,7 +5,7 @@ import { SubToolbarContext } from "../context/subToolbarContext";
 import SubtoolbarTitle from "./SubtoolbarTitle";
 
 function ImageBlurSubtoolBar() {
-  const { setImageBlur } = useContext(SubToolbarContext);
+  const { imageBlur, setImageBlur } = useContext(SubToolbarContext);
 
   const handleImageBlur = (event) => {
     setImageBlur(event.target.value);
@@ -22,6 +22,7 @@ function ImageBlurSubtoolBar() {
           max="10"
           step="0.05"
           list="tickmarks"
+          value={imageBlur}
           onChange={handleImageBlur}
         />
       </BlurBar>

@@ -243,7 +243,7 @@ const EditorTemplateBody = styled.div`
   position: relative;
   height: 78vh;
   width: 100%;
-  margin: 20px;
+  margin: ${(props) => (props.wideView ? "0px" : "20px")};
   overflow-y: scroll;
   box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.05);
   background-color: white;
