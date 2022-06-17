@@ -9,7 +9,13 @@ import placeholderImage from "../assets/placeholder.png";
 function UserCollection({ collections, toggleDeleteModal }) {
   return (
     <UserContents>
-      {collections ? (
+      {!collections && (
+        <EmptyCollectionContainer>
+          <img src={emptyCollection} />
+          <h1>생성된 웹사이트가 없습니다.</h1>
+        </EmptyCollectionContainer>
+      )}
+      {collections &&
         collections.map((userWebsites) => {
           if (userWebsites.isDeployed) {
             return (
@@ -46,13 +52,7 @@ function UserCollection({ collections, toggleDeleteModal }) {
               </UserWebsites>
             );
           }
-        })
-      ) : (
-        <EmptyCollectionContainer>
-          <img src={emptyCollection} />
-          <h1>생성된 웹사이트가 없습니다.</h1>
-        </EmptyCollectionContainer>
-      )}
+        })}
     </UserContents>
   );
 }
