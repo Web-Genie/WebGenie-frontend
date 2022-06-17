@@ -61,10 +61,7 @@ function useResize() {
       } else if (leftOrRightDirection === "left") {
         targetRef.current.style.fontSize = `${(currentElementFontSize -= 1)}px`;
       }
-    } else if (
-      targetRef.current.tagName === "BUTTON" ||
-      targetRef.current.tagName === "IMG"
-    ) {
+    } else if (targetRef.current.tagName === "BUTTON") {
       let amountOfWidthToIncrease = event.clientX - startX;
       let amountOfHeightToIncrease = event.clientY - startY;
 
@@ -72,9 +69,24 @@ function useResize() {
         amountOfWidthToIncrease / 90)}px`;
       targetRef.current.style.height = `${(currentElementHeight +=
         amountOfHeightToIncrease / 90)}px`;
+    } else if (targetRef.current.tagName === "IMG") {
+      let currentImageWidth = Number(
+        targetRef.current.style.width.replace("px", "")
+      );
+      let currentImageHeight = Number(
+        targetRef.current.style.height.replace("px", "")
+      );
+      let amountOfWidthToIncrease = event.clientX - startX;
+      let amountOfHeightToIncrease = event.clientY - startY;
+
+      targetRef.current.style.width = `${(currentImageWidth +=
+        amountOfWidthToIncrease / 90)}px`;
+      targetRef.current.style.height = `${(currentImageHeight +=
+        amountOfHeightToIncrease / 90)}px`;
     }
   };
 
+  // targetRef.current.tagName === "IMG";
   const handleMouseDown = () => {
     if (targetRef.current) {
       targetRef.current.onmousemove = handleMouseMove;
