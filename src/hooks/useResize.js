@@ -84,19 +84,6 @@ function useResize() {
       targetRef.current.style.height = `${(currentImageHeight +=
         amountOfHeightToIncrease / 90)}px`;
     }
-    if (targetRef.current.tagName === "IMG") {
-      let amountOfWidthToIncrease = event.clientX - startX;
-      let amountOfHeightToIncrease = event.clientY - startY;
-
-      if (leftOrRightDirection === "right") {
-        targetRef.current.style.width = `${(currentElementWidth +=
-          amountOfWidthToIncrease / 90)}px`;
-      }
-      if (leftOrRightDirection === "left") {
-        targetRef.current.style.height = `${(currentElementHeight -=
-          amountOfHeightToIncrease / 90)}px`;
-      }
-    }
   };
 
   const handleMouseDown = () => {
