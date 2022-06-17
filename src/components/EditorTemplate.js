@@ -1,3 +1,4 @@
+import DOMPurify from "dompurify";
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -163,13 +164,18 @@ function EditorTemplate({
   useEffect(() => {
     if (!editorInformation.result) return;
     const savedCodeCollection = editorInformation.result.userSavedCode;
-
     if (editorVersion) {
-      parentRef.current.innerHTML = savedCodeCollection[editorVersion].code;
+      const sanitizedCode = DOMPurify.sanitize(
+        savedCodeCollection[editorVersion].code
+      );
+
+      parentRef.current.innerHTML = sanitizedCode;
       parentRef.current.style.backgroundColor =
         savedCodeCollection[editorVersion].backgroundColor;
     } else {
-      parentRef.current.innerHTML = savedCodeCollection[0].code;
+      const sanitizedCode = DOMPurify.sanitize(savedCodeCollection[0].code);
+
+      parentRef.current.innerHTML = sanitizedCode;
       parentRef.current.style.backgroundColor =
         savedCodeCollection[0].backgroundColor;
     }
@@ -189,6 +195,7 @@ function EditorTemplate({
           parentRef.current.innerHTML = currentEditor[currentEditor.length - 1];
         }
       }
+
       if (event.metaKey && event.key === "c") {
         if (targetRef.current.tagName !== "DIV") {
           setCopyingElement(targetRef.current);
@@ -236,7 +243,7 @@ const EditorTemplateBody = styled.div`
   position: relative;
   height: 78vh;
   width: 100%;
-  margin: 20px;
+  margin: ${(props) => (props.wideView ? "0px" : "20px")};
   overflow-y: scroll;
   box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.05);
   background-color: white;

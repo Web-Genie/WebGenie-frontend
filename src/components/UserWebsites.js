@@ -5,6 +5,7 @@ import { REQUEST_DATA_INFORMATION_USER } from "../constants/constants";
 import { ID_TOKEN } from "../constants/constants";
 import { UserContext } from "../context/userContext";
 import useAxios from "../hooks/useAxios";
+import useInput from "../hooks/useInput";
 import useLogout from "../hooks/useLogout";
 import useModal from "../hooks/useModal";
 import Button from "./Button";
@@ -25,6 +26,7 @@ function UserPage() {
   } = useModal();
   const { handleLogout } = useLogout();
   const { userInformation } = useContext(UserContext);
+  const { searchValue, handleInputChange } = useInput("search");
   const idToken = localStorage.getItem(ID_TOKEN);
   const { fetchData } = useAxios(
     {
@@ -67,7 +69,7 @@ function UserPage() {
         <h1>WebGenie</h1>
         {userInformation && (
           <LogoutSection>
-            <img src={userInformation.user.image} />
+            <img alt="User Image" src={userInformation.user.image} />
             <Button handleClick={handleLogout}>logout</Button>
           </LogoutSection>
         )}
@@ -75,7 +77,10 @@ function UserPage() {
       <Navigation>
         <h2>My Collection</h2>
         <form>
-          <input placeholder="Search your websites" />
+          <input
+            onChange={handleInputChange}
+            placeholder="Search your websites"
+          />
         </form>
         <Button handleClick={createNewSiteModalToggle} mainButton={true}>
           Create New Site
@@ -85,6 +90,7 @@ function UserPage() {
         <UserCollection
           toggleDeleteModal={deleteSiteModalMessage}
           collections={userInformation.websites}
+          searchKeyword={searchValue}
         />
       )}
     </>

@@ -8,7 +8,7 @@ WebGenie를 통해 몇 번의 클릭과 Drag and Drop으로 멋진 웹사이트�
 
 ## 🗂 Contents
 
-🖥 Webgenie
+🖥 WebGenie
 
 📎 Link
 
@@ -101,7 +101,8 @@ WebGenie를 통해 몇 번의 클릭과 Drag and Drop으로 멋진 웹사이트�
 
 - Node.js
 - Express
-- MongoDB & Mongoose
+- MongoDB
+- Mongoose
 
 **_Testing_**
 

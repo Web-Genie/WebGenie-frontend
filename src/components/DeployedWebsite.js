@@ -1,3 +1,4 @@
+import DOMPurify from "dompurify";
 import { useContext, useEffect, useRef } from "react";
 import { MdAgriculture } from "react-icons/md";
 
@@ -23,11 +24,9 @@ function DeployedWebsite({ children }) {
   useEffect(() => {
     if (editor) {
       const savedCodeCollection = editor.result.userSavedCode;
-      mainpageRef.current.style.width = "100%";
-      mainpageRef.current.style.height = "100vh";
-      mainpageRef.current.style.backgroundColor =
-        savedCodeCollection[0].backgroundColor;
-      mainpageRef.current.innerHTML = savedCodeCollection[0].code;
+      const sanitizedCode = DOMPurify.sanitize(savedCodeCollection[0].code);
+
+      mainpageRef.current.innerHTML = sanitizedCode;
     }
 
     setEditor(null);

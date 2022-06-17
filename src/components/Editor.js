@@ -45,26 +45,12 @@ function Editor() {
   } = useModal(userTitle, currentEditorId);
 
   const [backgroundColor, setBackgroundColor] = useState("");
-  const [imageOpacity, setImageOpacity] = useState(1);
-  const [imageBrightness, setImageBrightness] = useState(1);
-  const [imageBlur, setImageBlur] = useState(0);
   const [clearCanvas, setClearCanvas] = useState(false);
 
   const toggleSavedVersionHistory = () => {
     setShouldShowDifferentVersion((state) => !state);
   };
 
-  const handleImgOpacity = (event) => {
-    setImageOpacity(event.target.value);
-  };
-
-  const handleImgBrightness = (event) => {
-    setImageBrightness(event.target.value);
-  };
-
-  const handleImgBlur = (event) => {
-    setImageBlur(event.target.value);
-  };
   const toggleWideView = () => {
     setShouldShowWideView((state) => !state);
   };
@@ -130,7 +116,7 @@ function Editor() {
       <Header>
         <h1>WebGenie</h1>
         <LogoutSection>
-          <img src={localStorage.getItem("avatar")} />
+          <img alt="User Image" src={localStorage.getItem("avatar")} />
           <Button handleClick={handleLogout}>logout</Button>
         </LogoutSection>
       </Header>
@@ -186,13 +172,7 @@ function Editor() {
           clearCanvas={clearCanvas}
           handleCanvas={setClearCanvas}
         />
-        {!shouldShowWideView && !shouldShowDifferentVersion && (
-          <RightToolbar
-            onChangeOpacity={handleImgOpacity}
-            onChangeBrightness={handleImgBrightness}
-            onChangeBlur={handleImgBlur}
-          />
-        )}
+        {!shouldShowWideView && !shouldShowDifferentVersion && <RightToolbar />}
         {shouldShowDifferentVersion && (
           <VersionLog
             handleVersionChange={handleDisplayingVersionChange}
