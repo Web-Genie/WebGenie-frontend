@@ -116,15 +116,18 @@ const NewSiteModalInputContainer = styled.p`
     padding: 3px 10px;
   }
 `;
+
 const ImgURLMocalInputContainer = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0px;
+
   span {
     margin-right: 5px;
     font-size: 18px;
   }
+
   input {
     background: white;
     border: 1px solid #5e5e5e;

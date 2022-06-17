@@ -133,5 +133,3 @@ const ImageContainer = styled.div`
 `;
 
 export default ErrorSection;
-
-// 72 62  23

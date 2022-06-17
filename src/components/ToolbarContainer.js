@@ -135,8 +135,9 @@ const ToolbarContainerBody = styled.div`
     line-height: normal;
     vertical-align: middle;
     background-color: #fdfdfd;
-    cursor: pointer;
     font-weight: 400;
+    cursor: pointer;
+
     :hover {
       opacity: 0.7;
     }
@@ -163,9 +164,9 @@ const ToolbarContainerBody = styled.div`
   }
 
   .samepleButton {
+    padding: 7px 40px;
     border: 1px solid #e5e5e5;
     border-radius: 6px;
-    padding: 7px 40px;
     gap: 12px;
     background: white;
     cursor: pointer;
@@ -205,14 +206,6 @@ const ToolbarContainerBody = styled.div`
       border: none;
       padding-left: 0px;
     }
-  }
-
-  .sampleColor {
-    width: 20px;
-    height: 20px;
-    margin-left: 5px;
-    border-radius: 4px;
-    background-color: #63cc63;
   }
 
   .detailContainer {
