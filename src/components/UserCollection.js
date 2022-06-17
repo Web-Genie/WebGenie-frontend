@@ -28,16 +28,13 @@ function UserCollection({ collections, toggleDeleteModal }) {
                 </h3>
                 <Link to={`/userwebsite/${userWebsites._id}/deployed`}>
                   <div className="container">
-                    <a href={`/userwebsite/${userWebsites._id}/deployed`}>
-                      <div className="previewWebsite">
-                        <iframe
-                          frameborder="0"
-                          srcDoc={`<div style="width: 120%; height:99vh; border-radius: 30px; background-color:${userWebsites.userSavedCode[0].backgroundColor}">${userWebsites.userSavedCode[0].code}</div>`}
-                        />
-                      </div>
-                    </a>
+                    <div className="previewWebsite">
+                      <iframe
+                        frameborder="0"
+                        srcDoc={`<div style="width: 120%; height:99vh; border-radius: 30px; background-color:${userWebsites.userSavedCode[0].backgroundColor}">${userWebsites.userSavedCode[0].code}</div>`}
+                      />
+                    </div>
                   </div>
-
                   <div className="title">
                     <p>{userWebsites.title}</p>
                   </div>
