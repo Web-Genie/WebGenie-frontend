@@ -69,7 +69,7 @@ function UserPage() {
         <h1>WebGenie</h1>
         {userInformation && (
           <LogoutSection>
-            <img src={userInformation.user.image} />
+            <img alt="User Image" src={userInformation.user.image} />
             <Button handleClick={handleLogout}>logout</Button>
           </LogoutSection>
         )}

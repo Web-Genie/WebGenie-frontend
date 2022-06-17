@@ -39,13 +39,13 @@ function Login() {
             수있습니다
           </h2>
           <LoginButton handleLogin={handleGoogleLogin}>
-            <img className="logoImage" src={googleLogo} />
+            <img alt="Google Logo" className="logoImage" src={googleLogo} />
             Google로 시작하기
           </LoginButton>
         </LoginDetails>
         <BrandImageContainer>
           <div>
-            <img className="brandImage" src={loginImage} />
+            <img alt="WebGenie logo" className="brandImage" src={loginImage} />
           </div>
         </BrandImageContainer>
       </LoginBody>
