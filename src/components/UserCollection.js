@@ -11,6 +11,7 @@ function UserCollection({ collections, toggleDeleteModal }) {
     <UserContents>
       {collections ? (
         collections.map((userWebsites) => {
+          console.log(userWebsites);
           if (userWebsites.isDeployed) {
             return (
               <UserWebsites key={userWebsites._id}>
@@ -21,7 +22,10 @@ function UserCollection({ collections, toggleDeleteModal }) {
                   />
                 </h3>
                 <Link to={`/userwebsite/${userWebsites._id}/deployed`}>
-                  <img src={placeholderImage} />
+                  <iframe
+                    className="previewWebsite"
+                    srcDoc={`${userWebsites.userSavedCode[0].code}`}
+                  />
                   <div>
                     <p>{userWebsites.title}</p>
                   </div>
@@ -141,6 +145,9 @@ const UserWebsites = styled.div`
 
   path {
     pointer-events: none;
+  }
+
+  .previewWebsite {
   }
 `;
 
