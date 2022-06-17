@@ -71,7 +71,7 @@ function UserCollection({ collections, toggleDeleteModal, searchKeyword }) {
                   <div className="container">
                     <div className="previewWebsite">
                       <iframe
-                        frameborder="0"
+                        frameBorder="0"
                         srcDoc={`<div style="width: 120%; height:99vh; border-radius: 30px; background-color:${userWebsites.userSavedCode[0].backgroundColor}">${userWebsites.userSavedCode[0].code}</div>`}
                       />
                     </div>

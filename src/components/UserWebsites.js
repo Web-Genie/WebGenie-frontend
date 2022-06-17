@@ -66,7 +66,11 @@ function UserPage() {
         </Modal>
       )}
       <Header>
-        <h1>WebGenie</h1>
+        <h1>
+          {/* <a href="/">  */}
+          WebGenie
+          {/* </a> */}
+        </h1>
         {userInformation && (
           <LogoutSection>
             <img alt="User Image" src={userInformation.user.image} />
@@ -102,6 +106,11 @@ const LogoutSection = styled.div`
   align-items: center;
   justify-content: center;
   margin-right: 30px;
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
 `;
 
 export default UserPage;
