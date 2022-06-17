@@ -109,6 +109,7 @@ function EditorTemplate({
 
     if (localImageSrc) {
       const newImage = generatedImageElement(localImageSrc);
+      console.log(newImage.style);
       parentRef.current.appendChild(newImage);
 
       setLocalImageSrc("");

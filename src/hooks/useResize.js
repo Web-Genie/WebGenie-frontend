@@ -61,10 +61,8 @@ function useResize() {
       } else if (leftOrRightDirection === "left") {
         targetRef.current.style.fontSize = `${(currentElementFontSize -= 1)}px`;
       }
-    } else if (
-      targetRef.current.tagName === "BUTTON" ||
-      targetRef.current.tagName === "IMG"
-    ) {
+    }
+    if (targetRef.current.tagName === "BUTTON") {
       let amountOfWidthToIncrease = event.clientX - startX;
       let amountOfHeightToIncrease = event.clientY - startY;
 
@@ -72,6 +70,20 @@ function useResize() {
         amountOfWidthToIncrease / 90)}px`;
       targetRef.current.style.height = `${(currentElementHeight +=
         amountOfHeightToIncrease / 90)}px`;
+    }
+    if (targetRef.current.tagName === "IMG") {
+      let amountOfWidthToIncrease = event.clientX - startX;
+      let amountOfHeightToIncrease = event.clientY - startY;
+      console.log(leftOrRightDirection, currentElementWidth);
+      if (leftOrRightDirection === "right") {
+        targetRef.current.style.width = `${(currentElementWidth +=
+          amountOfWidthToIncrease / 90)}px`;
+        targetRef.current.style.height = `${(currentElementHeight +=
+          amountOfHeightToIncrease / 90)}px`;
+      } else {
+        targetRef.current.style.width = `${currentElementWidth - 5}px`;
+        targetRef.current.style.height = `${currentElementHeight - 5}px`;
+      }
     }
   };
 
