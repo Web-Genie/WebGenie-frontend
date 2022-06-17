@@ -30,6 +30,11 @@ export const handleDrop = (trackChange) => (event) => {
   clonedNode.style.top = `${(droppedLocationTop / parentNodeHeight) * 95}%`;
   clonedNode.style.zIndex = 100;
 
+  if (clonedNode.tagName === "BUTTON") {
+    clonedNode.style.width = "120px";
+    clonedNode.style.height = "31px";
+  }
+
   trackChange((state) => [...state, event.target.innerHTML]);
 
   event.target.appendChild(clonedNode);
