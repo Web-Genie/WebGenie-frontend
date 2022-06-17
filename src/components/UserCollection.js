@@ -68,8 +68,15 @@ function UserCollection({ collections, toggleDeleteModal, searchKeyword }) {
                   />
                 </h3>
                 <Link to={`/userwebsite/${userWebsites._id}/deployed`}>
-                  <img alt="Deployed Iframe image" src={placeholderImage} />
-                  <div>
+                  <div className="container">
+                    <div className="previewWebsite">
+                      <iframe
+                        frameborder="0"
+                        srcDoc={`<div style="width: 120%; height:99vh; border-radius: 30px; background-color:${userWebsites.userSavedCode[0].backgroundColor}">${userWebsites.userSavedCode[0].code}</div>`}
+                      />
+                    </div>
+                  </div>
+                  <div className="title">
                     <p>{userWebsites.title}</p>
                   </div>
                 </Link>
@@ -133,13 +140,13 @@ const UserWebsites = styled.div`
   transition: all 0.3s ease;
   cursor: pointer;
 
-  div {
+  .title {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: auto;
-    margin-top: 20px;
+    margin-top: 7px;
   }
 
   img {
@@ -185,6 +192,25 @@ const UserWebsites = styled.div`
 
   path {
     pointer-events: none;
+  }
+
+  .container {
+    width: calc(1440px * 0.21);
+    height: calc(900px * 0.17);
+    display: inline-block;
+    overflow: hidden;
+  }
+
+  .previewWebsite {
+    width: fit-content;
+    height: auto;
+    -webkit-transform: scale(0.209);
+    -webkit-transform-origin: 0 0;
+  }
+
+  .previewWebsite iframe {
+    width: 1440px;
+    height: 900px;
   }
 `;
 
