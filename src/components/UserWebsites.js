@@ -66,11 +66,7 @@ function UserPage() {
         </Modal>
       )}
       <Header>
-        <h1>
-          {/* <a href="/">  */}
-          WebGenie
-          {/* </a> */}
-        </h1>
+        <h1>WebGenie</h1>
         {userInformation && (
           <LogoutSection>
             <img alt="User Image" src={userInformation.user.image} />
