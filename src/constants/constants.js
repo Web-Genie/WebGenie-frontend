@@ -1,31 +1,31 @@
 export const NEW_EDITOR_MODAL_MESSAGE = {
   titleMessage: "새로운 웹사이트 에디터를 생성할까요?",
-  acceptButtonMessage: "네, 만들어주세요.",
-  denyButtonMessage: "아니요, 만들기 싫어요.",
+  acceptButtonMessage: "생성",
+  denyButtonMessage: "취소",
 };
 
 export const SAVE_MODAL_MESSAGE = {
   titleMessage: "현재 웹사이트를 저장하시겠습니까?",
-  acceptButtonMessage: "네, 저장할게요.",
-  denyButtonMessage: "아직 저장하기 싫어요.",
+  acceptButtonMessage: "저장",
+  denyButtonMessage: "취소",
 };
 
 export const PUBLISH_MODAL_MESSAGE = {
   titleMessage: "현재 웹사이트를 배포하시겠습니까?",
-  acceptButtonMessage: "네, 배포할게요.",
-  denyButtonMessage: "아직 배포하기 싫어요.",
+  acceptButtonMessage: "저장",
+  denyButtonMessage: "취소",
 };
 
 export const DELETE_MODAL_MESSAGE = {
   titleMessage: "정말로 삭제하시겠습니까?",
-  acceptButtonMessage: "네, 삭제시켜주세요.",
-  denyButtonMessage: "아니요, 삭제하기 싫어요.",
+  acceptButtonMessage: "삭제",
+  denyButtonMessage: "취소",
 };
 
 export const SAVE_REMINDER_MODAL_MESSAGE = {
   titleMessage: "저장하지 않고 나가시겠습니까?",
-  acceptButtonMessage: "네, 그냥 나갈게요.",
-  denyButtonMessage: "아니요, 저장하고 나갈게요.",
+  acceptButtonMessage: "네",
+  denyButtonMessage: "아니요",
 };
 
 export const INSERT_IMG_URL_MODAL_MESSAGE = {
@@ -63,7 +63,7 @@ export const EDITOR = "EDITOR";
 export const ID_TOKEN = "idToken";
 export const FONT_TYPE = [
   "AppleGothic",
-  "Geogia",
+  "Georgia",
   "serif",
   "monospace",
   "cursive",
