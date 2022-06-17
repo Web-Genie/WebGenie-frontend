@@ -11,7 +11,7 @@ function UserCollection({ collections, toggleDeleteModal, searchKeyword }) {
     <UserContents>
       {!collections && (
         <EmptyCollectionContainer>
-          <img src={emptyCollection} />
+          <img alt="Empty collection indicating image" src={emptyCollection} />
           <h1>생성된 웹사이트가 없습니다.</h1>
         </EmptyCollectionContainer>
       )}
@@ -29,7 +29,7 @@ function UserCollection({ collections, toggleDeleteModal, searchKeyword }) {
                       />
                     </h3>
                     <Link to={`/userwebsite/${userWebsites._id}/deployed`}>
-                      <img src={placeholderImage} />
+                      <img alt="Deployed Iframe image" src={placeholderImage} />
                       <div>
                         <p>{userWebsites.title}</p>
                       </div>
@@ -46,7 +46,10 @@ function UserCollection({ collections, toggleDeleteModal, searchKeyword }) {
                       />
                     </h3>
                     <Link to={`/editor/${userWebsites._id}`}>
-                      <img src={placeholderImage} />
+                      <img
+                        alt="Currently editing indicating image"
+                        src={placeholderImage}
+                      />
                       <div>
                         <p>{userWebsites.title}</p>
                       </div>
@@ -65,7 +68,7 @@ function UserCollection({ collections, toggleDeleteModal, searchKeyword }) {
                   />
                 </h3>
                 <Link to={`/userwebsite/${userWebsites._id}/deployed`}>
-                  <img src={placeholderImage} />
+                  <img alt="Deployed Iframe image" src={placeholderImage} />
                   <div>
                     <p>{userWebsites.title}</p>
                   </div>
@@ -82,7 +85,10 @@ function UserCollection({ collections, toggleDeleteModal, searchKeyword }) {
                   />
                 </h3>
                 <Link to={`/editor/${userWebsites._id}`}>
-                  <img src={placeholderImage} />
+                  <img
+                    alt="Currently editing indicating image"
+                    src={placeholderImage}
+                  />
                   <div>
                     <p>{userWebsites.title}</p>
                   </div>

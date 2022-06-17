@@ -130,7 +130,7 @@ function Editor() {
       <Header>
         <h1>WebGenie</h1>
         <LogoutSection>
-          <img src={localStorage.getItem("avatar")} />
+          <img alt="User Image" src={localStorage.getItem("avatar")} />
           <Button handleClick={handleLogout}>logout</Button>
         </LogoutSection>
       </Header>

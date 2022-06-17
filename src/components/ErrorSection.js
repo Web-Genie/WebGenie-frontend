@@ -17,7 +17,7 @@ function ErrorSection() {
       <Header>
         <h1>WebGenie</h1>
         <LogoutSection>
-          <img src={userImage} />
+          <img alt="User Image" src={userImage} />
           <Button handleClick={handleLogout}>logout</Button>
         </LogoutSection>
       </Header>
@@ -37,10 +37,18 @@ function ErrorSection() {
         </MessageContainer>
         <ImageContainer>
           <div>
-            <img className="confusedUser" src={ErrorImage} />
+            <img
+              alt="Confused User Image Indicator"
+              className="confusedUser"
+              src={ErrorImage}
+            />
           </div>
           <div>
-            <img className="errorNumber" src={ErrorNumber} />
+            <img
+              alt="Error Code In Image"
+              className="errorNumber"
+              src={ErrorNumber}
+            />
           </div>
         </ImageContainer>
       </ErrorContainer>

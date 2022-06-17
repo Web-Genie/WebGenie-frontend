@@ -1,3 +1,4 @@
+import DOMPurify from "dompurify";
 import { useContext, useEffect, useRef } from "react";
 
 import { UserContext } from "../context/userContext";
@@ -22,7 +23,9 @@ function DeployedWebsite({ children }) {
   useEffect(() => {
     if (editor) {
       const savedCodeCollection = editor.result.userSavedCode;
-      mainpageRef.current.innerHTML = savedCodeCollection[0].code;
+      const sanitizedCode = DOMPurify.sanitize(savedCodeCollection[0].code);
+
+      mainpageRef.current.innerHTML = sanitizedCode;
     }
 
     setEditor(null);
