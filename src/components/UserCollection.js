@@ -11,7 +11,6 @@ function UserCollection({ collections, toggleDeleteModal }) {
     <UserContents>
       {collections ? (
         collections.map((userWebsites) => {
-          console.log(userWebsites);
           if (userWebsites.isDeployed) {
             return (
               <UserWebsites key={userWebsites._id}>
@@ -148,6 +147,8 @@ const UserWebsites = styled.div`
   }
 
   .previewWebsite {
+    border: 0;
+    border-bottom: 1px solid skyblue;
   }
 `;
 
