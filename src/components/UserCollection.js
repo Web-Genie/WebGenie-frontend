@@ -5,7 +5,6 @@ import styled from "styled-components";
 
 import emptyCollection from "../assets/emptyCollection.png";
 import placeholderImage from "../assets/placeholder.png";
-import BackgroundChoice from "./BackgroundChoice";
 
 function UserCollection({ collections, toggleDeleteModal }) {
   return (
@@ -28,11 +27,18 @@ function UserCollection({ collections, toggleDeleteModal }) {
                   />
                 </h3>
                 <Link to={`/userwebsite/${userWebsites._id}/deployed`}>
-                  <iframe
-                    className="previewWebsite"
-                    srcDoc={`<div style="width: 100%; height:100vh; background-color:${userWebsites.userSavedCode[0].backgroundColor}">${userWebsites.userSavedCode[0].code}</div>`}
-                  />
-                  <div>
+                  <div className="container">
+                    <a href={`/userwebsite/${userWebsites._id}/deployed`}>
+                      <div className="previewWebsite">
+                        <iframe
+                          frameborder="0"
+                          srcDoc={`<div style="width: 120%; height:99vh; border-radius: 30px; background-color:${userWebsites.userSavedCode[0].backgroundColor}">${userWebsites.userSavedCode[0].code}</div>`}
+                        />
+                      </div>
+                    </a>
+                  </div>
+
+                  <div className="title">
                     <p>{userWebsites.title}</p>
                   </div>
                 </Link>
@@ -49,7 +55,7 @@ function UserCollection({ collections, toggleDeleteModal }) {
                 </h3>
                 <Link to={`/editor/${userWebsites._id}`}>
                   <img src={placeholderImage} />
-                  <div>
+                  <div className="title">
                     <p>{userWebsites.title}</p>
                   </div>
                 </Link>
@@ -93,13 +99,13 @@ const UserWebsites = styled.div`
   transition: all 0.3s ease;
   cursor: pointer;
 
-  div {
+  .title {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: auto;
-    margin-top: 20px;
+    margin-top: 7px;
   }
 
   img {
@@ -147,12 +153,23 @@ const UserWebsites = styled.div`
     pointer-events: none;
   }
 
+  .container {
+    width: calc(1440px * 0.21);
+    height: calc(900px * 0.17);
+    display: inline-block;
+    overflow: hidden;
+  }
+
   .previewWebsite {
-    border: 0;
-    border-bottom: 1px solid skyblue;
-    object-fit: contain;
-    /* width: 10vh;
-    height: ; */
+    width: fit-content;
+    height: auto;
+    -webkit-transform: scale(0.209);
+    -webkit-transform-origin: 0 0;
+  }
+
+  .previewWebsite iframe {
+    width: 1440px;
+    height: 900px;
   }
 `;
 
