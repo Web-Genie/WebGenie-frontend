@@ -6,7 +6,7 @@ import styled from "styled-components";
 import emptyCollection from "../assets/emptyCollection.png";
 import placeholderImage from "../assets/placeholder.png";
 
-function UserCollection({ collections, toggleDeleteModal }) {
+function UserCollection({ collections, toggleDeleteModal, searchKeyword }) {
   return (
     <UserContents>
       {!collections && (
@@ -17,7 +17,45 @@ function UserCollection({ collections, toggleDeleteModal }) {
       )}
       {collections &&
         collections.map((userWebsites) => {
-          if (userWebsites.isDeployed) {
+          if (searchKeyword.length > 0) {
+            if (userWebsites.title.includes(searchKeyword)) {
+              if (userWebsites.isDeployed) {
+                return (
+                  <UserWebsites key={userWebsites._id}>
+                    <h3 value={userWebsites._id}>
+                      <MdClose
+                        onClick={toggleDeleteModal}
+                        value={userWebsites._id}
+                      />
+                    </h3>
+                    <Link to={`/userwebsite/${userWebsites._id}/deployed`}>
+                      <img src={placeholderImage} />
+                      <div>
+                        <p>{userWebsites.title}</p>
+                      </div>
+                    </Link>
+                  </UserWebsites>
+                );
+              } else {
+                return (
+                  <UserWebsites key={userWebsites._id}>
+                    <h3 value={userWebsites._id}>
+                      <MdClose
+                        onClick={toggleDeleteModal}
+                        value={userWebsites._id}
+                      />
+                    </h3>
+                    <Link to={`/editor/${userWebsites._id}`}>
+                      <img src={placeholderImage} />
+                      <div>
+                        <p>{userWebsites.title}</p>
+                      </div>
+                    </Link>
+                  </UserWebsites>
+                );
+              }
+            }
+          } else if (userWebsites.isDeployed) {
             return (
               <UserWebsites key={userWebsites._id}>
                 <h3 value={userWebsites._id}>

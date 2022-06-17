@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 
 const useInput = (currentLocationBeingUsed, value) => {
   const [inputValue, setInputValue] = useState("https://");
+  const [searchValue, setSearchValue] = useState("");
   const [shouldEditValue, setShouldEditValue] = useState(false);
   const [shouldAddLink, setShouldAddLink] = useState(false);
   const [buttonRadius, setButtonRadius] = useState(null);
@@ -23,6 +24,8 @@ const useInput = (currentLocationBeingUsed, value) => {
       setFontSize(event.target.value);
     } else if (event.target.className === "fontType") {
       setFontType(event.target.value);
+    } else if (currentLocationBeingUsed === "search") {
+      setSearchValue(event.target.value);
     } else {
       setInputValue(event.target.value);
     }
@@ -67,6 +70,7 @@ const useInput = (currentLocationBeingUsed, value) => {
     setFontType,
     imageOpacity,
     setImageOpacity,
+    searchValue,
   };
 };
 
