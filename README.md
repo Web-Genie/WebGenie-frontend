@@ -6,6 +6,9 @@
 
 WebGenie를 통해 몇 번의 클릭과 Drag and Drop으로 멋진 웹사이트를 만들 수 있습니다.
 
+https://user-images.githubusercontent.com/83770081/174348067-990a70fe-b2d2-4fbf-a981-a8ced8ef0ba7.mp4
+
+
 ## 🗂 Contents
 
 🖥 WebGenie
