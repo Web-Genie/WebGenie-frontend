@@ -195,7 +195,7 @@ const UserWebsites = styled.div`
   }
 
   .container {
-    width: calc(1440px * 0.211);
+    width: calc(1440px * 0.21);
     height: calc(900px * 0.17);
     display: inline-block;
     overflow: hidden;
@@ -204,7 +204,7 @@ const UserWebsites = styled.div`
   .previewWebsite {
     width: fit-content;
     height: auto;
-    -webkit-transform: scale(0.21);
+    -webkit-transform: scale(0.209);
     -webkit-transform-origin: 0 0;
   }
 
