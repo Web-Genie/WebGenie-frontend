@@ -25,8 +25,7 @@ const useModal = (editorTitle, editorId) => {
     iconType: null,
     params: null,
   });
-  const { savedBackgroundColor, setSavedBackgroundColor } =
-    useContext(UserContext);
+  const { savedBackgroundColor } = useContext(UserContext);
 
   const createNewSiteModalToggle = useCallback(() => {
     setShouldDisplayModal((state) => !state);
