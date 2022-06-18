@@ -12,7 +12,7 @@ export const SAVE_MODAL_MESSAGE = {
 
 export const PUBLISH_MODAL_MESSAGE = {
   titleMessage: "현재 웹사이트를 배포하시겠습니까?",
-  acceptButtonMessage: "저장",
+  acceptButtonMessage: "배포",
   denyButtonMessage: "취소",
 };
 
