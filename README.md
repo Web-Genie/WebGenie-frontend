@@ -46,7 +46,42 @@ https://user-images.githubusercontent.com/83770081/174348067-990a70fe-b2d2-4fbf-
 <br>
 
 ## 🔑 Getting Started
+- frontend
+```
+npm install
+npm start
+```
 
+```
+REACT_APP_API_KEY=<FIREBASE_API_KEY>
+REACT_APP_AUTH_DOMAIN=<FIREBASE_AUTH_DOMAIN>
+REACT_APP_PROJECT_ID=<FIREBASE_PROJECT_ID>
+REACT_APP_FIREBASE_STORAGEBUCKET=<FIREBASE_STORAGE_BUCKET>
+REACT_APP_FIREBASE_MESSAGINGSENDERID=<FIREBASE_MESSAGING_SENDER_ID>
+REACT_APP_ID=<FIREBASE_APP_ID>
+REACT_APP_FIREBASE_MEASUREMENTID=<FIREBASE_MEASUREMENT_ID>
+REACT_APP_API_ENDPOINT_URL=<BASE_URL>
+```
+
+- backend
+```
+npm install
+npm start
+```
+
+```
+TYPE=<FIREBASE_TYPE>
+PROJECT_ID=<FIREBASE_PROJECT_ID>
+PRIVATE_KEY_ID=<FIREBASE_KEY_ID>
+PRIVATE_KEY=<FIREBASE_PRIVATE_KEY>
+CLIENT_EMAIL=<FIREBASE_CLIENT_EMAIL>
+CLIENT_ID=<FIREBASE_CLIENT_ID>
+AUTH_URI=<FIREBASE_AUTH_URI>
+TOKEN_URI=<FIREBASE_TOKEN_URI>
+AUTH_PROVIDER_X509_CERT_URL=<FIREBASE_AUTH_PROVIDER_CERT_URL>
+CLIENT_X509_CERT_URL=<FIREBASE_CLIENT_CERT_URL>
+MONGO_URI=<MONGO_URI>
+```
 <br>
 
 ## ‼️ Motivation
@@ -66,9 +101,9 @@ https://user-images.githubusercontent.com/83770081/174348067-990a70fe-b2d2-4fbf-
 - **_Resizing_**
 
   ```
-  템플릿에 올려놓은 font, image, button을 클릭하여, Mouse Down 된 상태에서 마우스가 왼쪽으로 가면, 
-  
-  크기를 감소시켜주고 오른쪽으로 가면 크기를 증가시켜줍니다.
+  템플릿에 올려놓은 font, image, button을 클릭하여, Mouse Down 된 상태에서 마우스를 왼쪽으로 이동시키면,
+
+  크기를 감소시키고 오른쪽으로 이동시키면 크기를 증가시킵니다.
   ```
 
 - **_Font, Image, Button, Background change_**
@@ -78,14 +113,14 @@ https://user-images.githubusercontent.com/83770081/174348067-990a70fe-b2d2-4fbf-
 
   이미지를 컴퓨터에서, url을 통해 넣을 수 있고 이미지 투명도, 밝기, blur를 조절할 수 있습니다.
 
-  템플릿 배경의 색깔을 변경할 수 있습니다.
+  템플릿 배경의 색상을 변경할 수 있습니다.
   ```
 
 - **_Version Log_**
 
   ```jsx
   saved version log버튼을 누르면 사용자가 저장했던 시점의 기록이 나타나며 최근 시점부터 과거로 이어지게 됩니다.
-  
+
   특정 시점을 클릭하게 되면 그 때 사용자가 저장했던 템플릿으로 돌아가게 됩니다.
   ```
 
