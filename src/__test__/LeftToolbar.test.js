@@ -1,11 +1,9 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 
 import LeftToolbar from "../components/LeftToolbar";
 import { SubToolbarTypeProvider } from "../context/subToolbarContext";
-import SubToolbarContext from "../context/subToolbarContext";
 import { UserContextTypeProvider } from "../context/userContext";
-import UserContext from "../context/userContext";
 
 test("1.", () => {
   render(
