@@ -5,7 +5,7 @@ import { OPACITY_RANGE } from "../constants/constants";
 import SelectDetail from "./SelectDetailSubtoolBar";
 import SubtoolbarTitle from "./SubtoolbarTitle";
 
-function OpacityEditorSubtoolBar() {
+function OpacityChangeSubtoolBar() {
   return (
     <div className="choiceContainer">
       <SubtoolbarTitle title="Edit Opacity" />
@@ -18,4 +18,4 @@ function OpacityEditorSubtoolBar() {
   );
 }
 
-export default OpacityEditorSubtoolBar;
+export default OpacityChangeSubtoolBar;
