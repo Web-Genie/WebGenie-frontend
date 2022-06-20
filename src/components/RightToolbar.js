@@ -4,7 +4,7 @@ import { TEXT_CHOICES } from "../constants/constants";
 import { SubToolbarContext } from "../context/subToolbarContext";
 import ButtonLinkSubtoolBar from "./ButtonLinkSubtoolBar";
 import ButtonRadiusSubtoolBar from "./ButtonRadiusSubtoolBar";
-import ColorChangeSubToolBar from "./ColorChangeSubToolBar";
+import ColorChangeSubtoolBar from "./ColorChangeSubtoolBar";
 import EditorToolbar from "./EditorToolbar";
 import ImageBlurSubtoolBar from "./ImageBlurSubtoolBar";
 import ImageBrightnessSubtoolBar from "./ImageBrightnessSubtoolBar";
@@ -41,7 +41,7 @@ function RightToolbar() {
         )}
         {subToolbarType === "BUTTON" ||
         TEXT_CHOICES.includes(subToolbarType) ? (
-          <ColorChangeSubToolBar />
+          <ColorChangeSubtoolBar />
         ) : null}
       </ToolbarContainer>
     </EditorToolbar>

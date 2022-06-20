@@ -7,7 +7,7 @@ import { SubToolbarContext } from "../context/subToolbarContext";
 import SubtoolbarTitle from "./SubtoolbarTitle";
 import ToolbarButton from "./ToolbarButton";
 
-function ColorChangeSubToolBar() {
+function ColorChangeSubtoolBar() {
   const { setColorValue, setButtonColor, subToolbarType } =
     useContext(SubToolbarContext);
 
@@ -42,4 +42,4 @@ const ColorBackground = styled.div`
   margin-left: 20px;
 `;
 
-export default ColorChangeSubToolBar;
+export default ColorChangeSubtoolBar;
