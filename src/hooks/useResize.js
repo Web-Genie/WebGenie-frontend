@@ -79,17 +79,10 @@ function useResize() {
       let amountOfWidthToIncrease = event.clientX - startX;
       let amountOfHeightToIncrease = event.clientY - startY;
 
-      if (leftOrRightDirection === "right") {
-        targetRef.current.style.width = `${(currentImageWidth +=
-          amountOfWidthToIncrease / 90)}px`;
-        targetRef.current.style.height = `${(currentImageHeight +=
-          amountOfHeightToIncrease / 90)}px`;
-      } else if (leftOrRightDirection === "left") {
-        targetRef.current.style.width = `${(currentImageWidth -=
-          amountOfWidthToIncrease / 90)}px`;
-        targetRef.current.style.height = `${(currentImageHeight -=
-          amountOfHeightToIncrease / 90)}px`;
-      }
+      targetRef.current.style.width = `${(currentImageWidth +=
+        amountOfWidthToIncrease / 90)}px`;
+      targetRef.current.style.height = `${(currentImageHeight +=
+        amountOfHeightToIncrease / 90)}px`;
     }
   };
 
