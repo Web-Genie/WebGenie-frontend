@@ -3,10 +3,10 @@ import { FaLink } from "react-icons/fa";
 import styled from "styled-components";
 
 import { InputFieldContext } from "../context/subToolbarContext";
-import SubtoolbarTitle from "./SubtoolbarTitle";
+import SubToolbarTitle from "./SubToolbarTitle";
 import ToolbarButton from "./ToolbarButton";
 
-function ButtonLinkSubtoolBar() {
+function ButtonLinkSubToolbar() {
   const {
     inputValue,
     shouldEditValue,
@@ -17,7 +17,7 @@ function ButtonLinkSubtoolBar() {
 
   return (
     <div className="choiceContainer">
-      <SubtoolbarTitle title="Add Link" />
+      <SubToolbarTitle title="Add Link" />
       {shouldEditValue ? (
         <AddLinkContainer>
           <input value={inputValue} onChange={handleInputChange} />
@@ -52,4 +52,4 @@ const AddLinkContainer = styled.div`
   }
 `;
 
-export default ButtonLinkSubtoolBar;
+export default ButtonLinkSubToolbar;

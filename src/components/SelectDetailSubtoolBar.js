@@ -3,8 +3,9 @@ import styled from "styled-components";
 
 import { InputFieldContext } from "../context/subToolbarContext";
 
-function SelectDetailSubtoolBar({ detailValue, className, type }) {
+function SelectDetailSubToolbar({ detailValue, className, type }) {
   const { handleInputChange } = useContext(InputFieldContext);
+
   return (
     <SelectBody type={type}>
       <select className={className} onChange={handleInputChange} type={type}>
@@ -46,4 +47,4 @@ const SelectBody = styled.div`
   }
 `;
 
-export default SelectDetailSubtoolBar;
+export default SelectDetailSubToolbar;

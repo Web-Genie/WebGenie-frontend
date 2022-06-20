@@ -1,13 +1,13 @@
 import React from "react";
 
 import { SIZE_RADIUS_AND_BRIGHTNESS_RANGE } from "../constants/constants";
-import SelectDetail from "./SelectDetailSubtoolBar";
-import SubtoolbarTitle from "./SubtoolbarTitle";
+import SelectDetail from "./SelectDetailSubToolbar";
+import SubToolbarTitle from "./SubToolbarTitle";
 
-function ButtonRadiusSubtoolBar() {
+function ButtonRadiusSubToolbar() {
   return (
     <div className="choiceContainer">
-      <SubtoolbarTitle title="Edit Border Radius" />
+      <SubToolbarTitle title="Edit Border Radius" />
       <SelectDetail
         detailValue={SIZE_RADIUS_AND_BRIGHTNESS_RANGE}
         className="buttonRadius"
@@ -16,4 +16,4 @@ function ButtonRadiusSubtoolBar() {
   );
 }
 
-export default ButtonRadiusSubtoolBar;
+export default ButtonRadiusSubToolbar;

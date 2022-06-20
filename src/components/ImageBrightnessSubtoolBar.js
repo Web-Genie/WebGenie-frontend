@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 
 import { SubToolbarContext } from "../context/subToolbarContext";
-import SubtoolbarTitle from "./SubtoolbarTitle";
+import SubToolbarTitle from "./SubToolbarTitle";
 
-function ImageBrightnessSubtoolBar() {
+function ImageBrightnessSubToolbar() {
   const { setImageBrightness } = useContext(SubToolbarContext);
 
   const handleImageBrightness = (event) => {
@@ -13,7 +13,7 @@ function ImageBrightnessSubtoolBar() {
 
   return (
     <div className="choiceContainer">
-      <SubtoolbarTitle title="Edit Brightness" />
+      <SubToolbarTitle title="Edit Brightness" />
       <BrightnessBar>
         <input
           className="brightness"
@@ -36,4 +36,4 @@ const BrightnessBar = styled.div`
   }
 `;
 
-export default ImageBrightnessSubtoolBar;
+export default ImageBrightnessSubToolbar;

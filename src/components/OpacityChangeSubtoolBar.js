@@ -1,14 +1,13 @@
-import PropTypes from "prop-types";
 import React from "react";
 
 import { OPACITY_RANGE } from "../constants/constants";
-import SelectDetail from "./SelectDetailSubtoolBar";
-import SubtoolbarTitle from "./SubtoolbarTitle";
+import SelectDetail from "./SelectDetailSubToolbar";
+import SubToolbarTitle from "./SubToolbarTitle";
 
-function OpacityEditorSubtoolBar() {
+function OpacityChangeSubToolbar() {
   return (
     <div className="choiceContainer">
-      <SubtoolbarTitle title="Edit Opacity" />
+      <SubToolbarTitle title="Edit Opacity" />
       <SelectDetail
         title="opacity"
         className="opacity"
@@ -18,4 +17,4 @@ function OpacityEditorSubtoolBar() {
   );
 }
 
-export default OpacityEditorSubtoolBar;
+export default OpacityChangeSubToolbar;

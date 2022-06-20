@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 
 import { SubToolbarContext } from "../context/subToolbarContext";
-import SubtoolbarTitle from "./SubtoolbarTitle";
+import SubToolbarTitle from "./SubToolbarTitle";
 
-function ImageBlurSubtoolBar() {
+function ImageBlurSubToolbar() {
   const { imageBlur, setImageBlur } = useContext(SubToolbarContext);
 
   const handleImageBlur = (event) => {
@@ -13,7 +13,7 @@ function ImageBlurSubtoolBar() {
 
   return (
     <div className="choiceContainer">
-      <SubtoolbarTitle title="Edit Blur" />
+      <SubToolbarTitle title="Edit Blur" />
       <BlurBar>
         <input
           className="blur"
@@ -37,4 +37,4 @@ const BlurBar = styled.div`
   }
 `;
 
-export default ImageBlurSubtoolBar;
+export default ImageBlurSubToolbar;

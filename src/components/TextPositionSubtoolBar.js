@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { FaAlignCenter, FaAlignLeft, FaAlignRight } from "react-icons/fa";
 
 import { SubToolbarContext } from "../context/subToolbarContext";
-import SubtoolbarTitle from "./SubtoolbarTitle";
+import SubToolbarTitle from "./SubToolbarTitle";
 
-function TextPositionSubtoolBar() {
+function TextPositionSubToolbar() {
   const { setTextAlign } = useContext(SubToolbarContext);
 
   const handleLeftTextAlign = () => {
@@ -21,7 +21,7 @@ function TextPositionSubtoolBar() {
 
   return (
     <div className="choiceContainer">
-      <SubtoolbarTitle title="Edit Position" />
+      <SubToolbarTitle title="Edit Position" />
       <div className="detailContainer">
         <div className="detailItem">
           <span className="rightBorder" onClick={handleLeftTextAlign}>
@@ -39,4 +39,4 @@ function TextPositionSubtoolBar() {
   );
 }
 
-export default TextPositionSubtoolBar;
+export default TextPositionSubToolbar;

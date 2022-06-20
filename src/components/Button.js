@@ -26,8 +26,8 @@ const ButtonBody = styled.button`
     props.primaryButton
       ? "0"
       : props.warning
-      ? "2px solid red"
-      : "2px solid #0a6bff"};
+        ? "2px solid red"
+        : "2px solid #0a6bff"};
   border-radius: 5px;
   background-color: ${(props) => (props.primaryButton ? "#0a6bff" : "white")};
   color: ${(props) =>
