@@ -9,8 +9,8 @@ import EditorToolbar from "./EditorToolbar";
 import ImageBlurSubToolbar from "./ImageBlurSubToolbar";
 import ImageBrightnessSubToolbar from "./ImageBrightnessSubToolbar";
 import OpacityChangeSubToolbar from "./OpacityChangeSubToolbar";
-import TextDetailSubToolbar from "./TextDetailSubToolBar";
-import TextPositionSubToolbar from "./TextPositionSubToolBar";
+import TextDetailSubToolbar from "./TextDetailSubToolbar";
+import TextPositionSubToolbar from "./TextPositionSubToolbar";
 import ToolbarContainer from "./ToolbarContainer";
 
 function RightToolbar() {
