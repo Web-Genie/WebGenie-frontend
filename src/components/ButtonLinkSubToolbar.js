@@ -3,7 +3,7 @@ import { FaLink } from "react-icons/fa";
 import styled from "styled-components";
 
 import { InputFieldContext } from "../context/subToolbarContext";
-import SubToolbarTitle from "./SubtoolbarTitle1";
+import SubToolbarTitle from "./SubToolbarTitle";
 import ToolbarButton from "./ToolbarButton";
 
 function ButtonLinkSubToolbar() {
