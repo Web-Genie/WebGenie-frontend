@@ -4,10 +4,10 @@ import styled from "styled-components";
 
 import { TEXT_CHOICES } from "../constants/constants";
 import { SubToolbarContext } from "../context/subToolbarContext";
-import SubtoolbarTitle from "./SubtoolbarTitle";
+import SubToolbarTitle from "./SubToolbarTitle";
 import ToolbarButton from "./ToolbarButton";
 
-function ColorChangeSubtoolBar() {
+function ColorChangeSubToolbar() {
   const { setColorValue, setButtonColor, subToolbarType } =
     useContext(SubToolbarContext);
 
@@ -21,7 +21,7 @@ function ColorChangeSubtoolBar() {
 
   return (
     <div className="choiceContainer">
-      <SubtoolbarTitle title="Edit color" />
+      <SubToolbarTitle title="Edit color" />
       <>
         <ColorBackground>
           <ToolbarButton>
@@ -42,4 +42,4 @@ const ColorBackground = styled.div`
   margin-left: 20px;
 `;
 
-export default ColorChangeSubtoolBar;
+export default ColorChangeSubToolbar;

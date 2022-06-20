@@ -2,15 +2,15 @@ import React, { useContext } from "react";
 
 import { TEXT_CHOICES } from "../constants/constants";
 import { SubToolbarContext } from "../context/subToolbarContext";
-import ButtonLinkSubtoolBar from "./ButtonLinkSubtoolBar";
-import ButtonRadiusSubtoolBar from "./ButtonRadiusSubtoolBar";
-import ColorChangeSubtoolBar from "./ColorChangeSubtoolBar";
+import ButtonLinkSubToolbar from "./ButtonLinkSubToolbar";
+import ButtonRadiusSubToolbar from "./ButtonRadiusSubToolbar";
+import ColorChangeSubToolbar from "./ColorChangeSubToolbar";
 import EditorToolbar from "./EditorToolbar";
-import ImageBlurSubtoolBar from "./ImageBlurSubtoolBar";
-import ImageBrightnessSubtoolBar from "./ImageBrightnessSubtoolBar";
-import OpacityChangeSubtoolBar from "./OpacityChangeSubtoolBar";
-import TextDetailSubtoolBar from "./TextDetailSubtoolBar";
-import TextPositionSubtoolBar from "./TextPositionSubtoolBar";
+import ImageBlurSubToolbar from "./ImageBlurSubToolbar";
+import ImageBrightnessSubToolbar from "./ImageBrightnessSubToolbar";
+import OpacityChangeSubToolbar from "./OpacityChangeSubToolbar";
+import TextDetailSubToolbar from "./TextDetailSubToolBar";
+import TextPositionSubToolbar from "./TextPositionSubToolBar";
 import ToolbarContainer from "./ToolbarContainer";
 
 function RightToolbar() {
@@ -21,27 +21,27 @@ function RightToolbar() {
       <ToolbarContainer>
         {TEXT_CHOICES.includes(subToolbarType) && (
           <>
-            <TextDetailSubtoolBar />
-            <TextPositionSubtoolBar />
+            <TextDetailSubToolbar />
+            <TextPositionSubToolbar />
           </>
         )}
         {subToolbarType === "BUTTON" && (
           <>
-            <ButtonLinkSubtoolBar />
-            <ButtonRadiusSubtoolBar />
-            <OpacityChangeSubtoolBar />
+            <ButtonLinkSubToolbar />
+            <ButtonRadiusSubToolbar />
+            <OpacityChangeSubToolbar />
           </>
         )}
         {subToolbarType === "IMG" && (
           <>
-            <OpacityChangeSubtoolBar />
-            <ImageBrightnessSubtoolBar />
-            <ImageBlurSubtoolBar />
+            <OpacityChangeSubToolbar />
+            <ImageBrightnessSubToolbar />
+            <ImageBlurSubToolbar />
           </>
         )}
         {subToolbarType === "BUTTON" ||
         TEXT_CHOICES.includes(subToolbarType) ? (
-          <ColorChangeSubtoolBar />
+          <ColorChangeSubToolbar />
         ) : null}
       </ToolbarContainer>
     </EditorToolbar>

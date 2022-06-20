@@ -6,10 +6,10 @@ import {
   SIZE_RADIUS_AND_BRIGHTNESS_RANGE,
 } from "../constants/constants";
 import { SubToolbarContext } from "../context/subToolbarContext";
-import SelectDetail from "./SelectDetailSubtoolBar";
-import SubtoolbarTitle from "./SubtoolbarTitle";
+import SelectDetail from "./SelectDetailSubToolbar";
+import SubToolbarTitle from "./SubToolbarTitle";
 
-function TextDetailSubtoolBar() {
+function TextDetailSubToolbar() {
   const { setIsBold, setIsItalic, setIsUnderLine } =
     useContext(SubToolbarContext);
 
@@ -27,7 +27,7 @@ function TextDetailSubtoolBar() {
 
   return (
     <div className="choiceContainer">
-      <SubtoolbarTitle title="Edit text" />
+      <SubToolbarTitle title="Edit text" />
       <div className="textDetailChoice">
         <SelectDetail
           detailValue={FONT_TYPE}
@@ -57,4 +57,4 @@ function TextDetailSubtoolBar() {
   );
 }
 
-export default TextDetailSubtoolBar;
+export default TextDetailSubToolbar;
