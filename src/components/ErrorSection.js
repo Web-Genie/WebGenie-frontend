@@ -6,6 +6,7 @@ import ErrorImage from "../assets/noConnectionImage.png";
 import useLogout from "../hooks/useLogout";
 import { sendUserToHomepage } from "../utils";
 import Button from "./Button";
+import ErrorSectionContainer from "./ErrorSectionContainer";
 import Header from "./Header";
 
 function ErrorSection() {
@@ -21,37 +22,7 @@ function ErrorSection() {
           <Button handleClick={handleLogout}>logout</Button>
         </LogoutSection>
       </Header>
-      <ErrorContainer>
-        <MessageContainer>
-          <div className="errorHeader">
-            <h1>Ooops...</h1>
-            <h2>Page not found</h2>
-          </div>
-          <p>
-            The page you are looking for doesn’t exist or another error
-            occurred, go back to home page.
-          </p>
-          <div className="buttonContainer">
-            <button onClick={sendUserToHomepage}>Homepage</button>
-          </div>
-        </MessageContainer>
-        <ImageContainer>
-          <div>
-            <img
-              alt="Confused User Image Indicator"
-              className="confusedUser"
-              src={ErrorImage}
-            />
-          </div>
-          <div>
-            <img
-              alt="Error Code In Image"
-              className="errorNumber"
-              src={ErrorNumber}
-            />
-          </div>
-        </ImageContainer>
-      </ErrorContainer>
+      <ErrorSectionContainer />
     </div>
   );
 }
