@@ -20,7 +20,7 @@ function useDragAndDrop(resizingState) {
     const rect = parentRef.current.getBoundingClientRect();
 
     if (!isDragging) return;
-
+    console.log(rect);
     if (event.clientX > rect.x && event.clientY > rect.y) {
       setCoordinates({
         x: event.clientX - targetRef.current.offsetWidth / 2 - rect.x,
@@ -65,7 +65,7 @@ function useDragAndDrop(resizingState) {
       parentRef.current.getBoundingClientRect().width;
     const parentContainerHeight =
       parentRef.current.getBoundingClientRect().height;
-
+    console.log(parentContainerHeight, coordinates.x);
     targetRef.current.style.left = `${
       (coordinates.x / parentContainerWidth) * 100
     }%`;
