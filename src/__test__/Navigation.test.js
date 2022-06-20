@@ -2,9 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 
 import Button from "../components/Button";
-import Header from "../components/Header";
 import Navigation from "../components/Navigation";
-import UserCollection from "../components/UserCollection";
 import { SubToolbarTypeProvider } from "../context/subToolbarContext";
 import { UserContextTypeProvider } from "../context/userContext";
 
