@@ -5,7 +5,7 @@ import LeftToolbar from "../components/LeftToolbar";
 import { SubToolbarTypeProvider } from "../context/subToolbarContext";
 import { UserContextTypeProvider } from "../context/userContext";
 
-test("1.", () => {
+test("1. LeftToolbar에 텍스틔, 이미지, 버튼, 배경화면과 관련된 부분이 있어야한다", () => {
   render(
     <MemoryRouter>
       <UserContextTypeProvider>

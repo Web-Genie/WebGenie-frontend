@@ -6,7 +6,7 @@ import Navigation from "../components/Navigation";
 import { SubToolbarTypeProvider } from "../context/subToolbarContext";
 import { UserContextTypeProvider } from "../context/userContext";
 
-test("", () => {
+test("1. Navigation에 input 창이 존재해야 하며, placeholder도 나타나야 한다.", () => {
   render(
     <MemoryRouter>
       <SubToolbarTypeProvider>

@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import Login from "../components/Login";
 import { UserContextTypeProvider } from "../context/userContext";
 
-test("1. 첫 화면 렌더링 시 webgenie 로고가 떠야한다", () => {
+test("1. 첫 화면에 로고와 글자들이 보여야 한다.", () => {
   render(
     <UserContextTypeProvider>
       <Login />
