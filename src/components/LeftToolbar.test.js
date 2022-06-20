@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 
-import LeftToolbar from "../components/LeftToolbar";
+import LeftToolbar from "./LeftToolbar";
 import { SubToolbarTypeProvider } from "../context/subToolbarContext";
 import { UserContextTypeProvider } from "../context/userContext";
 
