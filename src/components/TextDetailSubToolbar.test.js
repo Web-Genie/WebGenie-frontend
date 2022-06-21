@@ -3,7 +3,6 @@ import { MemoryRouter } from "react-router-dom";
 
 import { SubToolbarTypeProvider } from "../context/subToolbarContext";
 import { UserContextTypeProvider } from "../context/userContext";
-import LeftToolbar from "./LeftToolbar";
 import TextDetailSubToolbar from "./TextDetailSubtoolBar";
 
 test("1. TextDetailSubToolbar에 Edit Text라는 글자가 나와야한다.", () => {
