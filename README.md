@@ -1,5 +1,7 @@
 # 🖥 WebGenie
 
+<img src="https://user-images.githubusercontent.com/83770081/174787857-8d0a3ce2-dd8b-48a1-8480-5d946e4ab6f6.png" alt="brand logo" width=130 height=130/>
+
 웹사이트를 만들고 싶지만 만드는 과정이 복잡하고 어려워 고민하고 계시나요?
 손쉽게 웹사이트를 만들 수 있는 웹 에디터 서비스, **WebGenie**입니다!
 
@@ -16,11 +18,12 @@ WebGenie를 통해 몇 번의 클릭과 Drag and Drop으로 멋진 웹사이트�
 - [📎 Link](#-link)
 - [🔍 Preview](#-preview)
 - [🔑 Getting Started](#-getting-started)
-- [💡 Motivation](#️-motivation)
+- [💡 Motivation](#-motivation)
 - [🌈 Features](#-features)
 - [🛠 Tech Stacks](#-tech-stacks)
 - [🗓 Planning](#-planning)
 - [📝 Technical Log](#-technical-log)
+- [🔥 개발자 소개](#-참여한-개발자-소개)
 
 <br>
 
@@ -96,7 +99,7 @@ MONGO_URI=<MONGO_URI>
 
   <br>
 
-## 💡Motivation
+## 💡 Motivation
 
 사용자로서 당연하게 여기며 사용해왔던 것들을 우리가 가진 기술로 구현해보는 것이 어떨까? 라는 생각에서 출발하였습니다. 과거에 웹사이트를 만들 일이 생기면 제일 먼저 전문지식이 많지 않아도 간단하게 만들 수 있는 플랫폼을 찾아보았고 그 플랫폼을 통해 좋은 경험을 했었습니다. 이런 좋은 경험을 우리가 서비스 해본다면 어떨지에 대해 의논해 보았고, 지금까지 무심코 사용해왔던 Drag and Drop과 Resizing과 같은 기능들을 구현해보면 좋겠다는 생각이 들어 이를 구체화시켜 보았습니다.
 
@@ -235,6 +238,10 @@ targetRef.current.style.top = `${(coordinates.y / parentContainerHeight) * 100}%
 ...
 ```
 
-## 개발자 소개
+<br>
 
-![스크린샷 2022-06-21 오후 6 15 58](https://user-images.githubusercontent.com/83874298/174764292-541cbf51-20e1-457b-a2db-37a3f7885887.png)
+## 🔥 참여한 개발자 소개
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/83770081/174786680-e0001bcb-11b0-4c4b-acba-8cc2e240f837.png" alt="개발자 소개 이미지" text-align="center" height=320 width=720/>
+</p>
