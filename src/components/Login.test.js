@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 
-import Login from "../components/Login";
 import { UserContextTypeProvider } from "../context/userContext";
+import Login from "./Login";
 
 test("1. 첫 화면에 로고와 글자들이 보여야 한다.", () => {
   render(
