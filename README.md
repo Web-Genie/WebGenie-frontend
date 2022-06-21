@@ -51,14 +51,14 @@ https://user-images.githubusercontent.com/83770081/174348067-990a70fe-b2d2-4fbf-
 
 1. 프로젝트를 다운 받은 후 프로젝트 폴더 내에서 명령어를 실행합니다.
 
-```jsx
+```
 npm install
 npm start
 ```
 
 2. 환경변수 파일(.env)을 생성하고 아래와 같이 입력해야 합니다.
 
-```jsx
+```
 REACT_APP_API_KEY=<FIREBASE_API_KEY>
 REACT_APP_AUTH_DOMAIN=<FIREBASE_AUTH_DOMAIN>
 REACT_APP_PROJECT_ID=<FIREBASE_PROJECT_ID>
@@ -73,14 +73,14 @@ REACT_APP_API_ENDPOINT_URL=<BASE_URL>
 
 1.  프로젝트를 다운 받은 후 프로젝트 폴더 내에서 명령어를 실행합니다.
 
-```jsx
+```
 npm install
 npm start
 ```
 
 2.  환경변수 파일(.env)을 생성하고 아래와 같이 입력해야 합니다.
 
-```jsx
+```
 TYPE=<FIREBASE_TYPE>
 PROJECT_ID=<FIREBASE_PROJECT_ID>
 PRIVATE_KEY_ID=<FIREBASE_KEY_ID>
@@ -141,7 +141,7 @@ https://user-images.githubusercontent.com/83874298/174588727-0c680b81-cd71-4278-
 
 https://user-images.githubusercontent.com/83874298/174588843-cead772e-bedd-4e05-87c1-35fb0e34b660.mov
 
-```jsx
+```
 saved version log 버튼을 누르면 사용자가 저장했던 시점의 기록이 나타나며 최근 시점부터 과거로 이어지게 됩니다.
 
 특정 시점을 클릭하게 되면 그때 사용자가 저장했던 템플릿으로 돌아가게 됩니다.
@@ -151,7 +151,7 @@ saved version log 버튼을 누르면 사용자가 저장했던 시점의 기록
 
 https://user-images.githubusercontent.com/83874298/174589140-168a0093-8f5a-40ad-a43e-c83c1a47baf6.mov
 
-```jsx
+```
 버튼과 이미지, 글자를 클릭한 후 Ctrl + C를 하면 복사, Ctrl + V를 하면 붙여넣기, Ctrl + Z를 누르면 이전 시점으로 돌아가게 됩니다.
 ```
 
@@ -159,7 +159,7 @@ https://user-images.githubusercontent.com/83874298/174589140-168a0093-8f5a-40ad-
 
 https://user-images.githubusercontent.com/83874298/174589248-77c93c3e-049b-4520-ad1f-82ae39c180ec.mov
 
-```jsx
+```
 사용자가 publish 버튼을 누르면 고유한 URL을 생성해주며 다른 사람들에게 자신의 웹사이트 주소를 공유할 수 있습니다.
 ```
 
@@ -229,7 +229,12 @@ Drag and Drop을 통해 조작되는 요소 간의 충돌이 있었습니다. HT
 ...
 const parentContainerWidth = parentRef.current.getBoundingClientRect().width;
 const parentContainerHeight = parentRef.current.getBoundingClientRect().height;
-  targetRef.current.style.left = `${(coordinates.x / parentContainerWidth) * 100}%`;
-  targetRef.current.style.top = `${(coordinates.y / parentContainerHeight) * 100}%`;
+
+targetRef.current.style.left = `${(coordinates.x / parentContainerWidth) * 100}%`;
+targetRef.current.style.top = `${(coordinates.y / parentContainerHeight) * 100}%`;
 ...
 ```
+
+## 개발자 소개
+
+![스크린샷 2022-06-21 오후 6 15 58](https://user-images.githubusercontent.com/83874298/174764292-541cbf51-20e1-457b-a2db-37a3f7885887.png)

@@ -16,6 +16,7 @@ function ImageBlurSubToolbar() {
       <SubToolbarTitle title="Edit Blur" />
       <BlurBar>
         <input
+          data-testid="blur"
           className="blur"
           type="range"
           min="0"
