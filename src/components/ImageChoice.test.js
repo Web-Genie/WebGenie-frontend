@@ -5,7 +5,7 @@ import { SubToolbarTypeProvider } from "../context/subToolbarContext";
 import { UserContextTypeProvider } from "../context/userContext";
 import ImageChoice from "./ImageChoice";
 
-test("1. 사용자가 생성한 사이트가 아무것도 없을 때 '생성된 웹 사이트가 없습니다'라고 나타나야한다.", async () => {
+test("1. Add Image라는 글자가 나타나야 하고 Upload라는 글씨와 버튼이 존재해야한다.", async () => {
   render(
     <MemoryRouter>
       <SubToolbarTypeProvider>
