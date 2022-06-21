@@ -234,3 +234,7 @@ targetRef.current.style.left = `${(coordinates.x / parentContainerWidth) * 100}%
 targetRef.current.style.top = `${(coordinates.y / parentContainerHeight) * 100}%`;
 ...
 ```
+
+## 개발자 소개
+
+![스크린샷 2022-06-21 오후 6 15 58](https://user-images.githubusercontent.com/83874298/174764292-541cbf51-20e1-457b-a2db-37a3f7885887.png)
