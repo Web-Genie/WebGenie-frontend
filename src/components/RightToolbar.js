@@ -41,8 +41,8 @@ function RightToolbar() {
         )}
         {subToolbarType === "BUTTON" ||
         TEXT_CHOICES.includes(subToolbarType) ? (
-          <ColorChangeSubToolbar />
-        ) : null}
+            <ColorChangeSubToolbar />
+          ) : null}
       </ToolbarContainer>
     </EditorToolbar>
   );

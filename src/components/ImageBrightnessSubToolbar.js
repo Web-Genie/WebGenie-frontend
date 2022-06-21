@@ -16,6 +16,7 @@ function ImageBrightnessSubToolbar() {
       <SubToolbarTitle title="Edit Brightness" />
       <BrightnessBar>
         <input
+          data-testid="brightness"
           className="brightness"
           type="range"
           min="0"

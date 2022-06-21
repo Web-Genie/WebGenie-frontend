@@ -33,6 +33,4 @@ test("1. Navigation에 input 창이 존재해야 하며, placeholder도 나타�
   );
 
   expect(screen.findAllByPlaceholderText("Search your websites"));
-
-  screen.debug();
 });

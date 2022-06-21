@@ -22,7 +22,7 @@ function TextPositionSubToolbar() {
   return (
     <div className="choiceContainer">
       <SubToolbarTitle title="Edit Position" />
-      <div className="detailContainer">
+      <div className="detailContainer" data-testid="detailContainer">
         <div className="detailItem">
           <span className="rightBorder" onClick={handleLeftTextAlign}>
             <FaAlignLeft />
