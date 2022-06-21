@@ -17,7 +17,7 @@ test("1. ImageBlurSubToolbar에 Edit blur 라는 글이 있어야 하고, test i
   expect(screen.getByTestId("blur")).toBeInTheDocument();
 });
 
-test("1. ImageBlurSubToolbar에 test id가 blur인 input창을 클릭하면 보여야 한다", () => {
+test("2. ImageBlurSubToolbar에 test id가 blur인 input창을 클릭하면 보여야 한다", () => {
   render(
     <MemoryRouter>
       <SubToolbarTypeProvider>
@@ -27,5 +27,6 @@ test("1. ImageBlurSubToolbar에 test id가 blur인 input창을 클릭하면 보�
   );
 
   fireEvent.click(screen.getByTestId("blur"));
+
   expect(screen.getByTestId("blur")).toBeVisible;
 });
