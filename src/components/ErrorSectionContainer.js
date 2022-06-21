@@ -1,38 +1,44 @@
-import React from "react";
 import styled from "styled-components";
 
 import ErrorNumber from "../assets/404.png";
 import ErrorImage from "../assets/noConnectionImage.png";
-import useLogout from "../hooks/useLogout";
 import { sendUserToHomepage } from "../utils";
-import Button from "./Button";
-import ErrorSectionContainer from "./ErrorSectionContainer";
-import Header from "./Header";
 
-function ErrorSection() {
-  const { handleLogout } = useLogout();
-  const userImage = localStorage.getItem("avatar");
-
+function ErrorSectionContainer() {
   return (
-    <div>
-      <Header>
-        <h1>WebGenie</h1>
-        <LogoutSection>
-          <img alt="User Image" src={userImage} />
-          <Button handleClick={handleLogout}>logout</Button>
-        </LogoutSection>
-      </Header>
-      <ErrorSectionContainer />
-    </div>
+    <ErrorContainer>
+      <MessageContainer>
+        <div className="errorHeader">
+          <h1>Ooops...</h1>
+          <h2>Page not found</h2>
+        </div>
+        <p>
+          The page you are looking for doesn't exist or another error occurred,
+          go back to home page.
+        </p>
+        <div className="buttonContainer">
+          <button onClick={sendUserToHomepage}>Homepage</button>
+        </div>
+      </MessageContainer>
+      <ImageContainer>
+        <div>
+          <img
+            alt="Confused User Image Indicator"
+            className="confusedUser"
+            src={ErrorImage}
+          />
+        </div>
+        <div>
+          <img
+            alt="Error Code In Image"
+            className="errorNumber"
+            src={ErrorNumber}
+          />
+        </div>
+      </ImageContainer>
+    </ErrorContainer>
   );
 }
-
-const LogoutSection = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 30px;
-`;
 
 const ErrorContainer = styled.div`
   display: flex;
@@ -111,4 +117,4 @@ const ImageContainer = styled.div`
   align-items: center;
 `;
 
-export default ErrorSection;
+export default ErrorSectionContainer;
