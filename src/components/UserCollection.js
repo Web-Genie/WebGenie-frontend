@@ -110,6 +110,8 @@ function UserCollection({ collections, toggleDeleteModal, searchKeyword }) {
 
 UserCollection.propTypes = {
   collections: PropTypes.array,
+  toggleDeleteModal: PropTypes.func,
+  searchKeyword: PropTypes.string,
 };
 
 const UserContents = styled.div`

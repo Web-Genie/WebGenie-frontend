@@ -1,10 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import ErrorNumber from "../assets/404.png";
-import ErrorImage from "../assets/noConnectionImage.png";
 import useLogout from "../hooks/useLogout";
-import { sendUserToHomepage } from "../utils";
 import Button from "./Button";
 import ErrorSectionContainer from "./ErrorSectionContainer";
 import Header from "./Header";

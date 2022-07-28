@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from "react";
+import PropTypes from "prop-types";
 import { FcImport } from "react-icons/fc";
 import styled from "styled-components";
 
@@ -32,6 +32,11 @@ function VersionLog({ handleVersionChange, information }) {
     </EditorToolbar>
   );
 }
+
+VersionLog.propTypes = {
+  handleVersionChange: PropTypes.func,
+  information: PropTypes.object,
+};
 
 const TitleContainer = styled.div`
   margin-top: 25px;
