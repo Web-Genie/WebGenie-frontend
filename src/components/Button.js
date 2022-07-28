@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
@@ -13,6 +14,14 @@ function Button({ children, mainButton, handleClick, margin, warningSignal }) {
     </ButtonBody>
   );
 }
+
+Button.propTypes = {
+  children: PropTypes.string,
+  mainButton: PropTypes.bool,
+  handleClick: PropTypes.func,
+  margin: PropTypes.string,
+  warningSignal: PropTypes.bool,
+};
 
 const ButtonBody = styled.button`
   padding: 8px 15px;

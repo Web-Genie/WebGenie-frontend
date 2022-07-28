@@ -28,6 +28,7 @@ function UserPage() {
   const { userInformation } = useContext(UserContext);
   const { searchValue, handleInputChange } = useInput("search");
   const idToken = localStorage.getItem(ID_TOKEN);
+
   const { fetchData } = useAxios(
     {
       method: "get",

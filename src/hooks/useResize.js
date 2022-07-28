@@ -76,6 +76,7 @@ function useResize() {
       let currentImageHeight = Number(
         targetRef.current.style.height.replace("px", "")
       );
+
       let amountOfWidthToIncrease = event.clientX - startX;
       let amountOfHeightToIncrease = event.clientY - startY;
 

@@ -47,6 +47,7 @@ function useDragAndDrop(resizingState) {
     targetRef.current = event.target;
 
     setIsDragging(true);
+
     if (event.button !== 0) return;
 
     setCoordinates({

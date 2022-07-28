@@ -20,6 +20,7 @@ function ImageChoice() {
   };
 
   const formData = new FormData();
+
   formData.append("imageFile", imageFormData);
 
   const { fetchData } = useAxios(

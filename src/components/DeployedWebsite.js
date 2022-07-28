@@ -1,4 +1,5 @@
 import DOMPurify from "dompurify";
+import PropTypes from "prop-types";
 import { useContext, useEffect, useRef } from "react";
 
 import { UserContext } from "../context/userContext";
@@ -8,6 +9,7 @@ function DeployedWebsite({ children }) {
   const { editor, setEditor } = useContext(UserContext);
   const mainpageRef = useRef(null);
   const deployedEditorURL = window.location.pathname.split("/")[2];
+
   const { fetchData } = useAxios({
     method: "get",
     url: `/websites/${deployedEditorURL}/deploy`,
@@ -36,5 +38,9 @@ function DeployedWebsite({ children }) {
 
   return <div ref={mainpageRef}>{children}</div>;
 }
+
+DeployedWebsite.propTypes = {
+  children: PropTypes.array,
+};
 
 export default DeployedWebsite;
