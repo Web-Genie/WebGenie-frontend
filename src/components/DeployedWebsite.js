@@ -1,4 +1,5 @@
 import DOMPurify from "dompurify";
+import PropTypes from "prop-types";
 import { useContext, useEffect, useRef } from "react";
 
 import { UserContext } from "../context/userContext";
@@ -37,5 +38,9 @@ function DeployedWebsite({ children }) {
 
   return <div ref={mainpageRef}>{children}</div>;
 }
+
+DeployedWebsite.propTypes = {
+  children: PropTypes.array,
+};
 
 export default DeployedWebsite;

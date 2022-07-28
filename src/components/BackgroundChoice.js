@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { FaPaintRoller } from "react-icons/fa";
 
 import ToolbarButton from "./ToolbarButton";
@@ -25,5 +26,9 @@ function BackgroundChoice({ handleBackgroundColor }) {
     </div>
   );
 }
+
+BackgroundChoice.propTypes = {
+  handleBackgroundColor: PropTypes.func,
+};
 
 export default BackgroundChoice;

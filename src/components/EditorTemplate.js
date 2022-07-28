@@ -1,4 +1,5 @@
 import DOMPurify from "dompurify";
+import PropTypes from "prop-types";
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -238,6 +239,19 @@ function EditorTemplate({
     />
   );
 }
+
+EditorTemplate.propTypes = {
+  displayWideView: PropTypes.bool,
+  backgroundColorName: PropTypes.string,
+  modalStatus: PropTypes.bool,
+  saveUserCode: PropTypes.func,
+  editorInformation: PropTypes.object,
+  retrieveParentRefState: PropTypes.func,
+  editorVersion: PropTypes.object,
+  clearCanvas: PropTypes.bool,
+  handleCanvas: PropTypes.func,
+  handleBackgroundColor: PropTypes.func,
+};
 
 const EditorTemplateBody = styled.div`
   position: relative;
