@@ -1,7 +1,7 @@
-import { screen } from "@testing-library/dom";
+import { fireEvent, screen } from "@testing-library/dom";
 import { render } from "@testing-library/react";
 import React from "react";
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter, Navigate } from "react-router-dom";
 
 import { UserContext } from "../context/userContext";
 import ErrorSection from "./ErrorSection";
