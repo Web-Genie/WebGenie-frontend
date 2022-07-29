@@ -1,54 +1,56 @@
 import React, { useContext } from "react";
 import { FaBold, FaItalic, FaUnderline } from "react-icons/fa";
 
-import {
-  FONT_TYPE,
-  SIZE_RADIUS_AND_BRIGHTNESS_RANGE,
-} from "../constants/constants";
-import { SubToolbarContext } from "../context/subToolbarContext";
+import { ELEMENT_STYLE_OPTIONS, FONT_TYPE } from "../constants/constants";
+import useText from "../hooks/useText";
+import { Context } from "../store/Store";
+import handleFontFormat from "../utils/handleFontFormat";
 import SelectDetail from "./SelectDetailSubToolbar";
 import SubToolbarTitle from "./SubToolbarTitle";
 
 function TextDetailSubToolbar() {
-  const { setIsBold, setIsItalic, setIsUnderLine } =
-    useContext(SubToolbarContext);
-
-  const handleBold = () => {
-    setIsBold(true);
-  };
-
-  const handleItalic = () => {
-    setIsItalic(true);
-  };
-
-  const handleUnderLine = () => {
-    setIsUnderLine(true);
-  };
+  const { globalState } = useContext(Context);
+  const { currentElement } = globalState;
+  const { fontStyle, handleFontStyleValueChange } = useText();
 
   return (
     <div className="choiceContainer">
       <SubToolbarTitle title="Edit text" />
       <div className="textDetailChoice">
         <SelectDetail
-          detailValue={FONT_TYPE}
-          className="fontType"
           type="font"
+          className="fontType"
+          detailValue={FONT_TYPE}
+          currentValue={fontStyle.family}
+          handleSelectOptionChange={(event) =>
+            handleFontStyleValueChange("family", event.target.value)
+          }
         />
         <SelectDetail
-          detailValue={SIZE_RADIUS_AND_BRIGHTNESS_RANGE}
-          className="fontSize"
           type="font"
+          className="fontSize"
+          detailValue={ELEMENT_STYLE_OPTIONS}
+          currentValue={fontStyle.size}
+          handleSelectOptionChange={(event) =>
+            handleFontStyleValueChange("size", event.target.value)
+          }
         />
       </div>
       <div className="detailContainer">
         <div className="detailItem">
-          <span className="rightBorder" onClick={handleBold}>
+          <span
+            className="rightBorder"
+            onClick={handleFontFormat(currentElement, "bold")}
+          >
             <FaBold />
           </span>
-          <span onClick={handleItalic}>
+          <span onClick={handleFontFormat(currentElement, "italic")}>
             <FaItalic />
           </span>
-          <span className="leftBorder" onClick={handleUnderLine}>
+          <span
+            className="leftBorder"
+            onClick={handleFontFormat(currentElement, "underline")}
+          >
             <FaUnderline />
           </span>
         </div>
