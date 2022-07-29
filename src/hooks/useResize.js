@@ -1,10 +1,8 @@
 import { useContext, useEffect, useRef, useState } from "react";
 
 import { FONT_TYPE } from "../constants/constants";
-import {
-  InputFieldContext,
-  SubToolbarContext,
-} from "../context/subToolbarContext";
+import { InputFieldContext } from "../context/subToolbarContext";
+import { Context } from "../store/Store";
 import { getElementValue } from "../utils";
 import { generateEditorDeleteElement } from "../utils/index";
 
@@ -13,7 +11,7 @@ function useResize() {
   const targetRef = useRef(null);
   const [shouldEditText, setShouldEditText] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
-  const { setSubToolbarType } = useContext(SubToolbarContext);
+  const { dispatch } = useContext(Context);
   const {
     inputValue,
     shouldAddLink,
@@ -131,7 +129,10 @@ function useResize() {
       parentRef.current = event.target;
 
       if (targetRef.current) {
-        setSubToolbarType(targetRef.current.tagName);
+        dispatch({
+          type: "SET_SUB_TOOLBAR_TYPE",
+          payload: targetRef.current.tagName,
+        });
       }
 
       return;
@@ -149,7 +150,10 @@ function useResize() {
         }
         targetRef.current.previousSibling.remove();
       }
-      setSubToolbarType(targetRef.current.tagName);
+      dispatch({
+        type: "SET_SUB_TOOLBAR_TYPE",
+        payload: targetRef.current.tagName,
+      });
 
       targetRef.current = null;
 
@@ -191,7 +195,10 @@ function useResize() {
       targetRef.current.onmouseup = handleMouseUp;
 
       if (targetRef.current) {
-        setSubToolbarType(targetRef.current.tagName);
+        dispatch({
+          type: "SET_SUB_TOOLBAR_TYPE",
+          payload: targetRef.current.tagName,
+        });
       }
 
       setIsResizing(true);
@@ -257,7 +264,10 @@ function useResize() {
       targetRef.current.onmouseup = handleMouseUp;
 
       if (targetRef.current) {
-        setSubToolbarType(targetRef.current.tagName);
+        dispatch({
+          type: "SET_SUB_TOOLBAR_TYPE",
+          payload: targetRef.current.tagName,
+        });
       }
 
       setIsResizing(true);
