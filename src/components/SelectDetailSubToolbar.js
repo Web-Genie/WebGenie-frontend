@@ -1,15 +1,22 @@
 import PropTypes from "prop-types";
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 
-import { InputFieldContext } from "../context/subToolbarContext";
-
-function SelectDetailSubToolbar({ detailValue, className, type }) {
-  const { handleInputChange } = useContext(InputFieldContext);
-
+function SelectDetailSubToolbar({
+  handleSelectOptionChange,
+  currentValue,
+  detailValue,
+  className,
+  type,
+}) {
   return (
     <SelectBody type={type}>
-      <select className={className} onChange={handleInputChange} type={type}>
+      <select
+        className={className}
+        onChange={handleSelectOptionChange}
+        value={currentValue}
+        type={type}
+      >
         {detailValue &&
           detailValue.map((value) => (
             <option key={value} value={value}>
@@ -22,9 +29,11 @@ function SelectDetailSubToolbar({ detailValue, className, type }) {
 }
 
 SelectDetailSubToolbar.propTypes = {
-  detailValue: PropTypes.array,
-  className: PropTypes.string,
   type: PropTypes.string,
+  className: PropTypes.string,
+  currentValue: PropTypes.any,
+  detailValue: PropTypes.array,
+  handleSelectOptionChange: PropTypes.func,
 };
 
 const SelectBody = styled.div`
