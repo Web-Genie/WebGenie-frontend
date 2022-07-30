@@ -3,7 +3,7 @@ import React from "react";
 
 import TextChoice from "./TextChoice";
 
-it("Displays text choices correctly", () => {
+it("1. Displays text choices correctly", () => {
   render(<TextChoice />);
 
   expect(screen.getByText("H1 HEAD")).toBeInTheDocument();

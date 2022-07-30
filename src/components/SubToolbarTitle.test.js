@@ -3,7 +3,7 @@ import React from "react";
 
 import SubToolbarTitle from "./SubToolbarTitle";
 
-describe("SubToolbarTitle", () => {
+describe("1. SubToolbarTitle", () => {
   it("should contain `First element` text", () => {
     render(<SubToolbarTitle title="Button" />);
 

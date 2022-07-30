@@ -7,7 +7,7 @@ function EditorToolbar({ children }) {
 }
 
 EditorToolbar.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.any,
 };
 
 const Toolbar = styled.div`

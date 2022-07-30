@@ -3,7 +3,7 @@ import React from "react";
 
 import ErrorSectionContainer from "./ErrorSectionContainer";
 
-it("Displays 404 page message correctly", () => {
+it("1. Displays 404 page message correctly", () => {
   render(<ErrorSectionContainer />);
 
   expect(screen.getByText("Ooops...")).toBeInTheDocument();
