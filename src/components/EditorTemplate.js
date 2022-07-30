@@ -3,12 +3,10 @@ import PropTypes from "prop-types";
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { TEXT_ALIGN, TEXT_CHOICES } from "../constants/constants";
 import { SubToolbarContext } from "../context/subToolbarContext";
-import { InputFieldContext } from "../context/subToolbarContext";
-import { UserContext } from "../context/userContext";
 import useDragAndDrop from "../hooks/useDragAndDrop";
 import useResize from "../hooks/useResize";
+import { Context } from "../store/Store";
 import {
   generatedImageElement,
   handleDragEnter,
@@ -25,8 +23,6 @@ function EditorTemplate({
   editorInformation,
   retrieveParentRefState,
   editorVersion,
-  clearCanvas,
-  handleCanvas,
   handleBackgroundColor,
 }) {
   const [handleResizeTarget, isResizing, setIsResizing] = useResize();
@@ -34,81 +30,18 @@ function EditorTemplate({
   const [counter, setCounter] = useState(1);
   const [copyingElement, setCopyingElement] = useState(null);
   const [parentRef, targetRef] = useDragAndDrop(isResizing, setIsResizing);
+  const { dispatch } = useContext(Context);
+
   const {
-    subToolbarType,
-    isBold,
-    isItalic,
-    setIsBold,
-    setIsItalic,
-    isUnderLine,
-    setIsUnderLine,
-    textAlign,
-    setTextAlign,
-    colorValue,
-    setColorValue,
-    buttonColor,
-    setButtonColor,
     localImageSrc,
     setLocalImageSrc,
     hasImageUrl,
     imageUrl,
     setImageUrl,
     setHasImageUrl,
-    isCanvasClear,
-    setIsCavasClear,
-    imageBrightness,
-    imageBlur,
   } = useContext(SubToolbarContext);
-  const { imageOpacity } = useContext(InputFieldContext);
-  const { setSavedBackgroundColor } = useContext(UserContext);
 
   useEffect(() => {
-    if (targetRef.current !== null && targetRef.current.tagName !== "DIV") {
-      if (TEXT_CHOICES.includes(subToolbarType)) {
-        if (colorValue) {
-          targetRef.current.style.color = colorValue;
-
-          setColorValue("");
-        }
-        if (isBold) {
-          targetRef.current.style.fontWeight = "Bold";
-
-          setIsBold(false);
-        }
-        if (isItalic) {
-          targetRef.current.style.fontStyle = "italic";
-
-          setIsItalic(false);
-        }
-        if (isUnderLine) {
-          targetRef.current.style.textDecoration = "underline";
-
-          setIsUnderLine(false);
-        }
-        if (TEXT_ALIGN.includes(textAlign)) {
-          targetRef.current.style.textAlign = textAlign;
-
-          setTextAlign("");
-        }
-      }
-      if (targetRef.current.tagName === "BUTTON" && buttonColor) {
-        targetRef.current.style.background = buttonColor;
-
-        setButtonColor("");
-      }
-    }
-
-    if (isCanvasClear) {
-      parentRef.current.innerHTML = "";
-
-      setIsCavasClear(false);
-    }
-
-    if (targetRef.current !== null && targetRef.current.tagName === "IMG") {
-      targetRef.current.style.opacity = imageOpacity;
-      targetRef.current.style.filter = `blur(${imageBlur}px) brightness(${imageBrightness})`;
-    }
-
     if (localImageSrc) {
       const newImage = generatedImageElement(localImageSrc);
       parentRef.current.appendChild(newImage);
@@ -130,30 +63,7 @@ function EditorTemplate({
       setSavedBackgroundColor(backgroundColorName);
       handleBackgroundColor("");
     }
-  }, [
-    colorValue,
-    textAlign,
-    buttonColor,
-    isBold,
-    isItalic,
-    isUnderLine,
-    localImageSrc,
-    hasImageUrl,
-    isCanvasClear,
-    imageOpacity,
-    imageBlur,
-    imageBrightness,
-    backgroundColorName,
-  ]);
-
-  useEffect(() => {
-    if (clearCanvas && parentRef.current !== null) {
-      parentRef.current.innerHTML = "";
-      parentRef.current.style.backgroundColor = "white";
-
-      handleCanvas(false);
-    }
-  }, [clearCanvas]);
+  }, [localImageSrc, hasImageUrl, backgroundColorName]);
 
   useEffect(() => {
     if (!modalStatus) return;
@@ -184,6 +94,7 @@ function EditorTemplate({
 
   useEffect(() => {
     if (parentRef.current) {
+      dispatch({ type: "SET_EDITOR", payload: parentRef.current });
       retrieveParentRefState(parentRef.current);
     }
   }, []);
@@ -248,8 +159,6 @@ EditorTemplate.propTypes = {
   editorInformation: PropTypes.object,
   retrieveParentRefState: PropTypes.func,
   editorVersion: PropTypes.object,
-  clearCanvas: PropTypes.bool,
-  handleCanvas: PropTypes.func,
   handleBackgroundColor: PropTypes.func,
 };
 

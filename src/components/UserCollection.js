@@ -17,7 +17,7 @@ function UserCollection({ collections, toggleDeleteModal, searchKeyword }) {
       )}
       {collections &&
         collections.map((userWebsites) => {
-          if (searchKeyword.length > 0) {
+          if (searchKeyword?.length > 0) {
             if (userWebsites.title.includes(searchKeyword)) {
               if (userWebsites.isDeployed) {
                 return (

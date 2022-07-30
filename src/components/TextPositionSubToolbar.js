@@ -1,36 +1,32 @@
 import React, { useContext } from "react";
 import { FaAlignCenter, FaAlignLeft, FaAlignRight } from "react-icons/fa";
 
-import { SubToolbarContext } from "../context/subToolbarContext";
+import { Context } from "../store/Store";
+import handleFontFormat from "../utils/handleFontFormat";
 import SubToolbarTitle from "./SubToolbarTitle";
 
 function TextPositionSubToolbar() {
-  const { setTextAlign } = useContext(SubToolbarContext);
-
-  const handleLeftTextAlign = () => {
-    setTextAlign("left");
-  };
-
-  const handleRightTextAlign = () => {
-    setTextAlign("right");
-  };
-
-  const handleCenterTextAlign = () => {
-    setTextAlign("center");
-  };
+  const { globalState } = useContext(Context);
+  const { currentElement } = globalState;
 
   return (
     <div className="choiceContainer">
       <SubToolbarTitle title="Edit Position" />
       <div className="detailContainer" data-testid="detailContainer">
         <div className="detailItem">
-          <span className="rightBorder" onClick={handleLeftTextAlign}>
+          <span
+            className="rightBorder"
+            onClick={handleFontFormat(currentElement, "left")}
+          >
             <FaAlignLeft />
           </span>
-          <span onClick={handleCenterTextAlign}>
+          <span onClick={handleFontFormat(currentElement, "center")}>
             <FaAlignCenter />
           </span>
-          <span className="leftBorder" onClick={handleRightTextAlign}>
+          <span
+            className="leftBorder"
+            onClick={handleFontFormat(currentElement, "right")}
+          >
             <FaAlignRight />
           </span>
         </div>

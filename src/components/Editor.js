@@ -11,6 +11,7 @@ import useAxios from "../hooks/useAxios";
 import useInput from "../hooks/useInput";
 import useLogout from "../hooks/useLogout";
 import useModal from "../hooks/useModal";
+import { Context } from "../store/Store";
 import { retrieveURL } from "../utils/index";
 import Button from "./Button";
 import EditorTemplate from "./EditorTemplate";
@@ -33,6 +34,8 @@ function Editor() {
   const { handleLogout } = useLogout();
   const { userTitle, shouldEditValue, handleInputChange, toggleInputChange } =
     useInput("editor", editor);
+  const { globalState } = useContext(Context);
+  const { editorRef } = globalState;
   const [shouldShowWideView, setShouldShowWideView] = useState(false);
   const {
     shouldDisplayModal,
@@ -45,7 +48,6 @@ function Editor() {
   } = useModal(userTitle, currentEditorId);
 
   const [backgroundColor, setBackgroundColor] = useState("");
-  const [clearCanvas, setClearCanvas] = useState(false);
 
   const toggleSavedVersionHistory = () => {
     setShouldShowDifferentVersion((state) => !state);
@@ -92,8 +94,9 @@ function Editor() {
     );
   };
 
-  const handleTemplate = () => {
-    setClearCanvas(true);
+  const clearCanvas = () => {
+    editorRef.innerHTML = "";
+    editorRef.style.backgroundColor = "white";
   };
 
   return (
@@ -137,7 +140,7 @@ function Editor() {
           </div>
         </div>
         <div>
-          <Button handleClick={handleTemplate} warningSignal={true}>
+          <Button warningSignal={true} handleClick={clearCanvas}>
             Clear Canvas
           </Button>
           <Button handleClick={saveModalToggle} mainButton={false}>
@@ -169,8 +172,6 @@ function Editor() {
           backgroundColorName={backgroundColor}
           handleBackgroundColor={setBackgroundColor}
           editorVersion={displayingVersion}
-          clearCanvas={clearCanvas}
-          handleCanvas={setClearCanvas}
         />
         {!shouldShowWideView && !shouldShowDifferentVersion && <RightToolbar />}
         {shouldShowDifferentVersion && (

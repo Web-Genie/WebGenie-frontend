@@ -8,15 +8,14 @@ import { UserContextTypeProvider } from "./context/userContext";
 import GlobalStyle from "./styles/index";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
-  <>
-    <SubToolbarTypeProvider>
-      <UserContextTypeProvider>
-        <BrowserRouter>
-          <GlobalStyle />
-          <App />
-        </BrowserRouter>
-      </UserContextTypeProvider>
-    </SubToolbarTypeProvider>
-  </>
+  <SubToolbarTypeProvider>
+    <UserContextTypeProvider>
+      <BrowserRouter>
+        <GlobalStyle />
+        <App />
+      </BrowserRouter>
+    </UserContextTypeProvider>
+  </SubToolbarTypeProvider>
 );

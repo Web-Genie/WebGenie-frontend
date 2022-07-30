@@ -24,7 +24,6 @@
     "dot-notation": "error",
     "eqeqeq": ["error", "always"],
     "no-multiple-empty-lines": ["warn", { "max": 1 }],
-    "indent": ["warn", 2],
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error"
   }

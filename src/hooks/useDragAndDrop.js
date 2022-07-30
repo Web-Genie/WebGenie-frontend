@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+
+import { Context } from "../store/Store";
 
 function useDragAndDrop(resizingState) {
   const targetRef = useRef(null);
@@ -10,6 +12,7 @@ function useDragAndDrop(resizingState) {
     leftPercentage: 0,
     topPercentage: 0,
   });
+  const { dispatch } = useContext(Context);
 
   function onMouseMove(event) {
     event.stopPropagation();
@@ -45,6 +48,8 @@ function useDragAndDrop(resizingState) {
     const rect = parentRef.current.getBoundingClientRect();
 
     targetRef.current = event.target;
+
+    dispatch({ type: "SET_CURRENT_ELEMENT", payload: targetRef.current });
 
     setIsDragging(true);
 
