@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 
 import ErrorNumber from "../assets/404.png";
@@ -13,8 +14,9 @@ function ErrorSectionContainer() {
           <h2>Page not found</h2>
         </div>
         <p>
-          The page you are looking for doesn't exist or another error occurred,
-          go back to home page.
+          {
+            "The page you are looking for doesn't exist or another error occurred,go back to home page."
+          }
         </p>
         <div className="buttonContainer">
           <button onClick={sendUserToHomepage}>Homepage</button>
