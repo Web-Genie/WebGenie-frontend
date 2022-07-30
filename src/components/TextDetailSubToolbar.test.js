@@ -1,35 +1,35 @@
-import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { renderHook } from "@testing-library/react";
+import React, { useReducer } from "react";
+import { act } from "react-dom/test-utils";
 
-import { SubToolbarTypeProvider } from "../context/subToolbarContext";
-import { UserContextTypeProvider } from "../context/userContext";
-import TextDetailSubToolbar from "./TextDetailSubtoolBar";
+import { initialState, reducer } from "../reducer/reducer";
 
-test("1. TextDetailSubToolbar에 Edit Text라는 글자가 나와야한다.", () => {
-  render(
-    <MemoryRouter>
-      <UserContextTypeProvider>
-        <SubToolbarTypeProvider>
-          <TextDetailSubToolbar />
-        </SubToolbarTypeProvider>
-      </UserContextTypeProvider>
-    </MemoryRouter>
-  );
+describe("TextDetailSubToolbar component", () => {
+  it("1. should be value sarif if user sets the font-family to serif", async () => {
+    const { result } = renderHook(() => useReducer(reducer, initialState));
+    const [, dispatch] = result.current;
 
-  expect(screen.getByText("Edit text")).toBeInTheDocument();
-});
+    act(() => {
+      dispatch({
+        type: "SET_FONT_STYLE",
+        payload: { target: "family", value: "serif" },
+      });
+    });
 
-test("2. TextDetailSubToolbar에 select option 중 글꼴과 글씨크기를 선택할 수 있어야 한다.", () => {
-  render(
-    <MemoryRouter>
-      <UserContextTypeProvider>
-        <SubToolbarTypeProvider>
-          <TextDetailSubToolbar />
-        </SubToolbarTypeProvider>
-      </UserContextTypeProvider>
-    </MemoryRouter>
-  );
+    expect(result.current[0].fontStyle.family).toEqual("serif");
+  });
 
-  expect(screen.findByRole("option", { name: "AppleGothic" }).ariaSelected);
-  expect(screen.findByRole("option", { name: "0" }).ariaSelected);
+  it("2. should be value 10 if user sets the font-size to 10", async () => {
+    const { result } = renderHook(() => useReducer(reducer, initialState));
+    const [, dispatch] = result.current;
+
+    act(() => {
+      dispatch({
+        type: "SET_FONT_STYLE",
+        payload: { target: "size", value: 10 },
+      });
+    });
+
+    expect(result.current[0].fontStyle.size).toEqual(10);
+  });
 });

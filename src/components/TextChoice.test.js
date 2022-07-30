@@ -3,13 +3,17 @@ import React from "react";
 
 import TextChoice from "./TextChoice";
 
-it("Displays text choices correctly", () => {
-  render(<TextChoice />);
+describe("TextChoice component", () => {
+  beforeEach(() => {
+    render(<TextChoice />);
+  });
 
-  expect(screen.getByText("H1 HEAD")).toBeInTheDocument();
-  expect(screen.getByText("H2 HEAD")).toBeInTheDocument();
-  expect(screen.getByText("H3 HEAD")).toBeInTheDocument();
-  expect(screen.getByText("H4 HEAD")).toBeInTheDocument();
-  expect(screen.getByText("H5 HEAD")).toBeInTheDocument();
-  expect(screen.getByText("H6 HEAD")).toBeInTheDocument();
+  it("1. Displays text choices correctly", () => {
+    expect(screen.getByText("H1 HEAD")).toBeInTheDocument();
+    expect(screen.getByText("H2 HEAD")).toBeInTheDocument();
+    expect(screen.getByText("H3 HEAD")).toBeInTheDocument();
+    expect(screen.getByText("H4 HEAD")).toBeInTheDocument();
+    expect(screen.getByText("H5 HEAD")).toBeInTheDocument();
+    expect(screen.getByText("H6 HEAD")).toBeInTheDocument();
+  });
 });

@@ -29,7 +29,6 @@ const useText = () => {
     if (target === "family") {
       currentElement.style.fontFamily = value;
 
-      console.log(value);
       dispatch({
         type: "SET_FONT_STYLE",
         payload: { target, value },

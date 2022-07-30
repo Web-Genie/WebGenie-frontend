@@ -117,6 +117,8 @@ https://user-images.githubusercontent.com/83874298/174587981-67191f49-f0d9-43f5-
 템플릿에 올려놓은 font, image, button을 drag and drop을 이용하여 자유자재로 이동시킬 수 있습니다.
 ```
 
+<br>
+
 - **_Resizing_**
 
 https://user-images.githubusercontent.com/83874298/174588209-b25bb9b6-0d0e-47d7-9863-b5a5173fe1cc.mov
@@ -125,6 +127,8 @@ https://user-images.githubusercontent.com/83874298/174588209-b25bb9b6-0d0e-47d7-
 템플릿에 올려놓은 font, image, button을 클릭하여, Mouse Down 된 상태에서 마우스를 왼쪽으로 이동시키면, 크기를 감소시키고 오른쪽으로 이동시키면 크기를 증가시킵니다.
 
 ```
+
+<br>
 
 - **_Font, Image, Button, Background change_**
 
@@ -140,6 +144,8 @@ https://user-images.githubusercontent.com/83874298/174588727-0c680b81-cd71-4278-
 템플릿 배경의 색상을 변경할 수 있습니다.
 ```
 
+<br>
+
 - **_Version Log_**
 
 https://user-images.githubusercontent.com/83874298/174588843-cead772e-bedd-4e05-87c1-35fb0e34b660.mov
@@ -150,6 +156,8 @@ saved version log 버튼을 누르면 사용자가 저장했던 시점의 기록
 특정 시점을 클릭하게 되면 그때 사용자가 저장했던 템플릿으로 돌아가게 됩니다.
 ```
 
+<br>
+
 - **_Keypress Event_**
 
 https://user-images.githubusercontent.com/83874298/174589140-168a0093-8f5a-40ad-a43e-c83c1a47baf6.mov
@@ -157,6 +165,8 @@ https://user-images.githubusercontent.com/83874298/174589140-168a0093-8f5a-40ad-
 ```
 버튼과 이미지, 글자를 클릭한 후 Ctrl + C를 하면 복사, Ctrl + V를 하면 붙여넣기, Ctrl + Z를 누르면 이전 시점으로 돌아가게 됩니다.
 ```
+
+<br>
 
 - **_Deploy_**
 
@@ -204,7 +214,7 @@ https://user-images.githubusercontent.com/83874298/174589248-77c93c3e-049b-4520-
 **2022년 5월 30일 ~ 6월 16일**
 
 - 5월 30일 ~ 6월 2일 : 아이디어 기획, 목업 작성, 애자일 스프린트 플랜 작성
-- 6월 3일 ~ 6월 16일 : 개발 진행, 배포, 테스트 작성
+- 6월 3일 ~ 6월 17일 : 개발 진행, 배포, 테스트 작성
 
 <br>
 
@@ -212,7 +222,7 @@ https://user-images.githubusercontent.com/83874298/174589248-77c93c3e-049b-4520-
 
 ### React + DOM Manipulation
 
-이번 프로젝트의 핵심 기능인 Drag and Drop과 Resizing 기능 모두 DOM 조작을 필요로했습니다. 조사를 해본 결과 HTML Drag and Drop API를 알게 되었고 이것을 사용해서 사용자가 자유롭게 드래그하여 수정할 요소들을 에디터 화면에 올려둘 수 있는 기능 구현을 하였습니다. 에디터 화면 내부에 올려진 요소들의 위치를 마우스 이벤트와 클릭한 요소의 DOMRect를 이용하여 실시간으로 변경하였습니다.
+이번 프로젝트의 핵심 기능인 Drag and Drop과 Resizing 기능 모두 DOM 조작을 필요로했습니다. 조사 해본 결과 HTML Drag and Drop API를 알게 되었고 이것을 사용해서 사용자가 자유롭게 드래그하여 수정할 요소들을 에디터 화면에 올려둘 수 있는 기능 구현을 하였습니다. 에디터 화면 내부에 올려진 요소들의 위치를 마우스 이벤트와 클릭한 요소의 DOMRect를 이용하여 실시간으로 변경하였습니다.
 
 ### 충돌하는 DOM Elements
 
@@ -224,7 +234,7 @@ Drag and Drop을 통해 조작되는 요소 간의 충돌이 있었습니다. HT
 
 ### Drag and Drop 이용한 요소들의 위치 모든 화면 크기 대응
 
-사용자가 마우스로 조작한 요소들의 위치를 잡아주는 것은 마우스 이벤트가 제공하는 좌표 기준으로 계산하여 px 단위로 적용하였습니다. 하지만 구현한 Editor 크기와 비율이 일반적인 화면과 달랐기 때문에 실제로 화면 크기가 커지거나 작아질 경우, 엘리먼트들의 위치가 지속적으로 변하는 문제가 있었습니다. 이 문제를 극복하기 위해서는 화면의 크기와 비율에 따라 위치를 잡아줄 필요가 있었습니다.
+사용자가 마우스로 조작한 요소들의 위치를 잡아주는 것은 마우스 이벤트가 제공하는 좌표 기준으로 계산하여 px 단위로 적용하였습니다. 하지만 구현한 Editor 크기와 비율이 일반적인 화면과 달랐기 때문에 화면의 크기에 따라 엘리먼트들의 위치가 지속적으로 변하는 문제가 있었습니다. 이 문제를 극복하기 위해서는 화면의 크기와 비율에 따라 위치를 잡아줄 필요가 있었습니다.
 
 최종적으로 결정한 해결방법은 해당 엘리먼트의 부모 width, height 기준으로 퍼센트를 이용하는 것이었습니다. 하단의 로직으로 엘리먼트의 left와 top을 이용하여 최종으로 위치시켜줄 때 percentage를 적용했습니다. 그 결과 엘리먼트들은 부모의 크기 기반으로 위치하게 됩니다.
 

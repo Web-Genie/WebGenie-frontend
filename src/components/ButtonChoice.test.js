@@ -3,9 +3,11 @@ import React from "react";
 
 import ButtonChoice from "./ButtonChoice";
 
-it("Displays button choice header and button correctly", () => {
-  render(<ButtonChoice />);
+describe("ButtonChoice component", () => {
+  it("1. Displays button choice header and button correctly", () => {
+    render(<ButtonChoice />);
 
-  expect(screen.getByText("Add Button")).toBeInTheDocument();
-  expect(screen.getByText("Button")).toBeInTheDocument();
+    expect(screen.getByText("Add Button")).toBeInTheDocument();
+    expect(screen.getByText("Button")).toBeInTheDocument();
+  });
 });

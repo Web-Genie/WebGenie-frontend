@@ -1,5 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`1. renders correctly 1`] = `
+<div
+  className="sc-bczRLJ forqeM"
+>
+  <span
+    className="css-1kttl6"
+  >
+    <span
+      className="css-1rj2xb9"
+    />
+    <span
+      className="css-1h57f6d"
+    />
+  </span>
+</div>
+`;
+
+exports[`Loader component 1. renders correctly 1`] = `
+<div
+  className="sc-bczRLJ forqeM"
+>
+  <span
+    className="css-1kttl6"
+  >
+    <span
+      className="css-1rj2xb9"
+    />
+    <span
+      className="css-1h57f6d"
+    />
+  </span>
+</div>
+`;
+
 exports[`renders correctly 1`] = `
 <div
   className="sc-bczRLJ forqeM"

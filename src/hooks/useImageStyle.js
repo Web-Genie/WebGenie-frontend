@@ -4,6 +4,7 @@ import { Context } from "../store/Store";
 
 const useImageStyle = () => {
   const { globalState, dispatch } = useContext(Context);
+
   const { currentElement, imageStyle } = globalState;
 
   useEffect(() => {
@@ -15,7 +16,7 @@ const useImageStyle = () => {
       .filter.split(" ")
       .map((styleValue) => styleValue.replace(/[^0-9.]/g, ""));
 
-    if (currentElementFilter[0]) {
+    if (currentElementFilterStyle[0]) {
       dispatch({
         type: "RESET_IMAGE_STYLE",
         payload: {

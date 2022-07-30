@@ -3,20 +3,20 @@ import React from "react";
 
 import SubToolbarTitle from "./SubToolbarTitle";
 
-describe("SubToolbarTitle", () => {
-  it("should contain `First element` text", () => {
+describe("SubToolbarTitle component", () => {
+  it("1. should contain `First element` text", () => {
     render(<SubToolbarTitle title="Button" />);
 
     expect(screen.getByText("Button")).toBeInTheDocument();
   });
 
-  it("should contain `Second element` text", () => {
+  it("2. should contain `Second element` text", () => {
     render(<SubToolbarTitle title="Header" />);
 
     expect(screen.getByText("Header")).toBeInTheDocument();
   });
 
-  it("should contain `Second element` text", () => {
+  it("3. should contain `Second element` text", () => {
     render(<SubToolbarTitle title="Image" />);
 
     expect(screen.getByText("Image")).toBeInTheDocument();

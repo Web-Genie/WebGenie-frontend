@@ -9,7 +9,7 @@ function LoginButton({ children, handleLogin }) {
 }
 
 LoginButton.propTypes = {
-  children: PropTypes.array.isRequired,
+  children: PropTypes.any,
   handleLogin: PropTypes.func,
 };
 
