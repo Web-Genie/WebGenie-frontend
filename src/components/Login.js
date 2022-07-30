@@ -5,13 +5,13 @@ import styled from "styled-components";
 import googleLogo from "../assets/googleLogo.png";
 import loginImage from "../assets/loginImage.png";
 import webGenieLogo from "../assets/logo_transparent.png";
-import { UserContext } from "../context/userContext";
 import { firebaseAuth, googleProvider } from "../services/firebase";
+import { Context } from "../store/Store";
 import LoginButton from "./LoginButton";
 import LoginSVG from "./LoginSVG";
 
 function Login() {
-  const { setIsLoggedIn } = useContext(UserContext);
+  const { dispatch } = useContext(Context);
 
   const handleGoogleLogin = async () => {
     try {
@@ -21,7 +21,10 @@ function Login() {
 
       localStorage.setItem("idToken", idToken);
 
-      setIsLoggedIn(localStorage.getItem("idToken"));
+      dispatch({
+        type: "HANDLE_LOG_IN_TOKEN_INFORMATION",
+        payload: localStorage.getItem("idToken"),
+      });
     } catch (error) {
       console.log(error);
     }
