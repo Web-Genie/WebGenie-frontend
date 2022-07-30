@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import { TEXT_CHOICES } from "../constants/constants";
-import { SubToolbarContext } from "../context/subToolbarContext";
+import { Context } from "../store/Store";
 import ButtonLinkSubToolbar from "./ButtonLinkSubToolbar";
 import ButtonRadiusSubToolbar from "./ButtonRadiusSubToolbar";
 import ColorChangeSubToolbar from "./ColorChangeSubToolbar";
@@ -14,7 +14,8 @@ import TextPositionSubToolbar from "./TextPositionSubToolbar";
 import ToolbarContainer from "./ToolbarContainer";
 
 function RightToolbar() {
-  const { subToolbarType } = useContext(SubToolbarContext);
+  const { globalState } = useContext(Context);
+  const { subToolbarType } = globalState;
 
   return (
     <EditorToolbar>
@@ -41,8 +42,8 @@ function RightToolbar() {
         )}
         {subToolbarType === "BUTTON" ||
         TEXT_CHOICES.includes(subToolbarType) ? (
-            <ColorChangeSubToolbar />
-          ) : null}
+          <ColorChangeSubToolbar />
+        ) : null}
       </ToolbarContainer>
     </EditorToolbar>
   );

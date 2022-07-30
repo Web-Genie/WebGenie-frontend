@@ -1,15 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 
-import { SubToolbarContext } from "../context/subToolbarContext";
+import useImageStyle from "../hooks/useImageStyle";
 import SubToolbarTitle from "./SubToolbarTitle";
 
 function ImageBlurSubToolbar() {
-  const { imageBlur, setImageBlur } = useContext(SubToolbarContext);
-
-  const handleImageBlur = (event) => {
-    setImageBlur(event.target.value);
-  };
+  const { imageStyle, handleElementStyleValueChange } = useImageStyle();
 
   return (
     <div className="choiceContainer">
@@ -21,10 +17,12 @@ function ImageBlurSubToolbar() {
           type="range"
           min="0"
           max="10"
-          step="0.05"
+          step="1"
           list="tickmarks"
-          value={imageBlur}
-          onChange={handleImageBlur}
+          value={imageStyle.blur}
+          onChange={(event) =>
+            handleElementStyleValueChange("blur", event.target.value)
+          }
         />
       </BlurBar>
     </div>

@@ -1,15 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 
-import { SubToolbarContext } from "../context/subToolbarContext";
+import useImageStyle from "../hooks/useImageStyle";
 import SubToolbarTitle from "./SubToolbarTitle";
 
 function ImageBrightnessSubToolbar() {
-  const { setImageBrightness } = useContext(SubToolbarContext);
-
-  const handleImageBrightness = (event) => {
-    setImageBrightness(event.target.value);
-  };
+  const { imageStyle, handleElementStyleValueChange } = useImageStyle();
 
   return (
     <div className="choiceContainer">
@@ -21,9 +17,12 @@ function ImageBrightnessSubToolbar() {
           type="range"
           min="0"
           max="1"
-          step="0.01"
+          step="0.1"
           list="tickmarks"
-          onChange={handleImageBrightness}
+          value={imageStyle.brightness}
+          onChange={(event) =>
+            handleElementStyleValueChange("brightness", event.target.value)
+          }
         />
       </BrightnessBar>
     </div>

@@ -1,23 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { RiPaintFill } from "react-icons/ri";
 import styled from "styled-components";
 
-import { TEXT_CHOICES } from "../constants/constants";
-import { SubToolbarContext } from "../context/subToolbarContext";
+import useColor from "../hooks/useColor";
 import SubToolbarTitle from "./SubToolbarTitle";
 import ToolbarButton from "./ToolbarButton";
 
 function ColorChangeSubToolbar() {
-  const { setColorValue, setButtonColor, subToolbarType } =
-    useContext(SubToolbarContext);
-
-  const handleColorChange = (event) => {
-    if (TEXT_CHOICES.includes(subToolbarType)) {
-      setColorValue(event.target.value);
-    } else {
-      setButtonColor(event.target.value);
-    }
-  };
+  const { elementColor, handleColorChange } = useColor();
 
   return (
     <div className="choiceContainer">
@@ -27,9 +17,10 @@ function ColorChangeSubToolbar() {
           <ToolbarButton>
             <RiPaintFill />
             <input
-              className="colorPalette"
               type="color"
-              onChange={handleColorChange}
+              className="colorPalette"
+              value={elementColor}
+              onChange={(event) => handleColorChange(event.target.value)}
             />
           </ToolbarButton>
         </ColorBackground>

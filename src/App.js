@@ -8,12 +8,13 @@ import Loader from "./components/Loader";
 import Login from "./components/Login";
 import UserWebsites from "./components/UserWebsites";
 import { UserContext } from "./context/userContext";
+import { Store } from "./store/Store";
 
 function App() {
   const { isLoggedIn } = useContext(UserContext);
 
   return (
-    <>
+    <Store>
       <Routes>
         <Route path="/" element={isLoggedIn ? <UserWebsites /> : <Login />} />
         <Route path="/editor/:id" element={<Editor />} />
@@ -21,7 +22,7 @@ function App() {
         <Route path="/userwebsite/:id/deployed" element={<DeployedWebsite />} />
         <Route path="/*" element={<ErrorSection />} />
       </Routes>
-    </>
+    </Store>
   );
 }
 
