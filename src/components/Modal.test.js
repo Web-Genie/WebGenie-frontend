@@ -23,8 +23,6 @@ it("1. show modal when modal component execution and text modal content", () => 
     </ModalPortal>
   );
 
-  screen.debug();
-
   const modal = screen.findByTestId("modal-root");
 
   expect(modal).toBeTruthy();
@@ -48,8 +46,6 @@ it("2. should have style in modal div", () => {
       </Modal>
     </ModalPortal>
   );
-
-  screen.debug();
 
   const div = screen.getByText("hello");
 
