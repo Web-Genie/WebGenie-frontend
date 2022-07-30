@@ -1,25 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 
-import useImageStyle from "../hooks/useImageStyle";
+import useNonTextElementStyle from "../hooks/useNonTextElementStyle";
 import SubToolbarTitle from "./SubToolbarTitle";
 
 function ImageBlurSubToolbar() {
-  const { imageStyle, handleElementStyleValueChange } = useImageStyle();
+  const { elementStyle, handleElementStyleValueChange } =
+    useNonTextElementStyle();
 
   return (
     <div className="choiceContainer">
       <SubToolbarTitle title="Edit Blur" />
       <BlurBar>
         <input
-          data-testid="blur"
-          className="blur"
           type="range"
+          className="blur"
+          data-testid="blur"
           min="0"
           max="10"
           step="1"
           list="tickmarks"
-          value={imageStyle.blur}
+          value={elementStyle.blur}
           onChange={(event) =>
             handleElementStyleValueChange("blur", event.target.value)
           }
