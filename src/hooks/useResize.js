@@ -1,10 +1,8 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 
-import { FONT_TYPE } from "../constants/constants";
-import { InputFieldContext } from "../context/subToolbarContext";
 import { Context } from "../store/Store";
 import { getElementValue } from "../utils";
-import { generateEditorDeleteElement } from "../utils/index";
+import { generateEditorDeleteElement } from "../utils/";
 
 function useResize() {
   const parentRef = useRef(null);
@@ -12,17 +10,6 @@ function useResize() {
   const [shouldEditText, setShouldEditText] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
   const { dispatch } = useContext(Context);
-  const {
-    inputValue,
-    shouldAddLink,
-    setShouldAddLink,
-    buttonRadius,
-    buttonOpacity,
-    fontSize,
-    setFontSize,
-    fontType,
-    setFontType,
-  } = useContext(InputFieldContext);
 
   let leftOrRightDirection = "";
   let oldPageX = 0;
@@ -273,42 +260,6 @@ function useResize() {
       setIsResizing(true);
     }
   };
-
-  useEffect(() => {
-    if (!shouldAddLink) return;
-
-    const linkElement = document.createElement("a");
-
-    linkElement.href = inputValue;
-    linkElement.innerText = targetRef.current.innerText;
-    targetRef.current.innerText = "";
-    targetRef.current.appendChild(linkElement);
-
-    setShouldAddLink(false);
-  }, [shouldAddLink]);
-
-  useEffect(() => {
-    if (!targetRef.current) return;
-
-    if (targetRef.current.tagName === "BUTTON") {
-      targetRef.current.style.borderRadius = `${buttonRadius}px`;
-      targetRef.current.style.opacity = buttonOpacity;
-    }
-  }, [buttonRadius, buttonOpacity]);
-
-  useEffect(() => {
-    if (!targetRef.current) return;
-
-    if (FONT_TYPE.includes(fontType)) {
-      targetRef.current.style.fontFamily = fontType;
-      setFontType("");
-    }
-
-    if (fontSize) {
-      targetRef.current.style.fontSize = `${fontSize}px`;
-      setFontSize("");
-    }
-  }, [fontSize, fontType]);
 
   return [handleResizeTarget, isResizing, setIsResizing];
 }

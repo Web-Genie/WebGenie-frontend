@@ -10,14 +10,13 @@ import {
   SAVE_MODAL_MESSAGE,
   SAVE_REMINDER_MODAL_MESSAGE,
 } from "../constants/constants";
-import { UserContext } from "../context/userContext";
+import { Context } from "../store/Store";
 import { retrieveURL } from "../utils";
 
-const useModal = (editorTitle, editorId) => {
+const useModal = () => {
   const currentEditorId = retrieveURL();
   const [shouldDisplayModal, setShouldDisplayModal] = useState(false);
   const [shouldUseSaveModal, setShouldUseSaveModal] = useState(false);
-  const [userCode, setUserCode] = useState();
   const [message, setMessage] = useState({
     titleMessage: null,
     proceedButtonText: null,
@@ -25,7 +24,8 @@ const useModal = (editorTitle, editorId) => {
     iconType: null,
     params: null,
   });
-  const { savedBackgroundColor } = useContext(UserContext);
+  const { globalState } = useContext(Context);
+  const { editorRef, editorData } = globalState;
 
   const createNewSiteModalToggle = useCallback(() => {
     setShouldDisplayModal((state) => !state);
@@ -37,7 +37,7 @@ const useModal = (editorTitle, editorId) => {
       params: {
         method: "post",
         url: "/websites",
-        data: { title: editorTitle },
+        data: { title: editorData.title },
         headers: {
           Authorization: `Bearer ${localStorage.getItem(ID_TOKEN)}`,
         },
@@ -69,7 +69,7 @@ const useModal = (editorTitle, editorId) => {
     });
   }, []);
 
-  const saveReminderModalToggle = useCallback((event) => {
+  const saveReminderModalToggle = useCallback(() => {
     setShouldDisplayModal((state) => !state);
     setMessage({
       titleMessage: SAVE_REMINDER_MODAL_MESSAGE.titleMessage,
@@ -139,10 +139,10 @@ const useModal = (editorTitle, editorId) => {
         method: "post",
         url: "/websites/:website_id",
         data: {
-          title: editorTitle,
-          editorCode: userCode,
+          title: editorData.title,
+          editorCode: editorRef.innerHTML,
           websiteId: currentEditorId,
-          backgroundColor: savedBackgroundColor,
+          backgroundColor: window.getComputedStyle(editorRef).backgroundColor,
         },
         headers: {
           Authorization: `Bearer ${localStorage.getItem(ID_TOKEN)}`,
@@ -150,7 +150,7 @@ const useModal = (editorTitle, editorId) => {
       },
       requestType: "Save",
     });
-  }, [shouldUseSaveModal, userCode]);
+  }, [shouldUseSaveModal]);
 
   return {
     shouldDisplayModal,
@@ -160,8 +160,6 @@ const useModal = (editorTitle, editorId) => {
     deleteSiteModalMessage,
     closeModal,
     message,
-    userCode,
-    setUserCode,
     saveReminderModalToggle,
     imageURLModalToggle,
   };
