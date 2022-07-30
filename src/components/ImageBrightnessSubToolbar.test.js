@@ -15,5 +15,5 @@ test("1. ImageBrightnessSubToolbar에 Edit Brightness라는 글자가 있고, te
 
   expect(screen.getByText("Edit Brightness")).toBeInTheDocument();
 
-  expect(screen.getByTestId("brightness")).toBeVisible;
+  expect(screen.getByTestId("brightness")).toBeVisible();
 });

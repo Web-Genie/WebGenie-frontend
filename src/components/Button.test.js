@@ -15,7 +15,7 @@ it("2. Should button background-color is rgb(10, 107, 255) when mainButton true"
 
   const button = screen.getByRole("button");
 
-  expect(button).toHaveStyle("background-color: rgb(10, 107, 255)");
+  expect(button).toHaveStyle(`background-color: rgb(10, 107, 255)`);
 });
 
 it("3. Should background-color is white and font-color is red when warinning signal true", () => {
@@ -23,6 +23,6 @@ it("3. Should background-color is white and font-color is red when warinning sig
 
   const button = screen.getByRole("button");
 
-  expect(button).toHaveStyle("background-color: white");
-  expect(button).toHaveStyle("color: red");
+  expect(button).toHaveStyle(`background-color: white`);
+  expect(button).toHaveStyle(`color: red`);
 });

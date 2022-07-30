@@ -4,7 +4,7 @@ import React from "react";
 
 import EditorToolbar from "./EditorToolbar";
 
-it("1. Should show props ", () => {
+it("1. Should show props in EditorToolbar ", () => {
   render(
     <EditorToolbar>
       <div>hello</div>
