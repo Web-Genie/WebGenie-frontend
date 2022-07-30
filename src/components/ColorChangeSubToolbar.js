@@ -7,7 +7,7 @@ import SubToolbarTitle from "./SubToolbarTitle";
 import ToolbarButton from "./ToolbarButton";
 
 function ColorChangeSubToolbar() {
-  const { elementColor, handleColorChange } = useColor();
+  const { elementStyle, handleColorChange } = useColor();
 
   return (
     <div className="choiceContainer">
@@ -19,7 +19,7 @@ function ColorChangeSubToolbar() {
             <input
               type="color"
               className="colorPalette"
-              value={elementColor}
+              value={elementStyle.color}
               onChange={(event) => handleColorChange(event.target.value)}
             />
           </ToolbarButton>
