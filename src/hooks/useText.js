@@ -6,6 +6,24 @@ const useText = () => {
   const { globalState, dispatch } = useContext(Context);
   const { currentElement, fontStyle } = globalState;
 
+  const handleFontStyleValueChange = (target, value) => {
+    if (target === "family") {
+      currentElement.style.fontFamily = value;
+
+      dispatch({
+        type: "SET_FONT_STYLE",
+        payload: { target, value },
+      });
+    } else {
+      currentElement.style.fontSize = `${value}px`;
+
+      dispatch({
+        type: "SET_FONT_STYLE",
+        payload: { target, value },
+      });
+    }
+  };
+
   useEffect(() => {
     const currentFontFamily =
       window.getComputedStyle(currentElement).fontFamily;
@@ -24,24 +42,6 @@ const useText = () => {
       });
     }
   }, [currentElement]);
-
-  const handleFontStyleValueChange = (target, value) => {
-    if (target === "family") {
-      currentElement.style.fontFamily = value;
-
-      dispatch({
-        type: "SET_FONT_STYLE",
-        payload: { target, value },
-      });
-    } else {
-      currentElement.style.fontSize = `${value}px`;
-
-      dispatch({
-        type: "SET_FONT_STYLE",
-        payload: { target, value },
-      });
-    }
-  };
 
   return {
     fontStyle,

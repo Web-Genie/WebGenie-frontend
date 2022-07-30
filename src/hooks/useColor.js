@@ -1,28 +1,23 @@
 import { useContext, useEffect } from "react";
 
 import { Context } from "../store/Store";
-import computeRgbToHex from "../utils/computeRgbToHex";
+import { computeRgbToHex } from "../utils";
 
 const useText = () => {
   const { globalState, dispatch } = useContext(Context);
-  const { currentElement, elementColor } = globalState;
+  const { editorRef, currentElement, elementStyle } = globalState;
 
-  useEffect(() => {
-    const currentElementColor = computeRgbToHex(
-      window.getComputedStyle(currentElement).color
-    );
+  const handleColorChange = (value, purpose = "") => {
+    if (purpose === "editorBackground") {
+      editorRef.style.backgroundColor = value;
 
-    dispatch({
-      type: "SET_COLOR",
-      payload: {
-        value: currentElementColor,
-      },
-    });
-  }, [currentElement]);
+      dispatch({ type: "SET_BACKGROUND_COLOR", payload: value });
 
-  const handleColorChange = (value) => {
+      return;
+    }
+
     if (currentElement.tagName === "BUTTON") {
-      currentElement.style.background = value;
+      currentElement.style.backgroundColor = value;
 
       dispatch({
         type: "SET_COLOR",
@@ -38,8 +33,36 @@ const useText = () => {
     }
   };
 
+  useEffect(() => {
+    if (!currentElement) return;
+
+    const currentElementColor = computeRgbToHex(
+      window.getComputedStyle(currentElement).color
+    );
+
+    const currentElementBackgroundColor = computeRgbToHex(
+      window.getComputedStyle(currentElement).backgroundColor
+    );
+
+    if (currentElement.tagName === "BUTTON") {
+      dispatch({
+        type: "SET_COLOR",
+        payload: {
+          value: currentElementBackgroundColor,
+        },
+      });
+    } else {
+      dispatch({
+        type: "SET_COLOR",
+        payload: {
+          value: currentElementColor,
+        },
+      });
+    }
+  }, [currentElement]);
+
   return {
-    elementColor,
+    elementStyle,
     handleColorChange,
   };
 };
