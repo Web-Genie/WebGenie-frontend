@@ -6,7 +6,7 @@ function Header({ children }) {
 }
 
 Header.propTypes = {
-  children: PropTypes.array,
+  children: PropTypes.any,
 };
 
 const HeaderContainer = styled.div`
