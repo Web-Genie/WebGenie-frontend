@@ -1,19 +1,19 @@
-import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { renderHook } from "@testing-library/react";
+import React, { useReducer } from "react";
+import { act } from "react-dom/test-utils";
 
-import { SubToolbarTypeProvider } from "../context/subToolbarContext";
-import ImageBrightnessSubToolbar from "./ImageBrightnessSubToolbar";
+import { initialState, reducer } from "../reducer/reducer";
 
-test("1. ImageBrightnessSubToolbar에 Edit Brightness라는 글자가 있고, test id가 brightness인 input창이 보여져야 한다", () => {
-  render(
-    <MemoryRouter>
-      <SubToolbarTypeProvider>
-        <ImageBrightnessSubToolbar />
-      </SubToolbarTypeProvider>
-    </MemoryRouter>
-  );
+it("1. should be value 20 if user sets the brightness to 20", async () => {
+  const { result } = renderHook(() => useReducer(reducer, initialState));
+  const [, dispatch] = result.current;
 
-  expect(screen.getByText("Edit Brightness")).toBeInTheDocument();
+  act(() => {
+    dispatch({
+      type: "SET_IMAGE_STYLE",
+      payload: { target: "blur", value: 20 },
+    });
+  });
 
-  expect(screen.getByTestId("brightness")).toBeVisible();
+  expect(result.current[0].imageStyle.blur).toEqual(20);
 });

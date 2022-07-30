@@ -74,9 +74,3 @@ export const reducer = (state, action) => {
       return state;
   }
 };
-
-// const [imageUrl, setImageUrl] = useState("");
-// const [localImageSrc, setLocalImageSrc] = useState("");
-// const [hasImageUrl, setHasImageUrl] = useState(false);
-// const [clearCanvasBackgroundColor, setClearCanavasBackgroundColor] =
-//   useState("");
