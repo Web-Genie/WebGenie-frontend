@@ -4,25 +4,23 @@ import React from "react";
 
 import LoginButton from "./LoginButton";
 
-it("1. Should show props ", () => {
-  render(
-    <LoginButton>
-      <div>login</div>
-    </LoginButton>
+describe("LoginButton Component", () => {
+  beforeEach(() =>
+    render(
+      <LoginButton>
+        <div>login</div>
+      </LoginButton>
+    )
   );
 
-  expect(screen.getByText("login")).toBeInTheDocument();
-});
+  it("1. Should show if the loginButton has props", () => {
+    expect(screen.getByText("login")).toBeInTheDocument();
+  });
 
-it("2. Should have style property", () => {
-  render(
-    <LoginButton>
-      <div>login</div>
-    </LoginButton>
-  );
+  it("2. Should have button style property", () => {
+    const button = screen.getByRole("button");
 
-  const button = screen.getByRole("button");
-
-  expect(button).toHaveStyle(`display: flex`);
-  expect(button).toHaveStyle(`color: rgb(117, 117, 117)`);
+    expect(button).toHaveStyle(`display: flex`);
+    expect(button).toHaveStyle(`color: rgb(117, 117, 117)`);
+  });
 });

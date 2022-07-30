@@ -4,12 +4,14 @@ import React from "react";
 
 import EditorToolbar from "./EditorToolbar";
 
-it("1. Should show props in EditorToolbar ", () => {
-  render(
-    <EditorToolbar>
-      <div>hello</div>
-    </EditorToolbar>
-  );
+describe("EditorToolbar component", () => {
+  it("1. Should show props in EditorToolbar ", () => {
+    render(
+      <EditorToolbar>
+        <div>hello</div>
+      </EditorToolbar>
+    );
 
-  expect(screen.getByText("hello")).toBeInTheDocument();
+    expect(screen.getByText("hello")).toBeInTheDocument();
+  });
 });
