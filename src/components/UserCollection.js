@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import React from "react";
 import { MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -9,101 +10,51 @@ import placeholderImage from "../assets/placeholder.png";
 function UserCollection({ collections, toggleDeleteModal, searchKeyword }) {
   return (
     <UserContents>
-      {!collections && (
+      {!collections ? (
         <EmptyCollectionContainer>
           <img alt="Empty collection indicating image" src={emptyCollection} />
           <h1>생성된 웹사이트가 없습니다.</h1>
         </EmptyCollectionContainer>
-      )}
-      {collections &&
-        collections.map((userWebsites) => {
-          if (searchKeyword?.length > 0) {
-            if (userWebsites.title.includes(searchKeyword)) {
-              if (userWebsites.isDeployed) {
-                return (
-                  <UserWebsites key={userWebsites._id}>
-                    <h3 value={userWebsites._id}>
-                      <MdClose
-                        onClick={toggleDeleteModal}
-                        value={userWebsites._id}
-                      />
-                    </h3>
-                    <Link to={`/userwebsite/${userWebsites._id}/deployed`}>
-                      <img alt="Deployed Iframe image" src={placeholderImage} />
-                      <div>
-                        <p>{userWebsites.title}</p>
-                      </div>
-                    </Link>
-                  </UserWebsites>
-                );
-              } else {
-                return (
-                  <UserWebsites key={userWebsites._id}>
-                    <h3 value={userWebsites._id}>
-                      <MdClose
-                        onClick={toggleDeleteModal}
-                        value={userWebsites._id}
-                      />
-                    </h3>
-                    <Link to={`/editor/${userWebsites._id}`}>
-                      <img
-                        alt="Currently editing indicating image"
-                        src={placeholderImage}
-                      />
-                      <div>
-                        <p>{userWebsites.title}</p>
-                      </div>
-                    </Link>
-                  </UserWebsites>
-                );
-              }
-            }
-          } else if (userWebsites.isDeployed) {
-            return (
-              <UserWebsites key={userWebsites._id}>
-                <h3 value={userWebsites._id}>
-                  <MdClose
-                    onClick={toggleDeleteModal}
-                    value={userWebsites._id}
-                  />
+      ) : (
+        <>
+          {collections
+            .filter((website) =>
+              website.title.toLowerCase().includes(searchKeyword)
+            )
+            .map((website) => (
+              <UserWebsites key={website._id}>
+                <h3 value={website._id}>
+                  <MdClose onClick={toggleDeleteModal} value={website._id} />
                 </h3>
-                <Link to={`/userwebsite/${userWebsites._id}/deployed`}>
-                  <div className="container">
-                    <div className="previewWebsite">
-                      <iframe
-                        frameBorder="0"
-                        srcDoc={`<div style="width: 120%; height:99vh; border-radius: 30px; background-color:${userWebsites.userSavedCode[0].backgroundColor}">${userWebsites.userSavedCode[0].code}</div>`}
-                      />
+                {website.isDeployed ? (
+                  <Link to={`/userwebsite/${website._id}/deployed`}>
+                    <div className="container">
+                      <div className="previewWebsite">
+                        <iframe
+                          frameBorder="0"
+                          srcDoc={`<div style="width: 120%; height:99vh; border-radius: 30px; background-color:${website.userSavedCode[0].backgroundColor}">${website.userSavedCode[0].code}</div>`}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="title">
-                    <p>{userWebsites.title}</p>
-                  </div>
-                </Link>
+                    <div className="title">
+                      <p>{website.title}</p>
+                    </div>
+                  </Link>
+                ) : (
+                  <Link to={`/editor/${website._id}`}>
+                    <img
+                      alt="Currently editing indicating image"
+                      src={placeholderImage}
+                    />
+                    <div>
+                      <p>{website.title}</p>
+                    </div>
+                  </Link>
+                )}
               </UserWebsites>
-            );
-          } else {
-            return (
-              <UserWebsites key={userWebsites._id}>
-                <h3 value={userWebsites._id}>
-                  <MdClose
-                    onClick={toggleDeleteModal}
-                    value={userWebsites._id}
-                  />
-                </h3>
-                <Link to={`/editor/${userWebsites._id}`}>
-                  <img
-                    alt="Currently editing indicating image"
-                    src={placeholderImage}
-                  />
-                  <div>
-                    <p>{userWebsites.title}</p>
-                  </div>
-                </Link>
-              </UserWebsites>
-            );
-          }
-        })}
+            ))}
+        </>
+      )}
     </UserContents>
   );
 }
@@ -206,6 +157,8 @@ const UserWebsites = styled.div`
   .previewWebsite {
     width: fit-content;
     height: auto;
+    transform: scale(0.209);
+    transform-origin: 0 0;
     -webkit-transform: scale(0.209);
     -webkit-transform-origin: 0 0;
   }
