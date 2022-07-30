@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react";
-import React, { useReducer } from "react";
+import { useReducer } from "react";
 import { act } from "react-dom/test-utils";
 
 import { initialState, reducer } from "../reducer/reducer";
