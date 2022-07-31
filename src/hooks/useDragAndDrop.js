@@ -1,54 +1,90 @@
 import { useContext, useEffect, useRef, useState } from "react";
 
 import { Context } from "../store/Store";
+import { removeDraggableElementStyle } from "../utils";
 
-function useDragAndDrop(resizingState) {
+function useDragAndDrop() {
   const targetRef = useRef(null);
   const parentRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [isResizing, setIsResizing] = useState(false);
+  const [resizingDirection, setResizingDirection] = useState("");
   const [coordinates, setCoordinates] = useState({
     x: 0,
     y: 0,
     leftPercentage: 0,
     topPercentage: 0,
   });
+  const [draggingElementCoordinates, setDraggingElementCoordinates] = useState({
+    width: 0,
+    height: 0,
+    origianlMouseX: 0,
+    origianlMouseY: 0,
+    originalX: 0,
+    originalY: 0,
+  });
   const { dispatch } = useContext(Context);
 
   function onMouseMove(event) {
+    if (!isDragging) return;
+    if (isResizing) return;
+
     event.stopPropagation();
     event.preventDefault();
 
-    if (resizingState) return;
-
     const rect = parentRef.current.getBoundingClientRect();
-
-    if (!isDragging) return;
 
     if (event.clientX > rect.x && event.clientY > rect.y) {
       setCoordinates({
         x: event.clientX - targetRef.current.offsetWidth / 2 - rect.x,
         y: event.clientY - targetRef.current.offsetHeight / 2 - rect.y,
       });
-    } else {
-      setIsDragging(false);
     }
   }
 
   function onMouseUp(event) {
+    if (isResizing) return;
+
     event.stopPropagation();
     event.preventDefault();
 
+    setIsResizing(false);
     setIsDragging(false);
   }
 
   function onMouseDown(event) {
+    const rect = parentRef.current.getBoundingClientRect();
+
+    if (event.target.classList[0] === "resizer") {
+      setDraggingElementCoordinates({
+        width: Number(targetRef.current.style.width.replace("px", "")),
+        height: Number(targetRef.current.style.height.replace("px", "")),
+        origianlMouseX: event.pageX,
+        origianlMouseY: event.pageY,
+        originalX: event.x - rect.x,
+        originalY: event.y - rect.y,
+      });
+      setResizingDirection(event.target.classList[1]);
+      setIsResizing(true);
+
+      return;
+    }
+
     event.stopPropagation();
     event.preventDefault();
 
-    const rect = parentRef.current.getBoundingClientRect();
+    removeDraggableElementStyle({
+      previousElement: targetRef.current,
+      clickedElement: event.target,
+      parentElement: parentRef.current,
+    });
 
     targetRef.current = event.target;
 
+    dispatch({
+      type: "SET_SUB_TOOLBAR_TYPE",
+      payload: targetRef.current.tagName,
+    });
     dispatch({ type: "SET_CURRENT_ELEMENT", payload: targetRef.current });
 
     setIsDragging(true);
@@ -64,8 +100,7 @@ function useDragAndDrop(resizingState) {
   if (
     targetRef.current &&
     targetRef.current !== parentRef.current &&
-    isDragging &&
-    !resizingState
+    isDragging
   ) {
     const parentContainerWidth =
       parentRef.current.getBoundingClientRect().width;
@@ -82,32 +117,33 @@ function useDragAndDrop(resizingState) {
 
   useEffect(() => {
     if (!parentRef.current) return;
+    if (isResizing) return;
 
     parentRef.current.addEventListener("mousedown", onMouseDown);
 
-    return () => {
-      if (parentRef.current) {
-        parentRef.current.removeEventListener("mousedown", onMouseDown);
-      }
-    };
-  }, [parentRef.current]);
+    if (!isDragging) return;
 
-  useEffect(() => {
-    if (isDragging) {
-      document.addEventListener("mouseup", onMouseUp);
-      document.addEventListener("mousemove", onMouseMove);
-    } else {
-      document.removeEventListener("mouseup", onMouseUp);
-      document.removeEventListener("mousemove", onMouseMove);
-    }
+    console.log("from drag and drop");
+
+    document.addEventListener("mouseup", onMouseUp);
+    document.addEventListener("mousemove", onMouseMove);
 
     return () => {
+      parentRef.current.removeEventListener("mousedown", onMouseDown);
       document.removeEventListener("mouseup", onMouseUp);
       document.removeEventListener("mousemove", onMouseMove);
     };
-  }, [isDragging]);
+  }, [parentRef.current, isDragging, isResizing]);
 
-  return [parentRef, targetRef];
+  return {
+    parentRef,
+    targetRef,
+    isDragging,
+    isResizing,
+    setIsResizing,
+    resizingDirection,
+    draggingElementCoordinates,
+  };
 }
 
 export default useDragAndDrop;
