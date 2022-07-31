@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { FaArrowLeft, FaRegEdit } from "react-icons/fa";
 import styled from "styled-components";
 
 import {
@@ -7,7 +6,6 @@ import {
   REQUEST_DATA_INFORMATION_EDITOR,
 } from "../constants/constants";
 import useAxios from "../hooks/useAxios";
-import useInput from "../hooks/useInput";
 import useLogout from "../hooks/useLogout";
 import useModal from "../hooks/useModal";
 import useToggle from "../hooks/useToggle";
@@ -29,14 +27,12 @@ function Editor() {
   const [displayingVersion, setDisplayingVersion] = useState(null);
   const [shouldShowDifferentVersion, setShouldShowDifferentVersion] =
     useState(false);
-  const { shouldDisplayInputField, handleInputChange, toggleInputField } =
-    useInput("editor");
   const { shouldDisplay, handleToggleClick } = useToggle();
   const { handleLogout } = useLogout();
   const { globalState } = useContext(Context);
-  const { editorRef, editorData } = globalState;
+  const { editorData } = globalState;
   const currentEditorId = retrieveURL();
-
+  console.log(editorData);
   const {
     shouldDisplayModal,
     saveModalToggle,
@@ -105,7 +101,7 @@ function Editor() {
           handleToggleClick={handleToggleClick}
           saveModalToggle={saveModalToggle}
           publishModalToggle={publishModalToggle}
-          // {...useModal()}
+          {...globalState}
         />
       </Navigation>
       <EditorBody>

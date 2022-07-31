@@ -1,10 +1,9 @@
 import PropTypes from "prop-types";
-import React, { useContext } from "react";
+import React from "react";
 import { FaArrowLeft, FaRegEdit } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 
 import useInput from "../hooks/useInput";
-import { Context } from "../store/Store";
 import Button from "./Button";
 
 export default function NavigationContent({
@@ -15,11 +14,10 @@ export default function NavigationContent({
   publishModalToggle,
   createNewSiteModalToggle,
   handleSearchInputChange,
+  editorData,
+  editorRef,
 }) {
   const { id } = useParams();
-
-  const { globalState } = useContext(Context);
-  const { editorRef, editorData } = globalState;
 
   const { shouldDisplayInputField, handleInputChange, toggleInputField } =
     useInput("editor");
@@ -100,4 +98,6 @@ NavigationContent.propTypes = {
   publishModalToggle: PropTypes.func,
   createNewSiteModalToggle: PropTypes.func,
   handleSearchInputChange: PropTypes.func,
+  editorData: PropTypes.any,
+  editorRef: PropTypes.object,
 };

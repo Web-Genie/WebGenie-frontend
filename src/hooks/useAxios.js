@@ -31,7 +31,7 @@ const useAxios = (params, idToken, category = null) => {
       const response = await api(params);
 
       dispatch({ type: "SET_EDITOR_DATA", payload: response.data.result });
-    } else if (category === AXIOS_REQUEST_CATEGORY.SAVE_EDITOR_CODE) {
+    } else if (category === AXIOS_REQUEST_CATEGORY.POST_EDITOR_CODE) {
       localStorage.removeItem("localImgSrc");
 
       navigate("/creatingnewwebsite");
@@ -52,7 +52,7 @@ const useAxios = (params, idToken, category = null) => {
       });
 
       navigate("/");
-    } else if (category === AXIOS_REQUEST_CATEGORY.UPLOAD_IMAGE) {
+    } else if (category === AXIOS_REQUEST_CATEGORY.POST_IMAGE) {
       const location = await api(params);
 
       saveLocalStorage(location.data.location.split(".com/")[1]);
@@ -61,7 +61,7 @@ const useAxios = (params, idToken, category = null) => {
         type: "SET_LOCAL_IMAGE_SRC",
         payload: location.data.location,
       });
-    } else if (category === AXIOS_REQUEST_CATEGORY.REMOVE_IMAGE) {
+    } else if (category === AXIOS_REQUEST_CATEGORY.DELETE_IMAGE) {
       navigate("/creatingnewwebsite");
 
       await api(params);
@@ -69,7 +69,7 @@ const useAxios = (params, idToken, category = null) => {
       localStorage.removeItem("localImgSrc");
 
       navigate("/");
-    } else if (category === AXIOS_REQUEST_CATEGORY.PUBLISH_WEBSITE) {
+    } else if (category === AXIOS_REQUEST_CATEGORY.PATCH_WEBSITE) {
       navigate("/creatingnewwebsite");
 
       await api(params);

@@ -75,9 +75,9 @@ export const TEXT_ALIGN = ["left", "center", "right"];
 export const AXIOS_REQUEST_CATEGORY = {
   GET_USER_DATA: "USER",
   GET_EDITOR_DATA: "EDITOR",
-  SAVE_EDITOR_CODE: "Save",
+  POST_EDITOR_CODE: "Save",
   DELETE_WEBSITE: "delete",
-  UPLOAD_IMAGE: "imageUpload",
-  REMOVE_IMAGE: "RemoveImage",
-  PUBLISH_WEBSITE: "Publish",
+  POST_IMAGE: "imageUpload",
+  DELETE_IMAGE: "RemoveImage",
+  PATCH_WEBSITE: "Publish",
 };
