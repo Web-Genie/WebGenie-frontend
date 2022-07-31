@@ -15,11 +15,27 @@ import {
 } from "../utils";
 
 function EditorTemplate({ editorVersion, userSavedCode }) {
-  const [handleResizeTarget, isResizing, setIsResizing] = useResize();
   const [currentEditor, setCurrentEditor] = useState([]);
   const [counter, setCounter] = useState(1);
   const [copyingElement, setCopyingElement] = useState(null);
-  const [parentRef, targetRef] = useDragAndDrop(isResizing, setIsResizing);
+  const {
+    parentRef,
+    targetRef,
+    isDragging,
+    isResizing,
+    setIsResizing,
+    resizingDirection,
+    draggingElementCoordinates,
+  } = useDragAndDrop();
+  useResize(
+    targetRef.current,
+    parentRef.current,
+    isDragging,
+    isResizing,
+    setIsResizing,
+    resizingDirection,
+    draggingElementCoordinates
+  );
   const { globalState, dispatch } = useContext(Context);
   const { imageData } = globalState;
 
@@ -115,7 +131,6 @@ function EditorTemplate({ editorVersion, userSavedCode }) {
       onDragOver={handleDragOver}
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
-      onClick={handleResizeTarget}
     />
   );
 }
@@ -149,10 +164,10 @@ const EditorTemplateBody = styled.div`
     color: #263238;
     font-size: 32px;
     font-weight: 500;
-    cursor: pointer;
+    cursor: grab;
 
-    :hover {
-      opacity: 0.5;
+    :active {
+      cursor: grabbing;
     }
   }
 
@@ -161,10 +176,10 @@ const EditorTemplateBody = styled.div`
     color: #263238;
     font-size: 28px;
     font-weight: 500;
-    cursor: pointer;
+    cursor: grab;
 
-    :hover {
-      opacity: 0.5;
+    :active {
+      cursor: grabbing;
     }
   }
 
@@ -173,10 +188,10 @@ const EditorTemplateBody = styled.div`
     color: #263238;
     font-size: 24px;
     font-weight: 500;
-    cursor: pointer;
+    cursor: grab;
 
-    :hover {
-      opacity: 0.5;
+    :active {
+      cursor: grabbing;
     }
   }
 
@@ -185,10 +200,10 @@ const EditorTemplateBody = styled.div`
     color: #263238;
     font-size: 20px;
     font-weight: 500;
-    cursor: pointer;
+    cursor: grab;
 
-    :hover {
-      opacity: 0.5;
+    :active {
+      cursor: grabbing;
     }
   }
 
@@ -197,10 +212,10 @@ const EditorTemplateBody = styled.div`
     color: #263238;
     font-size: 16px;
     font-weight: 500;
-    cursor: pointer;
+    cursor: grab;
 
-    :hover {
-      opacity: 0.5;
+    :active {
+      cursor: grabbing;
     }
   }
 
@@ -208,10 +223,10 @@ const EditorTemplateBody = styled.div`
     color: #263238;
     font-size: 12px;
     font-weight: 500;
-    cursor: pointer;
+    cursor: grab;
 
-    :hover {
-      opacity: 0.5;
+    :active {
+      cursor: grabbing;
     }
   }
 
@@ -239,10 +254,10 @@ const EditorTemplateBody = styled.div`
     padding: 7px 40px;
     gap: 12px;
     background: white;
-    cursor: pointer;
+    cursor: grab;
 
-    :hover {
-      opacity: 0.5;
+    :active {
+      cursor: grabbing;
     }
   }
 
