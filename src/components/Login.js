@@ -7,8 +7,8 @@ import loginImage from "../assets/loginImage.png";
 import webGenieLogo from "../assets/logo_transparent.png";
 import { firebaseAuth, googleProvider } from "../services/firebase";
 import { Context } from "../store/Store";
+import HompageSVG from "./HompageSVG";
 import LoginButton from "./LoginButton";
-import LoginSVG from "./LoginSVG";
 
 function Login() {
   const { dispatch } = useContext(Context);
@@ -33,7 +33,7 @@ function Login() {
   return (
     <>
       <LoginBody>
-        <LoginSVG />
+        <HompageSVG />
         <LoginDetails>
           <Logo src={webGenieLogo} alt="WebGenie Logo" />
           <h1>당신의 웹사이트를 만들어보세요!</h1>

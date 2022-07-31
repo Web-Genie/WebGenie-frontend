@@ -42,7 +42,7 @@ export const MODAL_ICON_STATE = {
   remindState: "remind",
 };
 
-export const NO_MESSAGE = "아니요.";
+// export const NO_MESSAGE = "아니요.";
 
 export const OPACITY_RANGE = [
   1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0,
@@ -56,10 +56,10 @@ export const ELEMENT_STYLE_OPTIONS = [
 
 export const TEXT_CHOICES = ["H1", "H2", "H3", "H4", "H5", "H6"];
 
-export const REQUEST_DATA_INFORMATION_USER = "USER";
-export const REQUEST_DATA_INFORMATION_EDITOR = "EDITOR";
-export const REQUEST_IMAGE_DATA_SAVE = "imageUpload";
-export const EDITOR = "EDITOR";
+// export const REQUEST_DATA_INFORMATION_USER = "USER";
+// export const REQUEST_DATA_INFORMATION_EDITOR = "EDITOR";
+// export const REQUEST_IMAGE_DATA_SAVE = "imageUpload";
+// export const EDITOR = "EDITOR";
 export const ID_TOKEN = "idToken";
 export const FONT_TYPE = [
   "AppleGothic",

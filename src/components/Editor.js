@@ -32,7 +32,7 @@ function Editor() {
   const { globalState } = useContext(Context);
   const { editorData } = globalState;
   const currentEditorId = retrieveURL();
-  console.log(editorData);
+
   const {
     shouldDisplayModal,
     saveModalToggle,

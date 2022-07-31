@@ -63,7 +63,7 @@ function ModalContent({
           <input onChange={handleTitleInput} />
         </NewSiteModalInputContainer>
       )}
-      {!modalIconState && !requestType && (
+      {!requestType && !modalIconState && (
         <ImgURLMocalInputContainer>
           <span />
           <input

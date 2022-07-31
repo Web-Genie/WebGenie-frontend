@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 
-import { REQUEST_DATA_INFORMATION_USER } from "../constants/constants";
+import AXIOS_REQUEST_CATEGORY from "../constants/axiosRequestCategory";
 import { ID_TOKEN } from "../constants/constants";
 import useAxios from "../hooks/useAxios";
 import useInput from "../hooks/useInput";
@@ -40,7 +40,7 @@ function UserPage() {
       },
     },
     idToken,
-    REQUEST_DATA_INFORMATION_USER
+    AXIOS_REQUEST_CATEGORY.GET_USER_DATA
   );
 
   useEffect(() => {
