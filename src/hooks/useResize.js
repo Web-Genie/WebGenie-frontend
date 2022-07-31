@@ -1,267 +1,124 @@
-import { useContext, useRef, useState } from "react";
+import { useEffect } from "react";
 
-import { Context } from "../store/Store";
-import { getElementValue } from "../utils";
-import { generateEditorDeleteElement } from "../utils/";
+import {
+  adjustResizerLocation,
+  applyDraggableElementStyle,
+  generateDraggableIcons,
+  removeDraggableElementStyle,
+} from "../utils";
 
-function useResize() {
-  const parentRef = useRef(null);
-  const targetRef = useRef(null);
-  const [shouldEditText, setShouldEditText] = useState(false);
-  const [isResizing, setIsResizing] = useState(false);
-  const { dispatch } = useContext(Context);
+const useResize = (
+  currentElement,
+  parentElement,
+  isDragging,
+  isResizing,
+  setIsResizing,
+  resizingDirection,
+  { width, height, origianlMouseX, origianlMouseY, originalX, originalY }
+) => {
+  const MINIMUM_WIDTH = 15;
+  const MINIMUM_HEIGHT = 20;
 
-  let leftOrRightDirection = "";
-  let oldPageX = 0;
-  let startX = null;
-  let startY = null;
+  const onMouseMove = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
 
-  const handleMouseMove = (event) => {
-    if (shouldEditText) return;
+    if (resizingDirection === "topLeft") {
+      const newWidth = width - (event.pageX - origianlMouseX);
+      const newHeight = height - (event.pageY - origianlMouseY);
+      const newX = originalX + (event.pageX - origianlMouseX);
+      const newY = originalY + (event.pageY - origianlMouseY);
 
-    let [currentElementWidth, currentElementHeight] = getElementValue(
-      targetRef.current
-    );
-
-    let currentElementFontSize = Number(
-      getElementValue(targetRef.current, "font-size", "font")
-    );
-
-    (function (mouseEvent) {
-      if (mouseEvent.pageX < oldPageX) {
-        leftOrRightDirection = "left";
-      } else if (mouseEvent.pageX > oldPageX) {
-        leftOrRightDirection = "right";
+      if (newWidth > MINIMUM_WIDTH) {
+        currentElement.style.width = `${newWidth}px`;
+        currentElement.style.left = `${newX}px`;
       }
 
-      oldPageX = mouseEvent.pageX;
-    })(event);
-
-    if (
-      targetRef.current.tagName !== "BUTTON" &&
-      targetRef.current.tagName !== "IMG"
-    ) {
-      if (leftOrRightDirection === "right") {
-        targetRef.current.style.fontSize = `${(currentElementFontSize += 1)}px`;
-      } else if (leftOrRightDirection === "left") {
-        targetRef.current.style.fontSize = `${(currentElementFontSize -= 1)}px`;
+      if (newHeight > MINIMUM_HEIGHT) {
+        currentElement.style.height = `${newHeight}px`;
+        currentElement.style.top = `${newY}px`;
       }
-    } else if (targetRef.current.tagName === "BUTTON") {
-      let amountOfWidthToIncrease = event.clientX - startX;
-      let amountOfHeightToIncrease = event.clientY - startY;
+    } else if (resizingDirection === "topRight") {
+      const newWidth = width + (event.pageX - origianlMouseX);
+      const newHeight = height - (event.pageY - origianlMouseY);
+      const newY = originalY + (event.pageY - origianlMouseY);
 
-      targetRef.current.style.width = `${(currentElementWidth +=
-        amountOfWidthToIncrease / 90)}px`;
-      targetRef.current.style.height = `${(currentElementHeight +=
-        amountOfHeightToIncrease / 90)}px`;
-    } else if (targetRef.current.tagName === "IMG") {
-      let currentImageWidth = Number(
-        targetRef.current.style.width.replace("px", "")
-      );
-      let currentImageHeight = Number(
-        targetRef.current.style.height.replace("px", "")
-      );
+      if (newWidth > MINIMUM_WIDTH) {
+        currentElement.style.width = `${newWidth}px`;
+      }
 
-      let amountOfWidthToIncrease = event.clientX - startX;
-      let amountOfHeightToIncrease = event.clientY - startY;
+      if (newHeight > MINIMUM_HEIGHT) {
+        currentElement.style.height = `${newHeight}px`;
+        currentElement.style.top = `${newY}px`;
+      }
+    } else if (resizingDirection === "bottomRight") {
+      const newWidth = width + (event.pageX - origianlMouseX);
+      const newHeight = height + (event.pageY - origianlMouseY);
 
-      targetRef.current.style.width = `${(currentImageWidth +=
-        amountOfWidthToIncrease / 90)}px`;
-      targetRef.current.style.height = `${(currentImageHeight +=
-        amountOfHeightToIncrease / 90)}px`;
+      if (newWidth > MINIMUM_WIDTH) {
+        currentElement.style.width = `${newWidth}px`;
+      }
+
+      if (newHeight > MINIMUM_HEIGHT) {
+        currentElement.style.height = `${newHeight}px`;
+      }
+    } else if (resizingDirection === "bottomLeft") {
+      const newWidth = width - (event.pageX - origianlMouseX);
+      const newHeight = height + (event.pageY - origianlMouseY);
+      const newX = originalX + (event.pageX - origianlMouseX);
+
+      if (newWidth > MINIMUM_WIDTH) {
+        currentElement.style.width = `${newWidth}px`;
+        currentElement.style.left = `${newX}px`;
+      }
+
+      if (newHeight > MINIMUM_HEIGHT) {
+        currentElement.style.height = `${newHeight}px`;
+      }
     }
+
+    adjustResizerLocation(parentElement, currentElement);
+    removeDraggableElementStyle({
+      parentElement,
+      currentElement,
+      isResizing,
+    });
   };
 
-  const handleMouseDown = () => {
-    if (targetRef.current) {
-      targetRef.current.onmousemove = handleMouseMove;
-    }
+  const onMouseUp = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+
+    const extraIcon = generateDraggableIcons({
+      clickedNode: currentElement,
+      icon: "&#x2715",
+    });
+
+    parentElement.append(extraIcon);
+
+    setIsResizing(false);
   };
 
-  const handleMouseUp = () => {
-    if (targetRef.current) {
-      targetRef.current.onmousemove = null;
-    }
-  };
+  useEffect(() => {
+    if (isDragging) return;
+    if (!currentElement) return;
 
-  const editText = (event) => {
-    if (!shouldEditText) {
-      if (event.target.previousSibling.childNodes[0].tagName === "A") {
-        event.target.previousSibling.childNodes[0].contentEditable = true;
-        event.target.previousSibling.childNodes[0].focus();
-      } else {
-        event.target.previousSibling.contentEditable = true;
-        event.target.previousSibling.focus();
-      }
-    } else {
-      if (event.target.previousSibling.tagName === "BUTTON") {
-        event.target.previousSibling.style.border = "black";
-      }
+    applyDraggableElementStyle(currentElement, parentElement);
+  }, [isDragging]);
 
-      event.target.previousSibling.contentEditable = false;
-    }
+  useEffect(() => {
+    if (!parentElement) return;
+    if (isDragging) return;
+    if (!isResizing) return;
 
-    setShouldEditText((state) => !state);
-  };
+    document.addEventListener("mouseup", onMouseUp);
+    document.addEventListener("mousemove", onMouseMove);
 
-  const handleResizeTarget = (event) => {
-    startX = event.clientX;
-    startY = event.clientY;
-
-    if (targetRef.current && event.target.tagName === "DIV") {
-      targetRef.current.onmousemove = null;
-    }
-
-    if (parentRef.current === null && event.target.tagName === "DIV") {
-      parentRef.current = event.target;
-
-      if (targetRef.current) {
-        dispatch({
-          type: "SET_SUB_TOOLBAR_TYPE",
-          payload: targetRef.current.tagName,
-        });
-      }
-
-      return;
-    }
-
-    if (targetRef.current && event.target === targetRef.current) {
-      if (targetRef.current.tagName === "BUTTON") {
-        targetRef.current.style.border = "1px solid #e5e5e5";
-        targetRef.current.previousSibling.remove();
-        targetRef.current.nextSibling.remove();
-      } else {
-        targetRef.current.style.border = "none";
-        if (targetRef.current.tagName !== "IMG") {
-          targetRef.current.nextSibling.remove();
-        }
-        targetRef.current.previousSibling.remove();
-      }
-      dispatch({
-        type: "SET_SUB_TOOLBAR_TYPE",
-        payload: targetRef.current.tagName,
-      });
-
-      targetRef.current = null;
-
-      setIsResizing(false);
-
-      return;
-    }
-
-    if (!targetRef.current && event.target.tagName !== "DIV") {
-      targetRef.current = event.target;
-
-      const deleteButton = generateEditorDeleteElement(
-        targetRef.current,
-        "&#x2715;"
-      );
-      const editTextButton = generateEditorDeleteElement(
-        targetRef.current,
-        "&#x270E;",
-        true
-      );
-
-      editTextButton.onclick = editText;
-      targetRef.current.style.border = "2px dashed black";
-
-      targetRef.current.insertAdjacentElement("beforebegin", deleteButton);
-      if (targetRef.current.tagName !== "IMG") {
-        targetRef.current.insertAdjacentElement("afterend", editTextButton);
-      }
-
-      if (
-        targetRef.current.tagName !== "BUTTON" &&
-        targetRef.current.tagName !== "IMG"
-      ) {
-        targetRef.current.style.padding = "7px 10px";
-        targetRef.current.insertAdjacentElement("afterend", editTextButton);
-      }
-
-      targetRef.current.onmousedown = handleMouseDown;
-      targetRef.current.onmouseup = handleMouseUp;
-
-      if (targetRef.current) {
-        dispatch({
-          type: "SET_SUB_TOOLBAR_TYPE",
-          payload: targetRef.current.tagName,
-        });
-      }
-
-      setIsResizing(true);
-
-      return;
-    }
-
-    if (
-      targetRef.current &&
-      event.target !== targetRef.current &&
-      event.target.tagName !== "DIV"
-    ) {
-      if (targetRef.current.tagName === "BUTTON") {
-        targetRef.current.style.border = "1px solid #e5e5e5";
-
-        if (targetRef.current.previousSibling) {
-          targetRef.current.previousSibling.remove();
-          targetRef.current.nextSibling.remove();
-        }
-      } else {
-        targetRef.current.style.border = "none";
-
-        if (
-          targetRef.current.tagName === "IMG" &&
-          targetRef.current.previousSibling
-        ) {
-          targetRef.current.previousSibling.remove();
-        } else if (targetRef.current.previousSibling) {
-          targetRef.current.previousSibling.remove();
-          targetRef.current.nextSibling.remove();
-        }
-      }
-
-      targetRef.current = event.target;
-
-      const deleteButton = generateEditorDeleteElement(
-        targetRef.current,
-        "&#x2715;"
-      );
-      const editTextButton = generateEditorDeleteElement(
-        targetRef.current,
-        "&#x270E;",
-        true
-      );
-
-      editTextButton.onclick = editText;
-      targetRef.current.style.border = "2px dashed black";
-      targetRef.current.insertAdjacentElement("beforebegin", deleteButton);
-
-      if (targetRef.current.tagName !== "IMG") {
-        targetRef.current.insertAdjacentElement("afterend", editTextButton);
-      }
-
-      if (
-        targetRef.current.tagName !== "BUTTON" &&
-        targetRef.current.tagName !== "IMG"
-      ) {
-        targetRef.current.style.padding = "7px 10px";
-        targetRef.current.insertAdjacentElement("afterend", editTextButton);
-      }
-
-      targetRef.current.onmousedown = handleMouseDown;
-      targetRef.current.onmouseup = handleMouseUp;
-
-      if (targetRef.current) {
-        dispatch({
-          type: "SET_SUB_TOOLBAR_TYPE",
-          payload: targetRef.current.tagName,
-        });
-      }
-
-      setIsResizing(true);
-    }
-  };
-
-  return [handleResizeTarget, isResizing, setIsResizing];
-}
+    return () => {
+      document.removeEventListener("mouseup", onMouseUp);
+      document.removeEventListener("mousemove", onMouseMove);
+    };
+  }, [parentElement, isDragging, isResizing]);
+};
 
 export default useResize;
