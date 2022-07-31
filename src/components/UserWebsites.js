@@ -83,6 +83,7 @@ function UserPage() {
       <Navigation>
         <NavigationContent
           createNewSiteModalToggle={createNewSiteModalToggle}
+          handleSearchInputChange={handleInputChange}
         />
       </Navigation>
       {loggedInUserInformation.data && (

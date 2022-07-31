@@ -14,6 +14,7 @@ export default function NavigationContent({
   saveModalToggle,
   publishModalToggle,
   createNewSiteModalToggle,
+  handleSearchInputChange,
 }) {
   const { id } = useParams();
 
@@ -78,7 +79,7 @@ export default function NavigationContent({
           <h2>My Collection</h2>
           <form>
             <input
-              onChange={handleInputChange}
+              onChange={handleSearchInputChange}
               placeholder="Search your websites"
             />
           </form>
@@ -98,4 +99,5 @@ NavigationContent.propTypes = {
   saveModalToggle: PropTypes.func,
   publishModalToggle: PropTypes.func,
   createNewSiteModalToggle: PropTypes.func,
+  handleSearchInputChange: PropTypes.func,
 };
