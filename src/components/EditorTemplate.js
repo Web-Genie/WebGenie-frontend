@@ -94,8 +94,7 @@ function EditorTemplate({ editorVersion, userSavedCode }) {
 }
 
 EditorTemplate.propTypes = {
-  modalStatus: PropTypes.bool,
-  editorVersion: PropTypes.object,
+  editorVersion: PropTypes.string,
   userSavedCode: PropTypes.array,
 };
 

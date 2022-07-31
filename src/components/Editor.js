@@ -21,6 +21,7 @@ import Loader from "./Loader";
 import Modal from "./Modal";
 import ModalContent from "./ModalContent";
 import Navigation from "./Navigation";
+import NavigationContent from "./NavigationContent";
 import RightToolbar from "./RightToolbar";
 import VersionLog from "./VersionLog";
 
@@ -73,11 +74,6 @@ function Editor() {
     );
   };
 
-  const clearCanvas = () => {
-    editorRef.innerHTML = "";
-    editorRef.style.backgroundColor = "white";
-  };
-
   return (
     <>
       {shouldDisplayModal && (
@@ -103,43 +99,13 @@ function Editor() {
         </LogoutSection>
       </Header>
       <Navigation>
-        <div className="editorNavbar">
-          <a onClick={() => (window.location = "/")}>
-            <FaArrowLeft />
-          </a>
-          <div className="titleNavbar">
-            {!shouldDisplayInputField ? (
-              <h3>{editorData.title}</h3>
-            ) : (
-              <input onChange={handleInputChange} />
-            )}
-            <span onClick={toggleInputField}>
-              <FaRegEdit />
-            </span>
-          </div>
-        </div>
-        <div>
-          <Button warningSignal={true} handleClick={clearCanvas}>
-            Clear Canvas
-          </Button>
-          <Button handleClick={saveModalToggle} mainButton={false}>
-            Save
-          </Button>
-          <Button
-            handleClick={() => setShouldShowDifferentVersion((state) => !state)}
-            mainButton={false}
-          >
-            {shouldShowDifferentVersion
-              ? "Close Saved Version Log"
-              : "Saved Version Log"}
-          </Button>
-          <Button handleClick={handleToggleClick} mainButton={false}>
-            Wide View
-          </Button>
-          <Button handleClick={publishModalToggle} mainButton={true}>
-            Publish
-          </Button>
-        </div>
+        <NavigationContent
+          shouldShowDifferentVersion={shouldShowDifferentVersion}
+          handleShouldShowDifferentVersion={setShouldShowDifferentVersion}
+          handleToggleClick={handleToggleClick}
+          saveModalToggle={saveModalToggle}
+          publishModalToggle={publishModalToggle}
+        />
       </Navigation>
       <EditorBody>
         {!shouldDisplay && <LeftToolbar />}

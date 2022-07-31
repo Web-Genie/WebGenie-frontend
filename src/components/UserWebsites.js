@@ -14,6 +14,7 @@ import Loader from "./Loader";
 import Modal from "./Modal";
 import ModalContent from "./ModalContent";
 import Navigation from "./Navigation";
+import NavigationContent from "./NavigationContent";
 import UserCollection from "./UserCollection";
 
 function UserPage() {
@@ -80,16 +81,9 @@ function UserPage() {
         )}
       </Header>
       <Navigation>
-        <h2>My Collection</h2>
-        <form>
-          <input
-            onChange={handleInputChange}
-            placeholder="Search your websites"
-          />
-        </form>
-        <Button handleClick={createNewSiteModalToggle} mainButton={true}>
-          Create New Site
-        </Button>
+        <NavigationContent
+          createNewSiteModalToggle={createNewSiteModalToggle}
+        />
       </Navigation>
       {loggedInUserInformation.data && (
         <UserCollection
