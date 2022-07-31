@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { AXIOS_CATEGORY } from "../constants/constants";
 import api from "../services/api";
 import { Context } from "../store/Store";
 import { saveLocalStorage } from "../utils";
@@ -17,7 +18,7 @@ const useAxios = (params, idToken, category = null) => {
       const response = await api(params);
 
       setDeployedWebsiteData({ ...response.data.result });
-    } else if (category === "USER") {
+    } else if (category === AXIOS_CATEGORY.USER) {
       const response = await api(params);
 
       localStorage.setItem("avatar", response.data.user.image);
@@ -26,11 +27,11 @@ const useAxios = (params, idToken, category = null) => {
         type: "HANDLE_LOG_IN_USER_INFORMATION",
         payload: response.data,
       });
-    } else if (category === "EDITOR") {
+    } else if (category === AXIOS_CATEGORY.EDITOR) {
       const response = await api(params);
 
       dispatch({ type: "SET_EDITOR_DATA", payload: response.data.result });
-    } else if (category === "Save") {
+    } else if (category === AXIOS_CATEGORY.SAVE) {
       localStorage.removeItem("localImgSrc");
 
       navigate("/creatingnewwebsite");
@@ -40,7 +41,7 @@ const useAxios = (params, idToken, category = null) => {
       dispatch({ type: "SET_EDITOR_DATA", payload: response.data.result });
 
       navigate(`/editor/${response.data.result._id}`);
-    } else if (category === "delete") {
+    } else if (category === AXIOS_CATEGORY.DELETE) {
       navigate("/creatingnewwebsite");
 
       const response = await api(params);
@@ -51,7 +52,7 @@ const useAxios = (params, idToken, category = null) => {
       });
 
       navigate("/");
-    } else if (category === "imageUpload") {
+    } else if (category === AXIOS_CATEGORY.IMAGE_UPLOAD) {
       const location = await api(params);
 
       saveLocalStorage(location.data.location.split(".com/")[1]);
@@ -60,7 +61,7 @@ const useAxios = (params, idToken, category = null) => {
         type: "SET_LOCAL_IMAGE_SRC",
         payload: location.data.location,
       });
-    } else if (category === "RemoveImage") {
+    } else if (category === AXIOS_CATEGORY.IMAGE_REMOVE) {
       navigate("/creatingnewwebsite");
 
       await api(params);
@@ -68,7 +69,7 @@ const useAxios = (params, idToken, category = null) => {
       localStorage.removeItem("localImgSrc");
 
       navigate("/");
-    } else if (category === "Publish") {
+    } else if (category === AXIOS_CATEGORY.WEBSITE_PUBLISH) {
       navigate("/creatingnewwebsite");
 
       await api(params);

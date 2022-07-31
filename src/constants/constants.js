@@ -71,3 +71,13 @@ export const FONT_TYPE = [
 ];
 
 export const TEXT_ALIGN = ["left", "center", "right"];
+
+export const AXIOS_CATEGORY = {
+  USER: "USER",
+  EDITOR: "EDITOR",
+  SAVE: "Save",
+  DELETE: "delete",
+  IMAGE_UPLOAD: "imageUpload",
+  IMAGE_REMOVE: "RemoveImage",
+  WEBSITE_PUBLISH: "Publish",
+};
