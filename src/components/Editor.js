@@ -105,6 +105,7 @@ function Editor() {
           handleToggleClick={handleToggleClick}
           saveModalToggle={saveModalToggle}
           publishModalToggle={publishModalToggle}
+          // {...useModal()}
         />
       </Navigation>
       <EditorBody>
