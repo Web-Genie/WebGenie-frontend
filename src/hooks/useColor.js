@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { Context } from "../store/Store";
 import { computeRgbToHex } from "../utils";
 
-const useText = () => {
+const useColor = () => {
   const { globalState, dispatch } = useContext(Context);
   const { editorRef, currentElement, elementStyle } = globalState;
 
@@ -67,4 +67,4 @@ const useText = () => {
   };
 };
 
-export default useText;
+export default useColor;

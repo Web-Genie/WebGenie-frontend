@@ -14,9 +14,14 @@ function useKeyDownEvent(
     function handleKeyboardEvent(event) {
       if (event.metaKey && event.key === "x") {
         if (currentEditor.length >= 2) {
-          //ctrl+x면
-          //   currentEditor.pop();
-          //   parentRef.current.innerHTML = currentEditor[currentEditor.length - 1];
+          setCopyingElement(targetRef.current);
+
+          currentEditor.pop();
+          parentRef.current.innerHTML = currentEditor[currentEditor.length - 1];
+        } else if (currentEditor.length === 1) {
+          setCopyingElement(targetRef.current);
+
+          parentRef.current.innerHTML = [];
         }
       }
 
