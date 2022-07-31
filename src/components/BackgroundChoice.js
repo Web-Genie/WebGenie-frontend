@@ -1,12 +1,11 @@
-import PropTypes from "prop-types";
+import React from "react";
 import { FaPaintRoller } from "react-icons/fa";
 
+import useColor from "../hooks/useColor";
 import ToolbarButton from "./ToolbarButton";
 
-function BackgroundChoice({ handleBackgroundColor }) {
-  const handleBackgroundColorChanged = (event) => {
-    handleBackgroundColor(event.target.value);
-  };
+function BackgroundChoice() {
+  const { handleColorChange } = useColor();
 
   return (
     <div className="choiceContainer">
@@ -19,16 +18,14 @@ function BackgroundChoice({ handleBackgroundColor }) {
           <input
             className="colorPalette"
             type="color"
-            onChange={handleBackgroundColorChanged}
+            onChange={(event) =>
+              handleColorChange(event.target.value, "editorBackground")
+            }
           />
         </ToolbarButton>
       </div>
     </div>
   );
 }
-
-BackgroundChoice.propTypes = {
-  handleBackgroundColor: PropTypes.func,
-};
 
 export default BackgroundChoice;

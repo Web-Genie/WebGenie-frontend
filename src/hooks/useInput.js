@@ -1,76 +1,62 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 
-const useInput = (currentLocationBeingUsed, value) => {
-  const [inputValue, setInputValue] = useState("https://");
-  const [searchValue, setSearchValue] = useState("");
-  const [shouldEditValue, setShouldEditValue] = useState(false);
-  const [shouldAddLink, setShouldAddLink] = useState(false);
-  const [buttonRadius, setButtonRadius] = useState(null);
-  const [buttonOpacity, setButtonOpacity] = useState(null);
-  const [userTitle, setUserTitle] = useState();
-  const [fontSize, setFontSize] = useState("");
-  const [fontType, setFontType] = useState("");
-  const [imageOpacity, setImageOpacity] = useState(1);
+import { Context } from "../store/Store";
+
+const useInput = (location) => {
+  const [inputValue, setInputValue] = useState("");
+  const [shouldDisplayInputField, setShouldDisplayInputField] = useState(false);
+  const { globalState, dispatch } = useContext(Context);
 
   const handleInputChange = (event) => {
-    if (currentLocationBeingUsed === "editor") {
-      setUserTitle(event.target.value);
-    } else if (event.target.className === "buttonRadius") {
-      setButtonRadius(event.target.value);
-    } else if (event.target.className === "opacity") {
-      setButtonOpacity(event.target.value);
-      setImageOpacity(event.target.value);
-    } else if (event.target.className === "fontSize") {
-      setFontSize(event.target.value);
-    } else if (event.target.className === "fontType") {
-      setFontType(event.target.value);
-    } else if (currentLocationBeingUsed === "search") {
-      setSearchValue(event.target.value);
-    } else {
-      setInputValue(event.target.value);
-    }
+    setInputValue(event.target.value);
   };
 
-  const toggleInputChange = useCallback(() => {
-    setShouldEditValue((state) => !state);
+  const toggleInputField = useCallback(() => {
+    setShouldDisplayInputField((state) => !state);
   }, []);
 
-  const toggleAddLink = useCallback(() => {
-    setShouldEditValue((state) => !state);
-    setShouldAddLink(true);
-  }, []);
+  const addLinkToCurrentElement = () => {
+    const { currentElement } = globalState;
+
+    if (currentElement.tagName === "BUTTON") {
+      const linkText = document.createElement("a");
+
+      linkText.innerText = "Link";
+      linkText.style.color = "#85b2ff";
+      linkText.href = inputValue;
+      currentElement.innerText = "";
+
+      currentElement.appendChild(linkText);
+      toggleInputField();
+    }
+
+    return;
+  };
 
   useEffect(() => {
-    if (!value) return;
-    if (shouldEditValue) return;
+    if (location === "editor" && !shouldDisplayInputField) {
+      if (!inputValue) return;
 
-    if (value.result[0]) {
-      setUserTitle(value.result[0].title);
-    } else {
-      setUserTitle(value.result.title);
+      dispatch({ type: "SET_EDITOR_TITLE", payload: inputValue });
     }
-  }, [value]);
+
+    if (!globalState?.currentElement) return;
+
+    const { currentElement } = globalState;
+    const currentElementLinkValue =
+      currentElement.children[0]?.getAttribute("href");
+
+    if (currentElementLinkValue) {
+      setInputValue(currentElementLinkValue);
+    }
+  }, [shouldDisplayInputField, globalState?.currentElement]);
 
   return {
     inputValue,
-    shouldEditValue,
+    shouldDisplayInputField,
+    toggleInputField,
     handleInputChange,
-    toggleInputChange,
-    shouldAddLink,
-    toggleAddLink,
-    setShouldAddLink,
-    userTitle,
-    setUserTitle,
-    buttonRadius,
-    buttonOpacity,
-    setButtonOpacity,
-    fontSize,
-    setFontSize,
-    fontType,
-    setFontType,
-    imageOpacity,
-    setImageOpacity,
-    searchValue,
+    addLinkToCurrentElement,
   };
 };
 

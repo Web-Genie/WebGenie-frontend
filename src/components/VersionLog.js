@@ -1,18 +1,20 @@
 import PropTypes from "prop-types";
+import React from "react";
 import { FcImport } from "react-icons/fc";
 import styled from "styled-components";
 
 import EditorToolbar from "./EditorToolbar";
 
-function VersionLog({ handleVersionChange, information }) {
+function VersionLog({ handleVersionChange, userSavedCode }) {
   return (
     <EditorToolbar>
       <TitleContainer>
         <p className="title">Version Log</p>
       </TitleContainer>
       <VersionViewContainer>
-        {information.result.userSavedCode.map((code, idx) => {
+        {userSavedCode.map((code, idx) => {
           const savedDate = new Date(code.time).toLocaleString();
+
           return (
             <div key={idx}>
               <p className="number">{idx + 1}</p>
@@ -35,7 +37,7 @@ function VersionLog({ handleVersionChange, information }) {
 
 VersionLog.propTypes = {
   handleVersionChange: PropTypes.func,
-  information: PropTypes.object,
+  userSavedCode: PropTypes.array,
 };
 
 const TitleContainer = styled.div`

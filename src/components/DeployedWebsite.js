@@ -1,16 +1,14 @@
 import DOMPurify from "dompurify";
 import PropTypes from "prop-types";
-import { useContext, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
-import { UserContext } from "../context/userContext";
 import useAxios from "../hooks/useAxios";
 
 function DeployedWebsite({ children }) {
-  const { editor, setEditor } = useContext(UserContext);
   const mainpageRef = useRef(null);
   const deployedEditorURL = window.location.pathname.split("/")[2];
 
-  const { fetchData } = useAxios({
+  const { fetchData, deployedWebsiteData } = useAxios({
     method: "get",
     url: `/websites/${deployedEditorURL}/deploy`,
     headers: {
@@ -19,22 +17,21 @@ function DeployedWebsite({ children }) {
   });
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (!deployedWebsiteData) {
+      fetchData();
 
-  useEffect(() => {
-    if (editor) {
-      const savedCodeCollection = editor.result.userSavedCode;
-      const sanitizedCode = DOMPurify.sanitize(savedCodeCollection[0].code);
-      mainpageRef.current.style.width = "100%";
-      mainpageRef.current.style.height = "100vh";
-      mainpageRef.current.style.backgroundColor =
-        savedCodeCollection[0].backgroundColor;
-      mainpageRef.current.innerHTML = sanitizedCode;
+      return;
     }
 
-    setEditor(null);
-  }, [editor]);
+    const savedCodeCollection = deployedWebsiteData.userSavedCode;
+    const sanitizedCode = DOMPurify.sanitize(savedCodeCollection[0].code);
+
+    mainpageRef.current.style.width = "100%";
+    mainpageRef.current.style.height = "100vh";
+    mainpageRef.current.style.backgroundColor =
+      savedCodeCollection[0].backgroundColor;
+    mainpageRef.current.innerHTML = sanitizedCode;
+  }, [deployedWebsiteData]);
 
   return <div ref={mainpageRef}>{children}</div>;
 }

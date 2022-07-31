@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import {
   FcFullTrash,
   FcGlobe,
@@ -11,8 +11,8 @@ import { MdClose } from "react-icons/md";
 import styled from "styled-components";
 
 import { ID_TOKEN } from "../constants/constants";
-import { SubToolbarContext } from "../context/subToolbarContext";
 import useAxios from "../hooks/useAxios";
+import { Context } from "../store/Store";
 import Button from "./Button";
 
 function ModalContent({
@@ -24,8 +24,8 @@ function ModalContent({
   handleClick,
   requestType,
 }) {
-  const { setImageUrl, setHasImageUrl, imageUrl } =
-    useContext(SubToolbarContext);
+  const { globalState, dispatch } = useContext(Context);
+  const { imageData } = globalState;
 
   const modalIconMap = {
     question: <FcQuestions />,
@@ -45,12 +45,8 @@ function ModalContent({
     params.data.title = event.target.value;
   };
 
-  const handleImageInput = (event) => {
-    setImageUrl(event.target.value);
-  };
-
   const insertImage = () => {
-    setHasImageUrl(true);
+    dispatch({ type: "SET_IMAGE_URL_AVAILABILITY", payload: true });
     handleClick();
   };
 
@@ -70,10 +66,15 @@ function ModalContent({
       {!modalIconState && !requestType && (
         <ImgURLMocalInputContainer>
           <span />
-          <input className="imgURL" onChange={handleImageInput} />
+          <input
+            className="imgURL"
+            onChange={(event) =>
+              dispatch({ type: "SET_IMAGE_URL", payload: event.target.value })
+            }
+          />
         </ImgURLMocalInputContainer>
       )}
-      {imageUrl ? (
+      {imageData.imageUrl ? (
         <Button handleClick={insertImage} mainButton={true}>
           {primaryButtonText}
         </Button>
@@ -95,6 +96,8 @@ ModalContent.propTypes = {
   secondaryButtonText: PropTypes.string,
   modalIconState: PropTypes.string,
   handleClick: PropTypes.func,
+  params: PropTypes.object,
+  requestType: PropTypes.string,
 };
 
 const NewSiteModalInputContainer = styled.p`

@@ -1,12 +1,13 @@
 import React from "react";
 
 import { OPACITY_RANGE } from "../constants/constants";
-import useImageStyle from "../hooks/useImageStyle";
+import useNonTextElementStyle from "../hooks/useNonTextElementStyle";
 import SelectDetail from "./SelectDetailSubToolbar";
 import SubToolbarTitle from "./SubToolbarTitle";
 
 function OpacityChangeSubToolbar() {
-  const { imageStyle, handleElementStyleValueChange } = useImageStyle();
+  const { elementStyle, handleElementStyleValueChange } =
+    useNonTextElementStyle();
 
   return (
     <div className="choiceContainer">
@@ -15,7 +16,7 @@ function OpacityChangeSubToolbar() {
         title="opacity"
         className="opacity"
         detailValue={OPACITY_RANGE}
-        currentValue={imageStyle.opacity}
+        currentValue={elementStyle.opacity}
         handleSelectOptionChange={(event) =>
           handleElementStyleValueChange("opacity", event.target.value)
         }

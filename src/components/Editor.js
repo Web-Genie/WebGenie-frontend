@@ -6,13 +6,13 @@ import {
   ID_TOKEN,
   REQUEST_DATA_INFORMATION_EDITOR,
 } from "../constants/constants";
-import { UserContext } from "../context/userContext";
 import useAxios from "../hooks/useAxios";
 import useInput from "../hooks/useInput";
 import useLogout from "../hooks/useLogout";
 import useModal from "../hooks/useModal";
+import useToggle from "../hooks/useToggle";
 import { Context } from "../store/Store";
-import { retrieveURL } from "../utils/index";
+import { retrieveURL } from "../utils";
 import Button from "./Button";
 import EditorTemplate from "./EditorTemplate";
 import Header from "./Header";
@@ -25,37 +25,24 @@ import RightToolbar from "./RightToolbar";
 import VersionLog from "./VersionLog";
 
 function Editor() {
-  const currentEditorId = retrieveURL();
-  const [parentRefState, setParentRefState] = useState("");
+  const [displayingVersion, setDisplayingVersion] = useState(null);
   const [shouldShowDifferentVersion, setShouldShowDifferentVersion] =
     useState(false);
-  const [displayingVersion, setDisplayingVersion] = useState(null);
-  const { editor, title } = useContext(UserContext);
+  const { shouldDisplayInputField, handleInputChange, toggleInputField } =
+    useInput("editor");
+  const { shouldDisplay, handleToggleClick } = useToggle();
   const { handleLogout } = useLogout();
-  const { userTitle, shouldEditValue, handleInputChange, toggleInputChange } =
-    useInput("editor", editor);
   const { globalState } = useContext(Context);
-  const { editorRef } = globalState;
-  const [shouldShowWideView, setShouldShowWideView] = useState(false);
+  const { editorRef, editorData } = globalState;
+  const currentEditorId = retrieveURL();
+
   const {
     shouldDisplayModal,
     saveModalToggle,
     publishModalToggle,
     closeModal,
-    setUserCode,
     message,
-    saveReminderModalToggle,
-  } = useModal(userTitle, currentEditorId);
-
-  const [backgroundColor, setBackgroundColor] = useState("");
-
-  const toggleSavedVersionHistory = () => {
-    setShouldShowDifferentVersion((state) => !state);
-  };
-
-  const toggleWideView = () => {
-    setShouldShowWideView((state) => !state);
-  };
+  } = useModal();
 
   const { fetchData } = useAxios(
     {
@@ -71,22 +58,14 @@ function Editor() {
   );
 
   useEffect(() => {
-    if (editor) return;
+    if (editorData._id) return;
 
     fetchData();
   }, []);
 
-  if (!editor) {
+  if (!editorData._id) {
     return <Loader />;
   }
-
-  const checkChangedCode = () => {
-    if (parentRefState.innerHTML === editor.result.userSavedCode[0].code) {
-      window.location.replace("/");
-    } else {
-      saveReminderModalToggle();
-    }
-  };
 
   const handleDisplayingVersionChange = (event) => {
     setDisplayingVersion(
@@ -109,7 +88,7 @@ function Editor() {
             secondaryButtonText={message.denyButtonText}
             modalIconState={message.iconType}
             shouldGoHomepage={message.shouldGoHomepage}
-            currentTitle={userTitle}
+            currentTitle={editorData.title}
             params={message.params}
             requestType={message.requestType}
             handleClick={closeModal}
@@ -125,16 +104,16 @@ function Editor() {
       </Header>
       <Navigation>
         <div className="editorNavbar">
-          <a onClick={checkChangedCode}>
+          <a onClick={() => (window.location = "/")}>
             <FaArrowLeft />
           </a>
           <div className="titleNavbar">
-            {!shouldEditValue ? (
-              <h3>{title === userTitle ? title : userTitle}</h3>
+            {!shouldDisplayInputField ? (
+              <h3>{editorData.title}</h3>
             ) : (
               <input onChange={handleInputChange} />
             )}
-            <span onClick={toggleInputChange}>
+            <span onClick={toggleInputField}>
               <FaRegEdit />
             </span>
           </div>
@@ -146,12 +125,15 @@ function Editor() {
           <Button handleClick={saveModalToggle} mainButton={false}>
             Save
           </Button>
-          <Button handleClick={toggleSavedVersionHistory} mainButton={false}>
+          <Button
+            handleClick={() => setShouldShowDifferentVersion((state) => !state)}
+            mainButton={false}
+          >
             {shouldShowDifferentVersion
               ? "Close Saved Version Log"
               : "Saved Version Log"}
           </Button>
-          <Button handleClick={toggleWideView} mainButton={false}>
+          <Button handleClick={handleToggleClick} mainButton={false}>
             Wide View
           </Button>
           <Button handleClick={publishModalToggle} mainButton={true}>
@@ -160,24 +142,17 @@ function Editor() {
         </div>
       </Navigation>
       <EditorBody>
-        {!shouldShowWideView && (
-          <LeftToolbar changeBackground={setBackgroundColor} />
-        )}
+        {!shouldDisplay && <LeftToolbar />}
         <EditorTemplate
           modalStatus={shouldDisplayModal}
-          saveUserCode={setUserCode}
-          editorInformation={editor}
-          displayWideView={shouldShowWideView}
-          retrieveParentRefState={setParentRefState}
-          backgroundColorName={backgroundColor}
-          handleBackgroundColor={setBackgroundColor}
           editorVersion={displayingVersion}
+          {...editorData}
         />
-        {!shouldShowWideView && !shouldShowDifferentVersion && <RightToolbar />}
+        {!shouldDisplay && !shouldShowDifferentVersion && <RightToolbar />}
         {shouldShowDifferentVersion && (
           <VersionLog
             handleVersionChange={handleDisplayingVersionChange}
-            information={editor}
+            {...editorData}
           />
         )}
       </EditorBody>

@@ -3,99 +3,69 @@ import PropTypes from "prop-types";
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { SubToolbarContext } from "../context/subToolbarContext";
 import useDragAndDrop from "../hooks/useDragAndDrop";
 import useResize from "../hooks/useResize";
 import { Context } from "../store/Store";
 import {
-  generatedImageElement,
+  generateImageElement,
   handleDragEnter,
   handleDragLeave,
   handleDragOver,
   handleDrop,
 } from "../utils";
 
-function EditorTemplate({
-  displayWideView,
-  backgroundColorName,
-  modalStatus,
-  saveUserCode,
-  editorInformation,
-  retrieveParentRefState,
-  editorVersion,
-  handleBackgroundColor,
-}) {
+function EditorTemplate({ editorVersion, userSavedCode }) {
   const [handleResizeTarget, isResizing, setIsResizing] = useResize();
   const [currentEditor, setCurrentEditor] = useState([]);
   const [counter, setCounter] = useState(1);
   const [copyingElement, setCopyingElement] = useState(null);
   const [parentRef, targetRef] = useDragAndDrop(isResizing, setIsResizing);
-  const { dispatch } = useContext(Context);
-
-  const {
-    localImageSrc,
-    setLocalImageSrc,
-    hasImageUrl,
-    imageUrl,
-    setImageUrl,
-    setHasImageUrl,
-  } = useContext(SubToolbarContext);
+  const { globalState, dispatch } = useContext(Context);
+  const { imageData } = globalState;
 
   useEffect(() => {
-    if (localImageSrc) {
-      const newImage = generatedImageElement(localImageSrc);
+    if (imageData.localImageSrc) {
+      const newImage = generateImageElement(imageData.localImageSrc);
       parentRef.current.appendChild(newImage);
 
-      setLocalImageSrc("");
+      dispatch({ type: "SET_LOCAL_IMAGE_SRC", payload: "" });
     }
 
-    if (hasImageUrl) {
-      const newImage = generatedImageElement(imageUrl);
+    if (imageData.isImageUrlAvailable) {
+      const newImage = generateImageElement(imageData.imageUrl);
+
       parentRef.current.appendChild(newImage);
 
-      setImageUrl("");
-      setHasImageUrl(false);
+      dispatch({ type: "SET_IMAGE_URL", payload: "" });
+      dispatch({ type: "SET_IMAGE_URL_AVAILABILITY", payload: false });
     }
-
-    if (parentRef.current !== null && backgroundColorName) {
-      parentRef.current.style.backgroundColor = backgroundColorName;
-
-      setSavedBackgroundColor(backgroundColorName);
-      handleBackgroundColor("");
-    }
-  }, [localImageSrc, hasImageUrl, backgroundColorName]);
+  }, [imageData.localImageSrc, imageData.isImageUrlAvailable]);
 
   useEffect(() => {
-    if (!modalStatus) return;
-    if (!parentRef.current) return;
+    if (!userSavedCode) return;
 
-    saveUserCode(parentRef.current.innerHTML);
-  }, [modalStatus]);
-
-  useEffect(() => {
-    if (!editorInformation.result) return;
-    const savedCodeCollection = editorInformation.result.userSavedCode;
     if (editorVersion) {
       const sanitizedCode = DOMPurify.sanitize(
-        savedCodeCollection[editorVersion].code
+        userSavedCode[editorVersion].code
       );
 
       parentRef.current.innerHTML = sanitizedCode;
       parentRef.current.style.backgroundColor =
-        savedCodeCollection[editorVersion].backgroundColor;
+        userSavedCode[editorVersion].backgroundColor;
     } else {
-      const sanitizedCode = DOMPurify.sanitize(savedCodeCollection[0].code);
+      const sanitizedCode = DOMPurify.sanitize(userSavedCode[0].code);
 
       parentRef.current.innerHTML = sanitizedCode;
       parentRef.current.style.backgroundColor =
-        savedCodeCollection[0].backgroundColor;
+        userSavedCode[0].backgroundColor;
     }
-  }, [editorInformation.result[0], editorVersion]);
+  }, [userSavedCode[0], editorVersion]);
 
   useEffect(() => {
     if (parentRef.current) {
+      parentRef.current.style.backgroundColor = "rgb(255,255,255)";
+
       dispatch({ type: "SET_EDITOR", payload: parentRef.current });
-      retrieveParentRefState(parentRef.current);
     }
   }, []);
 
@@ -146,20 +116,14 @@ function EditorTemplate({
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
       onClick={handleResizeTarget}
-      wideView={displayWideView}
     />
   );
 }
 
 EditorTemplate.propTypes = {
-  displayWideView: PropTypes.bool,
-  backgroundColorName: PropTypes.string,
   modalStatus: PropTypes.bool,
-  saveUserCode: PropTypes.func,
-  editorInformation: PropTypes.object,
-  retrieveParentRefState: PropTypes.func,
   editorVersion: PropTypes.object,
-  handleBackgroundColor: PropTypes.func,
+  userSavedCode: PropTypes.array,
 };
 
 const EditorTemplateBody = styled.div`

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { FaAlignCenter, FaAlignLeft, FaAlignRight } from "react-icons/fa";
 
 import { Context } from "../store/Store";
-import handleFontFormat from "../utils/handleFontFormat";
+import { handleFontFormat } from "../utils/";
 import SubToolbarTitle from "./SubToolbarTitle";
 
 function TextPositionSubToolbar() {

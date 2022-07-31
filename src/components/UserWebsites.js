@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 import { REQUEST_DATA_INFORMATION_USER } from "../constants/constants";
 import { ID_TOKEN } from "../constants/constants";
-import { UserContext } from "../context/userContext";
 import useAxios from "../hooks/useAxios";
 import useInput from "../hooks/useInput";
 import useLogout from "../hooks/useLogout";
 import useModal from "../hooks/useModal";
+import { Context } from "../store/Store";
 import Button from "./Button";
 import Header from "./Header";
 import Loader from "./Loader";
@@ -25,8 +25,9 @@ function UserPage() {
     message,
   } = useModal();
   const { handleLogout } = useLogout();
-  const { userInformation } = useContext(UserContext);
-  const { searchValue, handleInputChange } = useInput("search");
+  const { globalState } = useContext(Context);
+  const { loggedInUserInformation } = globalState;
+  const { inputValue, handleInputChange } = useInput("search");
   const idToken = localStorage.getItem(ID_TOKEN);
 
   const { fetchData } = useAxios(
@@ -42,12 +43,12 @@ function UserPage() {
   );
 
   useEffect(() => {
-    if (userInformation) return;
+    if (loggedInUserInformation.data) return;
 
     fetchData();
   }, []);
 
-  if (!userInformation) {
+  if (!loggedInUserInformation.data) {
     return <Loader />;
   }
 
@@ -68,9 +69,12 @@ function UserPage() {
       )}
       <Header>
         <h1>WebGenie</h1>
-        {userInformation && (
+        {loggedInUserInformation.data && (
           <LogoutSection>
-            <img alt="User Image" src={userInformation.user.image} />
+            <img
+              alt="User Image"
+              src={loggedInUserInformation.data.user.image}
+            />
             <Button handleClick={handleLogout}>logout</Button>
           </LogoutSection>
         )}
@@ -87,11 +91,11 @@ function UserPage() {
           Create New Site
         </Button>
       </Navigation>
-      {userInformation && (
+      {loggedInUserInformation.data && (
         <UserCollection
           toggleDeleteModal={deleteSiteModalMessage}
-          collections={userInformation.websites}
-          searchKeyword={searchValue}
+          collections={loggedInUserInformation.data.websites}
+          searchKeyword={inputValue}
         />
       )}
     </>

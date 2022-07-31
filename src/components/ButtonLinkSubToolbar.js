@@ -1,33 +1,39 @@
-import React, { useContext } from "react";
+import React from "react";
 import { FaLink } from "react-icons/fa";
 import styled from "styled-components";
 
-import { InputFieldContext } from "../context/subToolbarContext";
+import useInput from "../hooks/useInput";
 import SubToolbarTitle from "./SubToolbarTitle";
 import ToolbarButton from "./ToolbarButton";
 
 function ButtonLinkSubToolbar() {
   const {
     inputValue,
-    shouldEditValue,
     handleInputChange,
-    toggleInputChange,
-    toggleAddLink,
-  } = useContext(InputFieldContext);
+    shouldDisplayInputField,
+    toggleInputField,
+    addLinkToCurrentElement,
+  } = useInput();
 
   return (
     <div className="choiceContainer">
       <SubToolbarTitle title="Add Link" />
-      {shouldEditValue ? (
+      {shouldDisplayInputField ? (
         <AddLinkContainer>
-          <input value={inputValue} onChange={handleInputChange} />
+          <input
+            value={inputValue}
+            placeholder="https://..."
+            onChange={handleInputChange}
+          />
           <div>
-            <ToolbarButton handleClick={toggleAddLink}>add</ToolbarButton>
-            <ToolbarButton handleClick={toggleInputChange}>close</ToolbarButton>
+            <ToolbarButton handleClick={addLinkToCurrentElement}>
+              add
+            </ToolbarButton>
+            <ToolbarButton handleClick={toggleInputField}>close</ToolbarButton>
           </div>
         </AddLinkContainer>
       ) : (
-        <ToolbarButton handleClick={toggleInputChange} name="link">
+        <ToolbarButton handleClick={toggleInputField} name="link">
           <FaLink />
         </ToolbarButton>
       )}

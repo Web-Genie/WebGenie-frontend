@@ -4,7 +4,7 @@ import { FaBold, FaItalic, FaUnderline } from "react-icons/fa";
 import { ELEMENT_STYLE_OPTIONS, FONT_TYPE } from "../constants/constants";
 import useText from "../hooks/useText";
 import { Context } from "../store/Store";
-import handleFontFormat from "../utils/handleFontFormat";
+import { handleFontFormat } from "../utils";
 import SelectDetail from "./SelectDetailSubToolbar";
 import SubToolbarTitle from "./SubToolbarTitle";
 

@@ -1,59 +1,72 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { SubToolbarContext } from "../context/subToolbarContext";
-import { UserContext } from "../context/userContext";
 import api from "../services/api";
+import { Context } from "../store/Store";
 import { saveLocalStorage } from "../utils";
 
 const useAxios = (params, idToken, category = null) => {
-  const { setFetchedData, setUserInformation, setEditor, setTitle } =
-    useContext(UserContext);
-  const { setLocalImageSrc } = useContext(SubToolbarContext);
   const navigate = useNavigate();
+  const [deployedWebsiteData, setDeployedWebsiteData] = useState(null);
+  const { dispatch } = useContext(Context);
 
   const fetchData = async () => {
     if (!params) return;
 
     if (!idToken) {
-      const result = await api(params);
+      const response = await api(params);
 
-      setEditor(result.data);
+      setDeployedWebsiteData({ ...response.data.result });
     } else if (category === "USER") {
-      const result = await api(params);
-      localStorage.setItem("avatar", result.data.user.image);
+      const response = await api(params);
 
-      setUserInformation(result.data);
+      localStorage.setItem("avatar", response.data.user.image);
+
+      dispatch({
+        type: "HANDLE_LOG_IN_USER_INFORMATION",
+        payload: response.data,
+      });
     } else if (category === "EDITOR") {
-      const result = await api(params);
+      const response = await api(params);
 
-      setEditor(result.data);
+      dispatch({ type: "SET_EDITOR_DATA", payload: response.data.result });
     } else if (category === "Save") {
       localStorage.removeItem("localImgSrc");
+
       navigate("/creatingnewwebsite");
 
-      const result = await api(params);
+      const response = await api(params);
 
-      setTitle(result.data.changedTitle);
-      setEditor(result.data);
-      navigate(`/editor/${result.data.result._id}`);
+      dispatch({ type: "SET_EDITOR_DATA", payload: response.data.result });
+
+      navigate(`/editor/${response.data.result._id}`);
     } else if (category === "delete") {
       navigate("/creatingnewwebsite");
 
-      const result = await api(params);
+      const response = await api(params);
 
-      setUserInformation(result.data);
+      dispatch({
+        type: "HANDLE_LOG_IN_USER_INFORMATION",
+        payload: response.data,
+      });
+
       navigate("/");
     } else if (category === "imageUpload") {
       const location = await api(params);
 
       saveLocalStorage(location.data.location.split(".com/")[1]);
-      setLocalImageSrc(location.data.location);
+
+      dispatch({
+        type: "SET_LOCAL_IMAGE_SRC",
+        payload: location.data.location,
+      });
     } else if (category === "RemoveImage") {
       navigate("/creatingnewwebsite");
 
       await api(params);
+
       localStorage.removeItem("localImgSrc");
+
       navigate("/");
     } else if (category === "Publish") {
       navigate("/creatingnewwebsite");
@@ -64,15 +77,13 @@ const useAxios = (params, idToken, category = null) => {
     } else {
       navigate("/creatingnewwebsite");
 
-      const result = await api(params);
+      const response = await api(params);
 
-      navigate(`/editor/${result.data.result._id}`);
-      setFetchedData(result.data);
-      setEditor(result.data);
+      navigate(`/editor/${response.data.result._id}`);
     }
   };
 
-  return { fetchData };
+  return { fetchData, deployedWebsiteData };
 };
 
 export default useAxios;
