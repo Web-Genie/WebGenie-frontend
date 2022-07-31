@@ -66,7 +66,6 @@ function EditorTemplate({ editorVersion, userSavedCode }) {
       parentRef.current.style.backgroundColor = "rgb(255,255,255)";
 
       dispatch({ type: "SET_EDITOR", payload: parentRef.current });
-      // retrieveParentRefState(parentRef.current);
     }
   }, []);
 
