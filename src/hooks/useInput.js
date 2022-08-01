@@ -1,5 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 
+import { DISPATCH_TYPE } from "../constants";
 import { Context } from "../store/Store";
 
 const useInput = (location) => {
@@ -37,7 +38,10 @@ const useInput = (location) => {
     if (location === "editor" && !shouldDisplayInputField) {
       if (!inputValue) return;
 
-      dispatch({ type: "SET_EDITOR_TITLE", payload: inputValue });
+      dispatch({
+        type: DISPATCH_TYPE.CHANGE_EDITOR_TITLE,
+        payload: inputValue,
+      });
     }
 
     if (!globalState?.currentElement) return;

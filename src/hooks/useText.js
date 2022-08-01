@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 
+import { DISPATCH_TYPE } from "../constants";
 import { Context } from "../store/Store";
 
 const useText = () => {
@@ -11,14 +12,14 @@ const useText = () => {
       currentElement.style.fontFamily = value;
 
       dispatch({
-        type: "SET_FONT_STYLE",
+        type: DISPATCH_TYPE.CHANGE_FONT_STYLE,
         payload: { target, value },
       });
     } else {
       currentElement.style.fontSize = `${value}px`;
 
       dispatch({
-        type: "SET_FONT_STYLE",
+        type: DISPATCH_TYPE.CHANGE_FONT_STYLE,
         payload: { target, value },
       });
     }
@@ -34,7 +35,7 @@ const useText = () => {
 
     if (currentFontFamily) {
       dispatch({
-        type: "RESET_FONT_STYLE",
+        type: DISPATCH_TYPE.RESET_FONT_STYLE,
         payload: {
           family: currentFontFamily,
           size: currentFontSize,

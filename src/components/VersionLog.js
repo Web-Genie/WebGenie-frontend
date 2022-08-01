@@ -14,7 +14,6 @@ function VersionLog({ handleVersionChange, userSavedCode }) {
       <VersionViewContainer>
         {userSavedCode.map((code, idx) => {
           const savedDate = new Date(code.time).toLocaleString();
-
           return (
             <div key={idx}>
               <p className="number">{idx + 1}</p>

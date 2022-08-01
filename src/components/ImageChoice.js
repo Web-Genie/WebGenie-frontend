@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaCloudUploadAlt, FaImage } from "react-icons/fa";
 
-import { ID_TOKEN, REQUEST_IMAGE_DATA_SAVE } from "../constants/constants";
+import { AXIOS_REQUEST_CATEGORY, ID_TOKEN } from "../constants";
 import useAxios from "../hooks/useAxios";
 import useModal from "../hooks/useModal";
 import Modal from "./Modal";
@@ -33,7 +33,7 @@ function ImageChoice() {
       },
     },
     ID_TOKEN,
-    REQUEST_IMAGE_DATA_SAVE
+    AXIOS_REQUEST_CATEGORY.POST_IMAGE
   );
 
   useEffect(() => {

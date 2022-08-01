@@ -1,13 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { FaArrowLeft, FaRegEdit } from "react-icons/fa";
 import styled from "styled-components";
 
-import {
-  ID_TOKEN,
-  REQUEST_DATA_INFORMATION_EDITOR,
-} from "../constants/constants";
+import { AXIOS_REQUEST_CATEGORY, ID_TOKEN } from "../constants";
 import useAxios from "../hooks/useAxios";
-import useInput from "../hooks/useInput";
 import useLogout from "../hooks/useLogout";
 import useModal from "../hooks/useModal";
 import useToggle from "../hooks/useToggle";
@@ -21,6 +16,7 @@ import Loader from "./Loader";
 import Modal from "./Modal";
 import ModalContent from "./ModalContent";
 import Navigation from "./Navigation";
+import NavigationContent from "./NavigationContent";
 import RightToolbar from "./RightToolbar";
 import VersionLog from "./VersionLog";
 
@@ -28,12 +24,10 @@ function Editor() {
   const [displayingVersion, setDisplayingVersion] = useState(null);
   const [shouldShowDifferentVersion, setShouldShowDifferentVersion] =
     useState(false);
-  const { shouldDisplayInputField, handleInputChange, toggleInputField } =
-    useInput("editor");
   const { shouldDisplay, handleToggleClick } = useToggle();
   const { handleLogout } = useLogout();
   const { globalState } = useContext(Context);
-  const { editorRef, editorData } = globalState;
+  const { editorData } = globalState;
   const currentEditorId = retrieveURL();
 
   const {
@@ -54,7 +48,7 @@ function Editor() {
       },
     },
     ID_TOKEN,
-    REQUEST_DATA_INFORMATION_EDITOR
+    AXIOS_REQUEST_CATEGORY.GET_EDITOR_DATA
   );
 
   useEffect(() => {
@@ -71,11 +65,6 @@ function Editor() {
     setDisplayingVersion(
       event.target.parentNode.parentNode.getAttribute("value")
     );
-  };
-
-  const clearCanvas = () => {
-    editorRef.innerHTML = "";
-    editorRef.style.backgroundColor = "white";
   };
 
   return (
@@ -103,43 +92,14 @@ function Editor() {
         </LogoutSection>
       </Header>
       <Navigation>
-        <div className="editorNavbar">
-          <a onClick={() => (window.location = "/")}>
-            <FaArrowLeft />
-          </a>
-          <div className="titleNavbar">
-            {!shouldDisplayInputField ? (
-              <h3>{editorData.title}</h3>
-            ) : (
-              <input onChange={handleInputChange} />
-            )}
-            <span onClick={toggleInputField}>
-              <FaRegEdit />
-            </span>
-          </div>
-        </div>
-        <div>
-          <Button warningSignal={true} handleClick={clearCanvas}>
-            Clear Canvas
-          </Button>
-          <Button handleClick={saveModalToggle} mainButton={false}>
-            Save
-          </Button>
-          <Button
-            handleClick={() => setShouldShowDifferentVersion((state) => !state)}
-            mainButton={false}
-          >
-            {shouldShowDifferentVersion
-              ? "Close Saved Version Log"
-              : "Saved Version Log"}
-          </Button>
-          <Button handleClick={handleToggleClick} mainButton={false}>
-            Wide View
-          </Button>
-          <Button handleClick={publishModalToggle} mainButton={true}>
-            Publish
-          </Button>
-        </div>
+        <NavigationContent
+          shouldShowDifferentVersion={shouldShowDifferentVersion}
+          handleShouldShowDifferentVersion={setShouldShowDifferentVersion}
+          handleToggleClick={handleToggleClick}
+          saveModalToggle={saveModalToggle}
+          publishModalToggle={publishModalToggle}
+          {...globalState}
+        />
       </Navigation>
       <EditorBody>
         {!shouldDisplay && <LeftToolbar />}

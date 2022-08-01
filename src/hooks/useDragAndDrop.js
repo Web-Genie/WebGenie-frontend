@@ -1,5 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 
+import { DISPATCH_TYPE } from "../constants";
 import { Context } from "../store/Store";
 
 function useDragAndDrop(resizingState) {
@@ -49,7 +50,10 @@ function useDragAndDrop(resizingState) {
 
     targetRef.current = event.target;
 
-    dispatch({ type: "SET_CURRENT_ELEMENT", payload: targetRef.current });
+    dispatch({
+      type: DISPATCH_TYPE.CHANGE_LOCATION_ELEMENT,
+      payload: targetRef.current,
+    });
 
     setIsDragging(true);
 

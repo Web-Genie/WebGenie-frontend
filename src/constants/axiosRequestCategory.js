@@ -1,0 +1,11 @@
+const AXIOS_REQUEST_CATEGORY = {
+  GET_USER_DATA: "USER",
+  GET_EDITOR_DATA: "EDITOR",
+  POST_EDITOR_CODE: "Save",
+  DELETE_WEBSITE: "delete",
+  POST_IMAGE: "imageUpload",
+  DELETE_IMAGE: "RemoveImage",
+  PATCH_WEBSITE: "Publish",
+};
+
+export default AXIOS_REQUEST_CATEGORY;
