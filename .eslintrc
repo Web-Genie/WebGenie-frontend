@@ -12,6 +12,11 @@
   },
   "plugins": ["react", "simple-import-sort"],
   "extends": ["plugin:react/recommended"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
     "semi": "warn",
     "eol-last": "warn",
