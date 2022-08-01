@@ -29,6 +29,12 @@ const ELEMENT_STYLE_OPTIONS = {
   },
   FONT_FAMILY: "family",
   NONE: "none",
+  PADDING_VALUE: "0",
+  CLONE_NODE_STYLE: {
+    POSITION: "absolute",
+    WIDTH: "120px",
+    HEIGHT: "35px",
+  },
 };
 
 export default ELEMENT_STYLE_OPTIONS;

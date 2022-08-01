@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { ELEMENT_NAME } from "../constants";
+import { ELEMENT_NAME, KEY_DOWN } from "../constants";
 
 function useKeyDownEvent(
   currentEditor,
@@ -14,7 +14,7 @@ function useKeyDownEvent(
 ) {
   useEffect(() => {
     function handleKeyboardEvent(event) {
-      if (event.metaKey && event.key === "x") {
+      if (event.metaKey && event.key === KEY_DOWN.X) {
         if (currentEditor.length >= 2) {
           setCopyingElement(targetRef.current);
 
@@ -27,20 +27,20 @@ function useKeyDownEvent(
         }
       }
 
-      if (event.metaKey && event.key === "z") {
+      if (event.metaKey && event.key === KEY_DOWN.Z) {
         if (currentEditor.length >= 2) {
           currentEditor.pop();
           parentRef.current.innerHTML = currentEditor[currentEditor.length - 1];
         }
       }
 
-      if (event.metaKey && event.key === "c") {
+      if (event.metaKey && event.key === KEY_DOWN.C) {
         if (targetRef.current.tagName !== ELEMENT_NAME.DIV) {
           setCopyingElement(targetRef.current);
         }
       }
 
-      if (event.metaKey && event.key === "v") {
+      if (event.metaKey && event.key === KEY_DOWN.V) {
         const copyingElementLeft = Number(
           copyingElement.style.left.replace("%", "")
         );

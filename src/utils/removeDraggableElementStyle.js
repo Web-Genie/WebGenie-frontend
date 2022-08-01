@@ -31,7 +31,7 @@ const removeDraggableElementStyle = ({
   }
 
   if (previousElement) {
-    previousElement.style.padding = "0";
+    previousElement.style.padding = ELEMENT_STYLE_OPTIONS.PADDING_VALUE;
 
     if (previousElement.tagName !== ELEMENT_NAME.BUTTON) {
       previousElement.style.border = ELEMENT_STYLE_OPTIONS.NONE;

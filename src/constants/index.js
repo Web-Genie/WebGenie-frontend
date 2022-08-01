@@ -4,5 +4,6 @@ export { default as ELEMENT_NAME } from "./elementName";
 export { default as ELEMENT_STYLE_OPTIONS } from "./elementsStyle";
 export { default as ID_TOKEN } from "./idToken";
 export { default as INFORMATION_TEXT } from "./informationText";
+export { default as KEY_DOWN } from "./keydown";
 export { default as MODAL } from "./modal";
 export { default as MOUSE_DIRECTION } from "./mouseDirection";
