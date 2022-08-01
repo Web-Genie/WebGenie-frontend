@@ -1,21 +1,5 @@
-const generateEditorDeleteElement = (clickedNode, icon, editIcon = false) => {
+const generateDraggableIcons = ({ clickedNode, icon, editIcon = false }) => {
   const extraIconElement = document.createElement("p");
-
-  const deleteCurrentElement = (event) => {
-    event.stopPropagation();
-
-    if (
-      event.target.nextSibling.tagName === "BUTTON" ||
-      event.target.nextSibling.tagName !== "IMG"
-    ) {
-      event.target.nextElementSibling.remove();
-      event.target.nextSibling.remove();
-    } else {
-      event.target.nextElementSibling.remove();
-    }
-
-    event.target.remove();
-  };
 
   const extraIconMouseOverEffect = (event) => {
     event.target.style.transform = "scale(1.1)";
@@ -33,28 +17,32 @@ const generateEditorDeleteElement = (clickedNode, icon, editIcon = false) => {
   extraIconElement.style.background = "rgba(0,0,0,0.7)";
   extraIconElement.style.color = "white";
   extraIconElement.style.borderRadius = "50%";
-  extraIconElement.style.width = "30px";
-  extraIconElement.style.height = "30px";
+  extraIconElement.style.width = "15px";
+  extraIconElement.style.height = "15px";
   extraIconElement.style.cursor = "pointer";
   extraIconElement.style.transition = "all 0.15s ease";
   extraIconElement.style.zIndex = "1000";
+  extraIconElement.className = "extraIcon";
 
   if (editIcon) {
-    extraIconElement.style.left = `${clickedNode.offsetLeft + 25}px`;
-    extraIconElement.style.top = `${clickedNode.offsetTop - 20}px`;
+    extraIconElement.style.left = `${
+      clickedNode.offsetLeft + clickedNode.offsetWidth / 1.6
+    }px`;
+    extraIconElement.style.top = `${clickedNode.offsetTop - 10}px`;
     extraIconElement.onmouseleave = extraIconMouseLeaveEffect;
     extraIconElement.onmouseover = extraIconMouseOverEffect;
   } else {
-    extraIconElement.style.left = `${clickedNode.offsetLeft - 15}px`;
-    extraIconElement.style.top = `${clickedNode.offsetTop - 20}px`;
+    extraIconElement.style.left = `${
+      clickedNode.offsetLeft + clickedNode.offsetWidth / 2.1
+    }px`;
+    extraIconElement.style.top = `${clickedNode.offsetTop - 10}px`;
     extraIconElement.onmouseleave = extraIconMouseLeaveEffect;
     extraIconElement.onmouseover = extraIconMouseOverEffect;
-    extraIconElement.onclick = deleteCurrentElement;
   }
 
-  extraIconElement.style.fontSize = "23px";
+  extraIconElement.style.fontSize = "12px";
 
   return extraIconElement;
 };
 
-export default generateEditorDeleteElement;
+export default generateDraggableIcons;

@@ -20,7 +20,7 @@ describe("LoginButton Component", () => {
   it("2. Should have button style property", () => {
     const button = screen.getByRole("button");
 
-    expect(button).toHaveStyle(`display: flex`);
-    expect(button).toHaveStyle(`color: rgb(117, 117, 117)`);
+    expect(button).toHaveStyle("display: flex");
+    expect(button).toHaveStyle("color: rgb(117, 117, 117)");
   });
 });

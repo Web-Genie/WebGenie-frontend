@@ -17,7 +17,7 @@ const handleDrop = (trackChange) => (event) => {
 
   if (clonedNode.tagName === "BUTTON") {
     clonedNode.style.width = "120px";
-    clonedNode.style.height = "31px";
+    clonedNode.style.height = "35px";
   }
 
   trackChange((state) => [...state, event.target.innerHTML]);
