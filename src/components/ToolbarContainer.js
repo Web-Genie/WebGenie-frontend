@@ -128,6 +128,7 @@ const ToolbarContainerBody = styled.div`
     display: flex;
     padding: 7px 17px;
     margin-right: 10px;
+    margin-bottom: 7px;
     border: 1px solid #ebebeb;
     border-bottom-color: #e2e2e2;
     border-radius: 6px;
@@ -225,6 +226,7 @@ const ToolbarContainerBody = styled.div`
       height: 20px;
       padding: 7px 25px;
       cursor: pointer;
+
       :hover {
         opacity: 0.5;
       }

@@ -20,6 +20,8 @@ function EditorTemplate({ editorVersion, userSavedCode }) {
   const [currentEditor, setCurrentEditor] = useState([]);
   const [counter, setCounter] = useState(1);
   const [copyingElement, setCopyingElement] = useState(null);
+  const { globalState, dispatch } = useContext(Context);
+  const { imageData } = globalState;
   const {
     parentRef,
     targetRef,
@@ -38,9 +40,6 @@ function EditorTemplate({ editorVersion, userSavedCode }) {
     resizingDirection,
     draggingElementCoordinates
   );
-  const { globalState, dispatch } = useContext(Context);
-  const { imageData } = globalState;
-
   useKeyDownEvent(
     currentEditor,
     parentRef,
