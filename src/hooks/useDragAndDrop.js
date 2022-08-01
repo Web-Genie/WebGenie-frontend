@@ -83,6 +83,11 @@ function useDragAndDrop() {
     targetRef.current = event.target;
 
     dispatch({
+      type: DISPATCH_TYPE.SET_SUB_TOOLBAR_TYPE,
+      payload: targetRef.current.nodeName,
+    });
+
+    dispatch({
       type: DISPATCH_TYPE.CHANGE_LOCATION_ELEMENT,
       payload: targetRef.current,
     });
