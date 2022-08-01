@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { ELEMENT_STYLE_OPTIONS } from "../constants";
+import { ELEMENT_NAME, ELEMENT_STYLE_OPTIONS } from "../constants";
 import { Context } from "../store/Store";
 import ButtonLinkSubToolbar from "./ButtonLinkSubToolbar";
 import ButtonRadiusSubToolbar from "./ButtonRadiusSubToolbar";
@@ -26,21 +26,21 @@ function RightToolbar() {
             <TextPositionSubToolbar />
           </>
         )}
-        {subToolbarType === "BUTTON" && (
+        {subToolbarType === ELEMENT_NAME.BUTTON && (
           <>
             <ButtonLinkSubToolbar />
             <ButtonRadiusSubToolbar />
             <OpacityChangeSubToolbar />
           </>
         )}
-        {subToolbarType === "IMG" && (
+        {subToolbarType === ELEMENT_NAME.IMAGE && (
           <>
             <OpacityChangeSubToolbar />
             <ImageBrightnessSubToolbar />
             <ImageBlurSubToolbar />
           </>
         )}
-        {subToolbarType === "BUTTON" ||
+        {subToolbarType === ELEMENT_NAME.BUTTON ||
         ELEMENT_STYLE_OPTIONS.HEADING_TAG.includes(subToolbarType) ? (
           <ColorChangeSubToolbar />
         ) : null}

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 
+import { MOUSE_DIRECTION } from "../constants";
 import {
   adjustResizerLocation,
   applyDraggableElementStyle,
@@ -23,7 +24,7 @@ const useResize = (
     event.stopPropagation();
     event.preventDefault();
 
-    if (resizingDirection === "topLeft") {
+    if (resizingDirection === MOUSE_DIRECTION.TOP_LEFT) {
       const newWidth = width - (event.pageX - origianlMouseX);
       const newHeight = height - (event.pageY - origianlMouseY);
       const newX = originalX + (event.pageX - origianlMouseX);
@@ -38,7 +39,7 @@ const useResize = (
         currentElement.style.height = `${newHeight}px`;
         currentElement.style.top = `${newY}px`;
       }
-    } else if (resizingDirection === "topRight") {
+    } else if (resizingDirection === MOUSE_DIRECTION.TOP_RIGHT) {
       const newWidth = width + (event.pageX - origianlMouseX);
       const newHeight = height - (event.pageY - origianlMouseY);
       const newY = originalY + (event.pageY - origianlMouseY);
@@ -51,7 +52,7 @@ const useResize = (
         currentElement.style.height = `${newHeight}px`;
         currentElement.style.top = `${newY}px`;
       }
-    } else if (resizingDirection === "bottomRight") {
+    } else if (resizingDirection === MOUSE_DIRECTION.BOTTOM_RIGHT) {
       const newWidth = width + (event.pageX - origianlMouseX);
       const newHeight = height + (event.pageY - origianlMouseY);
 
@@ -62,7 +63,7 @@ const useResize = (
       if (newHeight > MINIMUM_HEIGHT) {
         currentElement.style.height = `${newHeight}px`;
       }
-    } else if (resizingDirection === "bottomLeft") {
+    } else if (resizingDirection === MOUSE_DIRECTION.BOTTOM_LEFT) {
       const newWidth = width - (event.pageX - origianlMouseX);
       const newHeight = height + (event.pageY - origianlMouseY);
       const newX = originalX + (event.pageX - origianlMouseX);

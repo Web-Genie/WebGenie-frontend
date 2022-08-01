@@ -17,9 +17,24 @@ const ELEMENT_STYLE_OPTIONS = {
     BOLD: "bold",
     ITALIC: "italic",
     UNDERLINE: "underline",
+    NORMAL: "normal",
+    NONE: "none",
   },
   INITIAL_CANVAS_BACKGROUND_COLOR: "white",
   HEADING_TAG: ["H1", "H2", "H3", "H4", "H5", "H6"],
+  IMAGE_STYLE: {
+    OPACITY: "opacity",
+    RADIUS: "radius",
+    BLUR: "blur",
+  },
+  FONT_FAMILY: "family",
+  NONE: "none",
+  PADDING_VALUE: "0",
+  CLONE_NODE_STYLE: {
+    POSITION: "absolute",
+    WIDTH: "120px",
+    HEIGHT: "35px",
+  },
 };
 
 export default ELEMENT_STYLE_OPTIONS;

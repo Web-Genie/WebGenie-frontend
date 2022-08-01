@@ -1,3 +1,5 @@
+import { DISPATCH_TYPE } from "../constants";
+
 export const initialState = {
   editorRef: null,
   isEditing: false,
@@ -35,7 +37,7 @@ export const reducer = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case "HANDLE_LOG_IN_TOKEN_INFORMATION":
+    case DISPATCH_TYPE.HANDLE_LOG_IN_TOKEN_INFORMATION:
       return {
         ...state,
         loggedInUserInformation: {
@@ -43,7 +45,7 @@ export const reducer = (state, action) => {
           tokenInformation: payload,
         },
       };
-    case "HANDLE_LOG_IN_USER_INFORMATION":
+    case DISPATCH_TYPE.HANDLE_LOG_IN_USER_INFORMATION:
       return {
         ...state,
         loggedInUserInformation: {
@@ -51,15 +53,11 @@ export const reducer = (state, action) => {
           data: payload,
         },
       };
-    case "SET_SUB_TOOLBAR_TYPE":
+    case DISPATCH_TYPE.SET_SUB_TOOLBAR_TYPE:
       return { ...state, subToolbarType: payload };
-    case "SET_CURRENT_ELEMENT":
+    case DISPATCH_TYPE.CHANGE_LOCATION_ELEMENT:
       return { ...state, currentElement: payload };
-    case "SET_DRAGGING_STATUS":
-      return { ...state, isDragging: payload };
-    case "SET_EDITING_STATUS":
-      return { ...state, isEditing: payload };
-    case "SET_IMAGE_STYLE":
+    case DISPATCH_TYPE.CHANGE_IMAGE_STYLE:
       return {
         ...state,
         elementStyle: {
@@ -67,12 +65,12 @@ export const reducer = (state, action) => {
           [payload.target]: payload.value,
         },
       };
-    case "RESET_IMAGE_STYLE":
+    case DISPATCH_TYPE.RESET_IMAGE_STYLE:
       return {
         ...state,
         elementStyle: { ...payload },
       };
-    case "SET_FONT_STYLE":
+    case DISPATCH_TYPE.CHANGE_FONT_STYLE:
       return {
         ...state,
         fontStyle: {
@@ -80,27 +78,27 @@ export const reducer = (state, action) => {
           [payload.target]: payload.value,
         },
       };
-    case "RESET_FONT_STYLE":
+    case DISPATCH_TYPE.RESET_FONT_STYLE:
       return {
         ...state,
         fontStyle: { ...payload },
       };
-    case "SET_COLOR":
+    case DISPATCH_TYPE.SET_COLOR:
       return {
         ...state,
         elementStyle: { ...state.elementStyle, color: payload.value },
       };
-    case "SET_BACKGROUND_COLOR":
+    case DISPATCH_TYPE.CHANGE_BACKGROUND_COLOR:
       return {
         ...state,
         editorBackgroundColor: payload,
       };
-    case "SET_EDITOR":
+    case DISPATCH_TYPE.INITIAL_SETTING_EDITOR:
       return {
         ...state,
         editorRef: payload,
       };
-    case "SET_EDITOR_TITLE":
+    case DISPATCH_TYPE.CHANGE_EDITOR_TITLE:
       return {
         ...state,
         editorData: {
@@ -108,35 +106,25 @@ export const reducer = (state, action) => {
           title: payload,
         },
       };
-    case "SET_EDITOR_DATA":
+    case DISPATCH_TYPE.GET_OR_POST_EDITOR_CODE:
       return {
         ...state,
         editorData: { ...payload },
       };
-    case "SET_IMAGE_URL":
+    case DISPATCH_TYPE.INSERT_IMAGE_URL:
       return {
         ...state,
         imageData: { ...state.imageData, imageUrl: payload },
       };
-    case "SET_IMAGE_URL_AVAILABILITY":
+    case DISPATCH_TYPE.VALID_IMAGE_URL:
       return {
         ...state,
         imageData: { ...state.imageData, isImageUrlAvailable: payload },
       };
-    case "SET_LOCAL_IMAGE_SRC":
+    case DISPATCH_TYPE.INSERT_LOCAL_IMAGE:
       return {
         ...state,
         imageData: { ...state.imageData, localImageSrc: payload },
-      };
-    case "SET_DEPLOYED_WEBSITE_DATA":
-      return {
-        ...state,
-        deployedWebsiteData: { ...payload },
-      };
-    case "RESET_DEPLOYED_WEBSITE_DATA":
-      return {
-        ...state,
-        deployedWebsiteData: null,
       };
     default:
       return state;

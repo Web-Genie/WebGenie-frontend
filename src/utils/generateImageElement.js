@@ -2,8 +2,8 @@ const generateImageElement = (localImage) => {
   const newImage = document.createElement("img");
 
   newImage.style.position = "absolute";
-  newImage.style.height = "500px";
-  newImage.style.width = "500px";
+  newImage.style.height = "300px";
+  newImage.style.width = "300px";
   newImage.style.cursor = "pointer";
   newImage.style.left = "30px";
   newImage.style.top = "50px";
