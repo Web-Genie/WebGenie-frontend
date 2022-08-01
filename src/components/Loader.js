@@ -9,12 +9,12 @@ function Loader() {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCurrentTimer((prev) => {
-        if (prev === 10) {
+      setCurrentTimer((currentCounter) => {
+        if (currentCounter === 8) {
           handleLogout();
         }
 
-        return (prev += 1);
+        return (currentCounter += 1);
       });
     }, 1000);
 
