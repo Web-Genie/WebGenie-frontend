@@ -1,4 +1,4 @@
-const generateDraggableIcons = ({ clickedNode, icon, editIcon = false }) => {
+const generateDraggableIcons = ({ clickedNode, icon }) => {
   const extraIconElement = document.createElement("p");
 
   const extraIconMouseOverEffect = (event) => {
@@ -24,21 +24,12 @@ const generateDraggableIcons = ({ clickedNode, icon, editIcon = false }) => {
   extraIconElement.style.zIndex = "1000";
   extraIconElement.className = "extraIcon";
 
-  if (editIcon) {
-    extraIconElement.style.left = `${
-      clickedNode.offsetLeft + clickedNode.offsetWidth / 1.6
-    }px`;
-    extraIconElement.style.top = `${clickedNode.offsetTop - 10}px`;
-    extraIconElement.onmouseleave = extraIconMouseLeaveEffect;
-    extraIconElement.onmouseover = extraIconMouseOverEffect;
-  } else {
-    extraIconElement.style.left = `${
-      clickedNode.offsetLeft + clickedNode.offsetWidth / 2.1
-    }px`;
-    extraIconElement.style.top = `${clickedNode.offsetTop - 10}px`;
-    extraIconElement.onmouseleave = extraIconMouseLeaveEffect;
-    extraIconElement.onmouseover = extraIconMouseOverEffect;
-  }
+  extraIconElement.style.left = `${
+    clickedNode.offsetLeft + clickedNode.offsetWidth / 2.1
+  }px`;
+  extraIconElement.style.top = `${clickedNode.offsetTop - 10}px`;
+  extraIconElement.onmouseleave = extraIconMouseLeaveEffect;
+  extraIconElement.onmouseover = extraIconMouseOverEffect;
 
   extraIconElement.style.fontSize = "12px";
 
