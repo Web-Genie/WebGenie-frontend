@@ -14,7 +14,7 @@ function ButtonRadiusSubToolbar() {
       <SubToolbarTitle title="Edit Border Radius" />
       <SelectDetail
         className="buttonRadius"
-        detailValue={ELEMENT_STYLE_OPTIONS}
+        detailValue={ELEMENT_STYLE_OPTIONS.BUTTON_RADIUS_AND_FONT_SIZE}
         currentValue={elementStyle.radius}
         handleSelectOptionChange={(event) =>
           handleElementStyleValueChange("radius", event.target.value)
