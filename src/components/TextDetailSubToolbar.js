@@ -40,16 +40,27 @@ function TextDetailSubToolbar() {
         <div className="detailItem">
           <span
             className="rightBorder"
-            onClick={handleFontFormat(currentElement, "bold")}
+            onClick={handleFontFormat(
+              currentElement,
+              ELEMENT_STYLE_OPTIONS.FONT_DETAIL.BOLD
+            )}
           >
             <FaBold />
           </span>
-          <span onClick={handleFontFormat(currentElement, "italic")}>
+          <span
+            onClick={handleFontFormat(
+              currentElement,
+              ELEMENT_STYLE_OPTIONS.FONT_DETAIL.ITALIC
+            )}
+          >
             <FaItalic />
           </span>
           <span
             className="leftBorder"
-            onClick={handleFontFormat(currentElement, "underline")}
+            onClick={handleFontFormat(
+              currentElement,
+              ELEMENT_STYLE_OPTIONS.FONT_DETAIL.UNDERLINE
+            )}
           >
             <FaUnderline />
           </span>

@@ -13,6 +13,13 @@ const ELEMENT_STYLE_OPTIONS = {
     "cursive",
     "fantasy",
   ],
+  FONT_DETAIL: {
+    BOLD: "bold",
+    ITALIC: "italic",
+    UNDERLINE: "underline",
+  },
+  INITIAL_CANVAS_BACKGROUND_COLOR: "white",
+  HEADING_TAG: ["H1", "H2", "H3", "H4", "H5", "H6"],
 };
 
 export default ELEMENT_STYLE_OPTIONS;

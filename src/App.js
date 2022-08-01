@@ -12,7 +12,7 @@ import { Context } from "./store/Store";
 function App() {
   const { globalState } = useContext(Context);
   const { loggedInUserInformation } = globalState;
-
+  console.log(loggedInUserInformation);
   return (
     <Routes>
       <Route

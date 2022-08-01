@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { DISPATCH_TYPE } from "../constants";
+import { DISPATCH_TYPE, ELEMENT_STYLE_OPTIONS } from "../constants";
 import useDragAndDrop from "../hooks/useDragAndDrop";
 import useKeyDownEvent from "../hooks/useKeyDownEvent";
 import useResize from "../hooks/useResize";
@@ -76,7 +76,8 @@ function EditorTemplate({ editorVersion, userSavedCode }) {
 
   useEffect(() => {
     if (parentRef.current) {
-      parentRef.current.style.backgroundColor = "rgb(255,255,255)";
+      parentRef.current.style.backgroundColor =
+        ELEMENT_STYLE_OPTIONS.INITIAL_CANVAS_BACKGROUND_COLOR;
 
       dispatch({
         type: DISPATCH_TYPE.INITIAL_SETTING_EDITOR,

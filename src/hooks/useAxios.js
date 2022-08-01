@@ -20,18 +20,18 @@ const useAxios = (params, idToken, category = null) => {
       setDeployedWebsiteData({ ...response.data.result });
     } else if (category === AXIOS_REQUEST_CATEGORY.GET_USER_DATA) {
       const response = await api(params);
-
+      console.log(response);
       localStorage.setItem("avatar", response.data.user.image);
 
       dispatch({
-        type: DISPATCH_TYPE.HANDLE_LOG_IN_TOKEN_INFORMATION,
+        type: DISPATCH_TYPE.HANDLE_LOG_IN_USER_INFORMATION,
         payload: response.data,
       });
     } else if (category === AXIOS_REQUEST_CATEGORY.GET_EDITOR_DATA) {
       const response = await api(params);
 
       dispatch({
-        type: DISPATCH_TYPE.INITIAL_SETTING_EDITOR,
+        type: DISPATCH_TYPE.GET_OR_POST_EDITOR_CODE,
         payload: response.data.result,
       });
     } else if (category === AXIOS_REQUEST_CATEGORY.POST_EDITOR_CODE) {
@@ -42,7 +42,7 @@ const useAxios = (params, idToken, category = null) => {
       const response = await api(params);
 
       dispatch({
-        type: DISPATCH_TYPE.SAVE_EDITOR_CODE,
+        type: DISPATCH_TYPE.GET_OR_POST_EDITOR_CODE,
         payload: response.data.result,
       });
 

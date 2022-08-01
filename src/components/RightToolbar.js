@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { HEADING_TAG } from "../constants";
+import { ELEMENT_STYLE_OPTIONS } from "../constants";
 import { Context } from "../store/Store";
 import ButtonLinkSubToolbar from "./ButtonLinkSubToolbar";
 import ButtonRadiusSubToolbar from "./ButtonRadiusSubToolbar";
@@ -20,7 +20,7 @@ function RightToolbar() {
   return (
     <EditorToolbar>
       <ToolbarContainer>
-        {HEADING_TAG.includes(subToolbarType) && (
+        {ELEMENT_STYLE_OPTIONS.HEADING_TAG.includes(subToolbarType) && (
           <>
             <TextDetailSubToolbar />
             <TextPositionSubToolbar />
@@ -40,7 +40,8 @@ function RightToolbar() {
             <ImageBlurSubToolbar />
           </>
         )}
-        {subToolbarType === "BUTTON" || HEADING_TAG.includes(subToolbarType) ? (
+        {subToolbarType === "BUTTON" ||
+        ELEMENT_STYLE_OPTIONS.HEADING_TAG.includes(subToolbarType) ? (
           <ColorChangeSubToolbar />
         ) : null}
       </ToolbarContainer>

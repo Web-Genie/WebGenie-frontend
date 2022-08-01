@@ -3,6 +3,7 @@ import React from "react";
 import { FaArrowLeft, FaRegEdit } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 
+import { ELEMENT_STYLE_OPTIONS, INFORMATION_TEXT } from "../constants";
 import useInput from "../hooks/useInput";
 import Button from "./Button";
 
@@ -24,7 +25,8 @@ export default function NavigationContent({
 
   const clearCanvas = () => {
     editorRef.innerHTML = "";
-    editorRef.style.backgroundColor = "white";
+    editorRef.style.backgroundColor =
+      ELEMENT_STYLE_OPTIONS.INITIAL_CANVAS_BACKGROUND_COLOR;
   };
 
   return (
@@ -60,8 +62,8 @@ export default function NavigationContent({
               mainButton={false}
             >
               {shouldShowDifferentVersion
-                ? "Close Saved Version Log"
-                : "Saved Version Log"}
+                ? INFORMATION_TEXT.CLOSE_VERSION_LOG
+                : INFORMATION_TEXT.OPEN_VERSION_LOG}
             </Button>
             <Button handleClick={handleToggleClick} mainButton={false}>
               Wide View
