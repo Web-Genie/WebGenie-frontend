@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 
-import { DISPATCH_TYPE } from "../constants";
+import { DISPATCH_TYPE, ELEMENT_STYLE_OPTIONS } from "../constants";
 import { Context } from "../store/Store";
 
 const useNonTextElementStyle = () => {
@@ -8,21 +8,21 @@ const useNonTextElementStyle = () => {
   const { currentElement, elementStyle } = globalState;
 
   const handleElementStyleValueChange = (target, value) => {
-    if (target === "opacity") {
+    if (target === ELEMENT_STYLE_OPTIONS.IMAGE_STYLE.OPACITY) {
       currentElement.style.opacity = value;
 
       dispatch({
         type: DISPATCH_TYPE.CHANGE_IMAGE_STYLE,
         payload: { target, value },
       });
-    } else if (target === "radius") {
+    } else if (target === ELEMENT_STYLE_OPTIONS.IMAGE_STYLE.RADIUS) {
       currentElement.style.borderRadius = `${value}px`;
 
       dispatch({
         type: DISPATCH_TYPE.CHANGE_IMAGE_STYLE,
         payload: { target, value },
       });
-    } else if (target === "blur") {
+    } else if (target === ELEMENT_STYLE_OPTIONS.IMAGE_STYLE.BLUR) {
       currentElement.style.filter = `blur(${value}px) brightness(${elementStyle.brightness})`;
 
       dispatch({

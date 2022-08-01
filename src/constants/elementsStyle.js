@@ -20,6 +20,11 @@ const ELEMENT_STYLE_OPTIONS = {
   },
   INITIAL_CANVAS_BACKGROUND_COLOR: "white",
   HEADING_TAG: ["H1", "H2", "H3", "H4", "H5", "H6"],
+  IMAGE_STYLE: {
+    OPACITY: "opacity",
+    RADIUS: "radius",
+    BLUR: "blur",
+  },
 };
 
 export default ELEMENT_STYLE_OPTIONS;
