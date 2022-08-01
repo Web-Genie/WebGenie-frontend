@@ -46,9 +46,8 @@ const TextareaContainer = styled.div`
   }
 
   button {
-    margin-top: 10px;
     width: 50px;
-
+    margin-top: 10px;
     cursor: pointer;
   }
 `;
