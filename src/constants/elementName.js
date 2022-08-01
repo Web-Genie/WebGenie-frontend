@@ -5,6 +5,7 @@ const ELEMENT_NAME = {
   DIV: "DIV",
   P: "P",
   EXTRA_ICON: "extraIcon",
+  IMAGE: "IMG",
 };
 
 export default ELEMENT_NAME;
