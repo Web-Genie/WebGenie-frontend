@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 
-import { DISPATCH_TYPE } from "../constants";
+import { DISPATCH_TYPE, ELEMENT_STYLE_OPTIONS } from "../constants";
 import { Context } from "../store/Store";
 
 const useText = () => {
@@ -8,7 +8,7 @@ const useText = () => {
   const { currentElement, fontStyle } = globalState;
 
   const handleFontStyleValueChange = (target, value) => {
-    if (target === "family") {
+    if (target === ELEMENT_STYLE_OPTIONS.FONT_FAMILY) {
       currentElement.style.fontFamily = value;
 
       dispatch({

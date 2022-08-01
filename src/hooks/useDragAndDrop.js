@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 
-import { DISPATCH_TYPE } from "../constants";
+import { DISPATCH_TYPE, ELEMENT_NAME } from "../constants";
 import { Context } from "../store/Store";
 import { removeDraggableElementStyle } from "../utils";
 
@@ -56,7 +56,7 @@ function useDragAndDrop() {
   function onMouseDown(event) {
     const rect = parentRef.current.getBoundingClientRect();
 
-    if (event.target.classList[0] === "resizer") {
+    if (event.target.classList[0] === ELEMENT_NAME.MOUSE_RESIZER) {
       setDraggingElementCoordinates({
         width: Number(targetRef.current.style.width.replace("px", "")),
         height: Number(targetRef.current.style.height.replace("px", "")),

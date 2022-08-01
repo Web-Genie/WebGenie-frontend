@@ -1,3 +1,5 @@
+import { ELEMENT_NAME } from "../constants";
+
 const handleDrop = (trackChange) => (event) => {
   const data = event.dataTransfer.getData("text");
   const node = document.getElementById(data);
@@ -15,7 +17,7 @@ const handleDrop = (trackChange) => (event) => {
   clonedNode.style.top = `${(droppedLocationTop / parentNodeHeight) * 95}%`;
   clonedNode.style.zIndex = 100;
 
-  if (clonedNode.tagName === "BUTTON") {
+  if (clonedNode.tagName === ELEMENT_NAME.BUTTON) {
     clonedNode.style.width = "120px";
     clonedNode.style.height = "35px";
   }

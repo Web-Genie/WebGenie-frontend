@@ -17,6 +17,8 @@ const ELEMENT_STYLE_OPTIONS = {
     BOLD: "bold",
     ITALIC: "italic",
     UNDERLINE: "underline",
+    NORMAL: "normal",
+    NONE: "none",
   },
   INITIAL_CANVAS_BACKGROUND_COLOR: "white",
   HEADING_TAG: ["H1", "H2", "H3", "H4", "H5", "H6"],
@@ -25,6 +27,8 @@ const ELEMENT_STYLE_OPTIONS = {
     RADIUS: "radius",
     BLUR: "blur",
   },
+  FONT_FAMILY: "family",
+  NONE: "none",
 };
 
 export default ELEMENT_STYLE_OPTIONS;

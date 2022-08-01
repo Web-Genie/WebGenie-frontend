@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 
-import { DISPATCH_TYPE } from "../constants";
+import { DISPATCH_TYPE, ELEMENT_NAME } from "../constants";
 import { Context } from "../store/Store";
 
 const useInput = (location) => {
@@ -19,7 +19,7 @@ const useInput = (location) => {
   const addLinkToCurrentElement = () => {
     const { currentElement } = globalState;
 
-    if (currentElement.tagName === "BUTTON") {
+    if (currentElement.tagName === ELEMENT_NAME.BUTTON) {
       const linkText = document.createElement("a");
 
       linkText.innerText = "Link";

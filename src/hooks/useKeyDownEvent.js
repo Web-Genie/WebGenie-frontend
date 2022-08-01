@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 
+import { ELEMENT_NAME } from "../constants";
+
 function useKeyDownEvent(
   currentEditor,
   parentRef,
@@ -33,7 +35,7 @@ function useKeyDownEvent(
       }
 
       if (event.metaKey && event.key === "c") {
-        if (targetRef.current.tagName !== "DIV") {
+        if (targetRef.current.tagName !== ELEMENT_NAME.DIV) {
           setCopyingElement(targetRef.current);
         }
       }
