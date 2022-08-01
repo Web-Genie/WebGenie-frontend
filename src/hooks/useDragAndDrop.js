@@ -2,7 +2,10 @@ import { useContext, useEffect, useRef, useState } from "react";
 
 import { DISPATCH_TYPE, ELEMENT_NAME } from "../constants";
 import { Context } from "../store/Store";
-import { removeDraggableElementStyle } from "../utils";
+import {
+  applyDraggableElementStyle,
+  removeDraggableElementStyle,
+} from "../utils";
 
 function useDragAndDrop() {
   const targetRef = useRef(null);
@@ -44,10 +47,12 @@ function useDragAndDrop() {
   }
 
   function onMouseUp(event) {
-    if (isResizing) return;
+    if (isResizing || !isDragging) return;
 
     event.stopPropagation();
     event.preventDefault();
+
+    applyDraggableElementStyle(targetRef.current, parentRef.current);
 
     setIsResizing(false);
     setIsDragging(false);
@@ -121,20 +126,18 @@ function useDragAndDrop() {
   }
 
   useEffect(() => {
-    if (!parentRef.current) return;
-    if (isResizing) return;
-
-    parentRef.current.addEventListener("mousedown", onMouseDown);
-
-    if (!isDragging) return;
-
-    document.addEventListener("mouseup", onMouseUp);
-    document.addEventListener("mousemove", onMouseMove);
+    if (parentRef.current) {
+      parentRef.current.addEventListener("mousedown", onMouseDown);
+      document.addEventListener("mouseup", onMouseUp);
+      document.addEventListener("mousemove", onMouseMove);
+    }
 
     return () => {
-      parentRef.current.removeEventListener("mousedown", onMouseDown);
-      document.removeEventListener("mouseup", onMouseUp);
-      document.removeEventListener("mousemove", onMouseMove);
+      if (parentRef.current) {
+        parentRef.current.removeEventListener("mousedown", onMouseDown);
+        document.removeEventListener("mouseup", onMouseUp);
+        document.removeEventListener("mousemove", onMouseMove);
+      }
     };
   }, [parentRef.current, isDragging, isResizing]);
 
