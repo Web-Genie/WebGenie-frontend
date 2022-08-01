@@ -1,6 +1,6 @@
 import React from "react";
 
-import { OPACITY_RANGE } from "../constants/constants";
+import { ELEMENT_STYLE_OPTIONS } from "../constants";
 import useNonTextElementStyle from "../hooks/useNonTextElementStyle";
 import SelectDetail from "./SelectDetailSubToolbar";
 import SubToolbarTitle from "./SubToolbarTitle";
@@ -15,7 +15,7 @@ function OpacityChangeSubToolbar() {
       <SelectDetail
         title="opacity"
         className="opacity"
-        detailValue={OPACITY_RANGE}
+        detailValue={ELEMENT_STYLE_OPTIONS.OPACITY_RANGE}
         currentValue={elementStyle.opacity}
         handleSelectOptionChange={(event) =>
           handleElementStyleValueChange("opacity", event.target.value)

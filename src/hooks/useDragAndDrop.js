@@ -1,5 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 
+import { DISPATCH_TYPE } from "../constants";
 import { Context } from "../store/Store";
 import { removeDraggableElementStyle } from "../utils";
 
@@ -82,10 +83,9 @@ function useDragAndDrop() {
     targetRef.current = event.target;
 
     dispatch({
-      type: "SET_SUB_TOOLBAR_TYPE",
-      payload: targetRef.current.tagName,
+      type: DISPATCH_TYPE.CHANGE_LOCATION_ELEMENT,
+      payload: targetRef.current,
     });
-    dispatch({ type: "SET_CURRENT_ELEMENT", payload: targetRef.current });
 
     setIsDragging(true);
 

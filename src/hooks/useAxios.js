@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { AXIOS_REQUEST_CATEGORY, DISPATCH_TYPE } from "../constants";
 import api from "../services/api";
 import { Context } from "../store/Store";
 import { saveLocalStorage } from "../utils";
@@ -17,50 +18,56 @@ const useAxios = (params, idToken, category = null) => {
       const response = await api(params);
 
       setDeployedWebsiteData({ ...response.data.result });
-    } else if (category === "USER") {
+    } else if (category === AXIOS_REQUEST_CATEGORY.GET_USER_DATA) {
       const response = await api(params);
 
       localStorage.setItem("avatar", response.data.user.image);
 
       dispatch({
-        type: "HANDLE_LOG_IN_USER_INFORMATION",
+        type: DISPATCH_TYPE.HANDLE_LOG_IN_USER_INFORMATION,
         payload: response.data,
       });
-    } else if (category === "EDITOR") {
+    } else if (category === AXIOS_REQUEST_CATEGORY.GET_EDITOR_DATA) {
       const response = await api(params);
 
-      dispatch({ type: "SET_EDITOR_DATA", payload: response.data.result });
-    } else if (category === "Save") {
+      dispatch({
+        type: DISPATCH_TYPE.GET_OR_POST_EDITOR_CODE,
+        payload: response.data.result,
+      });
+    } else if (category === AXIOS_REQUEST_CATEGORY.POST_EDITOR_CODE) {
       localStorage.removeItem("localImgSrc");
 
       navigate("/creatingnewwebsite");
 
       const response = await api(params);
 
-      dispatch({ type: "SET_EDITOR_DATA", payload: response.data.result });
+      dispatch({
+        type: DISPATCH_TYPE.GET_OR_POST_EDITOR_CODE,
+        payload: response.data.result,
+      });
 
       navigate(`/editor/${response.data.result._id}`);
-    } else if (category === "delete") {
+    } else if (category === AXIOS_REQUEST_CATEGORY.DELETE_WEBSITE) {
       navigate("/creatingnewwebsite");
 
       const response = await api(params);
 
       dispatch({
-        type: "HANDLE_LOG_IN_USER_INFORMATION",
+        type: DISPATCH_TYPE.HANDLE_LOG_IN_USER_INFORMATION,
         payload: response.data,
       });
 
       navigate("/");
-    } else if (category === "imageUpload") {
+    } else if (category === AXIOS_REQUEST_CATEGORY.POST_IMAGE) {
       const location = await api(params);
 
       saveLocalStorage(location.data.location.split(".com/")[1]);
 
       dispatch({
-        type: "SET_LOCAL_IMAGE_SRC",
+        type: DISPATCH_TYPE.INSERT_LOCAL_IMAGE,
         payload: location.data.location,
       });
-    } else if (category === "RemoveImage") {
+    } else if (category === AXIOS_REQUEST_CATEGORY.DELETE_IMAGE) {
       navigate("/creatingnewwebsite");
 
       await api(params);
@@ -68,7 +75,7 @@ const useAxios = (params, idToken, category = null) => {
       localStorage.removeItem("localImgSrc");
 
       navigate("/");
-    } else if (category === "Publish") {
+    } else if (category === AXIOS_REQUEST_CATEGORY.PATCH_WEBSITE) {
       navigate("/creatingnewwebsite");
 
       await api(params);

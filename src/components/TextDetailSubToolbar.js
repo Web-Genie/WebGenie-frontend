@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { FaBold, FaItalic, FaUnderline } from "react-icons/fa";
 
-import { ELEMENT_STYLE_OPTIONS, FONT_TYPE } from "../constants/constants";
+import { ELEMENT_STYLE_OPTIONS, FONT_TYPE } from "../constants";
 import useText from "../hooks/useText";
 import { Context } from "../store/Store";
 import { handleFontFormat } from "../utils";
@@ -20,7 +20,7 @@ function TextDetailSubToolbar() {
         <SelectDetail
           type="font"
           className="fontType"
-          detailValue={FONT_TYPE}
+          detailValue={ELEMENT_STYLE_OPTIONS.FONT_TYPE}
           currentValue={fontStyle.family}
           handleSelectOptionChange={(event) =>
             handleFontStyleValueChange("family", event.target.value)
@@ -29,7 +29,7 @@ function TextDetailSubToolbar() {
         <SelectDetail
           type="font"
           className="fontSize"
-          detailValue={ELEMENT_STYLE_OPTIONS}
+          detailValue={ELEMENT_STYLE_OPTIONS.BUTTON_RADIUS_AND_FONT_SIZE}
           currentValue={fontStyle.size}
           handleSelectOptionChange={(event) =>
             handleFontStyleValueChange("size", event.target.value)
@@ -40,16 +40,27 @@ function TextDetailSubToolbar() {
         <div className="detailItem">
           <span
             className="rightBorder"
-            onClick={handleFontFormat(currentElement, "bold")}
+            onClick={handleFontFormat(
+              currentElement,
+              ELEMENT_STYLE_OPTIONS.FONT_DETAIL.BOLD
+            )}
           >
             <FaBold />
           </span>
-          <span onClick={handleFontFormat(currentElement, "italic")}>
+          <span
+            onClick={handleFontFormat(
+              currentElement,
+              ELEMENT_STYLE_OPTIONS.FONT_DETAIL.ITALIC
+            )}
+          >
             <FaItalic />
           </span>
           <span
             className="leftBorder"
-            onClick={handleFontFormat(currentElement, "underline")}
+            onClick={handleFontFormat(
+              currentElement,
+              ELEMENT_STYLE_OPTIONS.FONT_DETAIL.UNDERLINE
+            )}
           >
             <FaUnderline />
           </span>

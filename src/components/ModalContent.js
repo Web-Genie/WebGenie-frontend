@@ -10,7 +10,7 @@ import {
 import { MdClose } from "react-icons/md";
 import styled from "styled-components";
 
-import { ID_TOKEN } from "../constants/constants";
+import { DISPATCH_TYPE, ID_TOKEN } from "../constants";
 import useAxios from "../hooks/useAxios";
 import { Context } from "../store/Store";
 import Button from "./Button";
@@ -46,7 +46,7 @@ function ModalContent({
   };
 
   const insertImage = () => {
-    dispatch({ type: "SET_IMAGE_URL_AVAILABILITY", payload: true });
+    dispatch({ type: DISPATCH_TYPE.VALID_IMAGE_URL, payload: true });
     handleClick();
   };
 
@@ -63,13 +63,16 @@ function ModalContent({
           <input onChange={handleTitleInput} />
         </NewSiteModalInputContainer>
       )}
-      {!modalIconState && !requestType && (
+      {!requestType && !modalIconState && (
         <ImgURLMocalInputContainer>
           <span />
           <input
             className="imgURL"
             onChange={(event) =>
-              dispatch({ type: "SET_IMAGE_URL", payload: event.target.value })
+              dispatch({
+                type: DISPATCH_TYPE.INSERT_IMAGE_URL,
+                payload: event.target.value,
+              })
             }
           />
         </ImgURLMocalInputContainer>

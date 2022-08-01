@@ -7,7 +7,7 @@ function Navigation({ children }) {
 }
 
 Navigation.propTypes = {
-  children: PropTypes.array.isRequired,
+  children: PropTypes.object.isRequired,
 };
 
 const NavigationContainer = styled.div`

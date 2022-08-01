@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 
+import { DISPATCH_TYPE } from "../constants";
 import { Context } from "../store/Store";
 
 const useNonTextElementStyle = () => {
@@ -11,28 +12,28 @@ const useNonTextElementStyle = () => {
       currentElement.style.opacity = value;
 
       dispatch({
-        type: "SET_IMAGE_STYLE",
+        type: DISPATCH_TYPE.CHANGE_IMAGE_STYLE,
         payload: { target, value },
       });
     } else if (target === "radius") {
       currentElement.style.borderRadius = `${value}px`;
 
       dispatch({
-        type: "SET_IMAGE_STYLE",
+        type: DISPATCH_TYPE.CHANGE_IMAGE_STYLE,
         payload: { target, value },
       });
     } else if (target === "blur") {
       currentElement.style.filter = `blur(${value}px) brightness(${elementStyle.brightness})`;
 
       dispatch({
-        type: "SET_IMAGE_STYLE",
+        type: DISPATCH_TYPE.CHANGE_IMAGE_STYLE,
         payload: { target, value },
       });
     } else {
       currentElement.style.filter = `blur(${elementStyle.blur}px) brightness(${value})`;
 
       dispatch({
-        type: "SET_IMAGE_STYLE",
+        type: DISPATCH_TYPE.CHANGE_IMAGE_STYLE,
         payload: { target, value },
       });
     }
@@ -56,7 +57,7 @@ const useNonTextElementStyle = () => {
 
     if (currentElementFilterStyle[0]) {
       dispatch({
-        type: "RESET_IMAGE_STYLE",
+        type: DISPATCH_TYPE.RESET_IMAGE_STYLE,
         payload: {
           opacity: currentElementOpacityStyle,
           blur: currentElementFilterStyle[0],

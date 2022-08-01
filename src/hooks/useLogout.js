@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { ID_TOKEN } from "../constants/constants";
+import { DISPATCH_TYPE, ID_TOKEN } from "../constants";
 import { firebaseAuth } from "../services/firebase";
 import { Context } from "../store/Store";
 
@@ -16,7 +16,7 @@ const useLogout = () => {
       localStorage.removeItem("localImgSrc");
 
       dispatch({
-        type: "HANDLE_LOG_IN_TOKEN_INFORMATION",
+        type: DISPATCH_TYPE.HANDLE_LOG_IN_TOKEN_INFORMATION,
         payload: null,
       });
       navigate("/");

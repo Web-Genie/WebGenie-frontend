@@ -1,15 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 
-import {
-  DELETE_MODAL_MESSAGE,
-  ID_TOKEN,
-  INSERT_IMG_URL_MODAL_MESSAGE,
-  MODAL_ICON_STATE,
-  NEW_EDITOR_MODAL_MESSAGE,
-  PUBLISH_MODAL_MESSAGE,
-  SAVE_MODAL_MESSAGE,
-  SAVE_REMINDER_MODAL_MESSAGE,
-} from "../constants/constants";
+import { ID_TOKEN, MODAL } from "../constants";
 import { Context } from "../store/Store";
 import { retrieveURL } from "../utils";
 
@@ -30,10 +21,10 @@ const useModal = () => {
   const createNewSiteModalToggle = useCallback(() => {
     setShouldDisplayModal((state) => !state);
     setMessage({
-      titleMessage: NEW_EDITOR_MODAL_MESSAGE.titleMessage,
-      proceedButtonText: NEW_EDITOR_MODAL_MESSAGE.acceptButtonMessage,
-      denyButtonText: NEW_EDITOR_MODAL_MESSAGE.denyButtonMessage,
-      iconType: MODAL_ICON_STATE.questionState,
+      titleMessage: MODAL.MESSAGE.NEW_EDITOR.titleMessage,
+      proceedButtonText: MODAL.MESSAGE.NEW_EDITOR.acceptButtonMessage,
+      denyButtonText: MODAL.MESSAGE.NEW_EDITOR.denyButtonMessage,
+      iconType: MODAL.ICON.questionState,
       params: {
         method: "post",
         url: "/websites",
@@ -53,10 +44,10 @@ const useModal = () => {
   const deleteSiteModalMessage = useCallback((event) => {
     setShouldDisplayModal((state) => !state);
     setMessage({
-      titleMessage: DELETE_MODAL_MESSAGE.titleMessage,
-      proceedButtonText: DELETE_MODAL_MESSAGE.acceptButtonMessage,
-      denyButtonText: DELETE_MODAL_MESSAGE.denyButtonMessage,
-      iconType: MODAL_ICON_STATE.deleteState,
+      titleMessage: MODAL.MESSAGE.DELETE_EDITOR.titleMessage,
+      proceedButtonText: MODAL.MESSAGE.DELETE_EDITOR.acceptButtonMessage,
+      denyButtonText: MODAL.MESSAGE.DELETE_EDITOR.denyButtonMessage,
+      iconType: MODAL.ICON.deleteState,
       modalType: "delete",
       params: {
         method: "delete",
@@ -72,10 +63,10 @@ const useModal = () => {
   const saveReminderModalToggle = useCallback(() => {
     setShouldDisplayModal((state) => !state);
     setMessage({
-      titleMessage: SAVE_REMINDER_MODAL_MESSAGE.titleMessage,
-      proceedButtonText: SAVE_REMINDER_MODAL_MESSAGE.acceptButtonMessage,
-      denyButtonText: SAVE_REMINDER_MODAL_MESSAGE.denyButtonMessage,
-      iconType: MODAL_ICON_STATE.remindState,
+      titleMessage: MODAL.MESSAGE.SAVE_REMINDER.titleMessage,
+      proceedButtonText: MODAL.MESSAGE.SAVE_REMINDER.acceptButtonMessage,
+      denyButtonText: MODAL.MESSAGE.SAVE_REMINDER.denyButtonMessage,
+      iconType: MODAL.ICON.remindState,
       modalType: "remind",
       requestType: "Reminder",
       shouldGoHomepage: true,
@@ -94,10 +85,10 @@ const useModal = () => {
   const publishModalToggle = useCallback(() => {
     setShouldDisplayModal((state) => !state);
     setMessage({
-      titleMessage: PUBLISH_MODAL_MESSAGE.titleMessage,
-      proceedButtonText: PUBLISH_MODAL_MESSAGE.acceptButtonMessage,
-      denyButtonText: PUBLISH_MODAL_MESSAGE.denyButtonMessage,
-      iconType: MODAL_ICON_STATE.deployState,
+      titleMessage: MODAL.MESSAGE.PUBLISH_EDITOR.titleMessage,
+      proceedButtonText: MODAL.MESSAGE.PUBLISH_EDITOR.acceptButtonMessage,
+      denyButtonText: MODAL.MESSAGE.PUBLISH_EDITOR.denyButtonMessage,
+      iconType: MODAL.ICON.deployState,
       modalType: "Publish",
       params: {
         method: "patch",
@@ -116,9 +107,9 @@ const useModal = () => {
   const imageURLModalToggle = useCallback(() => {
     setShouldDisplayModal((state) => !state);
     setMessage({
-      titleMessage: INSERT_IMG_URL_MODAL_MESSAGE.titleMessage,
-      proceedButtonText: INSERT_IMG_URL_MODAL_MESSAGE.acceptButtonMessage,
-      denyButtonText: INSERT_IMG_URL_MODAL_MESSAGE.denyButtonMessage,
+      titleMessage: MODAL.MESSAGE.INSERT_IMGAGE_URL.titleMessage,
+      proceedButtonText: MODAL.MESSAGE.INSERT_IMGAGE_URL.acceptButtonMessage,
+      denyButtonText: MODAL.MESSAGE.INSERT_IMGAGE_URL.denyButtonMessage,
     });
   }, []);
 
@@ -131,10 +122,10 @@ const useModal = () => {
     if (!shouldUseSaveModal) return;
 
     setMessage({
-      titleMessage: SAVE_MODAL_MESSAGE.titleMessage,
-      proceedButtonText: SAVE_MODAL_MESSAGE.acceptButtonMessage,
-      denyButtonText: SAVE_MODAL_MESSAGE.denyButtonMessage,
-      iconType: MODAL_ICON_STATE.saveState,
+      titleMessage: MODAL.MESSAGE.SAVE_EDITOR.titleMessage,
+      proceedButtonText: MODAL.MESSAGE.SAVE_EDITOR.acceptButtonMessage,
+      denyButtonText: MODAL.MESSAGE.SAVE_EDITOR.denyButtonMessage,
+      iconType: MODAL.ICON.saveState,
       params: {
         method: "post",
         url: "/websites/:website_id",

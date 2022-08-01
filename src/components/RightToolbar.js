@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { TEXT_CHOICES } from "../constants/constants";
+import { ELEMENT_STYLE_OPTIONS } from "../constants";
 import { Context } from "../store/Store";
 import ButtonLinkSubToolbar from "./ButtonLinkSubToolbar";
 import ButtonRadiusSubToolbar from "./ButtonRadiusSubToolbar";
@@ -20,7 +20,7 @@ function RightToolbar() {
   return (
     <EditorToolbar>
       <ToolbarContainer>
-        {TEXT_CHOICES.includes(subToolbarType) && (
+        {ELEMENT_STYLE_OPTIONS.HEADING_TAG.includes(subToolbarType) && (
           <>
             <TextDetailSubToolbar />
             <TextPositionSubToolbar />
@@ -41,7 +41,7 @@ function RightToolbar() {
           </>
         )}
         {subToolbarType === "BUTTON" ||
-        TEXT_CHOICES.includes(subToolbarType) ? (
+        ELEMENT_STYLE_OPTIONS.HEADING_TAG.includes(subToolbarType) ? (
           <ColorChangeSubToolbar />
         ) : null}
       </ToolbarContainer>

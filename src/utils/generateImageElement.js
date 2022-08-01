@@ -5,6 +5,8 @@ const generateImageElement = (localImage) => {
   newImage.style.height = "500px";
   newImage.style.width = "500px";
   newImage.style.cursor = "pointer";
+  newImage.style.left = "30px";
+  newImage.style.top = "50px";
 
   newImage.setAttribute("id", "img");
   newImage.setAttribute("alt", `${localImage}`);
