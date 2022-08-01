@@ -1,10 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 
-import {
-  ID_TOKEN,
-  REQUEST_DATA_INFORMATION_EDITOR,
-} from "../constants/constants";
+import { AXIOS_REQUEST_CATEGORY, ID_TOKEN } from "../constants";
 import useAxios from "../hooks/useAxios";
 import useLogout from "../hooks/useLogout";
 import useModal from "../hooks/useModal";
@@ -51,7 +48,7 @@ function Editor() {
       },
     },
     ID_TOKEN,
-    REQUEST_DATA_INFORMATION_EDITOR
+    AXIOS_REQUEST_CATEGORY.GET_EDITOR_DATA
   );
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { OPACITY_RANGE } from "../constants/constants";
+import { OPACITY_RANGE } from "../constants";
 import useNonTextElementStyle from "../hooks/useNonTextElementStyle";
 import SelectDetail from "./SelectDetailSubToolbar";
 import SubToolbarTitle from "./SubToolbarTitle";

@@ -1,4 +1,5 @@
 export { default as AXIOS_REQUEST_CATEGORY } from "./axiosRequestCategory";
+export { default as DISPATCH_TYPE } from "./dispatchType";
 export { default as ELEMENT_STYLE_OPTIONS } from "./elementsStyle";
 export { default as FONT_TYPE } from "./fontType";
 export { default as HEADING_TAG } from "./headingTag";

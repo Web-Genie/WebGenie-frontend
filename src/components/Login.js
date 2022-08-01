@@ -5,6 +5,7 @@ import styled from "styled-components";
 import googleLogo from "../assets/googleLogo.png";
 import loginImage from "../assets/loginImage.png";
 import webGenieLogo from "../assets/logo_transparent.png";
+import { DISPATCH_TYPE } from "../constants";
 import { firebaseAuth, googleProvider } from "../services/firebase";
 import { Context } from "../store/Store";
 import HompageSVG from "./HompageSVG";
@@ -22,7 +23,7 @@ function Login() {
       localStorage.setItem("idToken", idToken);
 
       dispatch({
-        type: "HANDLE_LOG_IN_TOKEN_INFORMATION",
+        type: DISPATCH_TYPE.HANDLE_LOG_IN_TOKEN_INFORMATION,
         payload: localStorage.getItem("idToken"),
       });
     } catch (error) {

@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 
+import { DISPATCH_TYPE } from "../constants";
 import { Context } from "../store/Store";
 import { computeRgbToHex } from "../utils";
 
@@ -11,7 +12,7 @@ const useColor = () => {
     if (purpose === "editorBackground") {
       editorRef.style.backgroundColor = value;
 
-      dispatch({ type: "SET_BACKGROUND_COLOR", payload: value });
+      dispatch({ type: DISPATCH_TYPE.CHANGE_BACKGROUND_COLOR, payload: value });
 
       return;
     }
@@ -20,14 +21,14 @@ const useColor = () => {
       currentElement.style.backgroundColor = value;
 
       dispatch({
-        type: "SET_COLOR",
+        type: DISPATCH_TYPE.CHANGE_BUTTON_AND_FONT_COLOR,
         payload: { value },
       });
     } else {
       currentElement.style.color = value;
 
       dispatch({
-        type: "SET_COLOR",
+        type: DISPATCH_TYPE.CHANGE_BUTTON_AND_FONT_COLOR,
         payload: { value },
       });
     }
@@ -46,14 +47,14 @@ const useColor = () => {
 
     if (currentElement.tagName === "BUTTON") {
       dispatch({
-        type: "SET_COLOR",
+        type: DISPATCH_TYPE.CHANGE_BUTTON_AND_FONT_COLOR,
         payload: {
           value: currentElementBackgroundColor,
         },
       });
     } else {
       dispatch({
-        type: "SET_COLOR",
+        type: DISPATCH_TYPE.CHANGE_BUTTON_AND_FONT_COLOR,
         payload: {
           value: currentElementColor,
         },

@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { AXIOS_REQUEST_CATEGORY } from "../constants/constants";
+import { AXIOS_REQUEST_CATEGORY, DISPATCH_TYPE } from "../constants";
 import api from "../services/api";
 import { Context } from "../store/Store";
 import { saveLocalStorage } from "../utils";
@@ -24,13 +24,16 @@ const useAxios = (params, idToken, category = null) => {
       localStorage.setItem("avatar", response.data.user.image);
 
       dispatch({
-        type: "HANDLE_LOG_IN_USER_INFORMATION",
+        type: DISPATCH_TYPE.HANDLE_LOG_IN_TOKEN_INFORMATION,
         payload: response.data,
       });
     } else if (category === AXIOS_REQUEST_CATEGORY.GET_EDITOR_DATA) {
       const response = await api(params);
 
-      dispatch({ type: "SET_EDITOR_DATA", payload: response.data.result });
+      dispatch({
+        type: DISPATCH_TYPE.INITIAL_SETTING_EDITOR,
+        payload: response.data.result,
+      });
     } else if (category === AXIOS_REQUEST_CATEGORY.POST_EDITOR_CODE) {
       localStorage.removeItem("localImgSrc");
 
@@ -38,7 +41,10 @@ const useAxios = (params, idToken, category = null) => {
 
       const response = await api(params);
 
-      dispatch({ type: "SET_EDITOR_DATA", payload: response.data.result });
+      dispatch({
+        type: DISPATCH_TYPE.SAVE_EDITOR_CODE,
+        payload: response.data.result,
+      });
 
       navigate(`/editor/${response.data.result._id}`);
     } else if (category === AXIOS_REQUEST_CATEGORY.DELETE_WEBSITE) {
@@ -47,7 +53,7 @@ const useAxios = (params, idToken, category = null) => {
       const response = await api(params);
 
       dispatch({
-        type: "HANDLE_LOG_IN_USER_INFORMATION",
+        type: DISPATCH_TYPE.HANDLE_LOG_IN_USER_INFORMATION,
         payload: response.data,
       });
 
@@ -58,7 +64,7 @@ const useAxios = (params, idToken, category = null) => {
       saveLocalStorage(location.data.location.split(".com/")[1]);
 
       dispatch({
-        type: "SET_LOCAL_IMAGE_SRC",
+        type: DISPATCH_TYPE.INSERT_LOCAL_IMAGE,
         payload: location.data.location,
       });
     } else if (category === AXIOS_REQUEST_CATEGORY.DELETE_IMAGE) {

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 
+import { DISPATCH_TYPE } from "../constants";
 import useDragAndDrop from "../hooks/useDragAndDrop";
 import useKeyDownEvent from "../hooks/useKeyDownEvent";
 import useResize from "../hooks/useResize";
@@ -40,7 +41,7 @@ function EditorTemplate({ editorVersion, userSavedCode }) {
       const newImage = generateImageElement(imageData.localImageSrc);
       parentRef.current.appendChild(newImage);
 
-      dispatch({ type: "SET_LOCAL_IMAGE_SRC", payload: "" });
+      dispatch({ type: DISPATCH_TYPE.INSERT_LOCAL_IMAGE, payload: "" });
     }
 
     if (imageData.isImageUrlAvailable) {
@@ -48,8 +49,8 @@ function EditorTemplate({ editorVersion, userSavedCode }) {
 
       parentRef.current.appendChild(newImage);
 
-      dispatch({ type: "SET_IMAGE_URL", payload: "" });
-      dispatch({ type: "SET_IMAGE_URL_AVAILABILITY", payload: false });
+      dispatch({ type: DISPATCH_TYPE.INSERT_IMAGE_URL, payload: "" });
+      dispatch({ type: DISPATCH_TYPE.VALID_IMAGE_URL, payload: false });
     }
   }, [imageData.localImageSrc, imageData.isImageUrlAvailable]);
 
@@ -77,7 +78,10 @@ function EditorTemplate({ editorVersion, userSavedCode }) {
     if (parentRef.current) {
       parentRef.current.style.backgroundColor = "rgb(255,255,255)";
 
-      dispatch({ type: "SET_EDITOR", payload: parentRef.current });
+      dispatch({
+        type: DISPATCH_TYPE.INITIAL_SETTING_EDITOR,
+        payload: parentRef.current,
+      });
     }
   }, []);
 

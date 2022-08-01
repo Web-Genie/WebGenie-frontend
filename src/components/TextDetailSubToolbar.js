@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { FaBold, FaItalic, FaUnderline } from "react-icons/fa";
 
-import { ELEMENT_STYLE_OPTIONS, FONT_TYPE } from "../constants/constants";
+import { ELEMENT_STYLE_OPTIONS, FONT_TYPE } from "../constants";
 import useText from "../hooks/useText";
 import { Context } from "../store/Store";
 import { handleFontFormat } from "../utils";

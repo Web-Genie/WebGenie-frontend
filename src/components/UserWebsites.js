@@ -1,8 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 
-import AXIOS_REQUEST_CATEGORY from "../constants/axiosRequestCategory";
-import { ID_TOKEN } from "../constants/constants";
+import { AXIOS_REQUEST_CATEGORY, ID_TOKEN } from "../constants";
 import useAxios from "../hooks/useAxios";
 import useInput from "../hooks/useInput";
 import useLogout from "../hooks/useLogout";
@@ -39,7 +38,7 @@ function UserPage() {
         Authorization: `Bearer ${idToken}`,
       },
     },
-    idToken,
+    ID_TOKEN,
     AXIOS_REQUEST_CATEGORY.GET_USER_DATA
   );
 

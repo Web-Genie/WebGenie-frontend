@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ELEMENT_STYLE_OPTIONS } from "../constants/constants";
+import { ELEMENT_STYLE_OPTIONS } from "../constants";
 import useNonTextElementStyle from "../hooks/useNonTextElementStyle";
 import SelectDetail from "./SelectDetailSubToolbar";
 import SubToolbarTitle from "./SubToolbarTitle";
