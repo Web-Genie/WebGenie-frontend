@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { MOUSE_DIRECTION } from "../constants";
 import {
   adjustResizerLocation,
-  applyDraggableElementStyle,
   generateDraggableIcons,
   removeDraggableElementStyle,
 } from "../utils";
@@ -101,16 +100,7 @@ const useResize = (
   };
 
   useEffect(() => {
-    if (isDragging) return;
-    if (!currentElement) return;
-
-    applyDraggableElementStyle(currentElement, parentElement);
-  }, [isDragging]);
-
-  useEffect(() => {
-    if (!parentElement) return;
-    if (isDragging) return;
-    if (!isResizing) return;
+    if (!parentElement || !isResizing) return;
 
     document.addEventListener("mouseup", onMouseUp);
     document.addEventListener("mousemove", onMouseMove);
