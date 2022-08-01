@@ -20,7 +20,7 @@ const useAxios = (params, idToken, category = null) => {
       setDeployedWebsiteData({ ...response.data.result });
     } else if (category === AXIOS_REQUEST_CATEGORY.GET_USER_DATA) {
       const response = await api(params);
-      console.log(response);
+
       localStorage.setItem("avatar", response.data.user.image);
 
       dispatch({
