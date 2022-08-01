@@ -123,8 +123,6 @@ function useDragAndDrop() {
 
     if (!isDragging) return;
 
-    console.log("from drag and drop");
-
     document.addEventListener("mouseup", onMouseUp);
     document.addEventListener("mousemove", onMouseMove);
 
