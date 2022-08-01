@@ -35,8 +35,8 @@ describe("Modal component", () => {
   it("2. should have style in modal div", () => {
     const div = screen.getByText("hello");
 
-    expect(div).toHaveStyle(`display: flex`);
-    expect(div).toHaveStyle(`margin: 10px 20px`);
-    expect(div).toHaveStyle(`flex-direction: column`);
+    expect(div).toHaveStyle("display: flex");
+    expect(div).toHaveStyle("margin: 10px 20px");
+    expect(div).toHaveStyle("flex-direction: column");
   });
 });

@@ -10,7 +10,7 @@ describe("ToolbarButton component", () => {
 
     const div = screen.getByText("hello");
 
-    expect(div).toHaveStyle(`padding: 6px 25px`);
+    expect(div).toHaveStyle("padding: 6px 25px");
   });
 
   it("2. should have width value(150px), margin value(0px 20px) when name prop is link ", () => {
@@ -18,7 +18,7 @@ describe("ToolbarButton component", () => {
 
     const div = screen.getByText("hello");
 
-    expect(div).toHaveStyle(`width: 150px`);
-    expect(div).toHaveStyle(`margin: 0px 20px`);
+    expect(div).toHaveStyle("width: 150px");
+    expect(div).toHaveStyle("margin: 0px 20px");
   });
 });
