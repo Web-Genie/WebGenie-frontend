@@ -1,4 +1,4 @@
-import { TEXT_CHOICES } from "../constants/constants";
+import { ELEMENT_STYLE_OPTIONS } from "../constants/";
 import generateDraggableIcons from "./generateDraggableIcons";
 import generateResizer from "./generateResizer";
 
@@ -14,7 +14,7 @@ const applyDraggableElementStyle = (currentElement, parentElement) => {
   });
 
   if (currentElement?.tagName !== "DIV" && currentElement.tagName !== "P") {
-    if (!TEXT_CHOICES.includes(currentElement.tagName)) {
+    if (!ELEMENT_STYLE_OPTIONS.HEADING_TAG.includes(currentElement.tagName)) {
       generateResizer(parentElement, currentElement);
       parentElement.append(deleteButton);
     } else {
