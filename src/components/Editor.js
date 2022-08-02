@@ -59,7 +59,6 @@ function Editor() {
   useEffect(() => {
     if (editorData._id) return;
 
-    console.log("hi");
     fetchData();
   }, []);
 
