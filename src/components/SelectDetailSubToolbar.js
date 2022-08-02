@@ -38,8 +38,9 @@ SelectDetailSubToolbar.propTypes = {
 
 const SelectBody = styled.div`
   background: ${(props) => (props.type === "font" ? "white" : null)};
-  padding: ${(props) => (props.type === "font" ? "7px 14px" : "7px 2.5px")};
+  padding: ${(props) => (props.type === "font" ? "5px 10px" : "7px 2.5px")};
   border: ${(props) => (props.type === "font" ? "1px solid #e5e5e5" : null)};
+  margin-right: 5px;
   border-radius: 6px;
 
   select {
@@ -47,7 +48,7 @@ const SelectBody = styled.div`
     box-sizing: border-box;
     border-radius: 6px;
     border: #ffffff;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 400;
     padding: ${(props) => (props.type === "font" ? "1px 5px" : "8px")};
     border: ${(props) => (props.type === "font" ? null : "1px solid #e5e5e5")};

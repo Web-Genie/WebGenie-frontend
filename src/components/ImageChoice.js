@@ -54,13 +54,14 @@ function ImageChoice() {
               <FaCloudUploadAlt />
             </p>
             Upload
+            <input type="file" id="file" onChange={handleImageUpload} />
           </label>
-          <input type="file" id="file" onChange={handleImageUpload} />
+          <ToolbarButton handleClick={imageURLModalToggle}>
+            <FaImage />
+            <p className="text">From URL</p>
+          </ToolbarButton>
         </div>
-        <ToolbarButton handleClick={imageURLModalToggle}>
-          <FaImage />
-          <p className="text">From URL</p>
-        </ToolbarButton>
+
         {shouldDisplayModal && (
           <Modal>
             <ModalContent

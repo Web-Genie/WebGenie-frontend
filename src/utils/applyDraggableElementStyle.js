@@ -7,11 +7,6 @@ const applyDraggableElementStyle = (currentElement, parentElement) => {
     clickedNode: currentElement,
     icon: "&#x2715;",
   });
-  const editTextButton = generateDraggableIcons({
-    clickedNode: currentElement,
-    icon: "&#x270E;",
-    editIcon: true,
-  });
 
   if (
     currentElement?.tagName !== ELEMENT_NAME.DIV &&
@@ -22,7 +17,6 @@ const applyDraggableElementStyle = (currentElement, parentElement) => {
       parentElement.append(deleteButton);
     } else {
       parentElement.append(deleteButton);
-      parentElement.append(editTextButton);
     }
   }
 };

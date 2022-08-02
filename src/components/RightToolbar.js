@@ -9,8 +9,9 @@ import EditorToolbar from "./EditorToolbar";
 import ImageBlurSubToolbar from "./ImageBlurSubToolbar";
 import ImageBrightnessSubToolbar from "./ImageBrightnessSubToolbar";
 import OpacityChangeSubToolbar from "./OpacityChangeSubToolbar";
-import TextDetailSubToolbar from "./TextDetailSubToolbar";
+import TextContentChangeSubtoolbar from "./TextContentChangeSubtoolbar";
 import TextPositionSubToolbar from "./TextPositionSubToolbar";
+import TextStyleSubToolbar from "./TextStyleSubToolbar";
 import ToolbarContainer from "./ToolbarContainer";
 
 function RightToolbar() {
@@ -22,8 +23,9 @@ function RightToolbar() {
       <ToolbarContainer>
         {ELEMENT_STYLE_OPTIONS.HEADING_TAG.includes(subToolbarType) && (
           <>
-            <TextDetailSubToolbar />
+            <TextStyleSubToolbar />
             <TextPositionSubToolbar />
+            <TextContentChangeSubtoolbar />
           </>
         )}
         {subToolbarType === ELEMENT_NAME.BUTTON && (

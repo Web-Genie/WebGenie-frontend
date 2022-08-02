@@ -7,7 +7,7 @@ import useLogout from "../hooks/useLogout";
 import useModal from "../hooks/useModal";
 import useToggle from "../hooks/useToggle";
 import { Context } from "../store/Store";
-import { retrieveURL } from "../utils";
+import { removeDraggableElementStyle, retrieveURL } from "../utils";
 import Button from "./Button";
 import EditorTemplate from "./EditorTemplate";
 import Header from "./Header";
@@ -24,12 +24,11 @@ function Editor() {
   const [displayingVersion, setDisplayingVersion] = useState(null);
   const [shouldShowDifferentVersion, setShouldShowDifferentVersion] =
     useState(false);
-  const { shouldDisplay, handleToggleClick } = useToggle();
   const { handleLogout } = useLogout();
   const { globalState } = useContext(Context);
-  const { editorData } = globalState;
+  const { editorRef, editorData } = globalState;
+  const { shouldDisplay, handleToggleClick } = useToggle(editorRef);
   const currentEditorId = retrieveURL();
-
   const {
     shouldDisplayModal,
     saveModalToggle,
@@ -51,21 +50,28 @@ function Editor() {
     AXIOS_REQUEST_CATEGORY.GET_EDITOR_DATA
   );
 
-  useEffect(() => {
-    if (editorData._id) return;
-
-    fetchData();
-  }, []);
-
-  if (!editorData._id) {
-    return <Loader />;
-  }
-
   const handleDisplayingVersionChange = (event) => {
     setDisplayingVersion(
       event.target.parentNode.parentNode.getAttribute("value")
     );
   };
+
+  useEffect(() => {
+    if (editorData._id) return;
+
+    console.log("hi");
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (editorRef) {
+      removeDraggableElementStyle({ parentElement: editorRef });
+    }
+  }, [shouldDisplay]);
+
+  if (!editorData._id) {
+    return <Loader />;
+  }
 
   return (
     <>

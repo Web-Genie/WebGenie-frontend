@@ -8,14 +8,14 @@ import { handleFontFormat } from "../utils";
 import SelectDetail from "./SelectDetailSubToolbar";
 import SubToolbarTitle from "./SubToolbarTitle";
 
-function TextDetailSubToolbar() {
+function TextStyleSubToolbar() {
   const { globalState } = useContext(Context);
   const { currentElement } = globalState;
   const { fontStyle, handleFontStyleValueChange } = useText();
 
   return (
     <div className="choiceContainer">
-      <SubToolbarTitle title="Edit text" />
+      <SubToolbarTitle title="Edit text style" />
       <div className="textDetailChoice">
         <SelectDetail
           type="font"
@@ -70,4 +70,4 @@ function TextDetailSubToolbar() {
   );
 }
 
-export default TextDetailSubToolbar;
+export default TextStyleSubToolbar;

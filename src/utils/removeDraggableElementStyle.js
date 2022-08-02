@@ -1,11 +1,6 @@
-import { ELEMENT_NAME, ELEMENT_STYLE_OPTIONS } from "../constants";
+import { ELEMENT_NAME } from "../constants";
 
-const removeDraggableElementStyle = ({
-  previousElement,
-  clickedElement,
-  parentElement,
-  isResizing,
-}) => {
+const removeDraggableElementStyle = ({ parentElement, isResizing }) => {
   const parentElementChildNodesLength = parentElement.childNodes.length;
 
   if (isResizing) {
@@ -21,20 +16,6 @@ const removeDraggableElementStyle = ({
   for (let i = parentElementChildNodesLength - 1; i >= 0; i--) {
     if (parentElement.childNodes[i].tagName === ELEMENT_NAME.P) {
       parentElement.childNodes[i].remove();
-    }
-  }
-
-  if (previousElement?.tagName === ELEMENT_NAME.P) return;
-
-  if (clickedElement.tagName === ELEMENT_NAME.P) {
-    previousElement.remove();
-  }
-
-  if (previousElement) {
-    previousElement.style.padding = ELEMENT_STYLE_OPTIONS.PADDING_VALUE;
-
-    if (previousElement.tagName !== ELEMENT_NAME.BUTTON) {
-      previousElement.style.border = ELEMENT_STYLE_OPTIONS.NONE;
     }
   }
 };
