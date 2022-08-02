@@ -59,6 +59,9 @@ function useDragAndDrop() {
   }
 
   function onMouseDown(event) {
+    event.stopPropagation();
+    event.preventDefault();
+
     const rect = parentRef.current.getBoundingClientRect();
 
     if (event.target.classList[0] === ELEMENT_NAME.MOUSE_RESIZER) {
@@ -76,14 +79,25 @@ function useDragAndDrop() {
       return;
     }
 
-    event.stopPropagation();
-    event.preventDefault();
+    if (event.target.tagName === ELEMENT_NAME.P) {
+      removeDraggableElementStyle({
+        previousElement: targetRef.current,
+        clickedElement: event.target,
+        parentElement: parentRef.current,
+      });
 
-    removeDraggableElementStyle({
-      previousElement: targetRef.current,
-      clickedElement: event.target,
-      parentElement: parentRef.current,
-    });
+      dispatch({
+        type: DISPATCH_TYPE.SET_SUB_TOOLBAR_TYPE,
+        payload: "",
+      });
+
+      return;
+    } else {
+      removeDraggableElementStyle({
+        clickedElement: event.target,
+        parentElement: parentRef.current,
+      });
+    }
 
     targetRef.current = event.target;
 
@@ -98,8 +112,6 @@ function useDragAndDrop() {
     });
 
     setIsDragging(true);
-
-    if (event.button !== 0) return;
 
     setCoordinates({
       x: event.clientX - targetRef.current.offsetWidth / 2 - rect.x,
