@@ -1,6 +1,10 @@
 import { ELEMENT_NAME } from "../constants";
 
-const removeDraggableElementStyle = ({ parentElement, isResizing }) => {
+const removeDraggableElementStyle = ({
+  previousElement,
+  parentElement,
+  isResizing,
+}) => {
   const parentElementChildNodesLength = parentElement.childNodes.length;
 
   if (isResizing) {
@@ -18,6 +22,8 @@ const removeDraggableElementStyle = ({ parentElement, isResizing }) => {
       parentElement.childNodes[i].remove();
     }
   }
+
+  if (previousElement) previousElement.remove();
 };
 
 export default removeDraggableElementStyle;
