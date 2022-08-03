@@ -1,6 +1,6 @@
 # 🖥 WebGenie
 
-<img src="https://user-images.githubusercontent.com/83770081/174787857-8d0a3ce2-dd8b-48a1-8480-5d946e4ab6f6.png" alt="brand logo" width=130 height=130/>
+<img width="280" alt="WebGenie" src="https://user-images.githubusercontent.com/83770081/182528285-667d3cc1-3585-41d1-b59a-924f5cbaf650.png">
 
 웹사이트를 만들고 싶지만 만드는 과정이 복잡하고 어려워 고민하고 계시나요?
 손쉽게 웹사이트를 만들 수 있는 웹 에디터 서비스, **WebGenie**입니다!
@@ -9,8 +9,6 @@ WebGenie를 통해 몇 번의 클릭과 Drag and Drop으로 멋진 웹사이트�
 또한, 웹사이트를 만든 후 배포하게 되면 고유한 주소를 갖게 되어 친구들과 주변사람들에게 공유할 수 있습니다.
 
 `# No Coding` `# Beginner Friendly`
-
-<br>
 
 ## 🗂 Contents
 
@@ -25,28 +23,20 @@ WebGenie를 통해 몇 번의 클릭과 Drag and Drop으로 멋진 웹사이트�
 - [📝 Technical Log](#-technical-log)
 - [🔥 개발자 소개](#-참여한-개발자-소개)
 
-<br>
-
 ## 📎 Link
 
 **Deploy**
 
 - [WebGenie](https://webgenie.online)
 
-<br>
-
 **Git Repository**
 
 - [Frontend](https://github.com/Web-Genie/WebGenie-webgenie-frontend)
 - [Backend](https://github.com/Web-Genie/WebGenie-webgenie-backend)
 
-<br>
-
 ## 🔍 Preview
 
 https://user-images.githubusercontent.com/83770081/174348067-990a70fe-b2d2-4fbf-a981-a8ced8ef0ba7.mp4
-
-<br>
 
 ### 🔑 Getting Started
 
@@ -97,40 +87,33 @@ CLIENT_X509_CERT_URL=<FIREBASE_CLIENT_CERT_URL>
 MONGO_URI=<MONGO_URI>
 ```
 
-  <br>
-
 ## 💡 Motivation
 
 사용자로서 당연하게 여기며 사용해왔던 것들을 우리가 가진 기술로 구현해보는 것이 어떨까? 라는 생각에서 출발하였습니다. 과거에 웹사이트를 만들 일이 생기면 제일 먼저 전문지식이 많지 않아도 간단하게 만들 수 있는 플랫폼을 찾아보았고 그 플랫폼을 통해 좋은 경험을 했었습니다. 이런 좋은 경험을 우리가 서비스 해본다면 어떨지에 대해 의논해 보았고, 지금까지 무심코 사용해왔던 Drag and Drop과 Resizing과 같은 기능들을 구현해보면 좋겠다는 생각이 들어 이를 구체화시켜 보았습니다.
 
 사용자는 편리하게 웹 사이트를 만들 수 있고 저희는 DOM, Javascript, React에 대해 깊게 고민하고 공부할 수 있을 것 같아 WebGenie를 만들게 되었습니다.
 
-<br>
-
 ## 🌈 Features
 
-- **_Drag and Drop_**
+### Drag and Drop
 
-https://user-images.githubusercontent.com/83874298/174587981-67191f49-f0d9-43f5-9d8c-d43a02624973.mov
+![Drag and Drop Demo](https://user-images.githubusercontent.com/83770081/182527496-6408c586-b3de-41c9-9696-1d865b06eb99.gif)
+
 
 ```
 템플릿에 올려놓은 font, image, button을 drag and drop을 이용하여 자유자재로 이동시킬 수 있습니다.
 ```
 
-<br>
+### Resizing
 
-- **_Resizing_**
+![Resizing Demo](https://user-images.githubusercontent.com/83770081/182527504-2bcfeb1d-4e3b-44b8-b027-2fb24ca28670.gif)
 
-https://user-images.githubusercontent.com/83874298/174588209-b25bb9b6-0d0e-47d7-9863-b5a5173fe1cc.mov
 
 ```
 템플릿에 올려놓은 font, image, button을 클릭하여, Mouse Down 된 상태에서 마우스를 왼쪽으로 이동시키면, 크기를 감소시키고 오른쪽으로 이동시키면 크기를 증가시킵니다.
-
 ```
 
-<br>
-
-- **_Font, Image, Button, Background change_**
+### Font, Image, Button, Background change
 
 https://user-images.githubusercontent.com/83874298/174590723-0e6029e8-4bd1-4f04-af36-75388161cc1c.mov
 
@@ -144,9 +127,7 @@ https://user-images.githubusercontent.com/83874298/174588727-0c680b81-cd71-4278-
 템플릿 배경의 색상을 변경할 수 있습니다.
 ```
 
-<br>
-
-- **_Version Log_**
+### Version Log
 
 https://user-images.githubusercontent.com/83874298/174588843-cead772e-bedd-4e05-87c1-35fb0e34b660.mov
 
@@ -156,9 +137,7 @@ saved version log 버튼을 누르면 사용자가 저장했던 시점의 기록
 특정 시점을 클릭하게 되면 그때 사용자가 저장했던 템플릿으로 돌아가게 됩니다.
 ```
 
-<br>
-
-- **_Keypress Event_**
+### Keypress Event
 
 https://user-images.githubusercontent.com/83874298/174589140-168a0093-8f5a-40ad-a43e-c83c1a47baf6.mov
 
@@ -166,17 +145,13 @@ https://user-images.githubusercontent.com/83874298/174589140-168a0093-8f5a-40ad-
 버튼과 이미지, 글자를 클릭한 후 Ctrl + C를 하면 복사, Ctrl + V를 하면 붙여넣기, Ctrl + Z를 누르면 이전 시점으로 돌아가게 됩니다.
 ```
 
-<br>
-
-- **_Deploy_**
+### Deploy
 
 https://user-images.githubusercontent.com/83874298/174589248-77c93c3e-049b-4520-ad1f-82ae39c180ec.mov
 
 ```
 사용자가 publish 버튼을 누르면 고유한 URL을 생성해주며 다른 사람들에게 자신의 웹사이트 주소를 공유할 수 있습니다.
 ```
-
-<br>
 
 ## 🛠 Tech Stacks
 
@@ -205,8 +180,6 @@ https://user-images.githubusercontent.com/83874298/174589248-77c93c3e-049b-4520-
 - Netlify
 - AWS Elastic Beanstalk
 
-<br>
-
 ## 🗓 Planning
 
 **_프로젝트 기간_**
@@ -215,8 +188,6 @@ https://user-images.githubusercontent.com/83874298/174589248-77c93c3e-049b-4520-
 
 - 5월 30일 ~ 6월 2일 : 아이디어 기획, 목업 작성, 애자일 스프린트 플랜 작성
 - 6월 3일 ~ 6월 17일 : 개발 진행, 배포, 테스트 작성
-
-<br>
 
 ## 📝 Technical Log
 
@@ -247,8 +218,6 @@ targetRef.current.style.left = `${(coordinates.x / parentContainerWidth) * 100}%
 targetRef.current.style.top = `${(coordinates.y / parentContainerHeight) * 100}%`;
 ...
 ```
-
-<br>
 
 ## 🔥 참여한 개발자 소개
 
