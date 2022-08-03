@@ -253,5 +253,6 @@ targetRef.current.style.top = `${(coordinates.y / parentContainerHeight) * 100}%
 ## 🔥 참여한 개발자 소개
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/83770081/174786680-e0001bcb-11b0-4c4b-acba-8cc2e240f837.png" alt="개발자 소개 이미지" text-align="center" height=320 width=720/>
+
+<img alt="개발자 소개 이미지" text-align="center" height=320 width=720 src="https://user-images.githubusercontent.com/83874298/182524556-40680d02-d6be-4d5a-bda7-c5599035eba5.png">
 </p>
