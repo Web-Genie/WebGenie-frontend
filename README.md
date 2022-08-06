@@ -182,6 +182,7 @@ https://user-images.githubusercontent.com/83874298/174589248-77c93c3e-049b-4520-
 
 - Netlify
 - AWS Elastic Beanstalk
+- Amazon Route 53
 
 ## 🗓 Planning
 
