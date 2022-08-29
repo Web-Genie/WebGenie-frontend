@@ -36,7 +36,8 @@ function Editor() {
     closeModal,
     message,
   } = useModal();
-
+  // console.log(shouldDisplayModal);
+  console.log(shouldDisplay);
   const { fetchData } = useAxios(
     {
       method: "get",
@@ -71,7 +72,7 @@ function Editor() {
   if (!editorData._id) {
     return <Loader />;
   }
-
+  console.log(editorData);
   return (
     <>
       {shouldDisplayModal && (
