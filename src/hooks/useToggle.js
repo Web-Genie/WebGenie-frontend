@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 
-const useToggle = (initialState = false) => {
-  const [shouldDisplay, setShouldDisplay] = useState(initialState);
+const useToggle = () => {
+  const [shouldDisplay, setShouldDisplay] = useState(false);
 
   const handleToggleClick = useCallback(
     () => setShouldDisplay((state) => !state),

@@ -99,7 +99,6 @@ MONGO_URI=<MONGO_URI>
 
 ![Drag and Drop Demo](https://user-images.githubusercontent.com/83770081/182527496-6408c586-b3de-41c9-9696-1d865b06eb99.gif)
 
-
 ```
 템플릿에 올려놓은 font, image, button을 drag and drop을 이용하여 자유자재로 이동시킬 수 있습니다.
 ```
@@ -107,7 +106,6 @@ MONGO_URI=<MONGO_URI>
 ### Resizing
 
 ![Resizing Demo](https://user-images.githubusercontent.com/83770081/182527504-2bcfeb1d-4e3b-44b8-b027-2fb24ca28670.gif)
-
 
 ```
 템플릿에 올려놓은 font, image, button을 클릭하여, Mouse Down 된 상태에서 마우스를 왼쪽으로 이동시키면, 크기를 감소시키고 오른쪽으로 이동시키면 크기를 증가시킵니다.
@@ -139,10 +137,7 @@ saved version log 버튼을 누르면 사용자가 저장했던 시점의 기록
 
 ### KeyDown Event
 
-
 https://user-images.githubusercontent.com/83874298/182529660-b9c41b10-42ce-448b-b113-9b1da9c5c0f0.mov
-
-
 
 ```
 버튼과 이미지, 글자를 클릭한 후 Ctrl + X를 하면 잘라내기, Ctrl + C를 하면 복사, Ctrl + V를 하면 붙여넣기, Ctrl + Z를 누르면 이전 시점으로 돌아가게 됩니다.
@@ -188,7 +183,7 @@ https://user-images.githubusercontent.com/83874298/174589248-77c93c3e-049b-4520-
 
 **_프로젝트 기간_**
 
-**2022년 5월 30일 ~ 6월 16일**
+**2022년 5월 30일 ~ 6월 17일**
 
 - 5월 30일 ~ 6월 2일 : 아이디어 기획, 목업 작성, 애자일 스프린트 플랜 작성
 - 6월 3일 ~ 6월 17일 : 개발 진행, 배포, 테스트 작성

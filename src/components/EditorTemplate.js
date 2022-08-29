@@ -31,6 +31,7 @@ function EditorTemplate({ editorVersion, userSavedCode }) {
     resizingDirection,
     draggingElementCoordinates,
   } = useDragAndDrop();
+
   useResize(
     targetRef.current,
     parentRef.current,
@@ -40,6 +41,7 @@ function EditorTemplate({ editorVersion, userSavedCode }) {
     resizingDirection,
     draggingElementCoordinates
   );
+
   useKeyDownEvent(
     currentEditor,
     parentRef,
@@ -78,8 +80,13 @@ function EditorTemplate({ editorVersion, userSavedCode }) {
       );
 
       parentRef.current.innerHTML = sanitizedCode;
-      parentRef.current.style.backgroundColor =
-        userSavedCode[editorVersion].backgroundColor;
+      if (!userSavedCode[editorVersion].backgroundColor) {
+        parentRef.current.style.backgroundColor =
+          ELEMENT_STYLE_OPTIONS.INITIAL_CANVAS_BACKGROUND_COLOR;
+      } else {
+        parentRef.current.style.backgroundColor =
+          userSavedCode[editorVersion].backgroundColor;
+      }
     } else {
       const sanitizedCode = DOMPurify.sanitize(userSavedCode[0].code);
 
